@@ -1,0 +1,19 @@
+extends: standard
+
+env:
+  browser: true
+  mocha: true
+
+plugins:
+  - html
+  - mocha
+  - chai-friendly
+
+rules:
+  no-new: 0
+  no-unused-expressions: 0
+  chai-friendly/no-unused-expressions: 2
+
+globals:
+  expect: true
+  should: true
