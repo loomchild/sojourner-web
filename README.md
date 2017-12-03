@@ -1,4 +1,4 @@
-# vue-es
+# Sojourner Web
 
 [![Build Status](https://api.travis-ci.org/loomchild/sojourner-web.svg)](https://travis-ci.org/loomchild/sojourner-web)
 
