@@ -1,0 +1,43 @@
+# vue-es
+
+[![Build Status](https://api.travis-ci.org/loomchild/sojourner-web.svg)](https://travis-ci.org/loomchild/sojourner-web)
+
+> Sojourner conference companion PWA
+
+# Requirements
+
+* Node 6.x
+
+# Build
+
+Download node dependencies:
+
+    npm install
+
+# Run
+
+Start the local development server:
+
+    npm run start
+
+# Test
+
+Launch style check:
+
+    npm run lint
+
+Launch unit / integration tests (deps must be running):
+
+    npm run test
+
+Launch end-to-end tests (deps and local server must be running):
+
+    npm run test-e2e
+
+All of the above tests are automatically executed by [Travis](https://travis-ci.org/loomchild/sojourner-web) after every commit.
+
+# Deploy
+
+Static application can be generated into dist/ directory using:
+
+    npm run build
