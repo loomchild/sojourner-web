@@ -18,5 +18,9 @@ export default {
 </script>
 
 <style scoped>
+  #logo {
+    text-align: center;
+    margin: 10px 0;
+  }
 </style>
 
