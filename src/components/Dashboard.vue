@@ -3,6 +3,14 @@
     <section id="logo">
       <img id="logo" src="../assets/logo.png">
     </section>
+    <section id="menu">
+      <div class="md-layout md-alignment-center">
+        <md-button class="md-raised md-primary md-layout-item">All events</md-button> 
+        <md-button class="md-raised md-primary md-layout-item">Events by track</md-button> 
+        <md-button class="md-raised md-primary md-layout-item">Events by room</md-button> 
+        <md-button class="md-raised md-primary md-layout-item">Favourite events</md-button> 
+      </div>
+    </section>
   </div>
 </template>
 
@@ -18,9 +26,21 @@ export default {
 </script>
 
 <style scoped>
-  #logo {
+  .dashboard {
     text-align: center;
+  }
+
+  #logo {
     margin: 10px 0;
+  }
+
+  #menu {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .md-button {
+    min-width: 150px;
   }
 </style>
 
