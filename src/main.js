@@ -1,14 +1,12 @@
 import Vue from 'vue'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
-import 'vue-material/dist/theme/default-dark.css'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
-
-Vue.use(VueMaterial)
+Vue.use(Vuetify)
 
 /* eslint-disable no-new */
 new Vue({
