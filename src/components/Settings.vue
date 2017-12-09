@@ -3,9 +3,10 @@
 
 <script>
 export default {
-  name: 'all-events'
+  name: 'settings'
 }
 </script>
 
 <style>
 </style>
+
