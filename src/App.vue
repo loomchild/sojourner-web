@@ -1,10 +1,7 @@
 <template>
   <v-app id="app" dark>
     <main-menu :drawer="drawer"></main-menu>
-    <v-toolbar app fixed clipped-left>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Sojourner</v-toolbar-title>
-    </v-toolbar>
+    <main-toolbar @toggledrawer="drawer = !drawer"></main-toolbar>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
@@ -17,18 +14,20 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer app fixed>
-      <span>&copy; 2017 by <a href="http://loomchild.net" target="_blank">loomchild</a></span>
-    </v-footer>
+    <main-footer></main-footer>
 </v-app></template>
 
 <script>
+import MainFooter from './components/MainFooter'
 import MainMenu from './components/MainMenu'
+import MainToolbar from './components/MainToolbar'
 
 export default {
   name: 'app',
   components: {
-    'main-menu': MainMenu
+    'main-footer': MainFooter,
+    'main-menu': MainMenu,
+    'main-toolbar': MainToolbar
   },
   data: () => ({
     drawer: true
