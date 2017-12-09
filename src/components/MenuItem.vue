@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile @click="click">
+  <v-list-tile :to="to" :exact="to === '/'" ripple>
     <v-list-tile-action>
       <v-icon>{{ icon }}</v-icon>
     </v-list-tile-action>
@@ -12,12 +12,7 @@
 <script>
 export default {
   name: 'menu-item',
-  props: ['icon', 'title'],
-  methods: {
-    click: function () {
-      this.$emit('click')
-    }
-  }
+  props: ['icon', 'title', 'to']
 }
 </script>
 

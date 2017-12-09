@@ -10,12 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'AllEvents',
+      name: 'all-events',
       component: AllEvents
     },
     {
       path: '/settings',
-      name: 'Settings',
+      name: 'settings',
       component: Settings
     }
   ]
