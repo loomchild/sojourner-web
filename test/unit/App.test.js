@@ -1,15 +1,24 @@
 import Vue from 'vue'
-import App from '../../src/App.vue'
+import Vuetify from 'vuetify'
+import {createLocalVue, shallow} from 'vue-test-utils'
+
+import App from '../../src/App'
+
+Vue.config.productionTip = false
+Vue.use(Vuetify)
 
 describe('App', () => {
-  let vm
+  let wrapper
 
   beforeEach(() => {
-    const Constructor = Vue.extend(App)
-    vm = new Constructor().$mount()
+    const localVue = createLocalVue()
+    wrapper = shallow(App, {
+      localVue,
+      stubs: ['router-view']
+    })
   })
 
-  it('should have logo', () => {
-    expect(vm.$el.querySelector('#logo')).is.not.undefined
+  it('should have app', () => {
+    expect(wrapper.find('#app').exists()).to.be.true
   })
 })
