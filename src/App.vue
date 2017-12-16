@@ -18,11 +18,13 @@ import MainToolbar from './components/MainToolbar'
 
 export default {
   name: 'app',
+
   components: {
     'main-footer': MainFooter,
     'main-menu': MainMenu,
     'main-toolbar': MainToolbar
   },
+
   data: () => ({
     drawer: true
   })

@@ -1,6 +1,8 @@
 import xmltojson from 'xmltojson'
+import firstBy from 'thenby'
 
 import xml from './schedule.xml'
+import Event from '../logic/Event'
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -27,12 +29,59 @@ const flattenAttributes = (element) => {
   return element
 }
 
-const getSchedule = () => {
-  const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false, childrenAsArray: false})
+const getText = (element) => element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
+
+const parseSchedule = () => {
+  const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
 
   const schedule = flattenAttributes(json.schedule)
 
   return schedule
 }
 
-export {getSchedule}
+let schedule = null
+
+const refreshShedule = () => {
+  schedule = parseSchedule()
+}
+
+const getSchedule = () => {
+  if (schedule == null) {
+    refreshShedule()
+  }
+
+  return schedule
+}
+
+const getAllEvents = () => {
+  const schedule = getSchedule()
+
+  const events = []
+
+  for (const day of schedule[0].day || []) {
+    for (const room of day.room || []) {
+      for (const event of room.event || []) {
+        const eventData = {
+          id: event.id.toString(),
+          start: getText(event.start),
+          duration: getText(event.duration),
+          title: getText(event.title),
+          subtitle: getText(event.subtitle),
+          abstract: getText(event.abstract),
+          description: getText(event.description),
+
+          type: getText(event.type),
+          track: getText(event.track),
+          day: day.index,
+          room: room.name,
+          persons: event.persons[0].person.map(person => person.text)
+        }
+        events.push(new Event(eventData))
+      }
+    }
+  }
+
+  return events.sort(firstBy('day').thenBy('start'))
+}
+
+export {getSchedule, refreshShedule, getAllEvents}
