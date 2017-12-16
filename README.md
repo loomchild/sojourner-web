@@ -41,3 +41,7 @@ All of the above tests are automatically executed by [Travis](https://travis-ci.
 Static application can be generated into dist/ directory using:
 
     npm run build
+
+To deploy it to github pages, run:
+
+    npm run deploy
