@@ -9,8 +9,8 @@
     "deploy": "npm run build && ./deploy.sh",
     "start": "NODE_ENV=development webpack-dev-server --hot --disable-host-check",
     "lint": "eslint --ext .js,.vue src test",
-    "test": "karma start --single-run",
-    "test-e2e": "nightwatch --env chrome"
+    "test": "NODE_ENV=test karma start --single-run",
+    "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
   "dependencies": {
     "blueimp-md5": "^2.10.0",
