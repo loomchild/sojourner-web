@@ -25,14 +25,6 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [
-          path.resolve(__dirname, './src'),
-          path.resolve(__dirname, './test')
-        ]
-      },
-      {
         test: /\.css$/,
         use: [ 'vue-style-loader', 'css-loader' ]
       },
