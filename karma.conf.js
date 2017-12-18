@@ -1,12 +1,19 @@
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 const webpackConfig = require('./webpack.config')
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJS'],
-    frameworks: ['mocha', 'chai-string', 'chai-datetime', 'sinon-chai', 'phantomjs-shim'],
+    browsers: ['ChromeHeadlessNoSandbox'],
+    customLaunchers: {
+      'ChromeHeadlessNoSandbox': {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
+    frameworks: ['mocha', 'chai-string', 'chai-datetime', 'sinon-chai'],
     reporters: ['spec'],
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
       {pattern: 'test/unit/*.test.js', watched: false},
       {pattern: 'test/unit/**/*.test.js', watched: false}
     ],
