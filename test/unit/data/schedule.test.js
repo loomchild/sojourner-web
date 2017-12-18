@@ -4,6 +4,6 @@ describe('data/getSchedule', () => {
   it('should retrieve schedule', () => {
     const schedule = getSchedule()
 
-    expect(schedule.conference).to.not.be.undefined
+    expect(schedule[0].conference).to.not.be.undefined
   })
 })
