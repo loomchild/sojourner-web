@@ -12,7 +12,7 @@
           <v-icon color="grey lighten-1" v-else>star_border</v-icon>
         </v-list-tile-action>
       </v-list-tile>
-      <v-divider v-if="index + 1 < events.length" :key="event.id"></v-divider>
+      <v-divider v-if="index + 1 < events.length"></v-divider>
     </template>
   </v-list>
 </template>
@@ -25,8 +25,8 @@ export default {
   name: 'all-events',
 
   data: () => ({
-    events: null,
-    favourites: null
+    events: [],
+    favourites: {}
   }),
 
   methods: {
