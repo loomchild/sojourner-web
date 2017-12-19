@@ -41,13 +41,13 @@ const parseSchedule = () => {
 
 let schedule = null
 
-const refreshShedule = () => {
+const refreshSchedule = () => {
   schedule = parseSchedule()
 }
 
 const getSchedule = () => {
   if (schedule == null) {
-    refreshShedule()
+    refreshSchedule()
   }
 
   return schedule
@@ -84,4 +84,4 @@ const getAllEvents = () => {
   return events.sort(firstBy('day').thenBy('start'))
 }
 
-export {getSchedule, refreshShedule, getAllEvents}
+export {getSchedule, refreshSchedule, getAllEvents}

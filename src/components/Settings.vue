@@ -22,11 +22,11 @@ export default {
     persistence: false
   }),
   methods: {
-    refresh() {
-      refreshSchedule();
+    refresh () {
+      refreshSchedule()
     },
 
-    enablePersistence() {
+    enablePersistence () {
       if (navigator.storage && navigator.storage.persist) {
         navigator.storage.persist()
           .then(persistence => {
@@ -35,7 +35,7 @@ export default {
       }
     },
 
-    updatePersistence() {
+    updatePersistence () {
       if (navigator.storage && navigator.storage.persisted) {
         return navigator.storage.persisted()
           .then(persistence => {
@@ -47,7 +47,7 @@ export default {
     }
   },
 
-  created: function () {
+  created () {
     this.updatePersistence()
   }
 }
