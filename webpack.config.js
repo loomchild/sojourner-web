@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -67,6 +68,18 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    new WorkboxPlugin({
+      cacheId: 'sojourner',
+      globDirectory: 'dist/',
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join('dist', 'service-worker.js'),
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [
+        {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
+        {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
+      ]
     })
   ])
 }
