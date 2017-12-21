@@ -3,7 +3,7 @@ import firstBy from 'thenby'
 
 import Event from '../logic/Event'
 
-const SCHEDULE_URL = 'https://fosdem.loomchild.net/2018/schedule/xml'
+const SCHEDULE_URL = 'https://fosdem-back.loomchild.net/2018/schedule/xml'
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
