@@ -1,7 +1,7 @@
 <template>
   <v-list three-line>
     <template v-for="(event, index) in events">
-      <v-list-tile class="event" ripple :key="event.id" :style="{borderLeftColor: event.track.color}">
+      <v-list-tile class="event" ripple :style="{borderLeftColor: event.track.color}">
         <v-list-tile-content v-ripple @click="goToEvent(event.id)">
           <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
           <v-list-tile-sub-title>{{ event.persons.join(', ') }} ({{ event.start }}-{{ event.end }}, {{ event.room }}, {{ event.track.name }})</v-list-tile-sub-title>
@@ -46,7 +46,7 @@ export default {
   },
 
   created: function () {
-    this.events = getAllEvents()
+    getAllEvents().then(events => { this.events = events })
     getFavourites().then(favourites => { this.favourites = favourites })
   }
 }
