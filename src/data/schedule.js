@@ -1,9 +1,10 @@
 import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
 
+import config from '../../config'
 import Event from '../logic/Event'
 
-const SCHEDULE_URL = 'https://fosdem-back.loomchild.net/2018/schedule/xml'
+let cachedEvents = null
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -33,13 +34,26 @@ const flattenAttributes = (element) => {
 const getText = (element) => element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
 
 const fetchSchedule = () => {
-  return fetch(SCHEDULE_URL)
+  // Never update schedule without explicit user request. Could also use cache: "default" to automatically update
+  // See https://hacks.mozilla.org/2016/03/referrer-and-cache-control-apis-for-fetch/ for more details
+  return fetch(config.scheduleUrl, {cache: 'force-cache'})
     .then(response => {
       if (!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
       return response.text()
     })
+}
+
+const refreshSchedule = () => {
+  if (navigator.onLine) {
+    cachedEvents = null
+    return fetch(config.scheduleUrl, {cache: 'reload'})
+      .then(() => getAllEvents())
+      .then(() => true)
+  } else {
+    return Promise.resolve(false)
+  }
 }
 
 const getSchedule = () => {
@@ -53,20 +67,10 @@ const getSchedule = () => {
     })
 }
 
-let events = null
-
-const refreshSchedule = () => {
-  events = null
-}
-
-const getAllEvents = () => {
-  if (events != null) {
-    return Promise.resolve(events)
-  }
-
+const getEvents = () => {
   return getSchedule()
     .then(schedule => {
-      events = []
+      let events = []
 
       for (const day of schedule[0].day || []) {
         for (const room of day.room || []) {
@@ -91,9 +95,20 @@ const getAllEvents = () => {
         }
       }
 
-      events = events.sort(firstBy('day').thenBy('start'))
-      return events
+      return events.sort(firstBy('day').thenBy('start'))
     })
+}
+
+const getAllEvents = () => {
+  if (cachedEvents == null) {
+    return getEvents()
+      .then(events => {
+        cachedEvents = events
+        return events
+      })
+  }
+
+  return Promise.resolve(cachedEvents)
 }
 
 export {getSchedule, refreshSchedule, getAllEvents}
