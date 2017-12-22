@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer clipped fixed v-model="drawer" disable-route-watcher app>
+  <v-navigation-drawer clipped fixed v-model="drawer" app>
     <v-list dense>
       <menu-item title="All Events" icon="home" to="/"></menu-item>
       <menu-item title="Favourite events" icon="favorite"></menu-item>
