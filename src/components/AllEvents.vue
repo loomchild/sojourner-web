@@ -4,7 +4,7 @@
       <event :event="event"></event>
       <v-divider v-if="index + 1 < events.length"></v-divider>
     </template>
-    <infinite-loading @infinite="infiniteLoad">
+    <infinite-loading @infinite="infiniteLoad" spinner="waveDots">
       <span slot="no-results"></span>
       <span slot="no-more"></span>
     </infinite-loading>
@@ -35,7 +35,12 @@ export default {
   methods: {
     infiniteLoad (state) {
       return getAllEvents().then(events => {
-        this.events.push(...events.slice(this.events.length, this.events.length + PAGE_SIZE))
+        const route = this.$route
+        const page = this.$route.query.page ? parseInt(this.$route.query.page) : 0
+        const newPage = page + 1
+        this.$router.push(`${route.path}?page=${newPage}`)
+
+        this.events.push(...events.slice(this.events.length, PAGE_SIZE * newPage))
 
         if (this.events.length < events.length) {
           return state.loaded()
@@ -47,7 +52,8 @@ export default {
   },
 
   created: function () {
-    getAllEvents().then(events => { this.events = events.slice(0, PAGE_SIZE) })
+    const page = this.$route.query.page ? parseInt(this.$route.query.page) : 1
+    getAllEvents().then(events => { this.events = events.slice(0, PAGE_SIZE * page) })
   }
 }
 </script>
