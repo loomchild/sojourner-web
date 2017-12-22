@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import AllEvents from './components/AllEvents'
 import Settings from './components/Settings'
+import EventDetails from './components/EventDetails'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/settings',
       name: 'settings',
       component: Settings
+    },
+    {
+      path: '/event/:id',
+      name: 'event',
+      component: EventDetails
     }
   ]
 })

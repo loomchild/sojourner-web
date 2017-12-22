@@ -70,12 +70,12 @@ const getSchedule = () => {
 const getEvents = () => {
   return getSchedule()
     .then(schedule => {
-      let events = []
+      let events = {}
 
       for (const day of schedule[0].day || []) {
         for (const room of day.room || []) {
           for (const event of room.event || []) {
-            const eventData = {
+            const e = new Event({
               id: event.id.toString(),
               start: getText(event.start),
               duration: getText(event.duration),
@@ -89,17 +89,18 @@ const getEvents = () => {
               day: day.index,
               room: room.name,
               persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
-            }
-            events.push(new Event(eventData))
+            })
+
+            events[e.id] = e
           }
         }
       }
 
-      return events.sort(firstBy('day').thenBy('start'))
+      return events
     })
 }
 
-const getAllEvents = () => {
+const getCachedEvents = () => {
   if (cachedEvents == null) {
     return getEvents()
       .then(events => {
@@ -111,4 +112,14 @@ const getAllEvents = () => {
   return Promise.resolve(cachedEvents)
 }
 
-export {getSchedule, refreshSchedule, getAllEvents}
+const getAllEvents = () => {
+  return getCachedEvents()
+    .then(events => Object.values(events).sort(firstBy('day').thenBy('start')))
+}
+
+const getEvent = (eventId) => {
+  return getCachedEvents()
+    .then(events => events[eventId])
+}
+
+export {getSchedule, refreshSchedule, getAllEvents, getEvent}
