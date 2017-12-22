@@ -17,15 +17,7 @@ export default {
   components: {
     'menu-item': MenuItem
   },
-  props: ['drawer'],
-  methods: {
-    all: function () {
-      this.$router.push('/')
-    },
-    settings: function () {
-      this.$router.push('settings')
-    }
-  }
+  props: ['drawer']
 }
 </script>
 
