@@ -7,6 +7,8 @@ import router from './router'
 
 Vue.use(Vuetify)
 
+Vue.prototype.$eventBus = new Vue()
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

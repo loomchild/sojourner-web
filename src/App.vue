@@ -1,7 +1,7 @@
 <template>
   <v-app id="app" dark>
-    <main-menu :drawer="drawer"></main-menu>
-    <main-toolbar @toggledrawer="drawer = !drawer"></main-toolbar>
+    <main-menu></main-menu>
+    <main-toolbar></main-toolbar>
     <v-content>
       <v-container fluid fill-height>
         <router-view></router-view>
@@ -23,11 +23,7 @@ export default {
     'main-footer': MainFooter,
     'main-menu': MainMenu,
     'main-toolbar': MainToolbar
-  },
-
-  data: () => ({
-    drawer: false
-  })
+  }
 }
 </script>
 

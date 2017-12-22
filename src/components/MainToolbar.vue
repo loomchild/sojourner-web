@@ -9,8 +9,8 @@
 export default {
   name: 'main-toolbar',
   methods: {
-    click: function () {
-      this.$emit('toggledrawer')
+    click () {
+      this.$eventBus.$emit('toggledrawer')
     }
   }
 }

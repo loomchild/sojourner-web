@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer clipped fixed v-model="drawer" app>
+  <v-navigation-drawer clipped fixed v-model="drawer" disable-route-watcher app>
     <v-list dense>
       <menu-item title="All Events" icon="home" to="/"></menu-item>
       <menu-item title="Favourite events" icon="favorite"></menu-item>
@@ -14,10 +14,20 @@ import MenuItem from './MenuItem'
 
 export default {
   name: 'main-menu',
+
   components: {
     'menu-item': MenuItem
   },
-  props: ['drawer']
+
+  data: () => ({
+    drawer: null
+  }),
+
+  created: function () {
+    this.$eventBus.$on('toggledrawer', () => {
+      this.drawer = !this.drawer
+    })
+  }
 }
 </script>
 
