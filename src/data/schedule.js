@@ -91,7 +91,7 @@ const getEvents = () => {
               persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
             })
 
-            events[e.id] = e
+            events[e.id] = Object.freeze(e)
           }
         }
       }
