@@ -28,4 +28,9 @@ const unsetFavourite = (eventId) => {
   return localforage.removeItem(eventId)
 }
 
-export {isFavourite, getFavourites, setFavourite, unsetFavourite}
+const toggleFavourite = (eventId) => {
+  return isFavourite(eventId)
+    .then(favourite => favourite ? unsetFavourite(eventId) : setFavourite(eventId))
+}
+
+export {isFavourite, getFavourites, setFavourite, unsetFavourite, toggleFavourite}

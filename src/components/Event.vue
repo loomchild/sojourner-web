@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {isFavourite, setFavourite, unsetFavourite} from '../data/favourite'
+import {isFavourite, toggleFavourite} from '../data/favourite'
 
 export default {
   name: 'event',
@@ -26,13 +26,8 @@ export default {
 
   methods: {
     toggleFavourite () {
-      if (this.favourite) {
-        unsetFavourite(this.event.id)
-          .then(() => { this.favourite = false })
-      } else {
-        setFavourite(this.event.id)
-          .then(() => { this.favourite = true })
-      }
+      this.favourite = !this.favourite
+      toggleFavourite(this.event.id)
     },
 
     goToEvent () {
