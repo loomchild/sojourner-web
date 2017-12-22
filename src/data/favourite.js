@@ -8,6 +8,18 @@ const init = () => {
 
 init()
 
+const isFavourite = (eventId) => {
+  return localforage.getItem(eventId)
+    .then(favourite => !!favourite)
+}
+
+const getFavourites = () => {
+  const favourites = {}
+  return localforage.iterate((value, key) => {
+    favourites[key] = true
+  }).then(() => favourites)
+}
+
 const setFavourite = (eventId) => {
   return localforage.setItem(eventId, true)
 }
@@ -16,10 +28,4 @@ const unsetFavourite = (eventId) => {
   return localforage.removeItem(eventId)
 }
 
-const getFavourites = () => {
-  const favourites = {}
-  return localforage.iterate((value, key) => { favourites[key] = true })
-    .then(() => favourites)
-}
-
-export {setFavourite, unsetFavourite, getFavourites}
+export {isFavourite, getFavourites, setFavourite, unsetFavourite}
