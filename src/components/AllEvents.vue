@@ -20,7 +20,7 @@ import {getAllEvents} from '../data/schedule'
 
 import Event from './Event'
 
-const PAGE_SIZE = 25
+const PAGE_SIZE = 50
 
 export default {
   name: 'all-events',
