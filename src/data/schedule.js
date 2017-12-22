@@ -3,6 +3,7 @@ import firstBy from 'thenby'
 
 import config from '../../config'
 import Event from '../logic/Event'
+import {getFavourites} from './favourite'
 
 let cachedEvents = null
 
@@ -117,9 +118,18 @@ const getAllEvents = () => {
     .then(events => Object.values(events).sort(firstBy('day').thenBy('start')))
 }
 
+const getFavouriteEvents = () => {
+  return getFavourites()
+    .then(favourites => {
+      console.log(favourites)
+      return getAllEvents()
+        .then(events => events.filter(event => favourites[event.id]))
+    })
+}
+
 const getEvent = (eventId) => {
   return getCachedEvents()
     .then(events => events[eventId])
 }
 
-export {getSchedule, refreshSchedule, getAllEvents, getEvent}
+export {getSchedule, refreshSchedule, getAllEvents, getEvent, getFavouriteEvents}

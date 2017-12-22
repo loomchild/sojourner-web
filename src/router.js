@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import AllEvents from './components/AllEvents'
+import FavouriteEvents from './components/FavouriteEvents'
 import Settings from './components/Settings'
 import EventDetails from './components/EventDetails'
 
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'all-events',
       component: AllEvents
+    },
+    {
+      path: '/favourites',
+      name: 'favourite-events',
+      component: FavouriteEvents
     },
     {
       path: '/settings',

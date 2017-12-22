@@ -1,5 +1,7 @@
 <template>
+  <v-layout justify-center align-top>
   <div>{{ JSON.stringify(event) }}</div>
+  </v-layout>
 </template>
 
 <script>

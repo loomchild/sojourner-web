@@ -16,14 +16,14 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 
-import {getAllEvents} from '../data/schedule'
+import {getFavouriteEvents} from '../data/schedule'
 
 import Event from './Event'
 
 const PAGE_SIZE = 25
 
 export default {
-  name: 'all-events',
+  name: 'favourite-events',
 
   components: {
     InfiniteLoading,
@@ -36,7 +36,7 @@ export default {
 
   methods: {
     infiniteLoad (state) {
-      return getAllEvents().then(events => {
+      return getFavouriteEvents().then(events => {
         const route = this.$route
         const page = this.$route.query.page ? parseInt(this.$route.query.page) : 0
         const newPage = page + 1
@@ -55,7 +55,7 @@ export default {
 
   created: function () {
     const page = this.$route.query.page ? parseInt(this.$route.query.page) : 1
-    getAllEvents().then(events => { this.events = events.slice(0, PAGE_SIZE * page) })
+    getFavouriteEvents().then(events => { this.events = events.slice(0, PAGE_SIZE * page) })
   }
 }
 </script>
