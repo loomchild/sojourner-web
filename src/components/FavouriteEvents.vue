@@ -61,8 +61,11 @@ export default {
 </script>
 
 <style>
-  .list {
+  .layout {
     width: 100%;
+  }
+
+  .list {
     padding: 0;
   }
 </style>
