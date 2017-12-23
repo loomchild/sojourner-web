@@ -6,6 +6,8 @@ import FavouriteEvents from './components/FavouriteEvents'
 import Settings from './components/Settings'
 import EventDetails from './components/EventDetails'
 
+window.history.scrollRestoration = 'manual'
+
 Vue.use(Router)
 
 export default new Router({
