@@ -4,7 +4,9 @@
     <main-toolbar></main-toolbar>
     <v-content>
       <v-container fluid fill-height>
-        <router-view></router-view>
+        <keep-alive include="all-events">
+          <router-view></router-view>
+        </keep-alive>
       </v-container>
     </v-content>
     <main-footer></main-footer>

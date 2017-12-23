@@ -37,13 +37,7 @@ export default {
   methods: {
     infiniteLoad (state) {
       return getAllEvents().then(events => {
-        const route = this.$route
-        const page = this.$route.query.page ? parseInt(this.$route.query.page) : 0
-        const newPage = page + 1
-        this.$router.push(`${route.path}?page=${newPage}`)
-
-        this.events.push(...events.slice(this.events.length, PAGE_SIZE * newPage))
-
+        this.events.push(...events.slice(this.events.length, this.events.length + PAGE_SIZE))
         if (this.events.length < events.length) {
           return state.loaded()
         } else {
@@ -54,8 +48,7 @@ export default {
   },
 
   created: function () {
-    const page = this.$route.query.page ? parseInt(this.$route.query.page) : 1
-    getAllEvents().then(events => { this.events = events.slice(0, PAGE_SIZE * page) })
+    getAllEvents().then(events => { this.events = events.slice(0, PAGE_SIZE) })
   }
 }
 </script>
