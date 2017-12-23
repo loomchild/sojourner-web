@@ -5,7 +5,7 @@
         <event :event="event"></event>
         <v-divider v-if="index + 1 < events.length"></v-divider>
       </template>
-      <infinite-loading @infinite="infiniteLoad" spinner="waveDots">
+      <infinite-loading @infinite="infiniteLoad" spinner="waveDots" distance="250">
         <span slot="no-results"></span>
         <span slot="no-more"></span>
       </infinite-loading>
