@@ -66,6 +66,7 @@ export default {
   }
 
   .list {
+    width: 100%;
     padding: 0;
   }
 </style>
