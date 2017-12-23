@@ -4,6 +4,14 @@ import Track from './Track'
 
 const TIME_FORMAT = 'HH:mm'
 
+const processHtml = (text) => {
+  if (!text) {
+    return ''
+  }
+  return text
+    .replace('\n', '<br/>')
+}
+
 export default class Event {
   constructor (data) {
     this.id = data.id
@@ -11,8 +19,8 @@ export default class Event {
     this.duration = data.duration
     this.title = data.title
     this.subtitle = data.subtitle
-    this.abstract = data.abstract
-    this.description = data.description
+    this.abstract = processHtml(data.abstract)
+    this.description = processHtml(data.description)
 
     this.type = data.type
     this.track = new Track(data.track)

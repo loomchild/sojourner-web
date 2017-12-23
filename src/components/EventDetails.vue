@@ -1,6 +1,11 @@
 <template>
   <v-layout justify-center align-top>
-  <div>{{ JSON.stringify(event) }}</div>
+    <v-card>
+      <v-card-title primary-title><h2>{{ event.title }}</h2></v-card-title>
+      <v-card-title><h3>{{ event.subtitle }}</h3></v-card-title>
+      <v-card-text v-html="event.abstract"></v-card-text>
+      <v-card-text v-html="event.description"></v-card-text>
+    </v-card>
   </v-layout>
 </template>
 
@@ -32,6 +37,9 @@ export default {
 </script>
 
 <style>
+  .card {
+    width: 100%;
+  }
 </style>
 
 
