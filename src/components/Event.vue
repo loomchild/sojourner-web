@@ -59,5 +59,9 @@ export default {
   .event-title {
     font-weight: bold;
   }
+
+  .list__tile__action {
+    cursor: pointer;
+  }
 </style>
 
