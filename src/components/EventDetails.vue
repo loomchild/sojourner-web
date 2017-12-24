@@ -1,13 +1,13 @@
 <template>
   <v-layout justify-center align-top>
     <v-card :style="{borderTopColor: event.track.color}">
-      <v-card-title primary-title class="title">
-        <h2>{{ event.title }}</h2>
+      <v-card-title primary-title class="title"><h2>
+        {{ event.title }}
         <span class="favourite" @click="toggleFavourite()">
           <v-icon color="yellow darken-2" v-if="favourite">star</v-icon>
           <v-icon color="grey lighten-1" v-else>star_border</v-icon>
         </span>
-      </v-card-title>
+      </h2></v-card-title>
       <v-card-title>
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }},
@@ -29,7 +29,7 @@ export default {
   name: 'event-details',
 
   data: () => ({
-    event: null,
+    event: {track: {}, persons: []},
     favourite: false
   }),
 
@@ -67,7 +67,6 @@ export default {
   }
 
   .favourite {
-    margin-left: 8px;
     cursor: pointer;
   }
 </style>
