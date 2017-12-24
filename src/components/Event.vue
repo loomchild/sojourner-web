@@ -2,7 +2,11 @@
   <v-list-tile class="event" ripple :style="{borderLeftColor: event.track.color}">
     <v-list-tile-content v-ripple @click="goToEvent(event.id)">
       <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
-      <v-list-tile-sub-title>{{ event.persons.join(', ') }} ({{ event.start }}-{{ event.end }}, {{ event.room }}, {{ event.track.name }})</v-list-tile-sub-title>
+      <v-list-tile-sub-title>
+        {{ event.persons.join(', ') }},
+        {{ event.start }}-{{ event.end }},
+        {{ event.room }}, {{ event.track.name }}
+      </v-list-tile-sub-title>
       <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action @click="toggleFavourite()">
