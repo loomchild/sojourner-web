@@ -17,6 +17,7 @@
     "blueimp-md5": "^2.10.0",
     "colorsys": "^1.0.19",
     "localforage": "^1.5.5",
+    "lodash": "^4.17.4",
     "memoizee": "^0.4.11",
     "moment": "^2.19.4",
     "thenby": "^1.2.3",

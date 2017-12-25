@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getAllTracks} from '../data/schedule'
+import {getAllTrackStats} from '../data/schedule'
 
 import ConferenceTrack from './ConferenceTrack'
 
@@ -26,7 +26,7 @@ export default {
   }),
 
   created: function () {
-    getAllTracks().then(tracks => { this.tracks = tracks })
+    getAllTrackStats().then(tracks => { this.tracks = tracks })
   }
 }
 </script>

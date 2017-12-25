@@ -1,9 +1,12 @@
 <template>
-  <v-list-tile class="room" ripple :to="`/room/${room.name}`">
+  <v-list-tile class="room" ripple :to="`/room/${room.room.name}`">
     <v-list-tile-content>
-      <v-list-tile-title class="room-name">{{ room.name }}</v-list-tile-title>
-      <v-list-tile-sub-title>
+      <v-list-tile-title class="room-name">{{ room.room.name }}</v-list-tile-title>
+      <v-list-tile-sub-title v-if="room.events.length > 0">
+        {{ room.events.length }} events,
+        {{ room.tracks.map(track => `${track.track} (${track.days.join(' and ')})`).join(', ') }}
       </v-list-tile-sub-title>
+      <v-list-tile-sub-title v-else>0 events</v-list-tile-sub-title>
     </v-list-tile-content>
   </v-list-tile>
 </template>

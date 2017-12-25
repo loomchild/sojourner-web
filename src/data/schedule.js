@@ -1,5 +1,6 @@
 import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
+import _ from 'lodash'
 
 import config from '../../config'
 import Day from '../logic/Day'
@@ -120,11 +121,14 @@ const addEvent = (events, event, day, room, track) => {
 }
 
 const addRoom = (rooms, room) => {
-  const r = Object.freeze(new Room({
-    name: room.name
-  }))
+  let r = rooms[room.name]
+  if (!r) {
+    r = Object.freeze(new Room({
+      name: room.name
+    }))
+    rooms[r.name] = r
+  }
 
-  rooms[r.name] = r
   return r
 }
 
@@ -141,10 +145,12 @@ const parseSchedule = () => {
       for (const day of schedule[0].day || []) {
         const d = addDay(parsedSchedule.days, day)
         for (const room of day.room || []) {
-          const r = addRoom(parsedSchedule.rooms, room)
-          for (const event of room.event || []) {
-            const track = addTrack(parsedSchedule.tracks, event)
-            addEvent(parsedSchedule.events, event, d, r, track)
+          if (room.event && room.event.length > 0) {
+            const r = addRoom(parsedSchedule.rooms, room)
+            for (const event of room.event || []) {
+              const track = addTrack(parsedSchedule.tracks, event)
+              addEvent(parsedSchedule.events, event, d, r, track)
+            }
           }
         }
       }
@@ -207,14 +213,60 @@ const getAllTracks = () => {
     .then(schedule => Object.values(schedule.tracks).sort(firstBy('name')))
 }
 
+const getAllTrackStats = () => {
+  return getCachedSchedule()
+    .then(schedule => {
+      const tracks = Object.values(schedule.tracks).sort(firstBy('name'))
+      const eventsByTrack = _.groupBy(Object.values(schedule.events), event => event.track.name)
+
+      return tracks.map(track => {
+        const events = eventsByTrack[track.name] ? eventsByTrack[track.name] : []
+        const rooms = _.uniq(events.map(event => event.room.name)).sort()
+        const days = _.uniq(events.map(event => event.day.name)).sort()
+
+        return {
+          track: track,
+          events: events,
+          days: days,
+          rooms: rooms
+        }
+      })
+    })
+}
+
 const getAllRooms = () => {
   return getCachedSchedule()
     .then(schedule => Object.values(schedule.rooms).sort(firstBy('name')))
 }
 
+const getAllRoomStats = () => {
+  return getCachedSchedule()
+    .then(schedule => {
+      const rooms = Object.values(schedule.rooms).sort(firstBy('name'))
+      const eventsByRoom = _.groupBy(Object.values(schedule.events), event => event.room.name)
+
+      return rooms.map(room => {
+        const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
+        const eventsByTrack = _.groupBy(events, event => event.track.name)
+        const tracks = _.uniq(events.map(event => event.track.name))
+          .map(track => ({
+            track: track,
+            days: _.uniq(eventsByTrack[track].map(event => event.day.name)).sort()
+          }))
+          .sort(firstBy(track => track.days.join('')).thenBy(track => track.track))
+
+        return {
+          room: room,
+          events: events,
+          tracks: tracks
+        }
+      })
+    })
+}
+
 export {
   getSchedule, refreshSchedule,
   getAllEvents, getEvent, getFavouriteEvents, getTrackEvents, getRoomEvents,
-  getAllTracks,
-  getAllRooms
+  getAllTracks, getAllTrackStats,
+  getAllRooms, getAllRoomStats
 }

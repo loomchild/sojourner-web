@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getAllRooms} from '../data/schedule'
+import {getAllRoomStats} from '../data/schedule'
 
 import Room from './Room'
 
@@ -26,7 +26,7 @@ export default {
   }),
 
   created: function () {
-    getAllRooms().then(rooms => { this.rooms = rooms })
+    getAllRoomStats().then(rooms => { this.rooms = rooms })
   }
 }
 </script>
