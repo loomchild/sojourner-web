@@ -146,34 +146,55 @@ const parseSchedule = () => {
     })
 }
 
-const getCachedEvents = () => {
+const getCachedSchedule = () => {
   if (cachedSchedule == null) {
     return parseSchedule()
       .then(parsedSchedule => {
         cachedSchedule = parsedSchedule
-        return cachedSchedule.events
+        return cachedSchedule
       })
   }
 
-  return Promise.resolve(cachedSchedule.events)
+  return Promise.resolve(cachedSchedule)
 }
 
+const eventNaturalSort = firstBy(event => event.day.index).thenBy('start')
+
 const getAllEvents = () => {
-  return getCachedEvents()
-    .then(events => Object.values(events).sort(firstBy(event => event.day.index).thenBy('start')))
+  return getCachedSchedule()
+    .then(schedule => Object.values(schedule.events)
+      .sort(eventNaturalSort))
 }
 
 const getFavouriteEvents = () => {
   return getFavourites()
     .then(favourites => {
-      return getAllEvents()
-        .then(events => events.filter(event => favourites[event.id]))
+      return getCachedSchedule()
+        .then(schedule => Object.values(schedule.events)
+          .filter(event => favourites[event.id])
+          .sort(eventNaturalSort))
     })
 }
 
-const getEvent = (eventId) => {
-  return getCachedEvents()
-    .then(events => events[eventId])
+const getTrackEvents = (trackName) => {
+  return getCachedSchedule()
+    .then(schedule => Object.values(schedule.events)
+      .filter(event => event.track.name === trackName)
+      .sort(eventNaturalSort))
 }
 
-export {getSchedule, refreshSchedule, getAllEvents, getEvent, getFavouriteEvents}
+const getEvent = (eventId) => {
+  return getCachedSchedule()
+    .then(schedule => schedule.events[eventId])
+}
+
+const getAllTracks = () => {
+  return getCachedSchedule()
+    .then(schedule => Object.values(schedule.tracks).sort(firstBy('name')))
+}
+
+export {
+  getSchedule, refreshSchedule,
+  getAllEvents, getEvent, getFavouriteEvents, getTrackEvents,
+  getAllTracks
+}

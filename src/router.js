@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import AllEvents from './components/AllEvents'
 import FavouriteEvents from './components/FavouriteEvents'
+import ConferenceTracks from './components/ConferenceTracks'
+import ConferenceTrackEvents from './components/ConferenceTrackEvents'
 import Settings from './components/Settings'
 import EventDetails from './components/EventDetails'
 
@@ -23,6 +25,11 @@ export default new Router({
       component: FavouriteEvents
     },
     {
+      path: '/tracks',
+      name: 'tracks',
+      component: ConferenceTracks
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: Settings
@@ -31,6 +38,11 @@ export default new Router({
       path: '/event/:id',
       name: 'event',
       component: EventDetails
+    },
+    {
+      path: '/track/:name',
+      name: 'track',
+      component: ConferenceTrackEvents
     }
   ],
 
