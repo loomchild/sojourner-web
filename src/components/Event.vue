@@ -44,7 +44,7 @@ export default {
     },
 
     goToEvent () {
-      setTimeout(() => this.$router.push(`event/${this.event.id}`), 200)
+      setTimeout(() => this.$router.push(`/event/${this.event.id}`), 200)
     }
   },
 
