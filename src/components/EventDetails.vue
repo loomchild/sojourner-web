@@ -8,7 +8,7 @@
           <v-icon color="grey lighten-1" v-else>star_border</v-icon>
         </span>
       </h2></v-card-title>
-      <v-card-title>
+      <v-card-title class="grey--text text--lighten-1">
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
         {{ event.room.name }},
@@ -24,12 +24,13 @@
 <script>
 import {getEvent} from '../data/schedule'
 import {isFavourite, toggleFavourite} from '../data/favourite'
+import Event from '../logic/Event'
 
 export default {
   name: 'event-details',
 
   data: () => ({
-    event: {track: {}, persons: []},
+    event: new Event(),
     favourite: false
   }),
 
