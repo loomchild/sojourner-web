@@ -2,7 +2,10 @@ import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
 
 import config from '../../config'
+import Day from '../logic/Day'
 import Event from '../logic/Event'
+import Room from '../logic/Room'
+import Track from '../logic/Track'
 import {getFavourites} from './favourite'
 
 let cachedSchedule = null
@@ -68,33 +71,73 @@ const getSchedule = () => {
     })
 }
 
+const addTrack = (tracks, event) => {
+  const name = getText(event.track)
+  let track = tracks[name]
+  if (!track) {
+    track = Object.freeze(new Track(name))
+    tracks[name] = track
+  }
+  return track
+}
+
+const addDay = (days, day) => {
+  const d = Object.freeze(new Day({
+    index: day.index,
+    date: day.date
+  }))
+
+  days[d.index] = d
+  return d
+}
+
+const addEvent = (events, event, day, room, track) => {
+  const e = Object.freeze(new Event({
+    id: event.id.toString(),
+    start: getText(event.start),
+    duration: getText(event.duration),
+    title: getText(event.title),
+    subtitle: getText(event.subtitle),
+    abstract: getText(event.abstract),
+    description: getText(event.description),
+
+    type: getText(event.type),
+    track: track,
+    day: day,
+    room: room,
+    persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
+  }))
+
+  events[e.id] = e
+  return e
+}
+
+const addRoom = (rooms, room) => {
+  const r = Object.freeze(new Room({
+    name: room.name
+  }))
+
+  rooms[r.name] = r
+  return r
+}
+
 const parseSchedule = () => {
   return getSchedule()
     .then(schedule => {
       let parsedSchedule = {
-        events: {}
+        days: {},
+        events: {},
+        rooms: {},
+        tracks: {}
       }
 
       for (const day of schedule[0].day || []) {
+        const d = addDay(parsedSchedule.days, day)
         for (const room of day.room || []) {
+          const r = addRoom(parsedSchedule.rooms, room)
           for (const event of room.event || []) {
-            const e = new Event({
-              id: event.id.toString(),
-              start: getText(event.start),
-              duration: getText(event.duration),
-              title: getText(event.title),
-              subtitle: getText(event.subtitle),
-              abstract: getText(event.abstract),
-              description: getText(event.description),
-
-              type: getText(event.type),
-              track: getText(event.track),
-              day: day.index,
-              room: room.name,
-              persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
-            })
-
-            parsedSchedule.events[e.id] = Object.freeze(e)
+            const track = addTrack(parsedSchedule.tracks, event)
+            addEvent(parsedSchedule.events, event, d, r, track)
           }
         }
       }
@@ -117,13 +160,12 @@ const getCachedEvents = () => {
 
 const getAllEvents = () => {
   return getCachedEvents()
-    .then(events => Object.values(events).sort(firstBy('day').thenBy('start')))
+    .then(events => Object.values(events).sort(firstBy(event => event.day.index).thenBy('start')))
 }
 
 const getFavouriteEvents = () => {
   return getFavourites()
     .then(favourites => {
-      console.log(favourites)
       return getAllEvents()
         .then(events => events.filter(event => favourites[event.id]))
     })

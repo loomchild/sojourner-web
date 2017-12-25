@@ -1,7 +1,5 @@
 import moment from 'moment'
 
-import Track from './Track'
-
 const TIME_FORMAT = 'HH:mm'
 
 export default class Event {
@@ -15,7 +13,7 @@ export default class Event {
     this.description = data.description
 
     this.type = data.type
-    this.track = new Track(data.track)
+    this.track = data.track
     this.day = data.day
     this.room = data.room
     this.persons = data.persons

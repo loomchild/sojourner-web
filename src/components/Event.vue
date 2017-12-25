@@ -4,8 +4,9 @@
       <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
       <v-list-tile-sub-title>
         {{ event.persons.join(', ') }},
-        {{ event.start }}-{{ event.end }},
-        {{ event.room }}, {{ event.track.name }}
+        {{ event.start }}-{{ event.end }} {{ event.day.name }},
+        {{ event.room.name }},
+        {{ event.track.name }}
       </v-list-tile-sub-title>
       <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
     </v-list-tile-content>
@@ -29,6 +30,14 @@ export default {
   }),
 
   methods: {
+    refreshFavourite () {
+      isFavourite(this.event.id).then(favourite => {
+        if (this.favourite !== favourite) {
+          this.favourite = favourite
+        }
+      })
+    },
+
     toggleFavourite () {
       this.favourite = !this.favourite
       toggleFavourite(this.event.id)
@@ -39,12 +48,12 @@ export default {
     }
   },
 
-  activated: function () {
-    isFavourite(this.event.id).then(favourite => {
-      if (this.favourite !== favourite) {
-        this.favourite = favourite
-      }
-    })
+  created () {
+    return this.refreshFavourite()
+  },
+
+  activated () {
+    return this.refreshFavourite()
   }
 }
 </script>

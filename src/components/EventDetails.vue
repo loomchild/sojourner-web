@@ -10,8 +10,8 @@
       </h2></v-card-title>
       <v-card-title>
         {{ event.persons.join(', ') }},
-        {{ event.start }}-{{ event.end }},
-        {{ event.room }},
+        {{ event.start }}-{{ event.end }} {{ event.day.name }},
+        {{ event.room.name }},
         {{ event.track.name }}
       </v-card-title>
       <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
