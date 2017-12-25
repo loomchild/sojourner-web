@@ -5,7 +5,7 @@ import config from '../../config'
 import Event from '../logic/Event'
 import {getFavourites} from './favourite'
 
-let cachedEvents = null
+let cachedSchedule = null
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -48,7 +48,7 @@ const fetchSchedule = () => {
 
 const refreshSchedule = () => {
   if (navigator.onLine) {
-    cachedEvents = null
+    cachedSchedule = null
     return fetch(config.scheduleUrl, {cache: 'reload'})
       .then(() => getAllEvents())
       .then(() => true)
@@ -68,10 +68,12 @@ const getSchedule = () => {
     })
 }
 
-const getEvents = () => {
+const parseSchedule = () => {
   return getSchedule()
     .then(schedule => {
-      let events = {}
+      let parsedSchedule = {
+        events: {}
+      }
 
       for (const day of schedule[0].day || []) {
         for (const room of day.room || []) {
@@ -92,25 +94,25 @@ const getEvents = () => {
               persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
             })
 
-            events[e.id] = Object.freeze(e)
+            parsedSchedule.events[e.id] = Object.freeze(e)
           }
         }
       }
 
-      return events
+      return parsedSchedule
     })
 }
 
 const getCachedEvents = () => {
-  if (cachedEvents == null) {
-    return getEvents()
-      .then(events => {
-        cachedEvents = events
-        return events
+  if (cachedSchedule == null) {
+    return parseSchedule()
+      .then(parsedSchedule => {
+        cachedSchedule = parsedSchedule
+        return cachedSchedule.events
       })
   }
 
-  return Promise.resolve(cachedEvents)
+  return Promise.resolve(cachedSchedule.events)
 }
 
 const getAllEvents = () => {
