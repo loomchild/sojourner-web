@@ -2,7 +2,7 @@
   <v-layout row wrap>
     <v-card-text>
       <div class="button">
-        <v-btn color="primary" dark @click="refresh">Refresh Schedule</v-btn>
+        <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
       </div>
       <div class="button">
         <v-btn color="primary" dark v-if="persistence" :ripple="false">Persistent</v-btn>
@@ -19,11 +19,14 @@ import {refreshSchedule} from '../data/schedule'
 export default {
   name: 'settings',
   data: () => ({
-    persistence: false
+    persistence: false,
+    refreshing: false
   }),
   methods: {
     refresh () {
+      this.refreshing = true
       refreshSchedule()
+        .then(() => { this.refreshing = false })
     },
 
     enablePersistence () {
