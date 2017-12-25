@@ -26,7 +26,7 @@ export default {
     refresh () {
       this.refreshing = true
       refreshSchedule()
-        .then(() => { this.refreshing = false })
+        .then(() => { location.reload() })
     },
 
     enablePersistence () {

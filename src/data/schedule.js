@@ -55,7 +55,7 @@ const refreshSchedule = () => {
   if (navigator.onLine) {
     cachedSchedule = null
     return fetch(config.scheduleUrl, {cache: 'reload'})
-      .then(() => getAllEvents())
+      .then(() => getCachedSchedule())
       .then(() => true)
   } else {
     return Promise.resolve(false)
