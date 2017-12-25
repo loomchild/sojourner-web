@@ -4,6 +4,7 @@ import firstBy from 'thenby'
 import config from '../../config'
 import Day from '../logic/Day'
 import Event from '../logic/Event'
+import Link from '../logic/Link'
 import Room from '../logic/Room'
 import Track from '../logic/Track'
 import {getFavourites} from './favourite'
@@ -92,6 +93,11 @@ const addDay = (days, day) => {
 }
 
 const addEvent = (events, event, day, room, track) => {
+  const persons = event.persons && event.persons[0] && event.persons[0].person
+    ? event.persons[0].person.map(person => person.text) : []
+  const links = event.links && event.links[0] && event.links[0].link
+    ? event.links[0].link.map(link => new Link({href: link.href, title: link.text})) : []
+
   const e = Object.freeze(new Event({
     id: event.id.toString(),
     start: getText(event.start),
@@ -105,7 +111,8 @@ const addEvent = (events, event, day, room, track) => {
     track: track,
     day: day,
     room: room,
-    persons: event.persons[0].person ? event.persons[0].person.map(person => person.text) : []
+    persons: persons,
+    links: links
   }))
 
   events[e.id] = e

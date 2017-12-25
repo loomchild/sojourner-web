@@ -17,6 +17,10 @@
       <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
       <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
       <v-card-text v-if="event.description" v-html="event.description" class="description"></v-card-text>
+      <v-card-text v-if="event.links.length > 0" class="links">
+        Links:
+        <p v-for="link in event.links" class="link"><a :href="link.href" target="_blank">{{ link.title }}</a></p>
+      </v-card-text>
     </v-card>
   </v-layout>
 </template>
@@ -65,6 +69,21 @@ export default {
 
   .description {
     padding-top: 0;
+  }
+
+  .links {
+    padding-top: 0;
+    margin-bottom: 16px;
+    counter-reset: link-counter;
+  }
+
+  .link {
+    margin-bottom: 0;
+  }
+
+  .link:before {
+    content: '['counter(link-counter)'] ';
+    counter-increment: link-counter;
   }
 
   .favourite {
