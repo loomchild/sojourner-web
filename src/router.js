@@ -5,6 +5,8 @@ import AllEvents from './components/AllEvents'
 import FavouriteEvents from './components/FavouriteEvents'
 import ConferenceTracks from './components/ConferenceTracks'
 import ConferenceTrackEvents from './components/ConferenceTrackEvents'
+import Rooms from './components/Rooms'
+import RoomEvents from './components/RoomEvents'
 import Settings from './components/Settings'
 import EventDetails from './components/EventDetails'
 
@@ -25,24 +27,34 @@ export default new Router({
       component: FavouriteEvents
     },
     {
-      path: '/tracks',
-      name: 'tracks',
-      component: ConferenceTracks
-    },
-    {
-      path: '/settings',
-      name: 'settings',
-      component: Settings
-    },
-    {
       path: '/event/:id',
       name: 'event',
       component: EventDetails
     },
     {
+      path: '/tracks',
+      name: 'tracks',
+      component: ConferenceTracks
+    },
+    {
       path: '/track/:name',
       name: 'track',
       component: ConferenceTrackEvents
+    },
+    {
+      path: '/rooms',
+      name: 'rooms',
+      component: Rooms
+    },
+    {
+      path: '/room/:name',
+      name: 'room',
+      component: RoomEvents
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: Settings
     }
   ],
 

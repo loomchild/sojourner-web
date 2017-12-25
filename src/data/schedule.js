@@ -166,6 +166,11 @@ const getAllEvents = () => {
       .sort(eventNaturalSort))
 }
 
+const getEvent = (eventId) => {
+  return getCachedSchedule()
+    .then(schedule => schedule.events[eventId])
+}
+
 const getFavouriteEvents = () => {
   return getFavourites()
     .then(favourites => {
@@ -183,9 +188,11 @@ const getTrackEvents = (trackName) => {
       .sort(eventNaturalSort))
 }
 
-const getEvent = (eventId) => {
+const getRoomEvents = (roomName) => {
   return getCachedSchedule()
-    .then(schedule => schedule.events[eventId])
+    .then(schedule => Object.values(schedule.events)
+      .filter(event => event.room.name === roomName)
+      .sort(eventNaturalSort))
 }
 
 const getAllTracks = () => {
@@ -193,8 +200,14 @@ const getAllTracks = () => {
     .then(schedule => Object.values(schedule.tracks).sort(firstBy('name')))
 }
 
+const getAllRooms = () => {
+  return getCachedSchedule()
+    .then(schedule => Object.values(schedule.rooms).sort(firstBy('name')))
+}
+
 export {
   getSchedule, refreshSchedule,
-  getAllEvents, getEvent, getFavouriteEvents, getTrackEvents,
-  getAllTracks
+  getAllEvents, getEvent, getFavouriteEvents, getTrackEvents, getRoomEvents,
+  getAllTracks,
+  getAllRooms
 }
