@@ -39,8 +39,12 @@ export default {
     }
   },
 
-  created: function () {
-    isFavourite(this.event.id).then(f => { this.favourite = f })
+  activated: function () {
+    isFavourite(this.event.id).then(favourite => {
+      if (this.favourite !== favourite) {
+        this.favourite = favourite
+      }
+    })
   }
 }
 </script>
