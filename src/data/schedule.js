@@ -32,7 +32,7 @@ const flattenAttributes = (element) => {
   return element
 }
 
-const getText = (element) => element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
+const getText = (element) => element && element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
 
 const fetchSchedule = () => {
   // Never update schedule without explicit user request. Could also use cache: "default" to automatically update
