@@ -248,12 +248,11 @@ const getAllRoomStats = () => {
       return rooms.map(room => {
         const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
         const eventsByTrack = _.groupBy(events, event => event.track.name)
-        const tracks = _.uniq(events.map(event => event.track))
+        const tracks = _.uniq(events.sort(eventNaturalSort).map(event => event.track))
           .map(track => ({
             track: track,
             days: _.uniq(eventsByTrack[track.name].map(event => event.day.name)).sort()
           }))
-          .sort(firstBy(track => track.days.join('')).thenBy(track => track.track.name))
 
         return {
           room: room,
