@@ -21,8 +21,6 @@ export default {
     'event': Event
   },
 
-  props: ['track'],
-
   data: () => ({
     events: []
   }),
