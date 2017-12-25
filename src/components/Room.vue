@@ -17,6 +17,11 @@ export default {
 </script>
 
 <style>
+  .room {
+    margin-left: 1px;
+    border-left: 10px solid dimgray;
+  }
+
   li div {
     white-space: nowrap !important;
     overflow: hidden;
