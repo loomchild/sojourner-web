@@ -12,9 +12,9 @@
             <div class="infos body-2">
               <p><v-icon>book</v-icon> Version: {{ version }}</p>
               <p><v-icon>alarm</v-icon> Timestamp: {{ timestamp }}</p>
-              <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net" target="_blank">loomchild</a></p>
-              <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web" target="_blank">Github</a></p>
-              <p>Sojourner is a conference schedule viewer. It is inspired by the original <a href="https://github.com/loomchild/sojourner" target="_blank">Sojourner</a> mobile app for Nokia N900 written by Will Thompson.</p>
+              <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net">loomchild</a></p>
+              <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web">Github</a></p>
+              <p>Sojourner is a conference schedule viewer. It is inspired by the original <a href="https://github.com/loomchild/sojourner">Sojourner</a> mobile app for Nokia N900 written by Will Thompson.</p>
             </div>
           </v-flex>
         </v-layout>

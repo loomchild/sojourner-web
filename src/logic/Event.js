@@ -4,8 +4,6 @@ const TIME_FORMAT = 'HH:mm'
 
 const LINK_REGEXP = new RegExp('<a', 'g')
 
-const processLinks = (text) => text ? text.replace(LINK_REGEXP, '$& target="blank"') : text
-
 export default class Event {
   constructor (data = {}) {
     this.id = data.id
@@ -13,8 +11,8 @@ export default class Event {
     this.duration = data.duration
     this.title = data.title
     this.subtitle = data.subtitle
-    this.abstract = processLinks(data.abstract)
-    this.description = processLinks(data.description)
+    this.abstract = data.abstract
+    this.description = data.description
 
     this.type = data.type
     this.track = data.track || {}

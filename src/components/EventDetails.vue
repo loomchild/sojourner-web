@@ -19,7 +19,7 @@
       <v-card-text v-if="event.description" v-html="event.description" class="description"></v-card-text>
       <v-card-text v-if="event.links.length > 0" class="links">
         Links:
-        <p v-for="link in event.links" class="link"><a :href="link.href" target="_blank">{{ link.title }}</a></p>
+        <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
       </v-card-text>
     </v-card>
   </v-layout>
