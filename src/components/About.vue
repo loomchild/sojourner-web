@@ -4,7 +4,9 @@
       <v-card-text>
         <v-layout row wrap>
           <v-flex xs12>
-            <div class="logo"><img src="../assets/logo.png"></div>
+            <div class="logo">
+              <a href="https://fosdem.org"><img src="../assets/logo.png"></a>
+            </div>
           </v-flex>
           <v-flex sm12 md6 offset-md3>
             <div class="infos body-2">
