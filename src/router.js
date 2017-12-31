@@ -18,6 +18,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/tracks'
+    },
+    {
+      path: '/all',
       name: 'all-events',
       component: AllEvents
     },

@@ -1,10 +1,10 @@
 <template>
   <v-navigation-drawer clipped fixed v-model="drawer" app>
     <v-list dense>
-      <menu-item title="All Events" icon="home" to="/"></menu-item>
-      <menu-item title="Favourite Events" icon="favorite" to="/favourites"></menu-item>
       <menu-item title="Tracks" icon="toc" to="/tracks"></menu-item>
       <menu-item title="Rooms" icon="weekend" to="/rooms"></menu-item>
+      <menu-item title="All Events" icon="home" to="/all"></menu-item>
+      <menu-item title="Favourite Events" icon="favorite" to="/favourites"></menu-item>
       <v-divider></v-divider>
       <menu-item title="Settings" icon="settings" to="/settings"></menu-item>
     </v-list>
