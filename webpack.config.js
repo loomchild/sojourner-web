@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
-const config = require('./config')
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
