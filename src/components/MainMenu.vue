@@ -7,6 +7,7 @@
       <menu-item title="Favourite Events" icon="favorite" to="/favourites"></menu-item>
       <v-divider></v-divider>
       <menu-item title="Settings" icon="settings" to="/settings"></menu-item>
+      <menu-item title="About" icon="info" to="/about"></menu-item>
     </v-list>
   </v-navigation-drawer>
 </template>

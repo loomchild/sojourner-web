@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import About from './components/About'
 import AllEvents from './components/AllEvents'
-import FavouriteEvents from './components/FavouriteEvents'
 import ConferenceTracks from './components/ConferenceTracks'
 import ConferenceTrackEvents from './components/ConferenceTrackEvents'
+import EventDetails from './components/EventDetails'
+import FavouriteEvents from './components/FavouriteEvents'
 import Rooms from './components/Rooms'
 import RoomEvents from './components/RoomEvents'
 import Settings from './components/Settings'
-import EventDetails from './components/EventDetails'
 
 window.history.scrollRestoration = 'manual'
 
@@ -59,6 +60,11 @@ export default new Router({
       path: '/settings',
       name: 'settings',
       component: Settings
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
     }
   ],
 

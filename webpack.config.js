@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === 'production') {
     new WorkboxPlugin({
       cacheId: 'sojourner',
       globDirectory: 'dist/',
-      globPatterns: ['**/*.{html,js,css}'],
+      globPatterns: ['**/*.{html,js,css,png,jpg,svg}'],
       swDest: path.join('dist', 'service-worker.js'),
       clientsClaim: true,
       skipWaiting: true,
