@@ -10,7 +10,7 @@
           <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
         </div>
       </v-card-text>
-      <v-snackbar :timeout="5000" :color="snackbar.color" bottom v-model="snackbar.show">
+      <v-snackbar :timeout="5000" :color="snackbar.color" bottom multi-line v-model="snackbar.show">
         {{ snackbar.message }}
         <v-btn flat small @click.native="hideMessage()">Close</v-btn>
       </v-snackbar>
