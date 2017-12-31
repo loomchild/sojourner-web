@@ -1,15 +1,16 @@
 <template>
   <v-layout row wrap>
-    <v-card-text>
-      <div class="button">
-        <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
-      </div>
-      <div class="button">
-        <v-btn color="primary" dark v-if="persistence" :ripple="false">Persistent</v-btn>
-        <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
-      </div>
-    </v-card-text>
-  </v-card>
+    <v-card>
+      <v-card-text>
+        <div class="button">
+          <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
+        </div>
+        <div class="button">
+          <v-btn color="primary" dark v-if="persistence" :ripple="false">Persistent</v-btn>
+          <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
+        </div>
+      </v-card-text>
+    </v-card>
   </v-layout>
 </template>
 
@@ -57,6 +58,10 @@ export default {
 </script>
 
 <style>
+  .card {
+    width: 100%;
+  }
+
   div.button {
     margin-bottom: 15px;
   }
