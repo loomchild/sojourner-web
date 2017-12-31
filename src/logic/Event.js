@@ -2,8 +2,6 @@ import moment from 'moment'
 
 const TIME_FORMAT = 'HH:mm'
 
-const LINK_REGEXP = new RegExp('<a', 'g')
-
 export default class Event {
   constructor (data = {}) {
     this.id = data.id
