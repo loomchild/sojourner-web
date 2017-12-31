@@ -27,7 +27,7 @@
 
 <script>
 import {getEvent} from '../data/schedule'
-import {isFavourite, toggleFavourite} from '../data/favourite'
+import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
 import Event from '../logic/Event'
 
 export default {
@@ -42,7 +42,11 @@ export default {
     toggleFavourite () {
       this.favourite = !this.favourite
       toggleFavourite(this.event.id)
-      this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
+      isPersistent().then(persistent => {
+        if (!persistent) {
+          this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
+        }
+      })
     }
   },
 
