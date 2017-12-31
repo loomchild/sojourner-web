@@ -10,6 +10,10 @@
           <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
         </div>
       </v-card-text>
+      <v-snackbar :timeout="5000" :color="snackbar.color" bottom v-model="snackbar.show">
+        {{ snackbar.message }}
+        <v-btn flat small @click.native="hideMessage()">Close</v-btn>
+      </v-snackbar>
     </v-card>
   </v-layout>
 </template>
@@ -21,13 +25,36 @@ export default {
   name: 'settings',
   data: () => ({
     persistence: false,
-    refreshing: false
+    refreshing: false,
+    snackbar: {
+      show: false
+    }
   }),
   methods: {
     refresh () {
       this.refreshing = true
-      refreshSchedule()
-        .then(() => { location.reload() })
+      return refreshSchedule()
+        .then(() => {
+          this.refreshing = false
+          this.showMessage('success', 'Schedule refreshed successfully')
+          this.$eventBus.$emit('refreshSchedule')
+        })
+        .catch(error => {
+          this.refreshing = false
+          this.showMessage('error', `Error refreshing schedule: ${error.message}`)
+        })
+    },
+
+    showMessage (color, message) {
+      this.snackbar = {
+        show: true,
+        color: color,
+        message: message
+      }
+    },
+
+    hideMessage () {
+      this.snackbar = { show: false }
     },
 
     enablePersistence () {
