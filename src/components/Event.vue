@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {isFavourite, toggleFavourite} from '../data/favourite'
+import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
 
 export default {
   name: 'event',
@@ -41,6 +41,11 @@ export default {
     toggleFavourite () {
       this.favourite = !this.favourite
       toggleFavourite(this.event.id)
+      isPersistent().then(persistent => {
+        if (!persistent) {
+          this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
+        }
+      })
     },
 
     goToEvent () {

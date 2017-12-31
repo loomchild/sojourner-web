@@ -42,6 +42,7 @@ export default {
     toggleFavourite () {
       this.favourite = !this.favourite
       toggleFavourite(this.event.id)
+      this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
     }
   },
 

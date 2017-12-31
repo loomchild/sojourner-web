@@ -33,4 +33,20 @@ const toggleFavourite = (eventId) => {
     .then(favourite => favourite ? unsetFavourite(eventId) : setFavourite(eventId))
 }
 
-export {isFavourite, getFavourites, setFavourite, unsetFavourite, toggleFavourite}
+const enablePersistence = () => {
+  if (navigator.storage && navigator.storage.persist) {
+    return navigator.storage.persist()
+  } else {
+    return Promise.resolve(false)
+  }
+}
+
+const isPersistent = () => {
+  if (navigator.storage && navigator.storage.persisted) {
+    return navigator.storage.persisted()
+  } else {
+    return Promise.resolve(false)
+  }
+}
+
+export {isFavourite, getFavourites, setFavourite, unsetFavourite, toggleFavourite, isPersistent, enablePersistence}

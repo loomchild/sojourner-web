@@ -9,6 +9,7 @@
         </keep-alive>
       </v-container>
     </v-content>
+    <notification></notification>
   </v-app>
 </template>
 
@@ -17,6 +18,7 @@ import Vue from 'vue'
 
 import MainMenu from './components/MainMenu'
 import MainToolbar from './components/MainToolbar'
+import Notification from './components/Notification'
 
 const ALIVE_COMPONENTS = ['all-events', 'conference-tracks', 'rooms']
 
@@ -25,7 +27,8 @@ export default {
 
   components: {
     'main-menu': MainMenu,
-    'main-toolbar': MainToolbar
+    'main-toolbar': MainToolbar,
+    'notification': Notification
   },
 
   data: () => ({

@@ -6,75 +6,52 @@
           <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
         </div>
         <div class="button">
-          <v-btn color="primary" dark v-if="persistence" :ripple="false">Persistent</v-btn>
+          <v-btn color="success" dark v-if="persistence" :ripple="false">Persistent</v-btn>
           <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
         </div>
       </v-card-text>
-      <v-snackbar :timeout="5000" :color="snackbar.color" bottom multi-line v-model="snackbar.show">
-        {{ snackbar.message }}
-        <v-btn flat small @click.native="hideMessage()">Close</v-btn>
-      </v-snackbar>
     </v-card>
   </v-layout>
 </template>
 
 <script>
 import {refreshSchedule} from '../data/schedule'
+import {isPersistent, enablePersistence} from '../data/favourite'
 
 export default {
   name: 'settings',
   data: () => ({
     persistence: false,
-    refreshing: false,
-    snackbar: {
-      show: false
-    }
+    refreshing: false
   }),
   methods: {
     refresh () {
       this.refreshing = true
       return refreshSchedule()
         .then(() => {
-          this.refreshing = false
-          this.showMessage('success', 'Schedule refreshed successfully')
+          this.$eventBus.$emit('showMessage', 'Schedule refreshed successfully', 'success')
           this.$eventBus.$emit('refreshSchedule')
         })
         .catch(error => {
-          this.refreshing = false
-          this.showMessage('error', `Error refreshing schedule: ${error.message}`)
+          this.$eventBus.$emit('showMessage', `Error refreshing schedule: ${error.message}`, 'error')
         })
-    },
-
-    showMessage (color, message) {
-      this.snackbar = {
-        show: true,
-        color: color,
-        message: message
-      }
-    },
-
-    hideMessage () {
-      this.snackbar = { show: false }
+        .then(() => { this.refreshing = false })
     },
 
     enablePersistence () {
-      if (navigator.storage && navigator.storage.persist) {
-        navigator.storage.persist()
-          .then(persistence => {
-            this.persistence = persistence
-          })
-      }
+      enablePersistence()
+        .then(persistent => {
+          this.persistence = persistent
+          if (persistent) {
+            this.$eventBus.$emit('showMessage', 'Persistence enabled', 'success')
+          } else {
+            this.$eventBus.$emit('showMessage', 'Unable to activate persistence', 'error')
+          }
+        })
     },
 
     updatePersistence () {
-      if (navigator.storage && navigator.storage.persisted) {
-        return navigator.storage.persisted()
-          .then(persistence => {
-            this.persistence = persistence
-          })
-      } else {
-        this.persistence = false
-      }
+      isPersistent().then(persistent => { this.persistence = persistent })
     }
   },
 
