@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer clipped fixed v-model="drawer" app>
+  <v-navigation-drawer clipped fixed :value="drawer" @input="setDrawer" app>
     <v-list dense>
       <menu-item title="Tracks" icon="toc" to="/tracks"></menu-item>
       <menu-item title="Rooms" icon="weekend" to="/rooms"></menu-item>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
+
 import MenuItem from './MenuItem'
 
 export default {
@@ -22,15 +24,13 @@ export default {
     'menu-item': MenuItem
   },
 
-  data: () => ({
-    drawer: null
-  }),
+  computed: mapState([
+    'drawer'
+  ]),
 
-  created: function () {
-    this.$eventBus.$on('toggledrawer', () => {
-      this.drawer = !this.drawer
-    })
-  }
+  methods: mapActions([
+    'setDrawer'
+  ])
 }
 </script>
 
