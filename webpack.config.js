@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
@@ -48,6 +49,9 @@ module.exports = {
   devtool: 'eval-source-map',
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new CopyWebpackPlugin([
+      'assets/**/*'
+    ]),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
