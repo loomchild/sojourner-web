@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
 
 export default {
@@ -29,7 +31,7 @@ export default {
     favourite: false
   }),
 
-  methods: {
+  methods: Object.assign({
     refreshFavourite () {
       isFavourite(this.event.id).then(favourite => {
         if (this.favourite !== favourite) {
@@ -43,7 +45,7 @@ export default {
       toggleFavourite(this.event.id)
       isPersistent().then(persistent => {
         if (!persistent) {
-          this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
+          this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
         }
       })
     },
@@ -51,7 +53,9 @@ export default {
     goToEvent () {
       setTimeout(() => this.$router.push(`/event/${this.event.id}`), 200)
     }
-  },
+  }, mapActions([
+    'showWarning'
+  ])),
 
   created () {
     return this.refreshFavourite()

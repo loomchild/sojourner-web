@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 import {refreshSchedule} from '../data/schedule'
 import {isPersistent, enablePersistence} from '../data/favourite'
 
@@ -40,16 +42,16 @@ export default {
     persistence: false,
     refreshing: false
   }),
-  methods: {
+  methods: Object.assign({
     refresh () {
       this.refreshing = true
       return refreshSchedule()
         .then(() => {
-          this.$eventBus.$emit('showMessage', 'Schedule refreshed successfully', 'success')
+          this.showSuccess('Schedule refreshed successfully')
           this.$eventBus.$emit('refreshSchedule')
         })
         .catch(error => {
-          this.$eventBus.$emit('showMessage', `Error refreshing schedule: ${error.message}`, 'error')
+          this.showError(`Error refreshing schedule: ${error.message}`)
         })
         .then(() => { this.refreshing = false })
     },
@@ -59,9 +61,9 @@ export default {
         .then(persistent => {
           this.persistence = persistent
           if (persistent) {
-            this.$eventBus.$emit('showMessage', 'Persistence enabled', 'success')
+            this.showSuccess('Persistence enabled')
           } else {
-            this.$eventBus.$emit('showMessage', 'Unable to activate persistence', 'error')
+            this.showError('Unable to activate persistence')
           }
         })
     },
@@ -69,7 +71,10 @@ export default {
     updatePersistence () {
       isPersistent().then(persistent => { this.persistence = persistent })
     }
-  },
+  }, mapActions([
+    'showSuccess',
+    'showError'
+  ])),
 
   created () {
     this.updatePersistence()

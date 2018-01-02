@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 import {getEvent} from '../data/schedule'
 import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
 import Event from '../logic/Event'
@@ -38,17 +40,19 @@ export default {
     favourite: false
   }),
 
-  methods: {
+  methods: Object.assign({
     toggleFavourite () {
       this.favourite = !this.favourite
       toggleFavourite(this.event.id)
       isPersistent().then(persistent => {
         if (!persistent) {
-          this.$eventBus.$emit('showMessage', 'Persistence is disabled. Enable it via Settings, otherwise your data might be lost.', 'warning')
+          this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
         }
       })
     }
-  },
+  }, mapActions([
+    'showWarning'
+  ])),
 
   created: function () {
     const eventId = this.$route.params.id
