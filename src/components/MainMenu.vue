@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 import MenuItem from './MenuItem'
 
@@ -24,7 +24,7 @@ export default {
     'menu-item': MenuItem
   },
 
-  computed: mapState([
+  computed: mapGetters([
     'drawer'
   ]),
 

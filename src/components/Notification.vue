@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'notification',
 
-  computed: mapState([
+  computed: mapGetters([
     'notification',
     'notificationVisible'
   ]),

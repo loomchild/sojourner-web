@@ -1,21 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
   state: {
-    drawer: null,
-
     notification: { message: '', color: null },
     notificationVisible: false
   },
 
   mutations: {
-    setDrawer (state, drawer) {
-      state.drawer = drawer
-    },
-
     setNotification (state, notification) {
       state.notification = notification
     },
@@ -26,18 +15,12 @@ export default new Vuex.Store({
   },
 
   getters: {
-    notificationVisible: state => state.notification !== null
+    notification: state => state.notification,
+
+    notificationVisible: state => state.notificationVisible
   },
 
   actions: {
-    setDrawer ({commit}, drawer) {
-      commit('setDrawer', drawer)
-    },
-
-    toggleDrawer ({commit, state}) {
-      commit('setDrawer', !state.drawer)
-    },
-
     setNotificationVisible ({commit}, notificationVisible) {
       commit('setNotificationVisible', notificationVisible)
     },
@@ -63,4 +46,4 @@ export default new Vuex.Store({
       dispatch('showNotification', {message, color: 'error'})
     }
   }
-})
+}
