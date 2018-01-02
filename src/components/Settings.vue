@@ -20,8 +20,8 @@
               </p>
             </div>
             <div class="button">
-              <v-btn color="success" dark v-if="persistence" :ripple="false">Persistent</v-btn>
-              <v-btn color="error" dark @click="enablePersistence" v-else>Enable Persistence</v-btn>
+              <v-btn color="success" dark v-if="persistent" :ripple="false">Persistent</v-btn>
+              <v-btn color="error" dark v-else @click="enablePersistence">Enable Persistence</v-btn>
             </div>
           </v-flex>
         </v-layout>
@@ -31,17 +31,19 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 import {refreshSchedule} from '../data/schedule'
-import {isPersistent, enablePersistence} from '../data/favourite'
 
 export default {
   name: 'settings',
+
   data: () => ({
-    persistence: false,
     refreshing: false
   }),
+
+  computed: mapGetters(['persistent']),
+
   methods: Object.assign({
     refresh () {
       this.refreshing = true
@@ -57,28 +59,20 @@ export default {
     },
 
     enablePersistence () {
-      enablePersistence()
+      this.persist()
         .then(persistent => {
-          this.persistence = persistent
           if (persistent) {
             this.showSuccess('Persistence enabled')
           } else {
             this.showError('Unable to activate persistence')
           }
         })
-    },
-
-    updatePersistence () {
-      isPersistent().then(persistent => { this.persistence = persistent })
     }
   }, mapActions([
     'showSuccess',
-    'showError'
-  ])),
-
-  created () {
-    this.updatePersistence()
-  }
+    'showError',
+    'persist'
+  ]))
 }
 </script>
 

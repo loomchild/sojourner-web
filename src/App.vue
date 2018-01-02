@@ -15,6 +15,7 @@
 
 <script>
 import Vue from 'vue'
+import {mapActions} from 'vuex'
 
 import MainMenu from './components/MainMenu'
 import MainToolbar from './components/MainToolbar'
@@ -35,7 +36,13 @@ export default {
     alive: ALIVE_COMPONENTS
   }),
 
+  methods: mapActions([
+    'initFavourites'
+  ]),
+
   created: function () {
+    this.initFavourites()
+
     this.$eventBus.$on('refreshSchedule', () => {
       this.alive = []
       Vue.nextTick().then(() => { this.alive = ALIVE_COMPONENTS })

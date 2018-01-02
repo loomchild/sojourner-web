@@ -10,60 +10,41 @@
       </v-list-tile-sub-title>
       <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
     </v-list-tile-content>
-    <v-list-tile-action @click="toggleFavourite()">
-      <v-icon color="yellow darken-2" v-if="favourite">star</v-icon>
+    <v-list-tile-action @click="toggleFavouriteEvent()">
+      <v-icon color="yellow darken-2" v-if="favourites[event.id]">star</v-icon>
       <v-icon color="grey lighten-1" v-else>star_border</v-icon>
     </v-list-tile-action>
   </v-list-tile>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-
-import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'event',
 
   props: ['event'],
 
-  data: () => ({
-    favourite: false
-  }),
+  computed: mapGetters([
+    'favourites',
+    'persistent'
+  ]),
 
   methods: Object.assign({
-    refreshFavourite () {
-      isFavourite(this.event.id).then(favourite => {
-        if (this.favourite !== favourite) {
-          this.favourite = favourite
-        }
-      })
-    },
-
-    toggleFavourite () {
-      this.favourite = !this.favourite
-      toggleFavourite(this.event.id)
-      isPersistent().then(persistent => {
-        if (!persistent) {
-          this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
-        }
-      })
+    toggleFavouriteEvent () {
+      this.toggleFavourite(this.event.id)
+      if (!this.persistent) {
+        this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
+      }
     },
 
     goToEvent () {
       setTimeout(() => this.$router.push(`/event/${this.event.id}`), 200)
     }
   }, mapActions([
-    'showWarning'
-  ])),
-
-  created () {
-    return this.refreshFavourite()
-  },
-
-  activated () {
-    return this.refreshFavourite()
-  }
+    'showWarning',
+    'toggleFavourite'
+  ]))
 }
 </script>
 

@@ -8,7 +8,6 @@ import Event from '../logic/Event'
 import Link from '../logic/Link'
 import Room from '../logic/Room'
 import Track from '../logic/Track'
-import {getFavourites} from './favourite'
 
 let cachedSchedule = null
 
@@ -184,14 +183,11 @@ const getEvent = (eventId) => {
     .then(schedule => schedule.events[eventId])
 }
 
-const getFavouriteEvents = () => {
-  return getFavourites()
-    .then(favourites => {
-      return getCachedSchedule()
-        .then(schedule => Object.values(schedule.events)
-          .filter(event => favourites[event.id])
-          .sort(eventNaturalSort))
-    })
+const getFavouriteEvents = (favourites) => {
+  return getCachedSchedule()
+    .then(schedule => Object.values(schedule.events)
+      .filter(event => favourites[event.id])
+      .sort(eventNaturalSort))
 }
 
 const getTrackEvents = (trackName) => {
@@ -265,7 +261,8 @@ const getAllRoomStats = () => {
 
 export {
   getSchedule, refreshSchedule,
-  getAllEvents, getEvent, getFavouriteEvents, getTrackEvents, getRoomEvents,
+  getAllEvents, getEvent, getTrackEvents, getRoomEvents,
+  getFavouriteEvents,
   getAllTracks, getAllTrackStats,
   getAllRooms, getAllRoomStats
 }

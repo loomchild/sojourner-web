@@ -3,8 +3,8 @@
     <v-card :style="{borderTopColor: event.track.color}">
       <v-card-title primary-title class="title"><h2>
         {{ event.title }}
-        <span class="favourite" @click="toggleFavourite()">
-          <v-icon color="yellow darken-2" v-if="favourite">star</v-icon>
+        <span class="favourite" @click="toggleFavouriteEvent()">
+          <v-icon color="yellow darken-2" v-if="favourites[event.id]">star</v-icon>
           <v-icon color="grey lighten-1" v-else>star_border</v-icon>
         </span>
       </h2></v-card-title>
@@ -26,38 +26,38 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 import {getEvent} from '../data/schedule'
-import {isFavourite, toggleFavourite, isPersistent} from '../data/favourite'
 import Event from '../logic/Event'
 
 export default {
   name: 'event-details',
 
   data: () => ({
-    event: new Event(),
-    favourite: false
+    event: new Event()
   }),
 
+  computed: mapGetters([
+    'favourites',
+    'persistent'
+  ]),
+
   methods: Object.assign({
-    toggleFavourite () {
-      this.favourite = !this.favourite
-      toggleFavourite(this.event.id)
-      isPersistent().then(persistent => {
-        if (!persistent) {
-          this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
-        }
-      })
+    toggleFavouriteEvent () {
+      this.toggleFavourite(this.event.id)
+      if (!this.persistent) {
+        this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
+      }
     }
   }, mapActions([
-    'showWarning'
+    'showWarning',
+    'toggleFavourite'
   ])),
 
   created: function () {
     const eventId = this.$route.params.id
     getEvent(eventId).then(event => { this.event = event })
-    isFavourite(eventId).then(favourite => { this.favourite = favourite })
   }
 }
 </script>

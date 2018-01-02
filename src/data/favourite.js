@@ -1,52 +1,84 @@
+import Vue from 'vue'
 import localforage from 'localforage'
 
-const init = () => {
-  localforage.config({
-    name: 'Sojourner Events'
-  })
-}
+export default {
+  state: {
+    favourites: {},
+    persistent: false
+  },
 
-init()
+  getters: {
+    favourites: (state) => state.favourites,
 
-const isFavourite = (eventId) => {
-  return localforage.getItem(eventId)
-    .then(favourite => !!favourite)
-}
+    persistent: (state) => state.persistent
+  },
 
-const getFavourites = () => {
-  const favourites = {}
-  return localforage.iterate((value, key) => {
-    favourites[key] = true
-  }).then(() => favourites)
-}
+  mutations: {
+    setFavourites (state, favourites) {
+      state.favourites = favourites
+    },
 
-const setFavourite = (eventId) => {
-  return localforage.setItem(eventId, true)
-}
+    setFavourite (state, eventId) {
+      Vue.set(state.favourites, eventId, true)
+    },
 
-const unsetFavourite = (eventId) => {
-  return localforage.removeItem(eventId)
-}
+    unsetFavourite (state, eventId) {
+      Vue.delete(state.favourites, eventId)
+    },
 
-const toggleFavourite = (eventId) => {
-  return isFavourite(eventId)
-    .then(favourite => favourite ? unsetFavourite(eventId) : setFavourite(eventId))
-}
+    setPersistent (state, persistent) {
+      state.persistent = persistent
+    }
+  },
 
-const enablePersistence = () => {
-  if (navigator.storage && navigator.storage.persist) {
-    return navigator.storage.persist()
-  } else {
-    return Promise.resolve(false)
+  actions: {
+    initFavourites ({commit, dispatch}) {
+      localforage.config({
+        name: 'Sojourner Events'
+      })
+
+      const favourites = {}
+      return localforage.iterate((value, key) => {
+        favourites[key] = true
+      })
+        .then(() => commit('setFavourites', favourites))
+        .then(() => dispatch('isPersistent'))
+        .then(persistent => commit('setPersistent', persistent))
+    },
+
+    persist () {
+      if (navigator.storage && navigator.storage.persist) {
+        return navigator.storage.persist()
+      } else {
+        return Promise.resolve(false)
+      }
+    },
+
+    isPersistent () {
+      if (navigator.storage && navigator.storage.persisted) {
+        return navigator.storage.persisted()
+      } else {
+        return Promise.resolve(false)
+      }
+    },
+
+    setFavourite ({commit}, eventId) {
+      return localforage.setItem(eventId, true)
+        .then(() => commit('setFavourite', eventId))
+    },
+
+    unsetFavourite ({commit}, eventId) {
+      return localforage.removeItem(eventId)
+        .then(() => commit('unsetFavourite', eventId))
+    },
+
+    toggleFavourite ({commit, state, dispatch}, eventId) {
+      if (state.favourites[eventId]) {
+        return dispatch('unsetFavourite', eventId)
+      } else {
+        return dispatch('setFavourite', eventId)
+      }
+    }
+
   }
 }
-
-const isPersistent = () => {
-  if (navigator.storage && navigator.storage.persisted) {
-    return navigator.storage.persisted()
-  } else {
-    return Promise.resolve(false)
-  }
-}
-
-export {isFavourite, getFavourites, setFavourite, unsetFavourite, toggleFavourite, isPersistent, enablePersistence}
