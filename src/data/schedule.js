@@ -142,16 +142,23 @@ export default {
       return rooms.map(room => {
         const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
         const eventsByTrack = _.groupBy(events, event => event.track.name)
+        const eventsByDay = _.groupBy(events, event => event.day.index)
         const tracks = _.uniq(events.sort(eventNaturalSort).map(event => event.track))
           .map(track => ({
             track: track,
             days: _.uniq(eventsByTrack[track.name].map(event => event.day.name)).sort()
           }))
+        const days = _.uniq(events.sort(eventNaturalSort).map(event => event.day))
+          .map(day => ({
+            day: day,
+            tracks: _.uniq(eventsByDay[day.index].map(event => event.track)).sort()
+          }))
 
         return {
           room: room,
           events: events,
-          tracks: tracks
+          tracks: tracks,
+          days: days
         }
       })
     }
