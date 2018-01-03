@@ -13,7 +13,6 @@
 import {mapGetters} from 'vuex'
 
 import Event from './Event'
-import {getFavouriteEvents} from '../data/schedule'
 
 export default {
   name: 'favourite-events',
@@ -22,17 +21,9 @@ export default {
     'event': Event
   },
 
-  data: () => ({
-    events: []
-  }),
-
-  computed: mapGetters([
-    'favourites'
-  ]),
-
-  created: function () {
-    getFavouriteEvents(this.favourites).then(events => { this.events = events })
-  }
+  computed: mapGetters({
+    events: 'favouriteEvents'
+  })
 }
 </script>
 

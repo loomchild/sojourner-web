@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getAllTrackStats} from '../data/schedule'
+import {mapGetters} from 'vuex'
 
 import ConferenceTrack from './ConferenceTrack'
 
@@ -21,13 +21,9 @@ export default {
     'conference-track': ConferenceTrack
   },
 
-  data: () => ({
-    tracks: []
-  }),
-
-  created: function () {
-    getAllTrackStats().then(tracks => { this.tracks = tracks })
-  }
+  computed: mapGetters({
+    tracks: 'allTrackStats'
+  })
 }
 </script>
 

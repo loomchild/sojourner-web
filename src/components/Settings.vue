@@ -33,8 +33,6 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
-import {refreshSchedule} from '../data/schedule'
-
 export default {
   name: 'settings',
 
@@ -47,10 +45,9 @@ export default {
   methods: Object.assign({
     refresh () {
       this.refreshing = true
-      return refreshSchedule()
+      return this.refreshSchedule()
         .then(() => {
           this.showSuccess('Schedule refreshed successfully')
-          this.$eventBus.$emit('refreshSchedule')
         })
         .catch(error => {
           this.showError(`Error refreshing schedule: ${error.message}`)
@@ -71,7 +68,8 @@ export default {
   }, mapActions([
     'showSuccess',
     'showError',
-    'persist'
+    'persist',
+    'refreshSchedule'
   ]))
 }
 </script>

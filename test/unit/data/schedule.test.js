@@ -1,6 +1,6 @@
 import sinon from 'sinon'
 
-import {getSchedule, getAllEvents} from '../../../src/data/schedule'
+import store from '../../../src/data/store'
 import xml from '../resources/schedule.xml'
 
 describe('data/getSchedule', () => {
@@ -15,17 +15,10 @@ describe('data/getSchedule', () => {
     stubbedFetch.restore()
   })
 
-  it('should retrieve schedule', () => {
-    return getSchedule()
-      .then(schedule => {
-        expect(schedule[0].conference).to.not.be.undefined
-      })
-  })
-
   it('should retrieve all events', () => {
-    return getAllEvents()
-      .then(events => {
-        expect(events[1]).to.not.be.undefined
+    store.dispatch('parseSchedule')
+      .then(() => {
+        expect(schedule.events[1]).to.not.be.undefined
       })
   })
 })

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getTrackEvents} from '../data/schedule'
+import {mapGetters} from 'vuex'
 
 import Event from './Event'
 
@@ -21,14 +21,17 @@ export default {
     'event': Event
   },
 
-  data: () => ({
-    events: []
-  }),
+  props: [
+    'trackName'
+  ],
 
-  created: function () {
-    const trackName = this.$route.params.name
-    getTrackEvents(trackName).then(events => { this.events = events })
-  }
+  computed: Object.assign({
+    events () {
+      return this.trackEvents(this.trackName)
+    }
+  }, mapGetters([
+    'trackEvents'
+  ]))
 }
 </script>
 

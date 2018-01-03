@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getRoomEvents} from '../data/schedule'
+import {mapGetters} from 'vuex'
 
 import Event from './Event'
 
@@ -21,14 +21,17 @@ export default {
     'event': Event
   },
 
-  data: () => ({
-    events: []
-  }),
+  props: [
+    'roomName'
+  ],
 
-  created: function () {
-    const roomName = this.$route.params.name
-    getRoomEvents(roomName).then(events => { this.events = events })
-  }
+  computed: Object.assign({
+    events () {
+      return this.roomEvents(this.roomName)
+    }
+  }, mapGetters([
+    'roomEvents'
+  ]))
 }
 </script>
 

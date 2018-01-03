@@ -32,9 +32,10 @@ export default new Router({
       component: FavouriteEvents
     },
     {
-      path: '/event/:id',
+      path: '/event/:eventId',
       name: 'event',
-      component: EventDetails
+      component: EventDetails,
+      props: true
     },
     {
       path: '/tracks',
@@ -42,9 +43,10 @@ export default new Router({
       component: ConferenceTracks
     },
     {
-      path: '/track/:name',
+      path: '/track/:trackName',
       name: 'track',
-      component: ConferenceTrackEvents
+      component: ConferenceTrackEvents,
+      props: true
     },
     {
       path: '/rooms',
@@ -52,9 +54,10 @@ export default new Router({
       component: Rooms
     },
     {
-      path: '/room/:name',
+      path: '/room/:roomName',
       name: 'room',
-      component: RoomEvents
+      component: RoomEvents,
+      props: true
     },
     {
       path: '/settings',

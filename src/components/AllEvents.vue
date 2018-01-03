@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getAllEvents} from '../data/schedule'
+import {mapGetters} from 'vuex'
 
 import Event from './Event'
 
@@ -21,13 +21,9 @@ export default {
     'event': Event
   },
 
-  data: () => ({
-    events: []
-  }),
-
-  created: function () {
-    getAllEvents().then(events => { this.events = events })
-  }
+  computed: mapGetters({
+    events: 'allEvents'
+  })
 }
 </script>
 

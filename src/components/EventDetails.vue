@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import {getEvent} from '../data/schedule'
-import Event from '../logic/Event'
+import {mapGetters} from 'vuex'
 
 import Favourite from './Favourite'
 
@@ -35,14 +34,17 @@ export default {
     favourite: Favourite
   },
 
-  data: () => ({
-    event: new Event()
-  }),
+  props: [
+    'eventId'
+  ],
 
-  created: function () {
-    const eventId = this.$route.params.id
-    getEvent(eventId).then(event => { this.event = event })
-  }
+  computed: Object.assign({
+    event () {
+      return this.events[this.eventId]
+    }
+  }, mapGetters([
+    'events'
+  ]))
 }
 </script>
 

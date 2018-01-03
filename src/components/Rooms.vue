@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {getAllRoomStats} from '../data/schedule'
+import {mapGetters} from 'vuex'
 
 import Room from './Room'
 
@@ -21,13 +21,9 @@ export default {
     'room': Room
   },
 
-  data: () => ({
-    rooms: []
-  }),
-
-  created: function () {
-    getAllRoomStats().then(rooms => { this.rooms = rooms })
-  }
+  computed: mapGetters({
+    rooms: 'allRoomStats'
+  })
 }
 </script>
 

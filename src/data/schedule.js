@@ -9,7 +9,16 @@ import Link from '../logic/Link'
 import Room from '../logic/Room'
 import Track from '../logic/Track'
 
-let cachedSchedule = null
+const fetchSchedule = (cache) => {
+  // See https://hacks.mozilla.org/2016/03/referrer-and-cache-control-apis-for-fetch/ for more details
+  return fetch(config.scheduleUrl, {cache: cache})
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+      }
+      return response.text()
+    })
+}
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -38,67 +47,26 @@ const flattenAttributes = (element) => {
 
 const getText = (element) => element && element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
 
-const fetchSchedule = () => {
-  // Never update schedule without explicit user request. Could also use cache: "default" to automatically update
-  // See https://hacks.mozilla.org/2016/03/referrer-and-cache-control-apis-for-fetch/ for more details
-  return fetch(config.scheduleUrl, {cache: 'force-cache'})
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`)
-      }
-      return response.text()
-    })
-}
+const createDay = (day) => Object.freeze(new Day({
+  index: day.index,
+  date: day.date
+}))
 
-const refreshSchedule = () => {
-  if (navigator.onLine) {
-    cachedSchedule = null
-    return fetch(config.scheduleUrl, {cache: 'reload'})
-      .then(() => getCachedSchedule())
-      .then(() => true)
-  } else {
-    return Promise.resolve(false)
-  }
-}
+const createRoom = (room) => Object.freeze(new Room({
+  name: room.name
+}))
 
-const getSchedule = () => {
-  return fetchSchedule()
-    .then(xml => {
-      const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
+const createTrack = (name) => Object.freeze(new Track({
+  name: name
+}))
 
-      const schedule = flattenAttributes(json.schedule)
-
-      return schedule
-    })
-}
-
-const addTrack = (tracks, event) => {
-  const name = getText(event.track)
-  let track = tracks[name]
-  if (!track) {
-    track = Object.freeze(new Track(name))
-    tracks[name] = track
-  }
-  return track
-}
-
-const addDay = (days, day) => {
-  const d = Object.freeze(new Day({
-    index: day.index,
-    date: day.date
-  }))
-
-  days[d.index] = d
-  return d
-}
-
-const addEvent = (events, event, day, room, track) => {
+const createEvent = (event, day, room, track) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
   const links = event.links && event.links[0] && event.links[0].link
     ? event.links[0].link.map(link => new Link({href: link.href, title: link.text})) : []
 
-  const e = Object.freeze(new Event({
+  return Object.freeze(new Event({
     id: event.id.toString(),
     start: getText(event.start),
     duration: getText(event.duration),
@@ -114,106 +82,44 @@ const addEvent = (events, event, day, room, track) => {
     persons: persons,
     links: links
   }))
-
-  events[e.id] = e
-  return e
-}
-
-const addRoom = (rooms, room) => {
-  let r = rooms[room.name]
-  if (!r) {
-    r = Object.freeze(new Room({
-      name: room.name
-    }))
-    rooms[r.name] = r
-  }
-
-  return r
-}
-
-const parseSchedule = () => {
-  return getSchedule()
-    .then(schedule => {
-      let parsedSchedule = {
-        days: {},
-        events: {},
-        rooms: {},
-        tracks: {}
-      }
-
-      for (const day of schedule[0].day || []) {
-        const d = addDay(parsedSchedule.days, day)
-        for (const room of day.room || []) {
-          if (room.event && room.event.length > 0) {
-            const r = addRoom(parsedSchedule.rooms, room)
-            for (const event of room.event || []) {
-              const track = addTrack(parsedSchedule.tracks, event)
-              addEvent(parsedSchedule.events, event, d, r, track)
-            }
-          }
-        }
-      }
-
-      return parsedSchedule
-    })
-}
-
-const getCachedSchedule = () => {
-  if (cachedSchedule == null) {
-    return parseSchedule()
-      .then(parsedSchedule => {
-        cachedSchedule = parsedSchedule
-        return cachedSchedule
-      })
-  }
-
-  return Promise.resolve(cachedSchedule)
 }
 
 const eventNaturalSort = firstBy(event => event.day.index).thenBy('start')
 
-const getAllEvents = () => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.events)
-      .sort(eventNaturalSort))
-}
+export default {
+  state: {
+    days: {},
+    rooms: {},
+    tracks: {},
+    events: {}
+  },
 
-const getEvent = (eventId) => {
-  return getCachedSchedule()
-    .then(schedule => schedule.events[eventId])
-}
+  getters: {
+    days: state => state.days,
+    rooms: state => state.rooms,
+    tracks: state => state.tracks,
+    events: state => state.events,
 
-const getFavouriteEvents = (favourites) => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.events)
-      .filter(event => favourites[event.id])
-      .sort(eventNaturalSort))
-}
+    allEvents: state => Object.values(state.events).sort(eventNaturalSort),
 
-const getTrackEvents = (trackName) => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.events)
+    trackEvents: state => trackName => Object.values(state.events)
       .filter(event => event.track.name === trackName)
-      .sort(eventNaturalSort))
-}
+      .sort(eventNaturalSort),
 
-const getRoomEvents = (roomName) => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.events)
+    roomEvents: state => roomName => Object.values(state.events)
       .filter(event => event.room.name === roomName)
-      .sort(eventNaturalSort))
-}
+      .sort(eventNaturalSort),
 
-const getAllTracks = () => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.tracks).sort(firstBy('name')))
-}
+    favouriteEvents: (state, getters, rootState, rootGetters) => {
+      const favourites = rootGetters.favourites
+      return Object.values(state.events)
+        .filter(event => favourites[event.id])
+        .sort(eventNaturalSort)
+    },
 
-const getAllTrackStats = () => {
-  return getCachedSchedule()
-    .then(schedule => {
-      const tracks = Object.values(schedule.tracks).sort(firstBy('name'))
-      const eventsByTrack = _.groupBy(Object.values(schedule.events), event => event.track.name)
+    allTrackStats: state => {
+      const tracks = Object.values(state.tracks).sort(firstBy('name'))
+      const eventsByTrack = _.groupBy(Object.values(state.events), event => event.track.name)
 
       return tracks.map(track => {
         const events = eventsByTrack[track.name] ? eventsByTrack[track.name] : []
@@ -227,19 +133,11 @@ const getAllTrackStats = () => {
           rooms: rooms
         }
       })
-    })
-}
+    },
 
-const getAllRooms = () => {
-  return getCachedSchedule()
-    .then(schedule => Object.values(schedule.rooms).sort(firstBy('name')))
-}
-
-const getAllRoomStats = () => {
-  return getCachedSchedule()
-    .then(schedule => {
-      const rooms = Object.values(schedule.rooms).sort(firstBy('name'))
-      const eventsByRoom = _.groupBy(Object.values(schedule.events), event => event.room.name)
+    allRoomStats: state => {
+      const rooms = Object.values(state.rooms).sort(firstBy('name'))
+      const eventsByRoom = _.groupBy(Object.values(state.events), event => event.room.name)
 
       return rooms.map(room => {
         const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
@@ -256,13 +154,77 @@ const getAllRoomStats = () => {
           tracks: tracks
         }
       })
-    })
-}
+    }
+  },
 
-export {
-  getSchedule, refreshSchedule,
-  getAllEvents, getEvent, getTrackEvents, getRoomEvents,
-  getFavouriteEvents,
-  getAllTracks, getAllTrackStats,
-  getAllRooms, getAllRoomStats
+  mutations: {
+    setDays (state, days) {
+      state.days = days
+    },
+
+    setRooms (state, rooms) {
+      state.rooms = rooms
+    },
+
+    setTracks (state, tracks) {
+      state.tracks = tracks
+    },
+
+    setEvents (state, events) {
+      state.events = events
+    }
+  },
+
+  actions: {
+    parseSchedule ({commit}) {
+      return fetchSchedule('force-cache')
+        .then(xml => {
+          const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
+          return flattenAttributes(json.schedule)
+        })
+        .then(schedule => {
+          const days = {}
+          const events = {}
+          const rooms = {}
+          const tracks = {}
+
+          for (const d of schedule[0].day || []) {
+            const day = createDay(d)
+            days[day.index] = day
+            for (const r of d.room || []) {
+              if (r.event && r.event.length > 0) {
+                const room = createRoom(r)
+                if (!rooms[room.name]) {
+                  rooms[room.name] = room
+                }
+                for (const e of r.event || []) {
+                  const trackName = getText(e.track)
+                  let track = tracks[trackName]
+                  if (!track) {
+                    track = createTrack(trackName)
+                    tracks[trackName] = track
+                  }
+                  const event = createEvent(e, day, room, track)
+                  events[event.id] = event
+                }
+              }
+            }
+          }
+
+          commit('setDays', days)
+          commit('setRooms', rooms)
+          commit('setTracks', tracks)
+          commit('setEvents', events)
+        })
+    },
+
+    refreshSchedule ({dispatch}) {
+      if (navigator.onLine) {
+        return fetchSchedule('reload')
+          .then(() => dispatch('parseSchedule'))
+      } else {
+        return Promise.reject(new Error('Offline'))
+      }
+    }
+  }
 }

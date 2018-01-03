@@ -12,7 +12,6 @@ describe('App', () => {
 
   beforeEach(() => {
     const localVue = createLocalVue()
-    localVue.prototype.$eventBus = new Vue()
     wrapper = shallow(App, {
       localVue,
       stubs: ['router-view']
