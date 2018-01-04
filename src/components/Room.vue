@@ -12,11 +12,13 @@
 </template>
 
 <script>
-const getDayColor = day => {
-  if (!day || day.tracks.length > 1) {
+const getTracksColor = tracks => {
+  if (!tracks || tracks.length === 0) {
     return 'dimgray'
+  } else if (tracks.length > 1) {
+    return '#654321'
   } else {
-    return day.tracks[0].color
+    return tracks[0].color
   }
 }
 
@@ -28,8 +30,8 @@ export default {
   computed: {
     borderStyle () {
       return {
-        borderLeftColor: getDayColor(this.room.days[0]),
-        backgroundColor: getDayColor(this.room.days[1])
+        borderLeftColor: getTracksColor(this.room.days[1]),
+        borderRightColor: getTracksColor(this.room.days[2])
       }
     }
   }
@@ -39,16 +41,7 @@ export default {
 <style>
   .room {
     border-left: 10px solid transparent;
-    padding-left: 10px;
-    background-color: transparent;
-  }
-
-  .room > a {
-    background-color: #424242;
-  }
-
-  .room > a:hover {
-    background-color: #3a3a3a;
+    border-right: 10px solid transparent;
   }
 
   li div {

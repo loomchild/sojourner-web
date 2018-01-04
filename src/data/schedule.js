@@ -148,11 +148,10 @@ export default {
             track: track,
             days: _.uniq(eventsByTrack[track.name].map(event => event.day.name)).sort()
           }))
-        const days = _.uniq(events.sort(eventNaturalSort).map(event => event.day))
-          .map(day => ({
-            day: day,
-            tracks: _.uniq(eventsByDay[day.index].map(event => event.track)).sort()
-          }))
+        const days = {}
+        Object.keys(eventsByDay).forEach(dayIndex => {
+          days[dayIndex] = _.uniq(eventsByDay[dayIndex].map(event => event.track))
+        })
 
         return {
           room: room,
