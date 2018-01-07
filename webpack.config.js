@@ -81,8 +81,8 @@ if (process.env.NODE_ENV === 'production') {
       clientsClaim: true,
       skipWaiting: true,
       runtimeCaching: [
-        {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
-        {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
+        {urlPattern: '(.*)material-design-icons-iconfont(.*)', handler: 'cacheFirst'},
+        {urlPattern: '(.*)typeface-roboto(.*)', handler: 'cacheFirst'}
       ]
     })
   ])
