@@ -31,7 +31,7 @@ module.exports = {
         use: [ 'vue-style-loader', 'css-loader' ]
       },
       {
-        test: /\.(png|jpg|gif|svg|ttf|woff|woff2|eot)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]?[hash]'
@@ -76,10 +76,14 @@ if (process.env.NODE_ENV === 'production') {
     new WorkboxPlugin({
       cacheId: 'sojourner',
       globDirectory: 'dist/',
-      globPatterns: ['**/*.{html,js,css,png,jpg,svg,ttf,woff,woff2,eot}'],
+      globPatterns: ['**/*.{html,js,css,png,jpg,svg}'],
       swDest: path.join('dist', 'service-worker.js'),
       clientsClaim: true,
-      skipWaiting: true
+      skipWaiting: true,
+      runtimeCaching: [
+        {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
+        {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
+      ]
     })
   ])
 }
