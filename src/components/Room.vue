@@ -8,10 +8,15 @@
       </v-list-tile-sub-title>
       <v-list-tile-sub-title v-else>0 events</v-list-tile-sub-title>
     </v-list-tile-content>
+    <v-list-tile-action>
+      <v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon>
+    </v-list-tile-action>
   </v-list-tile>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 const getTracksColor = tracks => {
   if (!tracks || tracks.length === 0) {
     return 'dimgray'
@@ -27,14 +32,20 @@ export default {
 
   props: ['room'],
 
-  computed: {
+  computed: Object.assign({
     borderStyle () {
       return {
         borderLeftColor: getTracksColor(this.room.days[1]),
         borderRightColor: getTracksColor(this.room.days[2])
       }
+    },
+
+    state () {
+      return this.roomState(this.room.room.name)
     }
-  }
+  }, mapGetters([
+    'roomState'
+  ]))
 }
 </script>
 
@@ -53,6 +64,3 @@ export default {
     font-weight: bold;
   }
 </style>
-
-
-

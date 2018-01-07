@@ -31,12 +31,14 @@ export default {
 
   methods: mapActions([
     'initFavourites',
-    'parseSchedule'
+    'parseSchedule',
+    'initRoomStateUpdater'
   ]),
 
   created: function () {
     this.parseSchedule()
     this.initFavourites()
+    this.initRoomStateUpdater()
   }
 }
 </script>

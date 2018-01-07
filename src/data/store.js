@@ -5,6 +5,7 @@ import drawer from './drawer'
 import notification from './notification'
 import favourite from './favourite'
 import schedule from './schedule'
+import state from './state'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     drawer,
     notification,
     favourite,
-    schedule
+    schedule,
+    state
   }
 })
