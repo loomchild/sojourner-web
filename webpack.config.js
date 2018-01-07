@@ -76,14 +76,10 @@ if (process.env.NODE_ENV === 'production') {
     new WorkboxPlugin({
       cacheId: 'sojourner',
       globDirectory: 'dist/',
-      globPatterns: ['**/*.{html,js,css,png,jpg,svg}'],
+      globPatterns: ['**/*.{html,js,css,png,jpg,svg,ttf,woff,woff2,eot}'],
       swDest: path.join('dist', 'service-worker.js'),
       clientsClaim: true,
-      skipWaiting: true,
-      runtimeCaching: [
-        {urlPattern: '(.*)material-design-icons-iconfont(.*)', handler: 'cacheFirst'},
-        {urlPattern: '(.*)typeface-roboto(.*)', handler: 'cacheFirst'}
-      ]
+      skipWaiting: true
     })
   ])
 }
