@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar :timeout="5000" :color="notification.color" bottom multi-line :value="notificationVisible" @input="setNotificationVisible">
+  <v-snackbar :timeout="notification.timeout" :color="notification.color" bottom multi-line :value="notificationVisible" @input="setNotificationVisible">
     {{ notification.message }}
     <v-btn flat small @click.native="setNotificationVisible(false)">Close</v-btn>
   </v-snackbar>

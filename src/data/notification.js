@@ -1,3 +1,5 @@
+const DEFAULT_NOTIFICATION_TIMEOUT = 5000
+
 export default {
   state: {
     notification: { message: '', color: null },
@@ -26,6 +28,9 @@ export default {
     },
 
     showNotification ({commit}, notification) {
+      if (notification.timeout === undefined) {
+        notification.timeout = DEFAULT_NOTIFICATION_TIMEOUT
+      }
       commit('setNotification', notification)
       commit('setNotificationVisible', true)
     },

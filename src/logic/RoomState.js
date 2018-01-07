@@ -2,6 +2,7 @@ export default class Room {
   constructor (data) {
     this.room = data.room
     this.state = data.state !== undefined ? data.state : -1
+    this.emergency = false
 
     if (this.state === -1) {
       this.name = 'unknown room state'
@@ -19,6 +20,7 @@ export default class Room {
       this.name = 'room emergency evacuation'
       this.icon = 'whatshot'
       this.color = 'error'
+      this.emergency = true
     } else {
       throw new Error(`Unknown room state: ${this.state}`)
     }

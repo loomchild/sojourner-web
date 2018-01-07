@@ -4,6 +4,7 @@ import RoomState from '../logic/RoomState'
 export default {
   state: {
     roomStates: {},
+
     roomStateUpdaterInitialized: false
   },
 
@@ -31,7 +32,7 @@ export default {
   },
 
   actions: {
-    refreshRoomStates ({commit}) {
+    refreshRoomStates ({commit, dispatch, state}) {
       return fetch(config.roomStateUrl, {cache: 'no-store'})
         .then(response => {
           if (!response.ok) {
@@ -49,7 +50,22 @@ export default {
           })
           return roomStates
         })
-        .then(roomStates => commit('setRoomStates', roomStates))
+        .then(roomStates => {
+          if (JSON.stringify(state.roomStates) !== JSON.stringify(roomStates)) {
+            commit('setRoomStates', roomStates)
+
+            const emergencyRooms = Object.values(roomStates)
+              .filter(roomState => roomState.emergency)
+              .map(roomState => roomState.room)
+            if (emergencyRooms.length > 0) {
+              dispatch('showNotification', {
+                message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
+                color: 'warning',
+                timeout: 0
+              })
+            }
+          }
+        })
     },
 
     initRoomStateUpdater ({dispatch, state, commit}) {
