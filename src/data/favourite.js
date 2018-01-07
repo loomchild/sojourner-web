@@ -3,17 +3,24 @@ import localforage from 'localforage'
 
 export default {
   state: {
+    favouritesInitialized: false,
     favourites: {},
     persistent: false
   },
 
   getters: {
+    favouritesInitialized: (state) => state.favouritesInitialized,
+
     favourites: (state) => state.favourites,
 
     persistent: (state) => state.persistent
   },
 
   mutations: {
+    initializeFavourites (state) {
+      state.favouritesInitialized = true
+    },
+
     setFavourites (state, favourites) {
       state.favourites = favourites
     },
@@ -44,6 +51,7 @@ export default {
         .then(() => commit('setFavourites', favourites))
         .then(() => dispatch('isPersistent'))
         .then(persistent => commit('setPersistent', persistent))
+        .then(() => commit('initializeFavourites'))
     },
 
     persist () {

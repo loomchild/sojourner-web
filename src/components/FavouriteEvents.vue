@@ -21,9 +21,36 @@ export default {
     'event': Event
   },
 
-  computed: mapGetters({
-    events: 'favouriteEvents'
-  })
+  data: () => ({
+    events: []
+  }),
+
+  computed: mapGetters([
+    'favouritesInitialized',
+    'favouriteEvents'
+  ]),
+
+  watch: {
+    favouritesInitialized () {
+      this.initializeFavouriteEvents()
+    }
+  },
+
+  methods: {
+    initializeFavouriteEvents () {
+      if (this.favouritesInitialized) {
+        this.events = this.favouriteEvents
+      }
+    }
+  },
+
+  created () {
+    this.initializeFavouriteEvents()
+  },
+
+  activated () {
+    this.initializeFavouriteEvents()
+  }
 }
 </script>
 
