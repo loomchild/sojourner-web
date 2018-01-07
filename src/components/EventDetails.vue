@@ -87,8 +87,8 @@ export default {
   }
 
   .roomstate .icon {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 18px;
+    vertical-align: text-bottom;
     cursor: default;
   }
 </style>

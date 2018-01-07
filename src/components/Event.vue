@@ -5,7 +5,7 @@
       <v-list-tile-sub-title>
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.room.name }},
+        {{ event.room.name }}&nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
         {{ event.track.name }}
       </v-list-tile-sub-title>
       <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import Favourite from './Favourite'
 
 export default {
@@ -27,6 +28,14 @@ export default {
   components: {
     favourite: Favourite
   },
+
+  computed: Object.assign({
+    state () {
+      return this.roomState(this.event.room.name)
+    }
+  }, mapGetters([
+    'roomState'
+  ])),
 
   methods: {
     goToEvent () {
@@ -49,6 +58,12 @@ export default {
 
   .event-title {
     font-weight: bold;
+  }
+
+  .roomstate .icon {
+    font-size: 18px;
+    vertical-align: text-bottom;
+    cursor: default;
   }
 </style>
 
