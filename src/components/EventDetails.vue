@@ -8,7 +8,7 @@
       <v-card-title class="grey--text text--lighten-1">
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.room.name }},
+        {{ event.room.name }}&nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
         {{ event.track.name }}
       </v-card-title>
       <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
@@ -41,9 +41,14 @@ export default {
   computed: Object.assign({
     event () {
       return this.events[this.eventId]
+    },
+
+    state () {
+      return this.roomState(this.event.room.name)
     }
   }, mapGetters([
-    'events'
+    'events',
+    'roomState'
   ]))
 }
 </script>
@@ -79,6 +84,12 @@ export default {
   .link:before {
     content: '['counter(link-counter)'] ';
     counter-increment: link-counter;
+  }
+
+  .roomstate .icon {
+    font-size: 20px;
+    line-height: 26px;
+    cursor: default;
   }
 </style>
 
