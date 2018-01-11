@@ -11,7 +11,7 @@
               <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
             </div>
             <div class="description">
-              <p>Enable persistent storage. If it's not enabled then your data (favourited events) might be lost.</p>
+              <p>Enable persistent storage. If it's not enabled then your data (favourite events) might be lost.</p>
               <p>For this to work, you need:
               <ol>
                 <li>To bookmark this page.</li>
