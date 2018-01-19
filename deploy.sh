@@ -9,6 +9,7 @@ then
     TIMESTAMP=`date +'%Y-%m-%d %H:%M:%S'`
     sed -i "s/version: '.*'/version: '$VERSION'/" config.js
     sed -i "s/timestamp: '.*'/timestamp: '$TIMESTAMP'/" config.js
+    sed -i "s|analyticsUrl: '.*'|analyticsUrl: 'https://analytics.loomchild.net/piwik.php?idsite=7\&rec=1'|" config.js
 
     npm run build
 
