@@ -5,7 +5,7 @@ STATUS="$(git status)"
 
 if [[ $STATUS == *"nothing to commit, working tree clean"* ]]
 then
-    VERSION=`git describe  --long --match "[0-9].*"`
+    VERSION=`git describe  --long --match "[0-9].*" | sed -r --expression="s/-[0-9]+-g/-/"`
     TIMESTAMP=`date +'%Y-%m-%d %H:%M:%S'`
     sed -i "s/version: '.*'/version: '$VERSION'/" config.js
     sed -i "s/timestamp: '.*'/timestamp: '$TIMESTAMP'/" config.js
