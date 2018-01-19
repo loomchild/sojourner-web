@@ -69,6 +69,9 @@ export default {
     },
 
     initRoomStateUpdater ({dispatch, state, commit}) {
+      if (!config.roomStateUrl) {
+        return
+      }
       const scheduleRefreshRoomStates = (attempt = 0) => {
         return dispatch('refreshRoomStates')
           .then(() => setTimeout(scheduleRefreshRoomStates, config.roomStatePollInterval * 1000))
