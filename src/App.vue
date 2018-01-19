@@ -10,12 +10,14 @@
       </v-container>
     </v-content>
     <notification></notification>
+    <analytics></analytics>
   </v-app>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
 
+import Analytics from './components/Analytics'
 import MainMenu from './components/MainMenu'
 import MainToolbar from './components/MainToolbar'
 import Notification from './components/Notification'
@@ -24,6 +26,7 @@ export default {
   name: 'app',
 
   components: {
+    'analytics': Analytics,
     'main-menu': MainMenu,
     'main-toolbar': MainToolbar,
     'notification': Notification
