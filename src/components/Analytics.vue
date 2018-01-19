@@ -1,5 +1,5 @@
 <template>
-  <img :src="analyticsImageUrl" style="border:0" alt="" />
+  <img v-if="analyticsImageUrl" :src="analyticsImageUrl" style="border:0" alt="" />
 </template>
 
 <script>
