@@ -6,6 +6,7 @@
       <menu-item title="All Events" icon="home" to="/all"></menu-item>
       <menu-item title="Favourite Events" icon="favorite" to="/favourites"></menu-item>
       <v-divider></v-divider>
+      <menu-item title="Campus Map" icon="map" to="/map"></menu-item>
       <menu-item title="Settings" icon="settings" to="/settings"></menu-item>
       <menu-item title="About" icon="info" to="/about"></menu-item>
     </v-list>

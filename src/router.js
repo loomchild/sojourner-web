@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import About from './components/About'
 import AllEvents from './components/AllEvents'
+import CampusMap from './components/CampusMap'
 import ConferenceTracks from './components/ConferenceTracks'
 import ConferenceTrackEvents from './components/ConferenceTrackEvents'
 import EventDetails from './components/EventDetails'
@@ -58,6 +59,11 @@ export default new Router({
       name: 'room',
       component: RoomEvents,
       props: true
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: CampusMap
     },
     {
       path: '/settings',
