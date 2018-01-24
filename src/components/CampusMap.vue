@@ -6,7 +6,7 @@
 import {mapActions} from 'vuex'
 
 export default {
-  name: 'map',
+  name: 'campus-map',
 
   methods: mapActions([
     'showZoomTip'
