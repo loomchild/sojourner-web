@@ -1,14 +1,29 @@
 <template>
-  <img class="map" src="../assets/fosdem-campus.svg">
+  <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
-  name: 'map'
+  name: 'map',
+
+  methods: mapActions([
+    'showZoomTip'
+  ]),
+
+  created () {
+    this.showZoomTip()
+  }
 }
 </script>
 
-<style >
+<style scoped>
+  .map-container {
+    width: 100%;
+    height: 100%;
+  }
+
   .map {
     display: block;
     max-width: 100%;

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import About from './components/About'
 import AllEvents from './components/AllEvents'
+import BuildingMap from './components/BuildingMap'
 import CampusMap from './components/CampusMap'
 import ConferenceTracks from './components/ConferenceTracks'
 import ConferenceTrackEvents from './components/ConferenceTrackEvents'
@@ -62,8 +63,14 @@ export default new Router({
     },
     {
       path: '/map',
-      name: 'map',
+      name: 'campus-map',
       component: CampusMap
+    },
+    {
+      path: '/map/:buildingName',
+      name: 'building-map',
+      component: BuildingMap,
+      props: true
     },
     {
       path: '/settings',
