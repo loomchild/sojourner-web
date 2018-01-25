@@ -8,7 +8,7 @@
       <v-card-title class="grey--text text--lighten-1">
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.room.name }}
+        &nbsp;<span><router-link :to="`/room/${event.room.name}`">{{ event.room.name }}</router-link></span>
         <span class="roomlocation"><router-link :to="'/map/' + event.room.building.name"><v-icon color="info" title="Room location">location_on</v-icon></router-link></span>
         <span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
         {{ event.track.name }}
@@ -99,6 +99,10 @@ export default {
     font-size: 20px;
     vertical-align: text-bottom;
     cursor: pointer;
+  }
+
+  .card__title a {
+    text-decoration: none; 
   }
 </style>
 
