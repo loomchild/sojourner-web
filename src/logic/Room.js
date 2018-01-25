@@ -1,5 +1,6 @@
 export default class Room {
-  constructor (data) {
+  constructor (data = {}) {
     this.name = data.name
+    this.building = data.building || {}
   }
 }

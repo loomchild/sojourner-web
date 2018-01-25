@@ -8,7 +8,9 @@
       <v-card-title class="grey--text text--lighten-1">
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.room.name }}&nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
+        {{ event.room.name }}
+        <span class="roomlocation"><router-link :to="'/map/' + event.room.building.name"><v-icon color="info" title="Room location">location_on</v-icon></router-link></span>
+        <span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
         {{ event.track.name }}
       </v-card-title>
       <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
@@ -25,6 +27,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
+import Event from '../logic/Event'
 import Favourite from './Favourite'
 
 export default {
@@ -40,7 +43,7 @@ export default {
 
   computed: Object.assign({
     event () {
-      return this.events[this.eventId]
+      return this.events[this.eventId] || new Event()
     },
 
     state () {
@@ -90,6 +93,12 @@ export default {
     font-size: 18px;
     vertical-align: text-bottom;
     cursor: default;
+  }
+
+  .roomlocation .icon {
+    font-size: 20px;
+    vertical-align: text-bottom;
+    cursor: pointer;
   }
 </style>
 

@@ -52,8 +52,9 @@ const createDay = (day) => Object.freeze(new Day({
   date: day.date
 }))
 
-const createRoom = (room) => Object.freeze(new Room({
-  name: room.name
+const createRoom = (room, building) => Object.freeze(new Room({
+  name: room.name,
+  building: building
 }))
 
 const createTrack = (name) => Object.freeze(new Track({
@@ -182,7 +183,7 @@ export default {
   },
 
   actions: {
-    parseSchedule ({commit}) {
+    parseSchedule ({commit, getters}) {
       return fetchSchedule('force-cache')
         .then(xml => {
           const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
@@ -198,8 +199,9 @@ export default {
             const day = createDay(d)
             days[day.index] = day
             for (const r of d.room || []) {
+              const building = getters.roomBuilding(r.name)
               if (r.event && r.event.length > 0) {
-                const room = createRoom(r)
+                const room = createRoom(r, building)
                 if (!rooms[room.name]) {
                   rooms[room.name] = room
                 }

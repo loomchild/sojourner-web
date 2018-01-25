@@ -1,5 +1,7 @@
 import moment from 'moment'
 
+import Room from './Room'
+
 const TIME_FORMAT = 'HH:mm'
 
 export default class Event {
@@ -15,7 +17,7 @@ export default class Event {
     this.type = data.type
     this.track = data.track || {}
     this.day = data.day || {}
-    this.room = data.room || {}
+    this.room = data.room || new Room()
     this.persons = data.persons || []
     this.links = data.links || []
 

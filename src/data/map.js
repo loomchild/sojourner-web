@@ -11,6 +11,9 @@ export default {
 
   getters: {
     buildings: state => state.buildings,
+
+    roomBuilding: state => roomName => Object.values(state.buildings).filter(building => building.containsRoom(roomName))[0],
+
     zoomTipShown: state => state.zoomTipShown
   },
 
