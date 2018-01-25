@@ -8,10 +8,9 @@
       <v-card-title class="grey--text text--lighten-1">
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        &nbsp;<span><router-link :to="`/room/${event.room.name}`">{{ event.room.name }}</router-link></span>
-        <span class="roomlocation"><router-link :to="'/map/' + event.room.building.name"><v-icon color="info" title="Room location">location_on</v-icon></router-link></span>
-        <span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
-        &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>
+        &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
+        &nbsp;<span><router-link :to="`/map/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+        &nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
       </v-card-title>
       <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
       <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
@@ -95,14 +94,8 @@ export default {
     cursor: default;
   }
 
-  .roomlocation .icon {
-    font-size: 20px;
-    vertical-align: text-bottom;
-    cursor: pointer;
-  }
-
   .card__title a {
-    text-decoration: none; 
+    text-decoration: none;
   }
 </style>
 
