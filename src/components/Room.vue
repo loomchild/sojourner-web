@@ -9,9 +9,6 @@
       <v-list-tile-sub-title v-else>0 events</v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action>
-      <router-link :to="'/map/' + room.room.building.name"><v-icon color="grey" title="Room location">location_on</v-icon></router-link>
-    </v-list-tile-action>
-    <v-list-tile-action>
       <v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon>
     </v-list-tile-action>
   </v-list-tile>
@@ -65,9 +62,5 @@ export default {
 
   .room-name {
     font-weight: bold;
-  }
-
-  div.list__tile__action:last-of-type {
-    min-width: 35px;
   }
 </style>
