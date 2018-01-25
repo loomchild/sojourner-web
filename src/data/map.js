@@ -3,11 +3,11 @@ import Building from '../logic/Building'
 export default {
   state: {
     buildings: {
-      'j': new Building({name: 'j'}),
-      'h': new Building({name: 'h'}),
-      'aw': new Building({name: 'aw'}),
-      'u': new Building({name: 'u'}),
-      'k': new Building({name: 'k'})
+      'J': new Building({name: 'J'}),
+      'H': new Building({name: 'H'}),
+      'AW': new Building({name: 'AW'}),
+      'U': new Building({name: 'U'}),
+      'K': new Building({name: 'K'})
     },
 
     zoomTipShown: false

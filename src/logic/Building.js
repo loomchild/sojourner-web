@@ -4,6 +4,6 @@ export default class Building {
   }
 
   containsRoom (roomName) {
-    return roomName.toLowerCase().startsWith(this.name)
+    return roomName.toUpperCase().startsWith(this.name)
   }
 }
