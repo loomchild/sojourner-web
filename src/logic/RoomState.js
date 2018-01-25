@@ -5,19 +5,19 @@ export default class Room {
     this.emergency = false
 
     if (this.state === -1) {
-      this.name = 'unknown room state'
+      this.name = 'Unknown room state'
       this.icon = 'help'
       this.color = 'grey'
     } else if (this.state === 0) {
-      this.name = 'room open'
+      this.name = 'Room open'
       this.icon = 'check_circle'
       this.color = 'success'
     } else if (this.state === 1) {
-      this.name = 'room full'
+      this.name = 'Room full'
       this.icon = 'error'
       this.color = 'red darken-2'
     } else if (this.state === 2) {
-      this.name = 'room emergency evacuation'
+      this.name = 'Room emergency evacuation'
       this.icon = 'whatshot'
       this.color = 'error'
       this.emergency = true
