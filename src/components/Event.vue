@@ -5,13 +5,16 @@
       <v-list-tile-sub-title>
         {{ event.persons.join(', ') }},
         {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.room.name }}&nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
-        {{ event.track.name }}
+        {{ event.track.name }},
+        {{ event.room.name }}
       </v-list-tile-sub-title>
       <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action>
       <favourite :event="event"></favourite>
+    </v-list-tile-action>
+    <v-list-tile-action>
+      <v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon>
     </v-list-tile-action>
   </v-list-tile>
 </template>
@@ -64,6 +67,10 @@ export default {
     font-size: 18px;
     vertical-align: text-bottom;
     cursor: default;
+  }
+
+  div.list__tile__action:last-of-type {
+    min-width: 40px;
   }
 </style>
 
