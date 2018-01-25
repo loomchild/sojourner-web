@@ -4,8 +4,7 @@
       <v-list-tile-title class="track-name">{{ track.track.name }}</v-list-tile-title>
       <v-list-tile-sub-title>
         {{ track.events.length }} events,
-        {{ track.days.join(' and ') }},
-        {{ track.rooms.join(', ') }}
+        {{ track.rooms.map(room => `${room.room.name} (${room.days.join(' and ')})`).join(', ') }}
       </v-list-tile-sub-title>
     </v-list-tile-content>
   </v-list-tile>

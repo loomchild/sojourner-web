@@ -124,8 +124,18 @@ export default {
 
       return tracks.map(track => {
         const events = eventsByTrack[track.name] ? eventsByTrack[track.name] : []
-        const rooms = _.uniq(events.map(event => event.room.name)).sort()
-        const days = _.uniq(events.map(event => event.day.name)).sort()
+        const eventsByRoom = _.groupBy(events, event => event.room.name)
+        const eventsByDay = _.groupBy(events, event => event.day.index)
+
+        const rooms = _.uniqBy(events.sort(eventNaturalSort).map(event => event.room), room => room.name)
+          .map(room => ({
+            room: room,
+            days: _.uniq(eventsByRoom[room.name].map(event => event.day.name)).sort()
+          }))
+        const days = {}
+        Object.keys(eventsByDay).forEach(dayIndex => {
+          days[dayIndex] = _.uniq(eventsByDay[dayIndex].map(event => event.room))
+        })
 
         return {
           track: track,
@@ -144,7 +154,7 @@ export default {
         const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
         const eventsByTrack = _.groupBy(events, event => event.track.name)
         const eventsByDay = _.groupBy(events, event => event.day.index)
-        const tracks = _.uniq(events.sort(eventNaturalSort).map(event => event.track))
+        const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
           .map(track => ({
             track: track,
             days: _.uniq(eventsByTrack[track.name].map(event => event.day.name)).sort()
