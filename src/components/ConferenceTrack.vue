@@ -7,14 +7,37 @@
         {{ track.rooms.map(room => `${room.room.name} (${room.days.join(' and ')})`).join(', ') }}
       </v-list-tile-sub-title>
     </v-list-tile-content>
+    <v-list-tile-action>
+      <v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon>
+    </v-list-tile-action>
   </v-list-tile>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'conference-track',
 
-  props: ['track']
+  props: ['track'],
+
+  computed: Object.assign({
+    state () {
+      let room = {}
+      if (this.track.rooms.length === 1) {
+        room = this.track.rooms[0].room
+      } else {
+        const todaySunday = new Date().getDay() === 0
+        const todayRooms = this.track.rooms.filter(room => room.days.filter(day => todaySunday ? day === 'Sunday' : day === 'Saturday').length > 0)
+        if (todayRooms.length === 1) {
+          room = todayRooms[0].room
+        }
+      }
+      return this.roomState(room.name)
+    }
+  }, mapGetters([
+    'roomState'
+  ]))
 }
 </script>
 
