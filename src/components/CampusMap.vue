@@ -1,5 +1,7 @@
 <template>
-  <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
+  <div class="map-container">
+    <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
+  </div>
 </template>
 
 <script>
