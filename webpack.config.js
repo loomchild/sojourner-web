@@ -82,8 +82,8 @@ if (process.env.NODE_ENV === 'production') {
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 5000000,
       runtimeCaching: [
-        {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
-        {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
+        {urlPattern: /https:\/\/fonts.googleapis.com(.*)/, handler: 'cacheFirst'},
+        {urlPattern: /https:\/\/fonts.gstatic.com(.*)/, handler: 'cacheFirst'}
       ]
     })
   ])
