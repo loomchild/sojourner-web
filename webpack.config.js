@@ -5,8 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
-const config = require('./config')
-
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: './main.js',
@@ -83,16 +81,10 @@ if (process.env.NODE_ENV === 'production') {
       clientsClaim: true,
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 5000000,
-      runtimeCaching: (function () {
-        const patterns = [
-          {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
-          {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
-        ]
-        if (config.analyticsUrl) {
-          patterns.push({urlPattern: config.analyticsUrl, handler: 'cacheFirst'})
-        }
-        return patterns
-      }())
+      runtimeCaching: [
+        {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
+        {urlPattern: 'https://fonts.gstatic.com(.*)', handler: 'cacheFirst'}
+      ]
     })
   ])
 }
