@@ -82,6 +82,7 @@ if (process.env.NODE_ENV === 'production') {
       swDest: path.join('dist', 'service-worker.js'),
       clientsClaim: true,
       skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 5000000,
       runtimeCaching: (function () {
         const patterns = [
           {urlPattern: 'https://fonts.googleapis.com(.*)', handler: 'cacheFirst'},
