@@ -14,6 +14,10 @@ then
     npm run build
 
     sed -i '/dist/d' .gitignore
+
+    # allow serving node_modules, see https://stackoverflow.com/a/43487798
+    touch dist/.nojekyll
+
     git add .
     git commit -m "Deploy"
     git push origin `git subtree split --prefix dist master`:gh-pages --force
