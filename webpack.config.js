@@ -77,15 +77,12 @@ if (process.env.NODE_ENV === 'production') {
     new WorkboxPlugin({
       cacheId: 'sojourner',
       globDirectory: 'dist/',
-      globPatterns: ['**/*.{html,js,css,png,jpg,svg}'],
+      globPatterns: ['**/*.{html,js,css,png,jpg,svg,ttf,eot,woff,woff2}'],
       swDest: path.join('dist', 'service-worker.js'),
       clientsClaim: true,
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 5000000,
-      runtimeCaching: [
-        {urlPattern: /https:\/\/fonts.googleapis.com(.*)/, handler: 'cacheFirst'},
-        {urlPattern: /https:\/\/fonts.gstatic.com(.*)/, handler: 'cacheFirst'}
-      ]
+      runtimeCaching: []
     })
   ])
 }
