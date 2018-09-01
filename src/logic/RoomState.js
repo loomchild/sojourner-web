@@ -1,4 +1,4 @@
-export default class Room {
+export default class RoomState {
   constructor (data) {
     this.room = data.room
     this.state = data.state !== undefined ? data.state : -1
