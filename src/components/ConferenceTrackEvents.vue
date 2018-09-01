@@ -25,13 +25,15 @@ export default {
     'trackName'
   ],
 
-  computed: Object.assign({
+  computed: {
     events () {
       return this.trackEvents(this.trackName)
-    }
-  }, mapGetters([
-    'trackEvents'
-  ]))
+    },
+
+    ...mapGetters([
+      'trackEvents'
+    ])
+  }
 }
 </script>
 

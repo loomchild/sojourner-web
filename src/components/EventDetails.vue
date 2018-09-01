@@ -40,18 +40,20 @@ export default {
     'eventId'
   ],
 
-  computed: Object.assign({
+  computed: {
     event () {
       return this.events[this.eventId] || new Event()
     },
 
     state () {
       return this.roomState(this.event.room.name)
-    }
-  }, mapGetters([
-    'events',
-    'roomState'
-  ]))
+    },
+
+    ...mapGetters([
+      'events',
+      'roomState'
+    ])
+  }
 }
 </script>
 

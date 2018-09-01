@@ -25,13 +25,15 @@ export default {
     'roomName'
   ],
 
-  computed: Object.assign({
+  computed: {
     events () {
       return this.roomEvents(this.roomName)
-    }
-  }, mapGetters([
-    'roomEvents'
-  ]))
+    },
+
+    ...mapGetters([
+      'roomEvents'
+    ])
+  }
 }
 </script>
 

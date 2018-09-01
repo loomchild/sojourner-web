@@ -21,7 +21,7 @@ export default {
 
   props: ['track'],
 
-  computed: Object.assign({
+  computed: {
     state () {
       let room = {}
       if (this.track.rooms.length === 1) {
@@ -34,10 +34,12 @@ export default {
         }
       }
       return this.roomState(room.name)
-    }
-  }, mapGetters([
-    'roomState'
-  ]))
+    },
+
+    ...mapGetters([
+      'roomState'
+    ])
+  }
 }
 </script>
 

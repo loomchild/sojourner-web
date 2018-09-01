@@ -32,7 +32,7 @@ export default {
 
   props: ['room'],
 
-  computed: Object.assign({
+  computed: {
     borderStyle () {
       return {
         borderLeftColor: getTracksColor(this.room.days[1]),
@@ -42,10 +42,12 @@ export default {
 
     state () {
       return this.roomState(this.room.room.name)
-    }
-  }, mapGetters([
-    'roomState'
-  ]))
+    },
+
+    ...mapGetters([
+      'roomState'
+    ])
+  }
 }
 </script>
 

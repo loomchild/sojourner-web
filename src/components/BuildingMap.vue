@@ -15,13 +15,15 @@ export default {
 
   props: ['buildingName'],
 
-  computed: Object.assign({
+  computed: {
     building () {
       return this.buildings[this.buildingName]
-    }
-  }, mapGetters([
-    'buildings'
-  ]))
+    },
+
+    ...mapGetters([
+      'buildings'
+    ])
+  }
 }
 </script>
 

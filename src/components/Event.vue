@@ -32,13 +32,15 @@ export default {
     favourite: Favourite
   },
 
-  computed: Object.assign({
+  computed: {
     state () {
       return this.roomState(this.event.room.name)
-    }
-  }, mapGetters([
-    'roomState'
-  ])),
+    },
+
+    ...mapGetters([
+      'roomState'
+    ])
+  },
 
   methods: {
     goToEvent () {

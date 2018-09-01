@@ -42,7 +42,7 @@ export default {
 
   computed: mapGetters(['persistent']),
 
-  methods: Object.assign({
+  methods: {
     refresh () {
       this.refreshing = true
       return this.refreshSchedule()
@@ -64,13 +64,15 @@ export default {
             this.showError('Unable to activate persistence')
           }
         })
-    }
-  }, mapActions([
-    'showSuccess',
-    'showError',
-    'persist',
-    'refreshSchedule'
-  ]))
+    },
+
+    ...mapActions([
+      'showSuccess',
+      'showError',
+      'persist',
+      'refreshSchedule'
+    ])
+  }
 }
 </script>
 

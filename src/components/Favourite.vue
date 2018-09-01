@@ -18,17 +18,19 @@ export default {
     'persistent'
   ]),
 
-  methods: Object.assign({
+  methods: {
     toggleFavouriteEvent () {
       this.toggleFavourite(this.event.id)
       if (!this.persistent) {
         this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
       }
-    }
-  }, mapActions([
-    'showWarning',
-    'toggleFavourite'
-  ]))
+    },
+
+    ...mapActions([
+      'showWarning',
+      'toggleFavourite'
+    ])
+  }
 }
 </script>
 
