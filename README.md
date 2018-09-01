@@ -45,3 +45,5 @@ Static application can be generated into dist/ directory using:
 To deploy it to github pages, run:
 
     npm run deploy
+
+*Note: use annotated tags to make them visible on About page.*
