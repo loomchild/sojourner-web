@@ -2,8 +2,9 @@ const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const {GenerateSW} = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -18,6 +19,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
+  mode: 'development',
   module: {
     rules: [
       {
@@ -40,14 +42,14 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true
+    historyApiFallback: true
   },
   performance: {
     hints: false
   },
   devtool: 'eval-source-map',
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
       'assets/**/*'
@@ -63,6 +65,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 if (process.env.NODE_ENV === 'production') {
+  module.exports.mode = 'production'
   module.exports.output.filename = './build.js'
   module.exports.devtool = 'source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
@@ -74,7 +77,7 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    new WorkboxPlugin({
+    new GenerateSW({
       cacheId: 'sojourner',
       globDirectory: 'dist/',
       globPatterns: ['**/*.{html,js,css,png,jpg,svg,ttf,eot,woff,woff2}'],
