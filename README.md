@@ -26,11 +26,11 @@ Launch style check:
 
     npm run lint
 
-Launch unit / integration tests (deps must be running):
+Launch unit / integration tests:
 
     npm run test
 
-Launch end-to-end tests (deps and local server must be running):
+Launch end-to-end tests (local server must be running):
 
     npm run test-e2e
 
