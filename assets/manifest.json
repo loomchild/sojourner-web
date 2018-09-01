@@ -1,0 +1,26 @@
+{
+  "short_name": "Sojourner",
+  "name": "Sojourner - FOSDEM conference companion",
+  "icons": [
+    {
+      "src": "/assets/sojourner-icon-56.png",
+      "sizes": "56x56",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/sojourner-icon-112.png",
+      "sizes": "112x112",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/sojourner-icon-224.png",
+      "sizes": "224x224",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#303030",
+  "theme_color": "#303030"
+}
+
