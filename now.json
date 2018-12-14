@@ -1,0 +1,19 @@
+{
+  "name": "sojourner-web",
+  "version": 2,
+  "build": {
+    "env": {
+      "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "1"
+    }
+  },
+  "alias": ["sojourner.loomchild.net"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "useBuildUtils": "@now/build-utils@canary"
+      }
+    }
+  ]
+}
