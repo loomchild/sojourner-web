@@ -7,6 +7,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --progress --hide-modules",
     "deploy": "./deploy.sh",
+    "now-build": "npm run build",
     "serve": "http-server dist",
     "start": "NODE_ENV=development webpack-dev-server --hot --disable-host-check",
     "lint": "eslint --ext .js,.vue src test",
