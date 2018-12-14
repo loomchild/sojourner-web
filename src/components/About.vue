@@ -10,7 +10,7 @@
           </v-flex>
           <v-flex sm12 md6 offset-md3>
             <div class="infos body-2">
-              <p><v-icon>book</v-icon> Version: {{ version }}</p>
+              <p><v-icon>book</v-icon> Version (coming soon): {{ version }}</p>
               <p><v-icon>alarm</v-icon> Timestamp: {{ timestamp }}</p>
               <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net">loomchild</a></p>
               <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web">Github</a></p>
