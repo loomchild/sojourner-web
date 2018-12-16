@@ -10,7 +10,7 @@
           </v-flex>
           <v-flex sm12 md6 offset-md3>
             <div class="infos body-2">
-              <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ version }}</a></p>
+              <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ commithash }}</a></p>
               <p><v-icon>alarm</v-icon> Timestamp: {{ timestamp }}</p>
               <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net">loomchild</a></p>
               <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web">Github</a></p>
@@ -30,6 +30,7 @@ export default {
   name: 'about',
   data: () => ({
     version: config.version,
+    commithash: config.commithash,
     commiturl: `https://github.com/loomchild/sojourner-web/commit/${config.commithash}`,
     timestamp: config.timestamp
   })
