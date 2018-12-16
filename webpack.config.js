@@ -1,10 +1,15 @@
 const path = require('path')
 const webpack = require('webpack')
+const moment = require('moment')
+
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const {GenerateSW} = require('workbox-webpack-plugin')
+const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const gitRevisionPlugin = new GitRevisionPlugin()
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -54,6 +59,11 @@ module.exports = {
     new CopyWebpackPlugin([
       'assets/**/*'
     ]),
+    new webpack.DefinePlugin({
+      'VERSION': JSON.stringify(gitRevisionPlugin.version()),
+      'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+      'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
@@ -70,9 +80,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = 'source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true

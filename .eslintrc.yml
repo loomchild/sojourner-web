@@ -17,3 +17,6 @@ rules:
 globals:
   expect: true
   should: true
+  TIMESTAMP: true
+  VERSION: true
+  COMMITHASH: true

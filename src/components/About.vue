@@ -10,8 +10,8 @@
           </v-flex>
           <v-flex sm12 md6 offset-md3>
             <div class="infos body-2">
-              <p><v-icon>book</v-icon> Version (coming soon): {{ version }}</p>
-              <p><v-icon>alarm</v-icon> Timestamp (coming soon): {{ timestamp }}</p>
+              <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ version }}</a></p>
+              <p><v-icon>alarm</v-icon> Timestamp: {{ timestamp }}</p>
               <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net">loomchild</a></p>
               <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web">Github</a></p>
               <p>Sojourner is a conference schedule viewer. It is inspired by the original <a href="https://github.com/loomchild/sojourner">Sojourner</a> mobile app for Nokia N900 written by Will Thompson.</p>
@@ -30,6 +30,7 @@ export default {
   name: 'about',
   data: () => ({
     version: config.version,
+    commiturl: `https://github.com/loomchild/sojourner-web/commit/${config.commithash}`,
     timestamp: config.timestamp
   })
 }
