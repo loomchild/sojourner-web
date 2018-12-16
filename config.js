@@ -1,10 +1,12 @@
 'use strict'
 
-module.exports = {
-  version: 'unknown',
-  timestamp: 'unknown',
+const config = {
+  timestamp: TIMESTAMP,
+  commithash: 'unknown',
   scheduleUrl: 'https://fosdem.loomchild.net/2018/schedule/xml',
-  roomStateUrl: 'https://fosdem.loomchild.net/listrooms',
-  roomStatePollInterval: 60,
-  analyticsUrl: ''
+  roomStateUrl: 'https://fosdem.loomchild.net/listrooms'
 }
+
+module.exports = Object.assign(config, process.env.NODE_ENV === 'production'
+  ? require('./config.prod.js')
+  : require('./config.dev.js'))
