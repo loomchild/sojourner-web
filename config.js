@@ -1,9 +1,8 @@
 'use strict'
 
 const config = {
-  version: VERSION,
   timestamp: TIMESTAMP,
-  commithash: COMMITHASH,
+  commithash: 'unknown',
   scheduleUrl: 'https://fosdem.loomchild.net/2018/schedule/xml',
   roomStateUrl: 'https://fosdem.loomchild.net/listrooms'
 }
