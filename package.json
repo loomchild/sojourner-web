@@ -15,6 +15,7 @@
     "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
   "dependencies": {
+    "@hoodie/client": "^10.1.1",
     "blueimp-md5": "^2.10.0",
     "colorsys": "^1.0.19",
     "localforage": "^1.6.0",
@@ -22,9 +23,11 @@
     "material-design-icons-iconfont": "^3.0.3",
     "memoizee": "^0.4.12",
     "moment": "^2.21.0",
+    "pouchdb": "^7.0.0",
     "thenby": "^1.2.3",
     "typeface-roboto": "0.0.54",
     "vue": "^2.5.15",
+    "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git",
     "vue-router": "^2.3.3",
     "vue-test-utils": "^1.0.0-beta.7",
     "vuetify": "^0.17.3",
@@ -62,7 +65,6 @@
     "karma-webpack": "^3.0.0",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.20",
-    "now": "^12.1.12",
     "puppeteer": "^0.13.0",
     "selenium-server": "^3.10.0",
     "sinon": "^2.1.0",

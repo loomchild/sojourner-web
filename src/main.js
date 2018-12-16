@@ -7,6 +7,7 @@ import 'typeface-roboto'
 import App from './App'
 import router from './router'
 import store from './data/store'
+import hoodie from './hoodie'
 import './init'
 
 Vue.use(Vuetify)
@@ -16,6 +17,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  hoodie,
   template: '<app></app>',
   components: {
     app: App
