@@ -59,7 +59,7 @@ export default {
     width: 100%;
   }
 
-  .list {
+  .v-list {
     width: 100%;
     padding: 0;
   }

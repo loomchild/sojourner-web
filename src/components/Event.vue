@@ -71,7 +71,7 @@ export default {
     cursor: default;
   }
 
-  div.list__tile__action:last-of-type {
+  div.v-list__tile__action:last-of-type {
     min-width: 40px;
   }
 </style>
