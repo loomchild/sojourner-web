@@ -58,12 +58,12 @@ export default {
 </script>
 
 <style>
-  .card {
+  .v-card {
     width: 100%;
     border-top: 10px solid transparent;
   }
 
-  .card__title, .card__text {
+  .v-card__title, .v-card__text {
     padding-bottom: 0;
   }
 
@@ -96,7 +96,7 @@ export default {
     cursor: default;
   }
 
-  .card__title a {
+  .v-card__title a {
     text-decoration: none;
   }
 </style>

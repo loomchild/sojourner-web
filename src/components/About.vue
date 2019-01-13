@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-  .card {
+  .v-card {
     width: 100%;
     height: 100%;
   }
