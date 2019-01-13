@@ -3,7 +3,7 @@
 const config = {
   timestamp: TIMESTAMP,
   commithash: 'unknown',
-  scheduleUrl: 'https://fosdem.loomchild.net/2018/schedule/xml',
+  scheduleUrl: 'https://fosdem.loomchild.net/2019/schedule/xml',
   roomStateUrl: 'https://fosdem.loomchild.net/listrooms'
 }
 
