@@ -1,4 +1,4 @@
-import hoodie from '../hoodie'
+import firebase from 'firebase'
 
 export default {
   state: {
@@ -32,25 +32,18 @@ export default {
       commit('setLoginDialog', false)
     },
 
-    async logIn ({commit}, {email, password}) {
-      if (!email) {
-        throw new Error('Missing email')
-      }
-      if (!password) {
-        throw new Error('Missing password')
-      }
-      const account = await hoodie.account.signIn({username: email, password})
+    initUser ({commit}, user) {
+      firebase.auth().onAuthStateChanged(user => {
+        commit('setUser', user)
+      })
+    },
 
-      const user = {
-        account,
-        email: account.username
-      }
-      commit('setUser', user)
+    logIn ({commit}, {email, password}) {
+      return firebase.auth().signInWithEmailAndPassword(email, password)
     },
 
     logOut ({commit}) {
-      return hoodie.account.signOut()
-        .then(() => commit('setUser', null))
+      return firebase.auth().signOut()
     }
   }
 }

@@ -35,13 +35,15 @@ export default {
   methods: mapActions([
     'initFavourites',
     'parseSchedule',
-    'initRoomStateUpdater'
+    'initRoomStateUpdater',
+    'initUser'
   ]),
 
   created: function () {
     this.parseSchedule()
     this.initFavourites()
     this.initRoomStateUpdater()
+    this.initUser()
   }
 }
 </script>
