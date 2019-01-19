@@ -1,25 +1,27 @@
 <template>
   <v-dialog :value="loginDialog" @input="setLoginDialog" @keydown.esc="setLoginDialog(false)" width="400">
-    <v-card>
-      <v-card-title>
-        <span class="headline">Log In</span>
-      </v-card-title>
-      <v-card-text>
-        <v-container grid-list-md>
-          <v-flex xs12>
-            <v-text-field label="Email" v-model="email" required autofocus></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-text-field label="Password" v-model="password" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" @click:append="showPassword = !showPassword" @keyup.native.enter="clickLogIn"></v-text-field>
-          </v-flex>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="error" @click="hideLoginDialog">Cancel</v-btn>
-        <v-btn color="success" @click="clickLogIn">Log In</v-btn>
-      </v-card-actions>
-    </v-card>
+    <v-form ref="form" @submit.prevent="clickLogIn">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Log In</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-flex xs12>
+              <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field label="Password" v-model="password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" @click:append="showPassword = !showPassword"></v-text-field>
+            </v-flex>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="error" @click="hideLoginDialog">Cancel</v-btn>
+          <v-btn type="submit" color="success">Log In</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
   </v-dialog>
 </template>
 
@@ -38,8 +40,8 @@ export default {
   ]),
   methods: {
     reset () {
-      this.email = ''
-      this.password = ''
+      this.email = null
+      this.password = null
       this.showPassword = false
     },
 
@@ -52,7 +54,9 @@ export default {
       }
     },
 
-    clickLogIn () {
+    clickLogIn (e) {
+      if (!this.$refs.form.validate()) return
+
       this.logIn({email: this.email, password: this.password})
         .then(() => {
           this.showSuccess('Logged in successfully')
