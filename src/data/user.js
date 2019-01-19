@@ -38,6 +38,10 @@ export default {
       })
     },
 
+    register ({commit}, {email, password}) {
+      return firebase.auth().createUserWithEmailAndPassword(email, password)
+    },
+
     logIn ({commit}, {email, password}) {
       return firebase.auth().signInWithEmailAndPassword(email, password)
     },

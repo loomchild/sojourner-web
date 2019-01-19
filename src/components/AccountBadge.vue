@@ -2,7 +2,7 @@
   <div>
     <v-btn v-if="!user" class="user" dark @click.stop="showLoginDialog">
       <v-icon>account_circle</v-icon>
-      Log in
+      Log in / Register
     </v-btn>
     <v-menu v-if="user" offset-y open-on-hover close-delay="1000">
       <v-btn slot="activator" class="user" dark>
