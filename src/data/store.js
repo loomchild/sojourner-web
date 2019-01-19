@@ -7,6 +7,7 @@ import favourite from './favourite'
 import map from './map'
 import schedule from './schedule'
 import state from './state'
+import user from './user'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     map,
     favourite,
     schedule,
-    state
+    state,
+    user
   }
 })
