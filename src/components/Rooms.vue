@@ -1,12 +1,14 @@
 <template>
-  <v-layout justify-center align-top>
-    <v-list three-line>
-      <template v-for="(room, index) in rooms">
-        <room :room="room"></room>
-        <v-divider v-if="index + 1 < rooms.length"></v-divider>
-      </template>
-    </v-list>
-  </v-layout>
+  <v-container fluid>
+    <v-layout justify-center align-top>
+      <v-list three-line>
+        <template v-for="(room, index) in rooms">
+          <room :room="room"></room>
+          <v-divider v-if="index + 1 < rooms.length"></v-divider>
+        </template>
+      </v-list>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

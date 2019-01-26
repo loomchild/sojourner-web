@@ -1,7 +1,9 @@
 <template>
-  <div class="map-container">
-    <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
-  </div>
+  <v-container fluid fill-height>
+    <div class="map-container">
+      <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
+    </div>
+  </v-container>
 </template>
 
 <script>

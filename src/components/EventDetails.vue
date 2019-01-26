@@ -1,26 +1,28 @@
 <template>
-  <v-layout justify-center align-top>
-    <v-card :style="{borderTopColor: event.track.color}">
-      <v-card-title primary-title class="title"><h2>
-        {{ event.title }}
-        <favourite :event="event"></favourite>
-      </h2></v-card-title>
-      <v-card-title class="grey--text text--lighten-1">
-        {{ event.persons.join(', ') }},
-        {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
-        &nbsp;<span><router-link :to="`/map/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
-        &nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
-      </v-card-title>
-      <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
-      <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
-      <v-card-text v-if="event.description" v-html="event.description" class="description"></v-card-text>
-      <v-card-text v-if="event.links.length > 0" class="links">
-        Links:
-        <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
-      </v-card-text>
-    </v-card>
-  </v-layout>
+  <v-container fluid>
+    <v-layout justify-center align-top>
+      <v-card :style="{borderTopColor: event.track.color}">
+        <v-card-title primary-title class="title"><h2>
+          {{ event.title }}
+          <favourite :event="event"></favourite>
+        </h2></v-card-title>
+        <v-card-title class="grey--text text--lighten-1">
+          {{ event.persons.join(', ') }},
+          {{ event.start }}-{{ event.end }} {{ event.day.name }},
+          &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
+          &nbsp;<span><router-link :to="`/map/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+          &nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
+        </v-card-title>
+        <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
+        <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
+        <v-card-text v-if="event.description" v-html="event.description" class="description"></v-card-text>
+        <v-card-text v-if="event.links.length > 0" class="links">
+          Links:
+          <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
+        </v-card-text>
+      </v-card>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
