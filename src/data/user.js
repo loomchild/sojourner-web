@@ -59,7 +59,7 @@ export default {
           console.log(`Initializing user ${user.uid}`)
           return dispatch('initFavourites')
         } else {
-          commit('setFavourites', [])
+          dispatch('clearFavourites')
         }
       })
     },

@@ -15,8 +15,8 @@ export default {
   },
 
   mutations: {
-    initializeFavourites (state) {
-      state.favouritesInitialized = true
+    setFavouritesInitialized (state, favouritesInitialized) {
+      state.favouritesInitialized = favouritesInitialized
     },
 
     setFavourites (state, favourites) {
@@ -47,7 +47,7 @@ export default {
         })
         .then(() => commit('setFavourites', favourites))
         .then(() => dispatch('migrateLegacyFavourites'))
-        .then(() => commit('initializeFavourites'))
+        .then(() => commit('setFavouritesInitialized', true))
     },
 
     migrateLegacyFavourites ({dispatch}) {
@@ -68,6 +68,11 @@ export default {
             .then(() => localforage.setItem('migrated', true))
         }
       })
+    },
+
+    clearFavourites ({commit}) {
+      commit('setFavourites', [])
+      commit('setFavouritesInitialized', false)
     },
 
     setFavourite ({commit, dispatch}, eventId) {
