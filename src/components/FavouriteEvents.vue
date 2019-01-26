@@ -40,9 +40,7 @@ export default {
 
   methods: {
     initializeFavouriteEvents () {
-      if (this.favouritesInitialized) {
-        this.events = this.favouriteEvents
-      }
+      this.events = this.favouriteEvents
     }
   },
 
