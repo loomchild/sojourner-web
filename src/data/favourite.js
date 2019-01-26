@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import firebase from 'firebase/app'
+import localforage from 'localforage'
 
 export default {
   state: {
@@ -45,7 +46,23 @@ export default {
           }
         })
         .then(() => commit('setFavourites', favourites))
+        .then(() => dispatch('migrateLegacyFavourites'))
         .then(() => commit('initializeFavourites'))
+    },
+
+    migrateLegacyFavourites ({dispatch}) {
+      localforage.config({
+        name: 'Sojourner Events'
+      })
+
+      return localforage.length()
+        .then(length => {
+          if (length > 0) {
+            console.log('Migrating legacy storage')
+            return localforage.iterate((value, key) => dispatch('setFavourite', key))
+              .then(() => localforage.clear())
+          }
+        })
     },
 
     setFavourite ({commit, dispatch}, eventId) {
