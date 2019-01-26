@@ -59,7 +59,10 @@ export default {
         .then(length => {
           if (length > 0) {
             console.log('Migrating legacy storage')
-            return localforage.iterate((value, key) => dispatch('setFavourite', key))
+            return localforage.iterate((value, key) => {
+              dispatch('setFavourite', key)
+              return undefined // required to not break the iteration
+            })
               .then(() => localforage.clear())
           }
         })
