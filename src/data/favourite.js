@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import localforage from 'localforage'
 
 export default {
   state: {
@@ -40,14 +39,15 @@ export default {
 
   actions: {
     initFavourites ({commit, dispatch}) {
-      localforage.config({
-        name: 'Sojourner Events'
-      })
-
       const favourites = {}
-      return localforage.iterate((value, key) => {
-        favourites[key] = true
-      })
+
+      return dispatch('getUserData')
+        .then(userData => userData.collection('favourites').get())
+        .then(snapshot => {
+          snapshot.docs.forEach(favourite => {
+            favourites[favourite.id] = true
+          })
+        })
         .then(() => commit('setFavourites', favourites))
         .then(() => dispatch('isPersistent'))
         .then(persistent => commit('setPersistent', persistent))
@@ -70,13 +70,15 @@ export default {
       }
     },
 
-    setFavourite ({commit}, eventId) {
-      return localforage.setItem(eventId, true)
+    setFavourite ({commit, dispatch}, eventId) {
+      dispatch('getUserData')
+        .then(userData => userData.collection('favourites').doc(eventId).set({}))
         .then(() => commit('setFavourite', eventId))
     },
 
-    unsetFavourite ({commit}, eventId) {
-      return localforage.removeItem(eventId)
+    unsetFavourite ({commit, dispatch}, eventId) {
+      dispatch('getUserData')
+        .then(userData => userData.collection('favourites').doc(eventId).delete())
         .then(() => commit('unsetFavourite', eventId))
     },
 

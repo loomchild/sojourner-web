@@ -33,7 +33,6 @@ export default {
   },
 
   methods: mapActions([
-    'initFavourites',
     'parseSchedule',
     'initRoomStateUpdater',
     'initUser'
@@ -41,9 +40,9 @@ export default {
 
   created: function () {
     this.parseSchedule()
-    this.initFavourites()
-    this.initRoomStateUpdater()
-    this.initUser()
+      .then(() => this.initUser())
+      .then(() => this.initRoomStateUpdater())
+      .catch(console.error)
   }
 }
 </script>
