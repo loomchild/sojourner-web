@@ -108,6 +108,24 @@ export default {
       }
     },
 
+    initIndexedDB ({dispatch}) {
+      return new Promise((resolve, reject) => {
+        const request = window.indexedDB.open('sojourner-test')
+        request.onerror = () => {
+          dispatch('showNotification', {
+            color: 'error',
+            message: 'Unable to initialize IndexedDB, are you browsing in private mode?',
+            timeout: 0
+          })
+          reject(new Error('Unable to open IndexedDB'))
+        }
+        request.onsuccess = () => {
+          request.result.close()
+          resolve()
+        }
+      })
+    },
+
     persist ({commit}) {
       if (navigator.storage && navigator.storage.persist) {
         return navigator.storage.persist()

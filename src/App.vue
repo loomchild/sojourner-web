@@ -36,11 +36,13 @@ export default {
     'parseSchedule',
     'initRoomStateUpdater',
     'initPersistent',
+    'initIndexedDB',
     'initUser'
   ]),
 
   created: function () {
-    this.initPersistent()
+    this.initIndexedDB()
+      .then(() => this.initPersistent())
       .then(() => this.parseSchedule())
       .then(() => this.initUser())
       .then(() => this.initRoomStateUpdater())
