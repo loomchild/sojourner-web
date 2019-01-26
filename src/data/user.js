@@ -97,11 +97,14 @@ export default {
             if (persistent) {
               commit('setPersistent', true)
             } else {
+              dispatch('showWarning', 'Persistent storage disabled.')
               throw new Error('Could not enable persistence')
             }
           })
+          .then(() => dispatch('showSuccess', 'Persistent storage enabled.'))
       } else {
         commit('setPersistent', false)
+        dispatch('showWarning', 'Persistent storage disabled.')
       }
     },
 
