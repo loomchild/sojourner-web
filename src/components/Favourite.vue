@@ -14,20 +14,15 @@ export default {
   props: ['event'],
 
   computed: mapGetters([
-    'favourites',
-    'persistent'
+    'favourites'
   ]),
 
   methods: {
     toggleFavouriteEvent () {
       this.toggleFavourite(this.event.id)
-      if (!this.persistent) {
-        this.showWarning('Persistence is disabled. Enable it via Settings, otherwise your data might be lost.')
-      }
     },
 
     ...mapActions([
-      'showWarning',
       'toggleFavourite'
     ])
   }

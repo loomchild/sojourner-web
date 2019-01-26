@@ -8,13 +8,21 @@ export default {
   state: {
     user: null,
 
-    loginDialog: false
+    loginDialog: false,
+
+    persistent: false,
+
+    loseDataWarning: false
   },
 
   getters: {
     user: state => state.user,
 
-    loginDialog: state => state.loginDialog
+    realUser: state => (state.user && !state.user.isAnonymous) ? state.user : null,
+
+    loginDialog: state => state.loginDialog,
+
+    persistent: state => state.persistent
   },
 
   mutations: {
@@ -24,6 +32,14 @@ export default {
 
     setLoginDialog (state, loginDialog) {
       state.loginDialog = loginDialog
+    },
+
+    setPersistent (state, persistent) {
+      state.persistent = persistent
+    },
+
+    shownLoseDataWarning (state) {
+      state.loseDataWarning = true
     }
   },
 
@@ -71,6 +87,43 @@ export default {
             userData.set({}, {merge: true})
             return userData
           })
+      }
+    },
+
+    initPersistent ({commit, dispatch}) {
+      if (navigator.storage && navigator.storage.persisted) {
+        return navigator.storage.persisted()
+          .then(persistent => {
+            if (persistent) {
+              commit('setPersistent', true)
+            } else {
+              throw new Error('Could not enable persistence')
+            }
+          })
+      } else {
+        commit('setPersistent', false)
+      }
+    },
+
+    persist ({commit}) {
+      if (navigator.storage && navigator.storage.persist) {
+        return navigator.storage.persist()
+          .then(persistent => {
+            if (persistent) {
+              commit('setPersistent', true)
+            } else {
+              throw new Error('Could not enable persistence')
+            }
+          })
+      } else {
+        return Promise.reject(new Error('Persistence not supported by the browser'))
+      }
+    },
+
+    warnAboutLosingData ({dispatch, commit, state, getters}) {
+      if (!getters.realUser && !state.persistent && !state.loseDataWarning) {
+        return dispatch('showWarning', 'You are neither logged in, nor persisted. Please click on Anonymous button in the top right corner to fix that - otherwise your data might be lost.')
+          .then(() => commit('shownLoseDataWarning'))
       }
     }
   }
