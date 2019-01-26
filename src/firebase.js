@@ -5,5 +5,5 @@ import 'firebase/firestore'
 
 firebase.initializeApp(config.firebase)
 
-firebase.firestore().enablePersistence()
+firebase.firestore().enablePersistence({experimentalTabSynchronization: true})
   .catch(console.error)
