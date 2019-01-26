@@ -3,16 +3,13 @@ import Vue from 'vue'
 export default {
   state: {
     favouritesInitialized: false,
-    favourites: {},
-    persistent: false
+    favourites: {}
   },
 
   getters: {
     favouritesInitialized: (state) => state.favouritesInitialized,
 
-    favourites: (state) => state.favourites,
-
-    persistent: (state) => state.persistent
+    favourites: (state) => state.favourites
   },
 
   mutations: {
@@ -30,10 +27,6 @@ export default {
 
     unsetFavourite (state, eventId) {
       Vue.delete(state.favourites, eventId)
-    },
-
-    setPersistent (state, persistent) {
-      state.persistent = persistent
     }
   },
 
@@ -49,37 +42,21 @@ export default {
           })
         })
         .then(() => commit('setFavourites', favourites))
-        .then(() => dispatch('isPersistent'))
-        .then(persistent => commit('setPersistent', persistent))
         .then(() => commit('initializeFavourites'))
     },
 
-    persist () {
-      if (navigator.storage && navigator.storage.persist) {
-        return navigator.storage.persist()
-      } else {
-        return Promise.resolve(false)
-      }
-    },
-
-    isPersistent () {
-      if (navigator.storage && navigator.storage.persisted) {
-        return navigator.storage.persisted()
-      } else {
-        return Promise.resolve(false)
-      }
-    },
-
     setFavourite ({commit, dispatch}, eventId) {
-      dispatch('getUserData')
+      commit('setFavourite', eventId)
+      dispatch('warnAboutLosingData')
+      return dispatch('getUserData')
         .then(userData => userData.collection('favourites').doc(eventId).set({}))
-        .then(() => commit('setFavourite', eventId))
     },
 
     unsetFavourite ({commit, dispatch}, eventId) {
-      dispatch('getUserData')
+      commit('unsetFavourite', eventId)
+      dispatch('warnAboutLosingData')
+      return dispatch('getUserData')
         .then(userData => userData.collection('favourites').doc(eventId).delete())
-        .then(() => commit('unsetFavourite', eventId))
     },
 
     toggleFavourite ({commit, state, dispatch}, eventId) {
@@ -89,6 +66,5 @@ export default {
         return dispatch('setFavourite', eventId)
       }
     }
-
   }
 }

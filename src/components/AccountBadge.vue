@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-btn v-if="!isUser" class="user" dark @click.stop="showLoginDialog">
+    <v-btn v-if="!realUser" class="user" :class="{warning: !persistent}" dark @click.stop="showLoginDialog">
       <v-icon>account_circle</v-icon>
-      Log in / Register
+      Anonymous
     </v-btn>
-    <v-menu v-if="isUser" offset-y open-on-hover close-delay="1000">
+    <v-menu v-if="realUser" offset-y open-on-hover close-delay="1000">
       <v-btn slot="activator" class="user" dark>
         <v-icon>account_circle</v-icon>
-        {{ user.email }}
+        {{ realUser.email }}
       </v-btn>
       <v-list>
         <v-list-tile @click.stop="clickLogOut" ripple>
@@ -29,12 +29,9 @@ export default {
     LoginDialog
   },
   computed: {
-    isUser () {
-      return this.user && !this.user.isAnonymous
-    },
-
     ...mapGetters([
-      'user'
+      'realUser',
+      'persistent'
     ])
   },
   methods: {

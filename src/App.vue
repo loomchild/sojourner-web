@@ -35,11 +35,13 @@ export default {
   methods: mapActions([
     'parseSchedule',
     'initRoomStateUpdater',
+    'initPersistent',
     'initUser'
   ]),
 
   created: function () {
-    this.parseSchedule()
+    this.initPersistent()
+      .then(() => this.parseSchedule())
       .then(() => this.initUser())
       .then(() => this.initRoomStateUpdater())
       .catch(console.error)

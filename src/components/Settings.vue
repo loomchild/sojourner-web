@@ -57,12 +57,10 @@ export default {
 
     enablePersistence () {
       this.persist()
-        .then(persistent => {
-          if (persistent) {
-            this.showSuccess('Persistence enabled')
-          } else {
-            this.showError('Unable to activate persistence')
-          }
+        .then(() => location.reload())
+        .catch(error => {
+          console.error(error)
+          this.showError('Unable to activate persistence')
         })
     },
 
