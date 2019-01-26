@@ -19,6 +19,7 @@
     "blueimp-md5": "^2.10.0",
     "colorsys": "^1.0.19",
     "firebase": "^5.8.0",
+    "localforage": "^1.7.3",
     "lodash": "^4.17.4",
     "material-design-icons-iconfont": "^3.0.3",
     "memoizee": "^0.4.12",
