@@ -1,5 +1,9 @@
 import firebase from 'firebase/app'
 
+function getUserDataHelper (user) {
+  return firebase.firestore().collection('users').doc(user.uid)
+}
+
 export default {
   state: {
     user: null,
@@ -32,9 +36,14 @@ export default {
       commit('setLoginDialog', false)
     },
 
-    initUser ({commit}, user) {
-      firebase.auth().onAuthStateChanged(user => {
+    initUser ({commit, dispatch}, user) {
+      return firebase.auth().onAuthStateChanged(user => {
         commit('setUser', user)
+        if (user) {
+          return dispatch('initFavourites')
+        } else {
+          commit('setFavourites', [])
+        }
       })
     },
 
@@ -44,10 +53,25 @@ export default {
 
     logIn ({commit}, {email, password}) {
       return firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(response => getUserDataHelper(response.user).set({}, {merge: true}))
     },
 
     logOut ({commit}) {
       return firebase.auth().signOut()
+    },
+
+    getUserData ({state}) {
+      if (state.user) {
+        return getUserDataHelper(state.user)
+      }
+      if (!state.user) {
+        return firebase.auth().signInAnonymously()
+          .then(response => {
+            const userData = getUserDataHelper(response.user)
+            userData.set({}, {merge: true})
+            return userData
+          })
+      }
     }
   }
 }

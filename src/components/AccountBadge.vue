@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-btn v-if="!user" class="user" dark @click.stop="showLoginDialog">
+    <v-btn v-if="!isUser" class="user" dark @click.stop="showLoginDialog">
       <v-icon>account_circle</v-icon>
       Log in / Register
     </v-btn>
-    <v-menu v-if="user" offset-y open-on-hover close-delay="1000">
+    <v-menu v-if="isUser" offset-y open-on-hover close-delay="1000">
       <v-btn slot="activator" class="user" dark>
         <v-icon>account_circle</v-icon>
         {{ user.email }}
@@ -28,9 +28,15 @@ export default {
   components: {
     LoginDialog
   },
-  computed: mapGetters([
-    'user'
-  ]),
+  computed: {
+    isUser () {
+      return this.user && !this.user.isAnonymous
+    },
+
+    ...mapGetters([
+      'user'
+    ])
+  },
   methods: {
     clickLogOut () {
       this.logOut()
