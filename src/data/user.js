@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 
-function getUserDataHelper (user) {
+function getUserRefHelper (user) {
   return firebase.firestore().collection('users').doc(user.uid)
 }
 
@@ -69,21 +69,21 @@ export default {
 
     logIn ({commit}, {email, password}) {
       return firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(response => getUserDataHelper(response.user).set({}, {merge: true}))
+        .then(response => getUserRefHelper(response.user).set({}, {merge: true}))
     },
 
     logOut ({commit}) {
       return firebase.auth().signOut()
     },
 
-    getUserData ({state}) {
+    getUserRef ({state}) {
       if (state.user) {
-        return getUserDataHelper(state.user)
+        return getUserRefHelper(state.user)
       }
       if (!state.user) {
         return firebase.auth().signInAnonymously()
           .then(response => {
-            const userData = getUserDataHelper(response.user)
+            const userData = getUserRefHelper(response.user)
             userData.set({}, {merge: true})
             return userData
           })
