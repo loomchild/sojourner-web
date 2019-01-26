@@ -55,17 +55,19 @@ export default {
         name: 'Sojourner Events'
       })
 
-      return localforage.length()
-        .then(length => {
-          if (length > 0) {
-            console.log('Migrating legacy storage')
-            return localforage.iterate((value, key) => {
-              dispatch('setFavourite', key)
-              return undefined // required to not break the iteration
-            })
-              .then(() => localforage.clear())
-          }
-        })
+      return Promise.all([
+        localforage.length(),
+        localforage.getItem('migrated')
+      ]).then(([length, migrated]) => {
+        if (length > 0 && !migrated) {
+          console.log('Migrating legacy storage')
+          return localforage.iterate((value, key) => {
+            dispatch('setFavourite', key)
+            return undefined // required to not break the iteration
+          })
+            .then(() => localforage.setItem('migrated', true))
+        }
+      })
     },
 
     setFavourite ({commit, dispatch}, eventId) {
