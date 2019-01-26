@@ -8,6 +8,8 @@ export default {
   state: {
     user: null,
 
+    userUnsubscribe: null,
+
     loginDialog: false,
 
     persistent: false,
@@ -28,6 +30,10 @@ export default {
   mutations: {
     setUser (state, user) {
       state.user = user
+    },
+
+    setUserUnsubscribe (state, userUnsubscribe) {
+      state.userUnsubscribe = userUnsubscribe
     },
 
     setLoginDialog (state, loginDialog) {
@@ -52,14 +58,30 @@ export default {
       commit('setLoginDialog', false)
     },
 
-    initUser ({commit, dispatch}, user) {
-      return firebase.auth().onAuthStateChanged(user => {
+    initUser ({commit, dispatch, state}, user) {
+      firebase.auth().onAuthStateChanged(user => {
         commit('setUser', user)
         if (user) {
           console.log(`Initializing user ${user.uid}`)
-          return dispatch('initFavourites')
+
+          const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
+            const favourites = {}
+            if (user.data().favourites) {
+              user.data().favourites.forEach(favourite => {
+                favourites[favourite] = true
+              })
+              commit('setFavourites', favourites)
+            }
+          })
+          commit('setUserUnsubscribe', userUnsubscribe)
+
+          return dispatch('migrateLegacyFavourites')
         } else {
-          dispatch('clearFavourites')
+          if (state.userUnsubscribe) {
+            state.userUnsubscribe()
+            commit('setUserUnsubscribe', null)
+          }
+          commit('setFavourites', [])
         }
       })
     },

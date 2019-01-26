@@ -26,23 +26,6 @@ export default {
   },
 
   actions: {
-    initFavourites ({commit, dispatch}) {
-      const favourites = {}
-
-      return dispatch('getUserRef')
-        .then(userRef => userRef.get())
-        .then(user => {
-          if (user.data().favourites) {
-            user.data().favourites.forEach(favourite => {
-              favourites[favourite] = true
-            })
-          }
-        })
-        .then(() => commit('setFavourites', favourites))
-        .then(() => dispatch('migrateLegacyFavourites'))
-        .then(() => commit('setFavouritesInitialized', true))
-    },
-
     migrateLegacyFavourites ({dispatch}) {
       localforage.config({
         name: 'Sojourner Events'
@@ -63,20 +46,13 @@ export default {
       })
     },
 
-    clearFavourites ({commit}) {
-      commit('setFavourites', [])
-      commit('setFavouritesInitialized', false)
-    },
-
     setFavourite ({commit, dispatch}, eventId) {
-      commit('setFavourite', eventId)
       dispatch('warnAboutLosingData')
       return dispatch('getUserRef')
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(Number(eventId))}))
     },
 
     unsetFavourite ({commit, dispatch}, eventId) {
-      commit('unsetFavourite', eventId)
       dispatch('warnAboutLosingData')
       return dispatch('getUserRef')
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayRemove(Number(eventId))}))
