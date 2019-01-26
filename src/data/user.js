@@ -80,8 +80,7 @@ export default {
     getUserRef ({state}) {
       if (state.user) {
         return getUserRefHelper(state.user)
-      }
-      if (!state.user) {
+      } else {
         return firebase.auth().signInAnonymously()
           .then(response => {
             const userData = getUserRefHelper(response.user)
