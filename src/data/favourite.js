@@ -4,21 +4,14 @@ import localforage from 'localforage'
 
 export default {
   state: {
-    favouritesInitialized: false,
     favourites: {}
   },
 
   getters: {
-    favouritesInitialized: (state) => state.favouritesInitialized,
-
     favourites: (state) => state.favourites
   },
 
   mutations: {
-    setFavouritesInitialized (state, favouritesInitialized) {
-      state.favouritesInitialized = favouritesInitialized
-    },
-
     setFavourites (state, favourites) {
       state.favourites = favourites
     },

@@ -28,13 +28,13 @@ export default {
   }),
 
   computed: mapGetters([
-    'favouritesInitialized',
-    'favouriteEvents'
+    'favouriteEvents',
+    'favouriteAddedEvents'
   ]),
 
   watch: {
-    favouritesInitialized () {
-      this.initializeFavouriteEvents()
+    favouriteEvents () {
+      this.events = this.favouriteAddedEvents(this.events)
     }
   },
 

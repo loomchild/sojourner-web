@@ -118,6 +118,17 @@ export default {
         .sort(eventNaturalSort)
     },
 
+    favouriteAddedEvents: (state, rootGetters) => oldFavouriteEvents => {
+      const favourites = rootGetters.favourites
+      const oldFavourites = {}
+      oldFavouriteEvents.forEach(oldFavouriteEvent => {
+        oldFavourites[oldFavouriteEvent.id] = true
+      })
+      return Object.values(state.events)
+        .filter(event => favourites[event.id] || oldFavourites[event.id])
+        .sort(eventNaturalSort)
+    },
+
     allTrackStats: state => {
       const tracks = Object.values(state.tracks).sort(firstBy('name'))
       const eventsByTrack = _.groupBy(Object.values(state.events), event => event.track.name)
