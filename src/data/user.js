@@ -54,9 +54,9 @@ export default {
 
     initUser ({commit, dispatch}, user) {
       return firebase.auth().onAuthStateChanged(user => {
-        console.log(`Initializing user ${user.uid}`)
         commit('setUser', user)
         if (user) {
+          console.log(`Initializing user ${user.uid}`)
           return dispatch('initFavourites')
         } else {
           commit('setFavourites', [])
