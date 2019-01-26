@@ -40,13 +40,16 @@ export default {
     'initUser'
   ]),
 
-  created: function () {
-    this.initIndexedDB()
-      .then(() => this.initPersistent())
-      .then(() => this.parseSchedule())
-      .then(() => this.initUser())
-      .then(() => this.initRoomStateUpdater())
-      .catch(console.error)
+  created: async function () {
+    try {
+      await this.initIndexedDB()
+      await this.initPersistent()
+      await this.parseSchedule()
+      await this.initUser()
+      await this.initRoomStateUpdater()
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>
