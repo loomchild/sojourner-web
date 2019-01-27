@@ -33,7 +33,7 @@ export default {
 
   watch: {
     query () {
-      if (this.query.length <= 1) {
+      if (!this.query || this.query.length <= 1) {
         this.events = []
         return
       }
@@ -43,7 +43,7 @@ export default {
 
   methods: {
     search: _.debounce(function () {
-      if (this.query.length <= 1) {
+      if (!this.query || this.query.length <= 1) {
         this.events = []
         return
       }
