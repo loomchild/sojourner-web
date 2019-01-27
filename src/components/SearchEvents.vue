@@ -51,7 +51,7 @@ export default {
         .then(events => {
           this.events = events
         })
-    }, 250),
+    }, 150),
 
     ...mapActions([
       'searchEvents'
