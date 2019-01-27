@@ -87,6 +87,8 @@ const createEvent = (event, day, room, track) => {
 
 const eventNaturalSort = firstBy(event => event.day.index).thenBy('start')
 
+const MAX_SEARCH_RESULTS = 50
+
 export default {
   state: {
     days: {},
@@ -254,6 +256,23 @@ export default {
       } else {
         return Promise.reject(new Error('Offline'))
       }
+    },
+
+    searchEvents ({state}, query) {
+      const keywords = query.toLowerCase().split(' ')
+      const foundEvents = []
+
+      for (let event of Object.values(state.events)) {
+        const blob = JSON.stringify(event).toLowerCase()
+        if (keywords.every(keyword => blob.includes(keyword))) {
+          foundEvents.push(event)
+          if (foundEvents.length >= MAX_SEARCH_RESULTS) {
+            break
+          }
+        }
+      }
+
+      return foundEvents.sort(eventNaturalSort)
     }
   }
 }

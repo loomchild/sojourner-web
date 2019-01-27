@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import About from './components/About'
-import AllEvents from './components/AllEvents'
+import SearchEvents from './components/SearchEvents'
 import BuildingMap from './components/BuildingMap'
 import CampusMap from './components/CampusMap'
 import ConferenceTracks from './components/ConferenceTracks'
@@ -24,9 +24,9 @@ export default new Router({
       redirect: '/tracks'
     },
     {
-      path: '/all',
-      name: 'all-events',
-      component: AllEvents
+      path: '/search',
+      name: 'search-events',
+      component: SearchEvents
     },
     {
       path: '/favourites',

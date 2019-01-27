@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <v-text-field solo clearable placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query"/>
     <v-layout justify-center align-top>
       <v-list three-line>
         <template v-for="(event, index) in events">
@@ -12,7 +13,9 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import _ from 'lodash'
+
+import {mapActions} from 'vuex'
 
 import Event from './Event'
 
@@ -23,9 +26,37 @@ export default {
     'event': Event
   },
 
-  computed: mapGetters({
-    events: 'allEvents'
-  })
+  data: () => ({
+    query: '',
+    events: []
+  }),
+
+  watch: {
+    query () {
+      if (this.query.length <= 1) {
+        this.events = []
+        return
+      }
+      this.search()
+    }
+  },
+
+  methods: {
+    search: _.debounce(function () {
+      if (this.query.length <= 1) {
+        this.events = []
+        return
+      }
+      this.searchEvents(this.query)
+        .then(events => {
+          this.events = events
+        })
+    }, 250),
+
+    ...mapActions([
+      'searchEvents'
+    ])
+  }
 }
 </script>
 

@@ -3,8 +3,8 @@
     <v-list dense>
       <menu-item title="Tracks" icon="toc" to="/tracks"></menu-item>
       <menu-item title="Rooms" icon="weekend" to="/rooms"></menu-item>
-      <menu-item title="All Events" icon="home" to="/all"></menu-item>
-      <menu-item title="Favourite Events" icon="favorite" to="/favourites"></menu-item>
+      <menu-item title="Search" icon="search" to="/search"></menu-item>
+      <menu-item title="Favourites" icon="favorite" to="/favourites"></menu-item>
       <v-divider></v-divider>
       <menu-item title="Campus Map" icon="map" to="/map"></menu-item>
       <menu-item title="Settings" icon="settings" to="/settings"></menu-item>
