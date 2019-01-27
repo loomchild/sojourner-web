@@ -94,7 +94,8 @@ export default {
     days: {},
     rooms: {},
     tracks: {},
-    events: {}
+    events: {},
+    eventIndex: {}
   },
 
   getters: {
@@ -202,11 +203,15 @@ export default {
 
     setEvents (state, events) {
       state.events = events
+    },
+
+    setEventIndex (state, eventIndex) {
+      state.eventIndex = eventIndex
     }
   },
 
   actions: {
-    parseSchedule ({commit, getters}) {
+    parseSchedule ({commit, getters, dispatch}) {
       return fetchSchedule('force-cache')
         .then(xml => {
           const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
@@ -247,6 +252,7 @@ export default {
           commit('setTracks', tracks)
           commit('setEvents', events)
         })
+        .then(() => dispatch('reindexEvents'))
     },
 
     refreshSchedule ({dispatch}) {
@@ -258,14 +264,23 @@ export default {
       }
     },
 
+    reindexEvents ({state, commit}) {
+      const index = {}
+      for (let event of Object.values(state.events)) {
+        const blob = JSON.stringify(event, null, 2).toLowerCase()
+          .replace(/"[a-zA-Z0-9_]+":|/g, '').replace(/",|"|/g, '')
+        index[event.id] = blob
+      }
+      commit('setEventIndex', index)
+    },
+
     searchEvents ({state}, query) {
       const keywords = query.toLowerCase().split(' ')
       const foundEvents = []
 
-      for (let event of Object.values(state.events)) {
-        const blob = JSON.stringify(event).toLowerCase()
+      for (let [eventId, blob] of Object.entries(state.eventIndex)) {
         if (keywords.every(keyword => blob.includes(keyword))) {
-          foundEvents.push(event)
+          foundEvents.push(state.events[eventId])
           if (foundEvents.length >= MAX_SEARCH_RESULTS) {
             break
           }
