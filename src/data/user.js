@@ -74,8 +74,6 @@ export default {
             }
           })
           commit('setUserUnsubscribe', userUnsubscribe)
-
-          return dispatch('migrateLegacyFavourites')
         } else {
           if (state.userUnsubscribe) {
             state.userUnsubscribe()

@@ -37,10 +37,13 @@ export default {
       ]).then(([length, migrated]) => {
         if (length > 0 && !migrated) {
           console.log('Migrating legacy storage')
-          return localforage.iterate((value, key) => {
-            dispatch('setFavourite', key)
-            return undefined // required to not break the iteration
-          })
+          return dispatch('getUserRef')
+            .then(() => {
+              localforage.iterate((value, key) => {
+                dispatch('setFavourite', key)
+                return undefined // required to not break the iteration
+              })
+            })
             .then(() => localforage.setItem('migrated', true))
         }
       })

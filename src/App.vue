@@ -35,12 +35,14 @@ export default {
     'initRoomStateUpdater',
     'initPersistent',
     'initIndexedDB',
-    'initUser'
+    'initUser',
+    'migrateLegacyFavourites'
   ]),
 
   created: async function () {
     try {
       await this.initIndexedDB()
+      await this.migrateLegacyFavourites()
       await this.initPersistent()
       await this.parseSchedule()
       await this.initUser()
