@@ -71,6 +71,14 @@ export default {
     cursor: default;
   }
 
+  div.v-list__tile__title {
+    text-overflow: clip;
+  }
+
+  div.v-list__tile__sub-title {
+    white-space: nowrap !important;
+  }
+
   div.v-list__tile__action:last-of-type {
     min-width: 40px;
   }
