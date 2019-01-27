@@ -49,19 +49,27 @@ export default {
       })
     },
 
-    setFavourite ({commit, dispatch}, eventId) {
+    setFavourite ({dispatch}, eventId) {
       dispatch('warnAboutLosingData')
       return dispatch('getUserRef')
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(Number(eventId))}))
     },
 
-    unsetFavourite ({commit, dispatch}, eventId) {
+    setExistingFavourites ({state, dispatch}) {
+      const existingFavourites = Object.keys(state.favourites).map(eventId => Number(eventId))
+      if (existingFavourites.length > 0) {
+        return dispatch('getUserRef')
+          .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(...existingFavourites)}))
+      }
+    },
+
+    unsetFavourite ({dispatch}, eventId) {
       dispatch('warnAboutLosingData')
       return dispatch('getUserRef')
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayRemove(Number(eventId))}))
     },
 
-    toggleFavourite ({commit, state, dispatch}, eventId) {
+    toggleFavourite ({state, dispatch}, eventId) {
       if (state.favourites[eventId]) {
         return dispatch('unsetFavourite', eventId)
       } else {

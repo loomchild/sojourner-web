@@ -58,11 +58,18 @@ export default {
       commit('setLoginDialog', false)
     },
 
-    initUser ({commit, dispatch, state}, user) {
-      firebase.auth().onAuthStateChanged(user => {
+    initUser ({commit, dispatch, state, rootGetters}, user) {
+      firebase.auth().onAuthStateChanged(async user => {
+        if (state.userUnsubscribe) {
+          await state.userUnsubscribe()
+          commit('setUserUnsubscribe', null)
+        }
+
         commit('setUser', user)
         if (user) {
           console.log(`Initializing user ${user.uid}`)
+
+          await dispatch('setExistingFavourites')
 
           const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
             const favourites = {}
@@ -75,22 +82,18 @@ export default {
           })
           commit('setUserUnsubscribe', userUnsubscribe)
         } else {
-          if (state.userUnsubscribe) {
-            state.userUnsubscribe()
-            commit('setUserUnsubscribe', null)
-          }
           commit('setFavourites', [])
         }
       })
     },
 
-    register ({commit}, {email, password}) {
+    register ({commit, rootGetters, dispatch}, {email, password}) {
       return firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(response => getUserRefHelper(response.user).set({}))
     },
 
-    logIn ({commit}, {email, password}) {
+    logIn ({commit, rootGetters, dispatch}, {email, password}) {
       return firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(response => getUserRefHelper(response.user).set({}, {merge: true}))
     },
 
     logOut ({commit}) {
