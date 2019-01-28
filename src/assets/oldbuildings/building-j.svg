@@ -27,9 +27,9 @@
      inkscape:window-height="836"
      id="namedview577"
      showgrid="false"
-     inkscape:zoom="8.1356566"
+     inkscape:zoom="4.0678283"
      inkscape:cx="123.2057"
-     inkscape:cy="49.258722"
+     inkscape:cy="38.625806"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -38,8 +38,7 @@
      units="px"
      fit-margin-top="1"
      fit-margin-left="1"
-     fit-margin-bottom="1"
-     inkscape:snap-global="false" />
+     fit-margin-bottom="1" />
   <defs
      id="defs3395">
     <clipPath
@@ -72,20 +71,6 @@
          result="color2"
          id="feColorMatrix9614" />
     </filter>
-    <filter
-       style="color-interpolation-filters:sRGB"
-       inkscape:label="Invert"
-       id="filter3244">
-      <feColorMatrix
-         type="hueRotate"
-         values="180"
-         result="color1"
-         id="feColorMatrix3240" />
-      <feColorMatrix
-         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 -0.21 -0.72 -0.07 2 0 "
-         result="color2"
-         id="feColorMatrix3242" />
-    </filter>
   </defs>
   <metadata
      id="metadata3398">
@@ -95,39 +80,10 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="matrix(0.12864083,0,0,-0.11739908,-36.675201,73.603162)"
-     id="g3238"
-     style="filter:url(#filter3244)">
-    <path
-       inkscape:connector-curvature="0"
-       id="path20-3"
-       style="fill:#918f90;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99999994"
-       d="m 511.83086,247.13142 h -19.764 v 29.126 h 19.764 z" />
-    <text
-       transform="scale(1,-1)"
-       id="text1166-6"
-       style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.02149963px;font-family:MyriadPro;-inkscape-font-specification:MyriadPro-Regular;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99999994"
-       x="495.88547"
-       y="-263.39767">
-      <tspan
-         id="tspan1162-7"
-         sodipodi:role="line"
-         y="-263.39767"
-         x="495.88547 498.4834 502.08545"
-         style="stroke-width:0.99999994">J1.</tspan>
-      <tspan
-         id="tspan1164-5"
-         sodipodi:role="line"
-         y="-254.97188"
-         x="495.88547 499.48749 503.08951"
-         style="stroke-width:0.99999994">106</tspan>
-    </text>
-  </g>
   <g
      id="g7824"
      transform="translate(0.55178575,4.4340581)"
