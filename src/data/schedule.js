@@ -200,16 +200,18 @@ export default {
   },
 
   actions: {
-    initSchedule ({commit, getters, dispatch}) {
-      return fetch(config.scheduleUrl, {cache: 'force-cache'})
+    initSchedule ({commit, getters, dispatch}, cache) {
+      if (!cache) {
+        cache = 'default'
+      }
+      return fetch(config.scheduleUrl, {cache})
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
           }
 
-          return dispatch('refreshScheduleIfNeeded', response)
+          return response.text()
         })
-        .then(response => response.text())
         .then(xml => {
           const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
           return flattenAttributes(json.schedule)
@@ -257,40 +259,7 @@ export default {
         return Promise.reject(new Error('Offline'))
       }
 
-      return fetch(config.scheduleUrl, {cache: 'reload'})
-        .then(() => dispatch('initSchedule'))
-    },
-
-    refreshScheduleIfNeeded ({dispatch, state}, cachedResponse) {
-      if (!navigator.onLine) {
-        return cachedResponse
-      }
-
-      return fetch(config.scheduleUrl, {method: 'HEAD', cache: 'reload'})
-        .then(response => {
-          if (!response.ok) {
-            console.error(`Error probing schedule ${response.status}: ${response.statusText}`)
-            return cachedResponse
-          }
-
-          const lastModified = new Date(response.headers.get('Last-Modified'))
-          const cachedLastModified = new Date(cachedResponse.headers.get('Last-Modified'))
-
-          if (lastModified && cachedLastModified && cachedLastModified.getTime() >= lastModified.getTime()) {
-            return cachedResponse
-          }
-
-          dispatch('showWarning', 'Updating schedule')
-          return fetch(config.scheduleUrl, {cache: 'reload'})
-            .then(response => {
-              if (!response.ok) {
-                console.error(`Error refreshing schedule ${response.status}: ${response.statusText}`)
-                return cachedResponse
-              }
-
-              return response
-            })
-        })
+      return dispatch('initSchedule', 'reload')
     },
 
     reindexEvents ({state, commit}) {
