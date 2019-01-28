@@ -9,17 +9,6 @@ import Link from '../logic/Link'
 import Room from '../logic/Room'
 import Track from '../logic/Track'
 
-const fetchSchedule = (cache) => {
-  // See https://hacks.mozilla.org/2016/03/referrer-and-cache-control-apis-for-fetch/ for more details
-  return fetch(config.scheduleUrl, {cache: cache})
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`)
-      }
-      return response.text()
-    })
-}
-
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
     return element.map(flattenAttributes)
@@ -211,8 +200,16 @@ export default {
   },
 
   actions: {
-    parseSchedule ({commit, getters, dispatch}) {
-      return fetchSchedule('force-cache')
+    initSchedule ({commit, getters, dispatch}) {
+      return fetch(config.scheduleUrl, {cache: 'force-cache'})
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status}: ${response.statusText}`)
+          }
+
+          return dispatch('refreshScheduleIfNeeded', response)
+        })
+        .then(response => response.text())
         .then(xml => {
           const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
           return flattenAttributes(json.schedule)
@@ -256,12 +253,44 @@ export default {
     },
 
     refreshSchedule ({dispatch}) {
-      if (navigator.onLine) {
-        return fetchSchedule('reload')
-          .then(() => dispatch('parseSchedule'))
-      } else {
+      if (!navigator.onLine) {
         return Promise.reject(new Error('Offline'))
       }
+
+      return fetch(config.scheduleUrl, {cache: 'reload'})
+        .then(() => dispatch('initSchedule'))
+    },
+
+    refreshScheduleIfNeeded ({dispatch, state}, cachedResponse) {
+      if (!navigator.onLine) {
+        return cachedResponse
+      }
+
+      return fetch(config.scheduleUrl, {method: 'HEAD', cache: 'reload'})
+        .then(response => {
+          if (!response.ok) {
+            console.error(`Error probing schedule ${response.status}: ${response.statusText}`)
+            return cachedResponse
+          }
+
+          const lastModified = new Date(response.headers.get('Last-Modified'))
+          const cachedLastModified = new Date(cachedResponse.headers.get('Last-Modified'))
+
+          if (lastModified && cachedLastModified && cachedLastModified.getTime() >= lastModified.getTime()) {
+            return cachedResponse
+          }
+
+          dispatch('showWarning', 'Updating schedule')
+          return fetch(config.scheduleUrl, {cache: 'reload'})
+            .then(response => {
+              if (!response.ok) {
+                console.error(`Error refreshing schedule ${response.status}: ${response.statusText}`)
+                return cachedResponse
+              }
+
+              return response
+            })
+        })
     },
 
     reindexEvents ({state, commit}) {

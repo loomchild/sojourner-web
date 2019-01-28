@@ -31,7 +31,7 @@ export default {
   },
 
   methods: mapActions([
-    'parseSchedule',
+    'initSchedule',
     'initRoomStateUpdater',
     'initPersistent',
     'initIndexedDB',
@@ -46,7 +46,7 @@ export default {
       await this.initNotification(this.$route.query.notification)
       await this.migrateLegacyFavourites()
       await this.initPersistent()
-      await this.parseSchedule()
+      await this.initSchedule()
       await this.initUser()
       await this.initRoomStateUpdater()
     } catch (error) {

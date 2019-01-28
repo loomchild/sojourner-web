@@ -16,7 +16,7 @@ describe('data/getSchedule', () => {
   })
 
   it('should retrieve all events', () => {
-    return store.dispatch('parseSchedule')
+    return store.dispatch('initSchedule')
       .then(() => {
         expect(store.state.schedule.events['6230']).to.not.be.undefined
       })

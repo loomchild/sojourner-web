@@ -6,7 +6,7 @@
           <v-layout row wrap>
             <v-flex sm12 md6 offset-md3>
               <div class="description">
-                <p>Download a fresh version of conference schedule. It is never updated automatically.</p>
+                <p>Download a fresh version of conference schedule. Usually there's no need to do that, since it's done automatically.</p>
               </div>
               <div class="button">
                 <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
