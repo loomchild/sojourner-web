@@ -119,9 +119,7 @@ export default {
           .then(persistent => {
             if (persistent) {
               commit('setPersistent', true)
-              dispatch('showSuccess', 'Persistent storage enabled.')
             } else {
-              dispatch('showWarning', 'Persistent storage disabled.')
             }
           })
       } else {

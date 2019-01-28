@@ -157,7 +157,10 @@ export default {
 
     enablePersistence () {
       this.persist()
-        .then(() => location.reload())
+        .then(() => {
+          location.assign(`${location.href}?notification=${JSON.stringify({color: 'success', message: 'Persistence enabled'})}`)
+          location.reload()
+        })
         .catch(error => {
           console.error(error)
           this.showError('Unable to activate persistence')

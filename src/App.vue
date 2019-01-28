@@ -36,12 +36,14 @@ export default {
     'initPersistent',
     'initIndexedDB',
     'initUser',
-    'migrateLegacyFavourites'
+    'migrateLegacyFavourites',
+    'initNotification'
   ]),
 
   created: async function () {
     try {
       await this.initIndexedDB()
+      await this.initNotification(this.$route.query.notification)
       await this.migrateLegacyFavourites()
       await this.initPersistent()
       await this.parseSchedule()

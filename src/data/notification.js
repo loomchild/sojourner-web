@@ -23,6 +23,12 @@ export default {
   },
 
   actions: {
+    initNotification ({dispatch}, notification) {
+      if (notification) {
+        dispatch('showNotification', JSON.parse(notification))
+      }
+    },
+
     setNotificationVisible ({commit}, notificationVisible) {
       commit('setNotificationVisible', notificationVisible)
     },
