@@ -17,7 +17,7 @@
                   You want to use only this device? <a @click="action = 2">Persist</a> your data instead.
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus></v-text-field>
+                  <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus autocapitalize="none"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field label="Password" v-model="password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" @click:append="showPassword = !showPassword"></v-text-field>
