@@ -2,6 +2,12 @@
   <v-container fluid>
     <v-layout justify-center align-top>
       <v-list three-line>
+        <v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title><h2>{{ roomName }}</h2></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-divider class="day"/>
         <template v-for="(event, index) in events">
           <event :event="event"></event>
           <v-divider v-if="index + 1 < events.length" :class="{'day': events[index].day.index < events[index + 1].day.index}"></v-divider>
