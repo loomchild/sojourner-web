@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const {GenerateSW} = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -61,6 +62,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'index.html'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled'
     })
   ]
 }
