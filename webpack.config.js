@@ -14,7 +14,11 @@ module.exports = {
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: './build.js?[hash]'
+    filename: './build.js?[hash]',
+    devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
+      ? `webpack-generated:///${info.resourcePath}?${info.hash}`
+      : `webpack-code:///${info.resourcePath}`,
+    devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
