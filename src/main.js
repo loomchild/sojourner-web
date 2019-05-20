@@ -20,5 +20,8 @@ new Vue({
   template: '<app></app>',
   components: {
     app: App
+  },
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
   }
 })

@@ -8,13 +8,16 @@ const {GenerateSW} = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: './build.js?[hash]',
+    publicPath: '/',
+    filename: 'build.js?[hash]',
     devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
       ? `webpack-generated:///${info.resourcePath}?${info.hash}`
       : `webpack-code:///${info.resourcePath}`,
@@ -80,7 +83,7 @@ if (process.env.NODE_ENV === 'test') {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.mode = 'production'
-  module.exports.output.filename = './build.js'
+  module.exports.output.filename = 'build.js'
   module.exports.devtool = 'source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -98,6 +101,14 @@ if (process.env.NODE_ENV === 'production') {
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 5000000,
       runtimeCaching: []
+    }),
+    new PrerenderSPAPlugin({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: ['/', '/about'],
+      renderer: new Renderer({
+        headless: true,
+        renderAfterDocumentEvent: 'render-event'
+      })
     })
   ])
 }
