@@ -75,9 +75,19 @@ Session.vim
 # auto-generated tag files
 tags
 
-# End of https://www.gitignore.io/api/vim,node
+### Nuxt ###
+# gitignore template for Nuxt.js projects
+#
+# Recommended template: Node.gitignore
+
+# Nuxt build
+.nuxt
+
+ # Nuxt generate
+dist
+
+# End of https://www.gitignore.io/api/vim,node,nuxt
 
 # Custom
 .tern-port
 tests_output/
-dist/
