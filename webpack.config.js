@@ -104,7 +104,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/', '/about'],
+      routes: ['/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about'],
       renderer: new Renderer({
         headless: true,
         renderAfterDocumentEvent: 'render-event'
