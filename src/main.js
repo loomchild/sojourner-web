@@ -20,8 +20,5 @@ new Vue({
   template: '<app></app>',
   components: {
     app: App
-  },
-  mounted () {
-    setTimeout(() => document.dispatchEvent(new Event('render-event')), 100)
   }
 })

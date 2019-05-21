@@ -49,6 +49,7 @@ export default {
       await this.initSchedule()
       await this.initUser()
       await this.initRoomStateUpdater()
+      setTimeout(() => document.dispatchEvent(new Event('render-event')), 100)
     } catch (error) {
       console.error(error)
     }
