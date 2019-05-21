@@ -22,6 +22,6 @@ new Vue({
     app: App
   },
   mounted () {
-    document.dispatchEvent(new Event('render-event'))
+    setTimeout(() => document.dispatchEvent(new Event('render-event')), 100)
   }
 })
