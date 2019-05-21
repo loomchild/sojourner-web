@@ -1,0 +1,14 @@
+{
+  "name": "sojourner-web",
+  "version": 2,
+  "alias": ["sojourner.loomchild.net"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "useBuildUtils": "@now/build-utils@canary"
+      }
+    }
+  ]
+}
