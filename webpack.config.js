@@ -110,6 +110,7 @@ module.exports = async () => {
         renderer: new Renderer({
           args: chrome.args,
           executablePath: await chrome.executablePath,
+          defaultViewport: chrome.defaultViewport,
           headless: true,
           renderAfterDocumentEvent: 'render-event'
         })
