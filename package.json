@@ -15,7 +15,6 @@
     "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
   "dependencies": {
-    "@hoodie/client": "^10.1.1",
     "blueimp-md5": "^2.10.0",
     "colorsys": "^1.0.19",
     "firebase": "^5.8.0",
