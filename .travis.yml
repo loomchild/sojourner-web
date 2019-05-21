@@ -7,18 +7,19 @@ sudo: required
 
 script:
   - npm run lint
-  - npm run start &
+  - npm run build
+  - npm run serve &
   - sleep 10
   - npm run test
   - xvfb-run npm run test-e2e
   - pkill node
-  - npm run build
   - touch .nojekyll
 deploy:
   provider: pages
   skip_cleanup: true
   local_dir: dist/
   github_token: $GITHUB_TOKEN
+  fqdn: sojourner2.loomchild.net
   keep_history: true
   on:
     branch: master
