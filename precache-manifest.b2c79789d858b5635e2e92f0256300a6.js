@@ -1,20 +1,20 @@
 self.__precacheManifest = [
   {
-    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff2?010c1aeee3c6d1cbb1d5761d80353823"
+    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff?846d1890aee87fde5d8ced8eba360c3a"
   },
   {
     "revision": "a23b33e4acbf277398dfaa48d9d35692",
     "url": "/index.html"
   },
   {
-    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff?846d1890aee87fde5d8ced8eba360c3a"
+    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff2?19b7a0adfdd4f808b53af7e2ce2ad4e5"
   },
   {
-    "revision": "ec255e19b2c5ccde3d80",
+    "revision": "110dd045765bc8ef9de2",
     "url": "/build.js"
   },
   {
-    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff2?19b7a0adfdd4f808b53af7e2ce2ad4e5"
+    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff?8c2ade503b34e31430d6c98aa29a52a3"
   },
   {
     "url": "/_/node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2?570eb83859dc23dd0eec423a49e147fe"
@@ -71,6 +71,9 @@ self.__precacheManifest = [
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700.woff?cf6613d1adf490972c557a8e318e0868"
   },
   {
+    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff2?010c1aeee3c6d1cbb1d5761d80353823"
+  },
+  {
     "revision": "b54e8d7060a504a4aa861e9fc0fb506e",
     "url": "/assets/sojourner-icon-56.png"
   },
@@ -79,9 +82,6 @@ self.__precacheManifest = [
   },
   {
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-100.woff2?987b84570ea69ee660455b8d5e91f5f1"
-  },
-  {
-    "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff?8c2ade503b34e31430d6c98aa29a52a3"
   },
   {
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900italic.woff2?7b770d6c53423deb1a8e49d3c9175184"
@@ -95,6 +95,10 @@ self.__precacheManifest = [
   {
     "revision": "9aee2ad0d467f50c0ed19d7abfa461d7",
     "url": "/assets/logo.png"
+  },
+  {
+    "revision": "c56a0e5c78d7ef3a56dab288973c0d12",
+    "url": "/assets/_redirects"
   },
   {
     "revision": "0feb44ce987aeea8097e03ad0b841360",
