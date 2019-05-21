@@ -10,7 +10,7 @@ self.__precacheManifest = [
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff2?19b7a0adfdd4f808b53af7e2ce2ad4e5"
   },
   {
-    "revision": "110dd045765bc8ef9de2",
+    "revision": "e4b9159ed3d39d30ab06",
     "url": "/build.js"
   },
   {
@@ -98,7 +98,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "c56a0e5c78d7ef3a56dab288973c0d12",
-    "url": "/assets/_redirects"
+    "url": "/_redirects"
   },
   {
     "revision": "0feb44ce987aeea8097e03ad0b841360",
