@@ -10,7 +10,7 @@ self.__precacheManifest = [
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-900.woff2?19b7a0adfdd4f808b53af7e2ce2ad4e5"
   },
   {
-    "revision": "e4b9159ed3d39d30ab06",
+    "revision": "a2cbdbc11fac44d9d868",
     "url": "/build.js"
   },
   {
@@ -74,8 +74,8 @@ self.__precacheManifest = [
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff2?010c1aeee3c6d1cbb1d5761d80353823"
   },
   {
-    "revision": "b54e8d7060a504a4aa861e9fc0fb506e",
-    "url": "/assets/sojourner-icon-56.png"
+    "revision": "2ebaa709d2e9a3240ac46c34d578a122",
+    "url": "/assets/building-k.svg"
   },
   {
     "url": "/_/node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff?012cf6a10129e2275d79d6adac7f3b02"
@@ -97,7 +97,7 @@ self.__precacheManifest = [
     "url": "/assets/logo.png"
   },
   {
-    "revision": "c56a0e5c78d7ef3a56dab288973c0d12",
+    "revision": "710018360c59cd87009017f810dd8fd3",
     "url": "/_redirects"
   },
   {
@@ -111,10 +111,6 @@ self.__precacheManifest = [
   {
     "revision": "05bf8b895d3dbc52bab9d43192661b14",
     "url": "/assets/building-j.svg"
-  },
-  {
-    "revision": "2ebaa709d2e9a3240ac46c34d578a122",
-    "url": "/assets/building-k.svg"
   },
   {
     "revision": "92452d124d97801e3c051be5be8a435f",
@@ -155,6 +151,10 @@ self.__precacheManifest = [
   {
     "revision": "9ec4276ecc378c951bafdbb976c45bda",
     "url": "/assets/sojourner-icon-224.png"
+  },
+  {
+    "revision": "b54e8d7060a504a4aa861e9fc0fb506e",
+    "url": "/assets/sojourner-icon-56.png"
   },
   {
     "url": "/_/node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf?a37b0c01c0baf1888ca812cc0508f6e2"
