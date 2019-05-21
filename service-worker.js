@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.430512ce260321d50dea5795114af5cc.js"
+  "/precache-manifest.6175a1728aa59af332dedc4a362b95f1.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "sojourner"});
