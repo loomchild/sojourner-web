@@ -7,13 +7,13 @@ sudo: required
 
 script:
   - npm run lint
-  - npm run build
-  - npm run serve &
-  - sleep 10
   - npm run test
+  - npm run build
+  - touch dist/.nojekyll
+  - npm run serve &
+  - sleep 1
   - xvfb-run npm run test-e2e
   - pkill node
-  - touch .nojekyll
 deploy:
   provider: pages
   skip_cleanup: true
