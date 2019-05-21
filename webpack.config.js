@@ -62,7 +62,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
-      'assets/**/*'
+      'assets/**/*',
+      'static/'
     ]),
     new webpack.DefinePlugin({
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
