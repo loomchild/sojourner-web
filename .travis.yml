@@ -12,10 +12,12 @@ script:
   - npm run test
   - xvfb-run npm run test-e2e
   - pkill node
+  - npm run build
   - touch .nojekyll
 deploy:
   provider: pages
   skip_cleanup: true
+  local_dir: dist/
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
