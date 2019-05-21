@@ -10,7 +10,7 @@ self.__precacheManifest = [
     "url": "/_/node_modules/typeface-roboto/files/roboto-latin-700italic.woff?846d1890aee87fde5d8ced8eba360c3a"
   },
   {
-    "revision": "98275135d23fa528295e",
+    "revision": "24a26d44111877311d12",
     "url": "/build.js"
   },
   {
