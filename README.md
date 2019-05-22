@@ -1,6 +1,7 @@
 # Sojourner Web
 
 [![Build Status](https://api.travis-ci.org/loomchild/sojourner-web.svg)](https://travis-ci.org/loomchild/sojourner-web)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7c9b2b95-ea25-4b11-ad7f-47d383770866/deploy-status)](https://app.netlify.com/sites/sojourner/deploys)
 
 > Sojourner conference companion PWA
 
@@ -42,8 +43,10 @@ Static application can be generated into dist/ directory using:
 
     npm run build
 
-To deploy it to github pages, run:
+You can test it locally by running:
 
-    npm run deploy
+    npm run serve
+
+The deployment happens automatically to Netlify, nothing specific to do.
 
 *Note: use annotated tags to make them visible on About page.*
