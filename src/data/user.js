@@ -119,7 +119,6 @@ export default {
           .then(persistent => {
             if (persistent) {
               commit('setPersistent', true)
-            } else {
             }
           })
       } else {
