@@ -5,7 +5,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    width="178.96704"
    height="159.27563"
    viewBox="0 0 47.351695 42.141679"
@@ -1484,8 +1483,8 @@
   <a
      transform="translate(-5.0131009,0.06434901)"
      target="_parent"
-     xlink:href="/building/J"
-     id="a5698">
+     class="building"
+     id="building-J">
     <g
        id="g5696">
       <g
@@ -1512,8 +1511,8 @@
   <a
      transform="translate(-5.0131009,0.06434901)"
      target="_parent"
-     xlink:href="/building/H"
-     id="a5728">
+     class="building"
+     id="building-H">
     <g
        id="g5708">
       <path
@@ -1536,8 +1535,8 @@
   <a
      transform="translate(-5.0131009,0.06434901)"
      target="_parent"
-     xlink:href="/building/AW"
-     id="a5734">
+     class="building"
+     id="building-AW">
     <g
        id="g5713">
       <path
@@ -1560,8 +1559,8 @@
   <a
      transform="translate(-5.0131009,0.06434901)"
      target="_parent"
-     xlink:href="/building/U"
-     id="a5740">
+     class="building"
+     id="building-U">
     <g
        id="g5721">
       <g
@@ -1598,8 +1597,8 @@
   <a
      transform="translate(-5.0131009,0.06434901)"
      target="_parent"
-     xlink:href="/building/K"
-     id="a5749">
+     class="building"
+     id="building-K">
     <g
        id="g5726">
       <path

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <div class="map-container">
-      <object :data="require('@/assets/fosdem-campus.svg')" type="image/svg+xml" class="map"></object>
+      <object id="campus-map" :data="require('@/assets/fosdem-campus.svg')" type="image/svg+xml" class="map"></object>
     </div>
   </v-container>
 </template>
@@ -18,6 +18,19 @@ export default {
 
   created () {
     this.showZoomTip()
+  },
+
+  mounted () {
+    const map = document.getElementById('campus-map')
+    map.addEventListener('load', () => {
+      const mapDocument = map.contentDocument
+      const buildings = Array.from(mapDocument.getElementsByClassName('building'))
+      buildings.forEach(building => {
+        building.addEventListener('click', () => {
+          this.$router.push(`/building/${building.id.substring(9)}`)
+        })
+      })
+    })
   }
 }
 </script>
