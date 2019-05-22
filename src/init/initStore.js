@@ -1,4 +1,4 @@
-import store from '../data/store'
+import store from '../store'
 
 export default async function () {
   await store.dispatch('initIndexedDB')

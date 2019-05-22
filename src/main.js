@@ -5,7 +5,7 @@ import 'vuetify/dist/vuetify.min.css'
 import 'typeface-roboto'
 
 import router from './router'
-import store from './data/store'
+import store from './store'
 import init from './init'
 import App from './App'
 
