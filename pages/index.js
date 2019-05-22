@@ -35,7 +35,7 @@ const router = new Router({
       component: FavouriteEvents
     },
     {
-      path: '/event/:eventId',
+      path: '/event/:eventId?',
       name: 'event',
       component: EventDetails,
       props: true
@@ -46,7 +46,7 @@ const router = new Router({
       component: ConferenceTracks
     },
     {
-      path: '/track/:trackName',
+      path: '/track/:trackName?',
       name: 'track',
       component: ConferenceTrackEvents,
       props: true
@@ -57,7 +57,7 @@ const router = new Router({
       component: Rooms
     },
     {
-      path: '/room/:roomName',
+      path: '/room/:roomName?',
       name: 'room',
       component: RoomEvents,
       props: true
@@ -68,7 +68,7 @@ const router = new Router({
       component: CampusMap
     },
     {
-      path: '/map/:buildingName',
+      path: '/building/:buildingName?',
       name: 'building-map',
       component: BuildingMap,
       props: true

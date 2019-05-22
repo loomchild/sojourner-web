@@ -6,6 +6,7 @@ const TIME_FORMAT = 'HH:mm'
 
 export default class Event {
   constructor (data = {}) {
+    this.exists = !!data.id
     this.id = data.id
     this.start = data.start
     this.duration = data.duration

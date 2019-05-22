@@ -6,11 +6,11 @@
           {{ event.title }}
           <favourite :event="event"></favourite>
         </h2></v-card-title>
-        <v-card-title class="grey--text text--lighten-1">
+        <v-card-title v-if="event.exists" class="grey--text text--lighten-1">
           {{ event.persons.join(', ') }},
           {{ event.start }}-{{ event.end }} {{ event.day.name }},
           &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
-          &nbsp;<span><router-link :to="`/map/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+          &nbsp;<span><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
           &nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
         </v-card-title>
         <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
