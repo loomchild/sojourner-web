@@ -9,17 +9,18 @@ script:
   - npm run lint
   - npm run test
   - npm run build
-  - touch dist/.nojekyll
   - npm run serve &
   - sleep 1
   - xvfb-run npm run test-e2e
   - pkill node
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: dist/
-  github_token: $GITHUB_TOKEN
-  fqdn: sojourner.loomchild.net
-  keep_history: true
-  on:
-    branch: master
+
+#  - touch dist/.nojekyll
+#deploy:
+#  provider: pages
+#  skip_cleanup: true
+#  local_dir: dist/
+#  github_token: $GITHUB_TOKEN
+#  fqdn: sojourner.loomchild.net
+#  keep_history: true
+#  on:
+#    branch: master
