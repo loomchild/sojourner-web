@@ -112,7 +112,11 @@ if (process.env.NODE_ENV === 'production') {
       },
       renderer: new Renderer({
         headless: true,
-        renderAfterDocumentEvent: 'render-event'
+        renderAfterDocumentEvent: 'render-event',
+        defaultViewport: {
+          width: 375,
+          height: 667
+        }
       })
     })
   ])
