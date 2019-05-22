@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <div class="map-container">
-      <object data="../assets/fosdem-campus.svg" type="image/svg+xml" class="map"></object>
+      <object :data="require('@/assets/fosdem-campus.svg')" type="image/svg+xml" class="map"></object>
     </div>
   </v-container>
 </template>

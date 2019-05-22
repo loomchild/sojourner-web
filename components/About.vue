@@ -6,7 +6,7 @@
           <v-layout row wrap>
             <v-flex xs12>
               <div class="logo">
-                <a href="https://fosdem.org"><img src="../assets/logo.png"></a>
+                <a href="https://fosdem.org"><img src="@/assets/logo.png"></a>
               </div>
             </v-flex>
             <v-flex sm12 md6 offset-md3>

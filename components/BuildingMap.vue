@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <div class="map-container">
-      <img class="map" :src="`../assets/building-${building.name.toLowerCase()}.svg`">
+      <img class="map" :src="require(`@/assets/building-${building.name.toLowerCase()}.svg`)">
       <v-btn to="/map" fab fixed bottom right color="info" title="Zoom out to campus map">
         <v-icon dark>zoom_out</v-icon>
       </v-btn>
