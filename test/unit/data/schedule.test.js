@@ -1,6 +1,6 @@
 import sinon from 'sinon'
 
-import store from '../../../src/store'
+import store from '../../../store'
 import xml from '../resources/schedule.xml'
 
 describe('data/getSchedule', () => {

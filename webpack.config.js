@@ -12,7 +12,7 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 module.exports = {
-  context: path.resolve(__dirname, './src'),
+  context: path.resolve(__dirname, '.'),
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, './dist'),

@@ -2,7 +2,7 @@ import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
 import _ from 'lodash'
 
-import config from '../../config'
+import config from '../config'
 import Day from '../logic/Day'
 import Event from '../logic/Event'
 import Link from '../logic/Link'

@@ -1,4 +1,4 @@
-import config from '../../config'
+import config from '../config'
 import RoomState from '../logic/RoomState'
 
 export default {
