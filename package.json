@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "NODE_ENV=production webpack --hide-modules",
-    "serve": "http-server dist",
+    "serve": "http-server --proxy http://localhost:8080? dist",
     "start": "NODE_ENV=development webpack-dev-server --hot --disable-host-check",
     "lint": "eslint --ext .js,.vue src test",
     "test": "NODE_ENV=test karma start --single-run",
