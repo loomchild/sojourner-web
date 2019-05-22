@@ -31,25 +31,12 @@ export default {
   },
 
   methods: mapActions([
-    'initSchedule',
-    'initRoomStateUpdater',
-    'initPersistent',
-    'initIndexedDB',
-    'initUser',
-    'migrateLegacyFavourites',
     'initNotification'
   ]),
 
   created: async function () {
     try {
-      await this.initIndexedDB()
       await this.initNotification(this.$route.query.notification)
-      await this.migrateLegacyFavourites()
-      await this.initPersistent()
-      await this.initSchedule()
-      await this.initUser()
-      await this.initRoomStateUpdater()
-      setTimeout(() => document.dispatchEvent(new Event('render-event')), 100)
     } catch (error) {
       console.error(error)
     }

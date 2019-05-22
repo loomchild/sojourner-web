@@ -4,21 +4,28 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
 import 'typeface-roboto'
 
-import App from './App'
 import router from './router'
 import store from './data/store'
-import './firebase'
-import './init'
+import init from './init'
+import App from './App'
 
 Vue.use(Vuetify)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<app></app>',
-  components: {
-    app: App
-  }
-})
+async function main () {
+  await init()
+
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<app></app>',
+    components: {
+      app: App
+    },
+    mounted () {
+      setTimeout(() => document.dispatchEvent(new Event('render-event')), 100)
+    }
+  })
+}
+main()
