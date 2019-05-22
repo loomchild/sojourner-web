@@ -29,7 +29,7 @@
 import {mapGetters} from 'vuex'
 
 import Event from '@/logic/Event'
-import Favourite from './Favourite'
+import Favourite from '@/components/Favourite'
 
 export default {
   name: 'event-details',

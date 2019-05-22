@@ -2,6 +2,12 @@
   <v-container fluid>
     <v-layout justify-center align-top>
       <v-list three-line>
+        <v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title><h2>{{ trackName }}</h2></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-divider class="day"/>
         <template v-for="(event, index) in events">
           <event :event="event"></event>
           <v-divider v-if="index + 1 < events.length" :class="{'day': events[index].day.index < events[index + 1].day.index}"></v-divider>
@@ -14,42 +20,27 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Event from './Event'
+import Event from '@/components/Event'
 
 export default {
-  name: 'favourite-events',
+  name: 'conference-track-events',
 
   components: {
     'event': Event
   },
 
-  data: () => ({
-    events: []
-  }),
+  props: [
+    'trackName'
+  ],
 
-  computed: mapGetters([
-    'favouriteEvents',
-    'favouriteAddedEvents'
-  ]),
+  computed: {
+    events () {
+      return this.trackEvents(this.trackName)
+    },
 
-  watch: {
-    favouriteEvents () {
-      this.events = this.favouriteAddedEvents(this.events)
-    }
-  },
-
-  methods: {
-    initializeFavouriteEvents () {
-      this.events = this.favouriteEvents
-    }
-  },
-
-  created () {
-    this.initializeFavouriteEvents()
-  },
-
-  activated () {
-    this.initializeFavouriteEvents()
+    ...mapGetters([
+      'trackEvents'
+    ])
   }
 }
 </script>
@@ -69,3 +60,4 @@ export default {
     border-color: #303030;
   }
 </style>
+

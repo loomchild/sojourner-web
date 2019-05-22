@@ -2,9 +2,9 @@
   <v-container fluid>
     <v-layout justify-center align-top>
       <v-list three-line>
-        <template v-for="(room, index) in rooms">
-          <room :room="room"></room>
-          <v-divider v-if="index + 1 < rooms.length"></v-divider>
+        <template v-for="(track, index) in tracks">
+          <conference-track :track="track"></conference-track>
+          <v-divider v-if="index + 1 < tracks.length"></v-divider>
         </template>
       </v-list>
     </v-layout>
@@ -14,17 +14,17 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Room from './Room'
+import ConferenceTrack from '@/components/ConferenceTrack'
 
 export default {
-  name: 'rooms',
+  name: 'conference-tracks',
 
   components: {
-    'room': Room
+    'conference-track': ConferenceTrack
   },
 
   computed: mapGetters({
-    rooms: 'allRoomStats'
+    tracks: 'allTrackStats'
   })
 }
 </script>
@@ -39,5 +39,4 @@ export default {
     padding: 0;
   }
 </style>
-
 

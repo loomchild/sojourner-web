@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import About from './components/About'
-import SearchEvents from './components/SearchEvents'
-import BuildingMap from './components/BuildingMap'
-import CampusMap from './components/CampusMap'
-import ConferenceTracks from './components/ConferenceTracks'
-import ConferenceTrackEvents from './components/ConferenceTrackEvents'
-import EventDetails from './components/EventDetails'
-import FavouriteEvents from './components/FavouriteEvents'
-import Rooms from './components/Rooms'
-import RoomEvents from './components/RoomEvents'
-import Settings from './components/Settings'
+import About from './About'
+import SearchEvents from './SearchEvents'
+import BuildingMap from './BuildingMap'
+import CampusMap from './CampusMap'
+import ConferenceTracks from './ConferenceTracks'
+import ConferenceTrackEvents from './ConferenceTrackEvents'
+import EventDetails from './EventDetails'
+import FavouriteEvents from './FavouriteEvents'
+import Rooms from './Rooms'
+import RoomEvents from './RoomEvents'
+import Settings from './Settings'
 
 window.history.scrollRestoration = 'manual'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -93,3 +93,7 @@ export default new Router({
     }
   }
 })
+
+export {
+  router
+}

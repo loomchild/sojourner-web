@@ -4,7 +4,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
 import 'typeface-roboto'
 
-import router from './router'
+import {router} from './pages'
 import store from './store'
 import init from './init'
 import App from './App'

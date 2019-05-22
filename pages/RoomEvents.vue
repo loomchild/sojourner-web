@@ -20,7 +20,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Event from './Event'
+import Event from '@/components/Event'
 
 export default {
   name: 'room-events',

@@ -17,7 +17,7 @@ import _ from 'lodash'
 
 import {mapActions} from 'vuex'
 
-import Event from './Event'
+import Event from '@/components/Event'
 
 export default {
   name: 'all-events',
