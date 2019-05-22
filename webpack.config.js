@@ -106,7 +106,10 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about'],
+      routes: [
+        '/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about',
+        '/track', '/room', '/event', '/building'
+      ],
       postProcess (renderedRoute) {
         renderedRoute.route = renderedRoute.originalRoute
         return renderedRoute
