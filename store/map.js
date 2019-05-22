@@ -1,4 +1,4 @@
-import Building from '../logic/Building'
+import Building from '@/logic/Building'
 
 export default {
   state: {

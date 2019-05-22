@@ -28,7 +28,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Event from '../logic/Event'
+import Event from '@/logic/Event'
 import Favourite from './Favourite'
 
 export default {

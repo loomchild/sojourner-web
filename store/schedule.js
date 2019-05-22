@@ -2,12 +2,12 @@ import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
 import _ from 'lodash'
 
-import config from '../config'
-import Day from '../logic/Day'
-import Event from '../logic/Event'
-import Link from '../logic/Link'
-import Room from '../logic/Room'
-import Track from '../logic/Track'
+import config from '@/config'
+import Day from '@/logic/Day'
+import Event from '@/logic/Event'
+import Link from '@/logic/Link'
+import Room from '@/logic/Room'
+import Track from '@/logic/Track'
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {

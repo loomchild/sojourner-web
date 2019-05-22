@@ -1,5 +1,5 @@
-import config from '../config'
-import RoomState from '../logic/RoomState'
+import config from '@/config'
+import RoomState from '@/logic/RoomState'
 
 export default {
   state: {

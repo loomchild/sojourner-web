@@ -1,7 +1,7 @@
 import sinon from 'sinon'
 
-import store from '../../../store'
-import xml from '../resources/schedule.xml'
+import store from '@/store'
+import xml from '@/test/unit/resources/schedule.xml'
 
 describe('data/getSchedule', () => {
   let stubbedFetch
