@@ -94,13 +94,6 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    new GenerateSW({
-      cacheId: 'sojourner',
-      swDest: path.join('service-worker.js'),
-      clientsClaim: true,
-      skipWaiting: true,
-      runtimeCaching: []
-    }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'dist'),
       routes: [
@@ -119,6 +112,13 @@ if (process.env.NODE_ENV === 'production') {
           height: 667
         }
       })
+    }),
+    new GenerateSW({
+      cacheId: 'sojourner',
+      swDest: path.join('service-worker.js'),
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: []
     })
   ])
 }
