@@ -96,12 +96,9 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new GenerateSW({
       cacheId: 'sojourner',
-      globDirectory: 'dist/',
-      globPatterns: ['**/*.{html,js,css,png,jpg,svg,ttf,eot,woff,woff2}'],
       swDest: path.join('service-worker.js'),
       clientsClaim: true,
       skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 5000000,
       runtimeCaching: []
     }),
     new PrerenderSPAPlugin({
