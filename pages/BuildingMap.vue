@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <div class="map-container">
-      <img v-if="building" class="map" :src="require(`@/assets/building-${building.name.toLowerCase()}.svg`)">
+      <img v-if="building" class="map" :src="require(`@/assets/building-${building.name.toLowerCase()}.png`)">
       <v-btn to="/map" fab fixed bottom right color="info" title="Zoom out to campus map">
         <v-icon dark>zoom_out</v-icon>
       </v-btn>
@@ -38,7 +38,8 @@ export default {
   .map {
     display: block;
     max-width: 100%;
-    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
     margin: auto;
   }
 </style>
