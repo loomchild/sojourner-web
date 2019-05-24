@@ -24,19 +24,6 @@ export default {
 
   created () {
     this.showZoomTip()
-  },
-
-  mounted () {
-    const map = document.getElementById('campus-map')
-    map.addEventListener('load', () => {
-      const mapDocument = map.contentDocument
-      const buildings = Array.from(mapDocument.getElementsByClassName('building'))
-      buildings.forEach(building => {
-        building.addEventListener('click', () => {
-          this.$router.push(`/building/${building.id.substring(9)}`)
-        })
-      })
-    })
   }
 }
 </script>
@@ -65,7 +52,7 @@ export default {
     width: 100%;
     height: 0;
     padding-top: calc(990 / 1386 * 100%);
-    background-image: url('/assets/campus.png');
+    background-image: url(~assets/campus.png);
     background-size: 100% 100%;
   }
 
