@@ -76,7 +76,8 @@ module.exports = {
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
     }),
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      hash: true
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled'
