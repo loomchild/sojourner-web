@@ -11,6 +11,11 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
+const PRERENDER_ROUTES = [
+  '/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about',
+  '/track', '/room', '/event', '/building'
+]
+
 module.exports = {
   context: path.resolve(__dirname, '.'),
   entry: './main.js',
@@ -97,10 +102,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'dist'),
-      routes: [
-        '/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about',
-        '/track', '/room', '/event', '/building'
-      ],
+      routes: PRERENDER_ROUTES,
       postProcess (renderedRoute) {
         renderedRoute.route = renderedRoute.originalRoute
         return renderedRoute
@@ -116,10 +118,13 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new GenerateSW({
       cacheId: 'sojourner',
-      swDest: path.join('service-worker.js'),
+      importWorkboxFrom: 'local',
       clientsClaim: true,
       skipWaiting: true,
-      runtimeCaching: []
+      runtimeCaching: PRERENDER_ROUTES.map(route => ({
+        urlPattern: route !== '/' ? route + '/' : route,
+        handler: 'CacheFirst'
+      }))
     })
   ])
 }
