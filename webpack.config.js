@@ -124,7 +124,7 @@ if (process.env.NODE_ENV === 'production') {
       skipWaiting: true,
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects'],
       runtimeCaching: PRERENDER_ROUTES.map(route => ({
-        urlPattern: route !== '/' ? route + '/' : route,
+        urlPattern: new RegExp(route + '/?'),
         handler: 'CacheFirst'
       }))
     })
