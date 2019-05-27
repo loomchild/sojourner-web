@@ -44,10 +44,15 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]?[hash]'
-        }
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[path][name].[ext]?[hash]',
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
