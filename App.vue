@@ -9,9 +9,8 @@
     </v-content>
     <v-content v-else>
       <v-container fluid fill-height>
-        <div class="spinner">
-          <img class="inner" src="~assets/logo-small-inner.png">
-          <img class="outer" src="~assets/logo-small-outer.png">
+        <div class="center">
+          <div class="spinner"></div>
         </div>
       </v-container>
     </v-content>
@@ -78,23 +77,10 @@ export default {
 }
 </script>
 
+<style src="@/assets/spinner.css"></style>
+
 <style>
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinner {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.spinner .inner {
-  position: absolute;
-}
-
-.spinner .outer {
-  animation: spin 4000ms linear infinite;
+.center {
+  margin: auto;
 }
 </style>
