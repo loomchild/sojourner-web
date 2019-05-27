@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 import {mapActions, mapGetters} from 'vuex'
 
 import Analytics from './components/Analytics'
@@ -53,13 +55,19 @@ export default {
       await this.initIndexedDB()
       await this.migrateLegacyFavourites()
       await this.initPersistent()
-      await this.initSchedule()
-      await this.initUser()
-      await this.initRoomStateUpdater()
-      await this.initNotification(this.$route.query.notification)
     } catch (error) {
       console.error(error)
     }
+  },
+
+  mounted () {
+    // This is not good enough, replace with lambda
+    Vue.nextTick(() => {
+      this.initSchedule()
+      this.initUser()
+      this.initRoomStateUpdater()
+      this.initNotification(this.$route.query.notification)
+    })
   },
 
   computed: {

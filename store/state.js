@@ -58,11 +58,11 @@ export default {
               .filter(roomState => roomState.emergency)
               .map(roomState => roomState.room)
             if (emergencyRooms.length > 0) {
-              /*dispatch('showNotification', {
-                message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
-                color: 'warning',
-                timeout: 0
-              })*/
+              /* dispatch('showNotification', {
+                 message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
+                 color: 'warning',
+                 timeout: 0
+              }) */
             }
           }
         })
