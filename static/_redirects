@@ -1,6 +1,6 @@
 https://sojourner.netlify.com/* https://sojourner.loomchild.net/:splat 301
 
-/event/* /event/ 200
-/track/* /track/ 200
-/room/* /room/ 200
-/building/* /building/ 200
+/event/* / 200
+/track/* / 200
+/room/* / 200
+/building/* / 200

@@ -8,13 +8,6 @@ const {GenerateSW} = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
-
-const PRERENDER_ROUTES = [
-  '/', '/tracks', '/rooms', '/search', '/favourites', '/map', '/settings', '/about',
-  '/track', '/room', '/event', '/building'
-]
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -100,24 +93,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new PrerenderSPAPlugin({
-      staticDir: path.join(__dirname, 'dist'),
-      routes: PRERENDER_ROUTES,
-      postProcess (renderedRoute) {
-        renderedRoute.route = renderedRoute.originalRoute
-        // renderedRoute.html = renderedRoute.html
-        //   .replace('id="app"', 'id="app" data-server-rendered="true"')
-        return renderedRoute
-      },
-      renderer: new Renderer({
-        headless: true,
-        renderAfterDocumentEvent: 'render-event',
-        defaultViewport: {
-          width: 375,
-          height: 667
-        }
-      })
     }),
     new GenerateSW({
       cacheId: 'sojourner',

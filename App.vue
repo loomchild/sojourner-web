@@ -31,11 +31,23 @@ export default {
   },
 
   methods: mapActions([
+    'initIndexedDB',
+    'migrateLegacyFavourites',
+    'initPersistent',
+    'initSchedule',
+    'initUser',
+    'initRoomStateUpdater',
     'initNotification'
   ]),
 
   created: async function () {
     try {
+      await this.initIndexedDB()
+      await this.migrateLegacyFavourites()
+      await this.initPersistent()
+      await this.initSchedule()
+      await this.initUser()
+      await this.initRoomStateUpdater()
       await this.initNotification(this.$route.query.notification)
     } catch (error) {
       console.error(error)

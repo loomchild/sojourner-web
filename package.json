@@ -22,7 +22,6 @@
     "memoizee": "^0.4.12",
     "moment": "^2.21.0",
     "pouchdb": "^7.0.0",
-    "prerender-spa-plugin": "^3.4.0",
     "thenby": "^1.2.3",
     "typeface-roboto": "0.0.54",
     "vue": "^2.5.18",

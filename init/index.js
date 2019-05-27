@@ -1,13 +1,10 @@
 import initFirebase from './initFirebase'
 import initServiceWorker from './initServiceWorker'
-import initStore from './initStore'
+import initStyle from './initStyle'
 
-export default async function () {
-  try {
-    await initFirebase()
-    await initStore()
-    await initServiceWorker()
-  } catch (error) {
-    console.error(error)
-  }
+export default function () {
+  // asynchronous init, not waiting for operations, no order
+  initServiceWorker()
+  initFirebase()
+  initStyle()
 }
