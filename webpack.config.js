@@ -124,11 +124,8 @@ if (process.env.NODE_ENV === 'production') {
       importWorkboxFrom: 'local',
       clientsClaim: true,
       skipWaiting: true,
-      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects'],
-      runtimeCaching: PRERENDER_ROUTES.map(route => ({
-        urlPattern: new RegExp(route + '/?'),
-        handler: 'CacheFirst'
-      }))
+      navigateFallback: '/',
+      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects']
     })
   ])
 }
