@@ -80,6 +80,7 @@ const MAX_SEARCH_RESULTS = 50
 
 export default {
   state: {
+    scheduleInitialized: false,
     days: {},
     rooms: {},
     tracks: {},
@@ -88,6 +89,8 @@ export default {
   },
 
   getters: {
+    scheduleInitialized: state => state.scheduleInitialized,
+
     days: state => state.days,
     rooms: state => state.rooms,
     tracks: state => state.tracks,
@@ -178,6 +181,10 @@ export default {
   },
 
   mutations: {
+    setScheduleInitialized (state) {
+      state.scheduleInitialized = true
+    },
+
     setDays (state, days) {
       state.days = days
     },
@@ -250,6 +257,7 @@ export default {
           commit('setRooms', rooms)
           commit('setTracks', tracks)
           commit('setEvents', events)
+          commit('setScheduleInitialized')
         })
         .then(() => dispatch('reindexEvents'))
     },

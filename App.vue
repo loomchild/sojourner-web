@@ -2,10 +2,18 @@
   <v-app id="app" dark>
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
-    <v-content>
+    <v-content v-if="scheduleInitialized">
       <keep-alive include="all-events,favourite-events,conference-tracks,rooms">
         <router-view></router-view>
       </keep-alive>
+    </v-content>
+    <v-content v-else>
+      <v-container fluid fill-height>
+        <div class="spinner">
+          <img class="inner" src="~assets/logo-small-inner.png">
+          <img class="outer" src="~assets/logo-small-outer.png">
+        </div>
+      </v-container>
     </v-content>
     <notification></notification>
     <analytics></analytics>
@@ -13,7 +21,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 import Analytics from './components/Analytics'
 import MainMenu from './components/MainMenu'
@@ -52,9 +60,33 @@ export default {
     } catch (error) {
       console.error(error)
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'scheduleInitialized'
+    ])
   }
 }
 </script>
 
 <style>
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spinner .inner {
+  position: absolute;
+}
+
+.spinner .outer {
+  animation: spin 4000ms linear infinite;
+}
 </style>
