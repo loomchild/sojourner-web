@@ -123,7 +123,6 @@ export default {
           })
       } else {
         commit('setPersistent', false)
-        dispatch('showWarning', 'Persistent storage disabled.')
       }
     },
 
