@@ -106,6 +106,8 @@ if (process.env.NODE_ENV === 'production') {
       routes: PRERENDER_ROUTES,
       postProcess (renderedRoute) {
         renderedRoute.route = renderedRoute.originalRoute
+        // renderedRoute.html = renderedRoute.html
+        //   .replace('id="app"', 'id="app" data-server-rendered="true"')
         return renderedRoute
       },
       renderer: new Renderer({
