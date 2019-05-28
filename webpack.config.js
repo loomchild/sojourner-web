@@ -8,6 +8,7 @@ const {GenerateSW} = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -30,6 +31,21 @@ module.exports = {
     }
   },
   mode: 'development',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'preload',
+          test: /preload\.css$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
+  },
+  stats: {
+    children: false
+  },
   module: {
     rules: [
       {
@@ -39,8 +55,19 @@ module.exports = {
         }
       },
       {
+        test: /preload\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
+      },
+      {
         test: /\.css$/,
-        use: [ 'vue-style-loader', 'css-loader' ]
+        exclude: /preload\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot)$/,
@@ -73,9 +100,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }),
     new HtmlWebpackPlugin({
-      // hash: true,
-      template: 'index.html'
+      template: 'index.html',
+      hash: true,
+      inject: false
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled'

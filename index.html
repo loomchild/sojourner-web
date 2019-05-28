@@ -11,8 +11,8 @@
     <link rel="manifest" href="/assets/manifest.json">
     <title>Sojourner</title>
     <base target="_blank">
-    <link rel="preload" as="style" href="/preload.css">
-    <link rel="stylesheet" href="/preload.css">
+    <link rel="preload" as="style" href="<%= htmlWebpackPlugin.files.chunks.preload.css %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.preload.css %>">
   </head>
   <body>
     <div id="app">
@@ -20,5 +20,8 @@
         <div class="spinner"></div>
       </div>
     </div>
+    <% for (var chunk in htmlWebpackPlugin.files.js) { %>
+    <script src="<%= htmlWebpackPlugin.files.js[chunk] %>"></script>
+    <% } %>
   </body>
 </html>

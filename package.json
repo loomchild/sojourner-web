@@ -60,6 +60,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^3.0.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.20",
     "puppeteer": "^0.13.0",
