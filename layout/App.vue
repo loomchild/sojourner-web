@@ -24,10 +24,10 @@ import Vue from 'vue'
 
 import {mapActions, mapGetters} from 'vuex'
 
-import Analytics from './components/Analytics'
-import MainMenu from './components/MainMenu'
-import MainToolbar from './components/MainToolbar'
-import Notification from './components/Notification'
+import Analytics from '@/components/Analytics'
+import MainMenu from '@/components/MainMenu'
+import MainToolbar from '@/components/MainToolbar'
+import Notification from '@/components/Notification'
 
 export default {
   name: 'app',

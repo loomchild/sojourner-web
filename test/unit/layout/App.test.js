@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import {createLocalVue, shallow} from 'vue-test-utils'
 
-import App from '@/App'
+import App from '@/layout/App'
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)

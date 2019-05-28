@@ -3,7 +3,7 @@ import Vue from 'vue'
 import store from './store'
 import init from './init'
 import {router} from './pages'
-import App from './App'
+import App from '@/layout/App'
 
 init()
 
