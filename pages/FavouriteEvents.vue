@@ -50,6 +50,12 @@ export default {
 
   activated () {
     this.initializeFavouriteEvents()
+  },
+
+  metaInfo () {
+    return {
+      title: 'Favourites'
+    }
   }
 }
 </script>

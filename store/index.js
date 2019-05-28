@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import drawer from './drawer'
+import meta from './meta'
 import notification from './notification'
 import favourite from './favourite'
 import map from './map'
@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    drawer,
+    meta,
     notification,
     map,
     favourite,

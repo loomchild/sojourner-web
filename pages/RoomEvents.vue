@@ -41,6 +41,12 @@ export default {
     ...mapGetters([
       'roomEvents'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: this.roomName
+    }
   }
 }
 </script>

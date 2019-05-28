@@ -24,6 +24,12 @@ export default {
 
   created () {
     this.showZoomTip()
+  },
+
+  metaInfo () {
+    return {
+      title: 'Map'
+    }
   }
 }
 </script>

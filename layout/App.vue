@@ -46,7 +46,8 @@ export default {
     'initSchedule',
     'initUser',
     'initRoomStateUpdater',
-    'initNotification'
+    'initNotification',
+    'setTitle'
   ]),
 
   created: async function () {
@@ -73,6 +74,22 @@ export default {
     ...mapGetters([
       'scheduleInitialized'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: 'Sojourner',
+      titleTemplate: '%s | Sojourner',
+      meta: [{
+        vmid: 'description',
+        name: 'description',
+        content: 'FOSDEM conference companion'
+      }],
+      changed: (newMetaInfo) => {
+        const title = newMetaInfo.title
+        this.setTitle(title.endsWith(' | Sojourner') ? title.slice(0, -12) : title)
+      }
+    }
   }
 }
 </script>

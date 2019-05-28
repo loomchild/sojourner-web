@@ -55,6 +55,17 @@ export default {
       'events',
       'roomState'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: this.event.title,
+      meta: [{
+        vmid: 'description',
+        name: 'description',
+        content: this.event.abstract.replace(/<[^>]+>/g, '')
+      }]
+    }
   }
 }
 </script>

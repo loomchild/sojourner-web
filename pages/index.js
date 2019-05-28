@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Meta from 'vue-meta'
 
 import About from './About'
 import SearchEvents from './SearchEvents'
@@ -16,6 +17,7 @@ import Settings from './Settings'
 window.history.scrollRestoration = 'manual'
 
 Vue.use(Router)
+Vue.use(Meta)
 
 const router = new Router({
   mode: 'history',

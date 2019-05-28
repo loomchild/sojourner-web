@@ -25,6 +25,12 @@ export default {
     ...mapGetters([
       'buildings'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: `Building ${this.buildingName}`
+    }
   }
 }
 </script>

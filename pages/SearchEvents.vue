@@ -56,6 +56,12 @@ export default {
     ...mapActions([
       'searchEvents'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: 'Search'
+    }
   }
 }
 </script>

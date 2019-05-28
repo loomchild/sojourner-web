@@ -30,12 +30,19 @@ import config from '@/config'
 
 export default {
   name: 'about',
+
   data: () => ({
     version: config.version,
     commithash: config.commithash,
     commiturl: `https://github.com/loomchild/sojourner-web/commit/${config.commithash}`,
     timestamp: config.timestamp
-  })
+  }),
+
+  metaInfo () {
+    return {
+      title: 'About'
+    }
+  }
 }
 </script>
 

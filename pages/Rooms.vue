@@ -25,7 +25,13 @@ export default {
 
   computed: mapGetters({
     rooms: 'allRoomStats'
-  })
+  }),
+
+  metaInfo () {
+    return {
+      title: 'Rooms'
+    }
+  }
 }
 </script>
 

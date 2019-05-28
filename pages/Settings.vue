@@ -47,6 +47,12 @@ export default {
       'showError',
       'refreshSchedule'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: 'Settings'
+    }
   }
 }
 </script>

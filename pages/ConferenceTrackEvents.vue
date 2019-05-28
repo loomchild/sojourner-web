@@ -41,6 +41,12 @@ export default {
     ...mapGetters([
       'trackEvents'
     ])
+  },
+
+  metaInfo () {
+    return {
+      title: this.trackName
+    }
   }
 }
 </script>

@@ -25,7 +25,13 @@ export default {
 
   computed: mapGetters({
     tracks: 'allTrackStats'
-  })
+  }),
+
+  metaInfo () {
+    return {
+      title: 'Tracks'
+    }
+  }
 }
 </script>
 
