@@ -77,8 +77,6 @@ export default {
 }
 </script>
 
-<style src="@/assets/spinner.css"></style>
-
 <style>
 .center {
   margin: auto;
