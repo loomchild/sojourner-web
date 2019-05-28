@@ -3,6 +3,10 @@ body {
   color: #fff;
 }
 
+html, body {
+  overscroll-behavior-y: contain;
+}
+
 .middle {
   position: absolute;
   top: 50%;
