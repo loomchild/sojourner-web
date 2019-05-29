@@ -39,6 +39,7 @@ export default {
 
 .layout .flex {
   display: flex;
+  cursor: pointer;
 }
 
 .layout .flex:nth-child(1) {
