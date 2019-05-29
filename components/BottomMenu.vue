@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav id="bottom-menu" class="hidden-md-and-up" fixed :value="true" color="primary">
+  <v-bottom-nav id="bottom-menu" class="hidden-md-and-up" fixed :value="true" color="secondary">
     <v-btn color="white" flat to="/">
       <v-icon>home</v-icon>
     </v-btn>
