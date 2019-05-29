@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <v-toolbar-items>
+    <login-dialog></login-dialog>
     <v-btn flat icon v-if="!realUser" :class="{warning: !persistent}" @click.stop="showLoginDialog">
       <v-icon>person_outline</v-icon>
     </v-btn>
@@ -13,8 +14,7 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-    <login-dialog></login-dialog>
-  </div>
+  </v-toolbar-items>
 </template>
 
 <script>
@@ -48,4 +48,7 @@ export default {
 </script>
 
 <style>
+.v-toolbar__items .v-btn:last-child {
+  margin-right: -6px !important;
+}
 </style>
