@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
+import Dashboard from './Dashboard'
 import About from './About'
 import SearchEvents from './SearchEvents'
 import BuildingMap from './BuildingMap'
@@ -24,7 +25,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/tracks'
+      name: 'root',
+      component: Dashboard
     },
     {
       path: '/search',

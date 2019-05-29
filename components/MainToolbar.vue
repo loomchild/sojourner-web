@@ -1,10 +1,10 @@
 <template>
-  <v-toolbar app fixed clipped-left color="primary">
-    <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-btn @click.stop="goBack" flat icon dark>
+  <v-toolbar app fixed flat clipped-left color="primary">
+    <v-toolbar-side-icon v-if="$route.path === '/'" @click.stop="toggleDrawer"></v-toolbar-side-icon>
+    <v-btn v-if="$route.path !== '/'" @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>
     </v-btn>
-    <v-toolbar-title>{{ title ? title : 'Sojourner' }}</v-toolbar-title>
+    <v-toolbar-title>{{ title }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <account-badge></account-badge>
   </v-toolbar>
@@ -38,5 +38,3 @@ export default {
 
 <style>
 </style>
-
-
