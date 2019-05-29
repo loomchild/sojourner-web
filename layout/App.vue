@@ -98,6 +98,12 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width:959px) {
+  .v-snack--bottom {
+    margin-bottom: 56px;
+  }
+}
+
 .center {
   margin: auto;
 }

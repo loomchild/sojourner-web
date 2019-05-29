@@ -26,12 +26,6 @@ export default {
   button {
     margin-left: 10px !important;
   }
-
-  @media only screen and (max-width:959px) {
-    .v-snack {
-      margin-bottom: 56px;
-    }
-  }
 </style>
 
 
