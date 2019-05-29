@@ -8,6 +8,7 @@ import '@/preload.css'
 
 Vue.use(Vuetify, {
   theme: {
+    primary: '#54BECA',
     secondary: '#A12F88'
   }
 })

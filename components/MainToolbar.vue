@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app fixed clipped-left>
+  <v-toolbar app fixed clipped-left color="primary">
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
     <v-btn @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>

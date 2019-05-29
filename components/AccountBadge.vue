@@ -1,13 +1,11 @@
 <template>
   <div>
-    <v-btn v-if="!realUser" class="user" :class="{warning: !persistent}" dark @click.stop="showLoginDialog">
-      <v-icon>account_circle</v-icon>
-      Anonymous
+    <v-btn flat icon v-if="!realUser" :class="{warning: !persistent}" @click.stop="showLoginDialog">
+      <v-icon>person_outline</v-icon>
     </v-btn>
     <v-menu v-if="realUser" offset-y open-on-hover close-delay="1000">
-      <v-btn slot="activator" class="user" dark>
-        <v-icon>account_circle</v-icon>
-        {{ realUser.email }}
+      <v-btn flat icon slot="activator" class="user">
+        <v-icon>person</v-icon>
       </v-btn>
       <v-list>
         <v-list-tile @click.stop="clickLogOut" ripple>
@@ -50,10 +48,4 @@ export default {
 </script>
 
 <style>
-.user {
-}
-
-.user i {
-  margin-right: 10px;
-}
 </style>
