@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-btn v-if="!realUser" class="user" :class="{warning: !persistent}" dark @click.stop="showLoginDialog">
+    <v-btn v-if="!realUser" class="user" :class="{warning: !persistent}" @click.stop="showLoginDialog">
       <v-icon>account_circle</v-icon>
       Anonymous
     </v-btn>
     <v-menu v-if="realUser" offset-y open-on-hover close-delay="1000">
-      <v-btn slot="activator" class="user" dark>
+      <v-btn slot="activator" class="user">
         <v-icon>account_circle</v-icon>
         {{ realUser.email }}
       </v-btn>

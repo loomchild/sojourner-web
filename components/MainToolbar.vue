@@ -1,7 +1,7 @@
 <template>
   <v-toolbar app fixed clipped-left>
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-btn @click.stop="goBack" flat icon dark>
+    <v-btn @click.stop="goBack" flat icon>
       <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-toolbar-title>{{ title ? title : 'Sojourner' }}</v-toolbar-title>

@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" dark>
+  <v-app id="app">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
