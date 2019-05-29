@@ -1,6 +1,6 @@
 <template>
   <v-list-tile class="event" ripple :style="{borderLeftColor: event.track.color}">
-    <v-list-tile-content v-ripple @click="goToEvent(event.id)">
+    <v-list-tile-content v-ripple v-go="`/event/${event.id}`">
       <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
       <v-list-tile-sub-title>
         {{ event.persons.join(', ') }},
@@ -40,12 +40,6 @@ export default {
     ...mapGetters([
       'roomState'
     ])
-  },
-
-  methods: {
-    goToEvent () {
-      setTimeout(() => this.$router.push(`/event/${this.event.id}`), 200)
-    }
   }
 }
 </script>

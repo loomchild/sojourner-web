@@ -1,16 +1,16 @@
 <template>
   <v-container id="dashboard" fluid fill-height>
     <v-layout row wrap>
-      <v-flex xs12 grow v-ripple @click="goTo('/tracks/')">
+      <v-flex xs12 grow v-ripple v-go="'/tracks/'">
         <div>Keynotes</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple @click="goTo('/tracks/')">
+      <v-flex xs12 grow v-ripple v-go="'/tracks/'">
         <div>Main tracks</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple @click="goTo('/tracks/')">
+      <v-flex xs12 grow v-ripple v-go="'/tracks/'">
         <div>Developer rooms</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple @click="goTo('/tracks/')">
+      <v-flex xs12 grow v-ripple v-go="'/tracks/'">
         <div>Lightning talks</div>
       </v-flex>
     </v-layout>
@@ -20,12 +20,6 @@
 <script>
 export default {
   name: 'dashboard',
-
-  methods: {
-    goTo (target) {
-      setTimeout(() => this.$router.push(target), 200)
-    }
-  },
 
   metaInfo () {
     return {
