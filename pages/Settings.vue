@@ -9,7 +9,7 @@
                 <p>Download a fresh version of conference schedule. Usually there's no need to do that, since it's done automatically by the browser.</p>
               </div>
               <div class="button">
-                <v-btn color="primary" @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
+                <v-btn color="primary" dark @click="refresh" :disabled='refreshing'>Refresh Schedule</v-btn>
               </div>
             </v-flex>
           </v-layout>
