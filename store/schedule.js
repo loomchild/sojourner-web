@@ -8,6 +8,7 @@ import Event from '@/logic/Event'
 import Link from '@/logic/Link'
 import Room from '@/logic/Room'
 import Track from '@/logic/Track'
+import Type from '@/logic/Type'
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -50,7 +51,11 @@ const createTrack = (name) => Object.freeze(new Track({
   name: name
 }))
 
-const createEvent = (event, day, room, track) => {
+const createType = (name) => Object.freeze(new Type({
+  name: name
+}))
+
+const createEvent = (event, day, room, track, type) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
   const links = event.links && event.links[0] && event.links[0].link
@@ -65,7 +70,7 @@ const createEvent = (event, day, room, track) => {
     abstract: getText(event.abstract),
     description: getText(event.description),
 
-    type: getText(event.type),
+    type: type,
     track: track,
     day: day,
     room: room,
@@ -84,6 +89,7 @@ export default {
     days: {},
     rooms: {},
     tracks: {},
+    types: {},
     events: {},
     eventIndex: {}
   },
@@ -94,6 +100,7 @@ export default {
     days: state => state.days,
     rooms: state => state.rooms,
     tracks: state => state.tracks,
+    types: state => state.types,
     events: state => state.events,
 
     allEvents: state => Object.values(state.events).sort(eventNaturalSort),
@@ -197,6 +204,10 @@ export default {
       state.tracks = tracks
     },
 
+    setTypes (state, types) {
+      state.types = types
+    },
+
     setEvents (state, events) {
       state.events = events
     },
@@ -228,6 +239,7 @@ export default {
           const events = {}
           const rooms = {}
           const tracks = {}
+          const types = {}
 
           for (const d of schedule[0].day || []) {
             const day = createDay(d)
@@ -246,7 +258,13 @@ export default {
                     track = createTrack(trackName)
                     tracks[trackName] = track
                   }
-                  const event = createEvent(e, day, room, track)
+
+                  const type = createType(getText(e.type))
+                  if (!types[type.name]) {
+                    types[type.name] = type
+                  }
+
+                  const event = createEvent(e, day, room, track, type)
                   events[event.id] = event
                 }
               }
@@ -256,6 +274,7 @@ export default {
           commit('setDays', days)
           commit('setRooms', rooms)
           commit('setTracks', tracks)
+          commit('setTypes', types)
           commit('setEvents', events)
           commit('setScheduleInitialized')
         })

@@ -1,6 +1,7 @@
 import moment from 'moment'
 
 import Room from './Room'
+import Type from './Type'
 
 const TIME_FORMAT = 'HH:mm'
 
@@ -15,7 +16,7 @@ export default class Event {
     this.abstract = data.abstract
     this.description = data.description
 
-    this.type = data.type
+    this.type = data.type || new Type()
     this.track = data.track || {}
     this.day = data.day || {}
     this.room = data.room || new Room()
