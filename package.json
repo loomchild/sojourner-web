@@ -18,7 +18,7 @@
     "firebase": "^5.8.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.4",
-    "material-design-icons-iconfont": "^3.0.3",
+    "material-design-icons-iconfont": "^5.0.1",
     "memoizee": "^0.4.12",
     "moment": "^2.21.0",
     "pouchdb": "^7.0.0",
