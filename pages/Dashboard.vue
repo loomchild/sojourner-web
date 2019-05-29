@@ -11,7 +11,7 @@
         <div>Developer rooms</div>
       </v-flex>
       <v-flex xs12 grow v-ripple v-go="'/tracks/'">
-        <div>Lightning talks</div>
+        <div>Other events</div>
       </v-flex>
     </v-layout>
   </v-container>
