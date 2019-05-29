@@ -23,9 +23,9 @@ export default {
 </script>
 
 <style>
-  button {
-    margin-left: 10px !important;
-  }
+.v-snack button {
+  margin-left: 10px !important;
+}
 </style>
 
 
