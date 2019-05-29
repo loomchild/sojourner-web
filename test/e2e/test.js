@@ -3,7 +3,8 @@ module.exports = {
     browser.url(browser.globals.url)
     browser.waitForElementVisible('body', 5000)
 
-    browser.assert.title('Sojourner')
+    browser.pause(1000) // wait for title update
+    browser.assert.title('Tracks | Sojourner')
 
     browser.end()
   }
