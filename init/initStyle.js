@@ -6,6 +6,10 @@ import 'typeface-roboto'
 
 import '@/preload.css'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#A12F88'
+  }
+})
 
 export default function () {}

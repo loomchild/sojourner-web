@@ -16,6 +16,7 @@
     </v-content>
     <notification></notification>
     <analytics></analytics>
+    <bottom-menu></bottom-menu>
   </v-app>
 </template>
 
@@ -26,6 +27,7 @@ import {mapActions, mapGetters} from 'vuex'
 
 import Analytics from '@/components/Analytics'
 import MainMenu from '@/components/MainMenu'
+import BottomMenu from '@/components/BottomMenu'
 import MainToolbar from '@/components/MainToolbar'
 import Notification from '@/components/Notification'
 
@@ -36,6 +38,7 @@ export default {
     'analytics': Analytics,
     'main-menu': MainMenu,
     'main-toolbar': MainToolbar,
+    'bottom-menu': BottomMenu,
     'notification': Notification
   },
 
