@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer clipped fixed :value="drawer" @input="setDrawer" app>
+  <v-navigation-drawer app clipped fixed :value="drawer" @input="setDrawer" mobile-break-point="960" width="250">
     <v-list dense>
       <menu-item title="Tracks" icon="toc" to="/tracks/"></menu-item>
       <menu-item title="Rooms" icon="weekend" to="/rooms/"></menu-item>
