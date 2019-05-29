@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-text-field solo clearable placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query"/>
+    <v-text-field ref="search" solo clearable placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none"/>
     <v-layout justify-center align-top>
       <v-list three-line>
         <template v-for="(event, index) in events">
@@ -39,6 +39,10 @@ export default {
       }
       this.search()
     }
+  },
+
+  activated () {
+    this.$refs.search.focus()
   },
 
   methods: {
