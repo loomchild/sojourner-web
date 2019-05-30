@@ -1,11 +1,11 @@
 <template>
   <v-toolbar-items>
     <login-dialog></login-dialog>
-    <v-btn flat icon v-if="!realUser" @click.stop="showLoginDialog">
+    <v-btn flat icon dark v-if="!realUser" @click.stop="showLoginDialog">
       <v-icon>person_outline</v-icon>
     </v-btn>
     <v-menu v-if="realUser" offset-y open-on-hover close-delay="1000">
-      <v-btn flat icon slot="activator" class="user">
+      <v-btn flat icon dark slot="activator" class="user">
         <v-icon>person</v-icon>
       </v-btn>
       <v-list>

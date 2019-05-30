@@ -1,6 +1,6 @@
 <template>
   <v-toolbar app fixed flat clipped-left color="primary">
-    <v-toolbar-side-icon v-if="$route.path === '/'" @click.stop="toggleDrawer"></v-toolbar-side-icon>
+    <v-toolbar-side-icon dark v-if="$route.path === '/'" @click.stop="toggleDrawer"></v-toolbar-side-icon>
     <v-btn v-if="$route.path !== '/'" @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>
     </v-btn>
@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style>
+.v-toolbar__title {
+  color: white;
+}
 </style>

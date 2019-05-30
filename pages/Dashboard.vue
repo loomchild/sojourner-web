@@ -70,6 +70,7 @@ export default {
   margin: auto;
   text-align: center;
   font-family: 'Rubik';
+  color: white;
 }
 
 .layout .flex article section {

@@ -54,10 +54,5 @@ export default {
     width: 100%;
     padding: 0;
   }
-
-  .v-divider.day {
-    border-width: 12px;
-    border-color: #303030;
-  }
 </style>
 
