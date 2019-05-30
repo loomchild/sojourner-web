@@ -83,6 +83,22 @@ const eventNaturalSort = firstBy(event => event.day.index).thenBy('start')
 
 const MAX_SEARCH_RESULTS = 50
 
+const scoreField = (field, multiplier, keywords) => keywords.filter(keyword => field.includes(keyword)).length * multiplier
+
+const scoreEvent = (event, keywords) => {
+  let score = 0
+
+  score += scoreField(event.title.toLowerCase(), 3, keywords)
+
+  score += scoreField((event.subtitle || '').toLowerCase(), 2, keywords)
+
+  score += scoreField(((event.abstract || '') + ' ' + event.track.name + ' ' + event.persons.join(' ')).toLowerCase(), 1, keywords)
+
+  return score
+}
+
+const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] || 0, -1).thenBy('title')
+
 export default {
   state: {
     scheduleInitialized: false,
@@ -301,18 +317,24 @@ export default {
 
     searchEvents ({state}, query) {
       const keywords = query.toLowerCase().split(' ')
-      const foundEvents = []
+      let foundEvents = []
 
       for (let [eventId, blob] of Object.entries(state.eventIndex)) {
         if (keywords.every(keyword => blob.includes(keyword))) {
           foundEvents.push(state.events[eventId])
-          if (foundEvents.length >= MAX_SEARCH_RESULTS) {
-            break
-          }
         }
       }
 
-      return foundEvents.sort(eventNaturalSort)
+      const eventScores = {}
+      foundEvents.forEach(event => {
+        eventScores[event.id] = scoreEvent(event, keywords)
+      })
+
+      foundEvents = foundEvents.sort(eventScoreSort(eventScores))
+
+      foundEvents = foundEvents.splice(0, MAX_SEARCH_RESULTS)
+
+      return foundEvents
     }
   }
 }
