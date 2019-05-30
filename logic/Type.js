@@ -3,16 +3,16 @@ export default class Type {
     this.rawName = data.name
     switch (this.rawName) {
       case 'keynote':
-        this.name = 'Keynote'
+        this.name = 'Keynotes'
         break
       case 'maintrack':
-        this.name = 'Main track'
+        this.name = 'Main tracks'
         break
       case 'devroom':
-        this.name = 'Developer room'
+        this.name = 'Developer rooms'
         break
       default:
-        this.name = 'Other event'
+        this.name = 'Other events'
         break
     }
   }

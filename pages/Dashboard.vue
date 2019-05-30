@@ -1,16 +1,16 @@
 <template>
   <v-container id="dashboard" fluid fill-height>
     <v-layout row wrap>
-      <v-flex xs12 grow v-ripple v-go="'/type/Keynote'">
+      <v-flex xs12 grow v-ripple v-go="'/type/Keynotes'">
         <div>Keynotes</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Main track'">
+      <v-flex xs12 grow v-ripple v-go="'/type/Main tracks'">
         <div>Main tracks</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Developer room'">
+      <v-flex xs12 grow v-ripple v-go="'/type/Developer rooms'">
         <div>Developer rooms</div>
       </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Other event'">
+      <v-flex xs12 grow v-ripple v-go="'/type/Other events'">
         <div>Other events</div>
       </v-flex>
     </v-layout>

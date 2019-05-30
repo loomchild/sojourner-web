@@ -52,7 +52,7 @@ export default {
 
   metaInfo () {
     return {
-      title: this.typeName + 's'
+      title: this.typeName
     }
   }
 }
