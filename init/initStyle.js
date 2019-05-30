@@ -11,6 +11,9 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#54BECA',
     secondary: '#A12F88'
+  },
+  options: {
+    customProperties: true
   }
 })
 
