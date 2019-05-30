@@ -69,7 +69,6 @@ export default {
 .layout .flex article {
   margin: auto;
   text-align: center;
-  font-family: 'Rubik';
   color: white;
 }
 
@@ -86,6 +85,3 @@ export default {
   opacity: 0.7;
 }
 </style>
-
-
-

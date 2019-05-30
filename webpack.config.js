@@ -70,6 +70,14 @@ module.exports = {
         ]
       },
       {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader'
+        ]
+      },
+      {
         test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot)$/,
         use: [
           {
