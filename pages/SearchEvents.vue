@@ -5,6 +5,7 @@
       <v-list three-line>
         <template v-for="(event, index) in events">
           <event :event="event"></event>
+          <v-divider v-if="index + 1 < events.length"></v-divider>
         </template>
       </v-list>
     </v-layout>
@@ -77,10 +78,5 @@ export default {
   .v-list {
     width: 100%;
     padding: 0;
-  }
-
-  .v-divider.day {
-    border-width: 12px;
-    border-color: #303030;
   }
 </style>
