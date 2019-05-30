@@ -17,6 +17,11 @@ export default class Type {
         this.priority = 3
         this.statName = 'rooms'
         break
+      case 'lightningtalk':
+        this.name = 'Lightning talks'
+        this.priority = 4
+        this.statName = 'talks'
+        break
       default:
         this.name = 'Other events'
         this.priority = 9

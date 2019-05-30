@@ -55,7 +55,7 @@ export default {
 
 .layout .flex:nth-child(3) {
   /* TODO */
-  background-color: #ff000099;
+  background-color: #6aacb699;
 }
 
 .layout .flex:nth-last-child(2) {
