@@ -136,7 +136,7 @@ if (process.env.NODE_ENV === 'production') {
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/',
-      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects']
+      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers']
     })
   ])
 }
