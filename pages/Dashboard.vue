@@ -1,25 +1,24 @@
 <template>
   <v-container id="dashboard" fluid fill-height>
     <v-layout row wrap>
-      <v-flex xs12 grow v-ripple v-go="'/type/Keynotes'">
-        <div>Keynotes</div>
-      </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Main tracks'">
-        <div>Main tracks</div>
-      </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Developer rooms'">
-        <div>Developer rooms</div>
-      </v-flex>
-      <v-flex xs12 grow v-ripple v-go="'/type/Other events'">
-        <div>Other events</div>
+      <v-flex v-for="type in types" :key="type.name" xs12 grow v-ripple v-go="`/type/${type.name}`">
+        <div>{{ type.name }}</div>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'dashboard',
+
+  computed: {
+    ...mapGetters({
+      types: 'allTypeStats'
+    })
+  },
 
   metaInfo () {
     return {
@@ -51,10 +50,15 @@ export default {
 }
 
 .layout .flex:nth-child(3) {
+  /* TODO */
+  background-color: #ff000099;
+}
+
+.layout .flex:nth-last-child(2) {
   background-color: #CCB19499;
 }
 
-.layout .flex:nth-child(4) {
+.layout .flex:nth-last-child(1) {
   background-color: #633D5C99;
 }
 

@@ -217,6 +217,11 @@ export default {
       const rooms = Object.values(state.rooms).sort(firstBy('name'))
       const eventsByRoom = _.groupBy(Object.values(state.events), event => event.room.name)
       return roomStats(rooms, eventsByRoom)
+    },
+
+    allTypeStats: state => {
+      const types = Object.values(state.types).sort(firstBy('priority'))
+      return types
     }
   },
 
