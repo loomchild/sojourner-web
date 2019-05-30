@@ -113,6 +113,6 @@ export default {
 }
 
 .application--wrap {
-  min-height: calc(var(--vh, 1vh) * 100) !important;
+  min-height: var(--screenHeight, 100vh) !important;
 }
 </style>
