@@ -1,8 +1,11 @@
 <template>
   <v-container id="dashboard" fluid fill-height>
     <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.name" xs12 grow v-ripple v-go="`/type/${type.name}`">
-        <div>{{ type.name }}</div>
+      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple v-go="`/type/${type.type.name}`">
+        <article>
+          <section>{{ type.type.name }}</section>
+          <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
+        </article>
       </v-flex>
     </v-layout>
   </v-container>
@@ -38,6 +41,7 @@ export default {
 
 .layout .flex {
   display: flex;
+  flex-direction: column;
   cursor: pointer;
 }
 
@@ -62,12 +66,23 @@ export default {
   background-color: #633D5C99;
 }
 
-.layout .flex div {
+.layout .flex article {
   margin: auto;
   text-align: center;
-  font-size: 38px;
   font-family: 'Rubik';
+}
+
+.layout .flex article section {
+  font-size: 38px;
+  line-height: 46px;
   font-weight: lighter;
+}
+
+.layout .flex article footer {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 </style>
 

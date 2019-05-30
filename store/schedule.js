@@ -148,6 +148,19 @@ const roomStats = (rooms, eventsByRoom) => {
   })
 }
 
+const typeStats = (types, eventsByType) => {
+  return types.map(type => {
+    const events = eventsByType[type.name] || []
+    const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
+
+    return {
+      type,
+      events,
+      tracks
+    }
+  })
+}
+
 export default {
   state: {
     scheduleInitialized: false,
@@ -221,7 +234,8 @@ export default {
 
     allTypeStats: state => {
       const types = Object.values(state.types).sort(firstBy('priority'))
-      return types
+      const eventsByType = _.groupBy(Object.values(state.events), event => event.type.name)
+      return typeStats(types, eventsByType)
     }
   },
 
