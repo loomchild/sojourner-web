@@ -1,7 +1,7 @@
 <template>
   <v-toolbar-items>
     <login-dialog></login-dialog>
-    <v-btn flat icon v-if="!realUser" :class="{warning: !persistent}" @click.stop="showLoginDialog">
+    <v-btn flat icon v-if="!realUser" @click.stop="showLoginDialog">
       <v-icon>person_outline</v-icon>
     </v-btn>
     <v-menu v-if="realUser" offset-y open-on-hover close-delay="1000">
@@ -28,8 +28,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'realUser',
-      'persistent'
+      'realUser'
     ])
   },
   methods: {
