@@ -81,8 +81,7 @@ export default {
 
   metaInfo () {
     return {
-      title: 'Sojourner',
-      titleTemplate: '%s | Sojourner',
+      titleTemplate: chunk => chunk ? `${chunk} | Sojourner` : 'Sojourner',
       meta: [{
         vmid: 'description',
         name: 'description',
@@ -90,7 +89,7 @@ export default {
       }],
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
-        this.setTitle(title.endsWith(' | Sojourner') ? title.slice(0, -12) : title)
+        this.setTitle(title === 'Sojourner' ? '' : title.slice(0, -12))
       }
     }
   }
