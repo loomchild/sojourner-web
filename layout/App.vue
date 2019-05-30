@@ -106,4 +106,8 @@ export default {
 .center {
   margin: auto;
 }
+
+.application--wrap {
+  min-height: calc(var(--vh, 1vh) * 100) !important;
+}
 </style>
