@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer app clipped fixed :value="drawer" @input="setDrawer" mobile-break-point="960" width="250" height="400">
-    <v-list dense>
+    <v-list dense dark>
       <menu-item title="Tracks" icon="toc" to="/tracks/"></menu-item>
       <menu-item title="Rooms" icon="weekend" to="/rooms/"></menu-item>
       <menu-item title="Search" icon="search" to="/search/"></menu-item>
@@ -38,6 +38,7 @@ export default {
 <style>
 .v-navigation-drawer {
   border-radius: 0 0 100px 0;
+  background-color: var(--v-secondary-base) !important;
 }
 </style>
 
