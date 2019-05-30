@@ -305,7 +305,7 @@ export default {
       return dispatch('initSchedule', 'reload')
     },
 
-    reindexEvents ({state, commit}) {
+    reindexEvents ({state, commit, dispatch}) {
       const index = {}
       for (let event of Object.values(state.events)) {
         const blob = JSON.stringify(event, null, 2).toLowerCase()
@@ -313,6 +313,8 @@ export default {
         index[event.id] = blob
       }
       commit('setEventIndex', index)
+
+      dispatch('searchEvents', 'warm')
     },
 
     searchEvents ({state}, query) {
