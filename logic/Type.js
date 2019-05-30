@@ -12,7 +12,7 @@ export default class Type {
         this.name = 'Developer room'
         break
       default:
-        this.name = 'Other'
+        this.name = 'Other event'
         break
     }
   }

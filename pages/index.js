@@ -14,6 +14,7 @@ import FavouriteEvents from './FavouriteEvents'
 import Rooms from './Rooms'
 import RoomEvents from './RoomEvents'
 import Settings from './Settings'
+import TypeTracksOrEvents from './TypeTracksOrEvents'
 
 window.history.scrollRestoration = 'manual'
 
@@ -42,6 +43,12 @@ const router = new Router({
       path: '/event/:eventId?',
       name: 'event',
       component: EventDetails,
+      props: true
+    },
+    {
+      path: '/type/:typeName?',
+      name: 'type',
+      component: TypeTracksOrEvents,
       props: true
     },
     {
