@@ -97,6 +97,10 @@ export default {
 </script>
 
 <style>
+html {
+  overflow-y: auto;
+}
+
 @media only screen and (max-width:959px) {
   .v-snack--bottom {
     margin-bottom: 56px;
