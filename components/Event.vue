@@ -13,8 +13,8 @@
     <v-list-tile-action>
       <favourite :event="event"></favourite>
     </v-list-tile-action>
-    <v-list-tile-action>
-      <v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon>
+    <v-list-tile-action v-if="state.icon">
+      <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
     </v-list-tile-action>
   </v-list-tile>
 </template>

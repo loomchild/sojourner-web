@@ -11,7 +11,7 @@
           {{ event.start }}-{{ event.end }} {{ event.day.name }},
           &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
           &nbsp;<span><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
-          &nbsp;<span class="roomstate"><v-icon :color="state.color" :title="state.name">{{ state.icon }}</v-icon></span>,
+          &nbsp;<span class="roomstate" v-if="state.icon"><v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon></span>,
         </v-card-title>
         <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
         <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
