@@ -47,6 +47,7 @@ export default {
 .track .v-list__tile__title {
   white-space: normal;
   height: auto;
+  max-height: 48px;
 }
 
 .track .v-list__tile__sub-title {
