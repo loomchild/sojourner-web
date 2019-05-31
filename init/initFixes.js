@@ -1,6 +1,8 @@
 function updateVh () {
-  const screenHeight = window.innerHeight
-  document.documentElement.style.setProperty('--screenHeight', `${screenHeight}px`)
+  setTimeout(() => {
+    const screenHeight = window.innerHeight
+    document.documentElement.style.setProperty('--screenHeight', `${screenHeight}px`)
+  }, 100)
 }
 
 export default function () {
