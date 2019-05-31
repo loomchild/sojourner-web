@@ -119,4 +119,8 @@ html {
 .application--wrap {
   min-height: var(--screenHeight, 100vh) !important;
 }
+
+.v-list__tile__action {
+  cursor: default;
+}
 </style>

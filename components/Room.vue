@@ -1,6 +1,6 @@
 <template>
-  <v-list-tile class="room" ripple :style="borderStyle" :to="`/room/${room.room.name}`">
-    <v-list-tile-content>
+  <v-list-tile class="room" :style="borderStyle" :to="`/room/${room.room.name}`">
+    <v-list-tile-content v-ripple>
       <v-list-tile-title class="room-name">{{ room.room.name }}</v-list-tile-title>
       <v-list-tile-sub-title v-if="room.events.length > 0">
         {{ room.events.length }} events,
@@ -8,7 +8,7 @@
       </v-list-tile-sub-title>
       <v-list-tile-sub-title v-else>0 events</v-list-tile-sub-title>
     </v-list-tile-content>
-    <v-list-tile-action v-if="state.icon">
+    <v-list-tile-action v-if="state.icon" @click.prevent="">
       <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
     </v-list-tile-action>
   </v-list-tile>
