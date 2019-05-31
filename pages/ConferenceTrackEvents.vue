@@ -1,24 +1,17 @@
 <template>
-  <div>
-    <v-list three-line>
-      <template v-for="(event, index) in events">
-        <event :event="event"></event>
-        <v-divider v-if="index + 1 < events.length" :class="{'day': events[index].day.index < events[index + 1].day.index}"></v-divider>
-      </template>
-    </v-list>
-  </div>
+  <event-list :events="events"></event-list>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 
-import Event from '@/components/Event'
+import EventList from '@/components/EventList'
 
 export default {
   name: 'conference-track-events',
 
   components: {
-    'event': Event
+    'event-list': EventList
   },
 
   props: [
@@ -45,4 +38,3 @@ export default {
 
 <style>
 </style>
-
