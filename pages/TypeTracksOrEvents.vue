@@ -1,20 +1,18 @@
 <template>
-  <v-container fluid>
-    <v-layout justify-center align-top>
-      <v-list v-if="tracks.length > 1" three-line>
-        <template v-for="(track, index) in tracks">
-          <conference-track :track="track"></conference-track>
-          <v-divider v-if="index + 1 < tracks.length"></v-divider>
-        </template>
-      </v-list>
-      <v-list v-if="tracks.length === 1" three-line>
-        <template v-for="(event, index) in events">
-          <event :event="event"></event>
-          <v-divider v-if="index + 1 < events.length" :class="{'day': events[index].day.index < events[index + 1].day.index}"></v-divider>
-        </template>
-      </v-list>
-    </v-layout>
-  </v-container>
+  <div>
+    <v-list v-if="tracks.length > 1" three-line>
+      <template v-for="(track, index) in tracks">
+        <conference-track :track="track"></conference-track>
+        <v-divider v-if="index + 1 < tracks.length"></v-divider>
+      </template>
+    </v-list>
+    <v-list v-if="tracks.length === 1" three-line>
+      <template v-for="(event, index) in events">
+        <event :event="event"></event>
+        <v-divider v-if="index + 1 < events.length" :class="{'day': events[index].day.index < events[index + 1].day.index}"></v-divider>
+      </template>
+    </v-list>
+  </div>
 </template>
 
 <script>

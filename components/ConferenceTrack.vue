@@ -1,10 +1,10 @@
 <template>
-  <v-list-tile class="track" ripple :style="{borderLeftColor: track.track.color}" :to="`/track/${track.track.name}`">
+  <v-list-tile class="track" ripple :to="`/track/${track.track.name}`">
     <v-list-tile-content>
-      <v-list-tile-title class="track-name">{{ track.track.name }}</v-list-tile-title>
+      <v-list-tile-title>{{ track.track.name }}</v-list-tile-title>
       <v-list-tile-sub-title>
-        {{ track.events.length }} events,
-        {{ track.rooms.map(room => `${room.room.name} (${room.days.join(' and ')})`).join(', ') }}
+        {{ track.events.length }} events |
+        {{ track.rooms.map(room => room.room.name).join(', ') }}
       </v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action v-if="state.icon">
@@ -44,19 +44,14 @@ export default {
 </script>
 
 <style>
-  .track {
-    margin-left: 1px;
-    border-left: 10px solid transparent;
-  }
+.track .v-list__tile__title {
+  white-space: normal;
+  height: auto;
+}
 
-  li div {
-    white-space: nowrap !important;
-    overflow: hidden;
-  }
-
-  .track-name {
-    font-weight: bold;
-  }
+.track .v-list__tile__sub-title {
+  color: var(--v-secondary-base) !important;
+}
 </style>
 
 
