@@ -18,6 +18,8 @@
 </template>
 
 <script>
+// TODO: Not used, delete
+
 import {mapActions, mapGetters} from 'vuex'
 import LoginDialog from './LoginDialog'
 

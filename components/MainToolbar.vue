@@ -6,19 +6,14 @@
     </v-btn>
     <v-toolbar-title>{{ title }}</v-toolbar-title>
     <v-spacer></v-spacer>
-    <account-badge></account-badge>
   </v-toolbar>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import AccountBadge from './AccountBadge'
 
 export default {
   name: 'main-toolbar',
-  components: {
-    AccountBadge
-  },
   computed: {
     ...mapGetters([
       'title'
