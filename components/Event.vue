@@ -1,14 +1,11 @@
 <template>
-  <v-list-tile class="event" ripple :style="{borderLeftColor: event.track.color}">
+  <v-list-tile class="event" ripple>
     <v-list-tile-content v-ripple v-go="`/event/${event.id}`">
-      <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
       <v-list-tile-sub-title>
-        {{ event.persons.join(', ') }},
-        {{ event.start }}-{{ event.end }} {{ event.day.name }},
-        {{ event.track.name }},
-        {{ event.room.name }}
+        <span>{{ event.start }}-{{ event.end }}</span>
+        <span v-if="event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
-      <v-list-tile-sub-title class="event-subtitle grey--text text--lighten-3">{{ event.subtitle }}</v-list-tile-sub-title>
+      <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
     </v-list-tile-content>
     <v-list-tile-action>
       <favourite :event="event"></favourite>
@@ -45,36 +42,21 @@ export default {
 </script>
 
 <style>
-  .event {
-    margin-left: 1px;
-    border-left: 10px solid transparent;
-  }
+.event .v-list__tile__title {
+  white-space: normal;
+  height: auto;
+  max-height: 48px;
+}
 
-  li div {
-    white-space: nowrap !important;
-    overflow: hidden;
-  }
+.event .v-list__tile__sub-title {
+  color: var(--v-secondary-base) !important;
+}
 
-  .event-title {
-    font-weight: bold;
-  }
-
-  .roomstate .icon {
-    font-size: 18px;
-    vertical-align: text-bottom;
-    cursor: default;
-  }
-
-  div.v-list__tile__title {
-    text-overflow: clip;
-  }
-
-  div.v-list__tile__sub-title {
-    white-space: nowrap !important;
-  }
-
-  div.v-list__tile__action:last-of-type {
-    min-width: 40px;
-  }
+.event .v-list__tile__sub-title {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline;
+}
 </style>
 
