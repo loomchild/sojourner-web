@@ -1,13 +1,14 @@
 <template>
-  <v-navigation-drawer app clipped fixed :value="drawer" @input="setDrawer" mobile-break-point="960" width="250" height="400">
-    <v-list dense :dark="$vuetify.breakpoint.smAndDown">
-      <menu-item title="Tracks" icon="toc" to="/tracks/"></menu-item>
-      <menu-item title="Rooms" icon="weekend" to="/rooms/"></menu-item>
-      <menu-item title="Search" icon="search" to="/search/"></menu-item>
-      <menu-item title="Favourites" icon="favorite" to="/favourites/"></menu-item>
+  <v-navigation-drawer app clipped fixed :value="drawer" @input="setDrawer" mobile-break-point="960" width="250" height="480">
+    <v-list :dark="$vuetify.breakpoint.smAndDown">
+      <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog"></menu-item>
+      <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
       <v-divider></v-divider>
-      <menu-item title="Campus Map" icon="map" to="/map/"></menu-item>
-      <menu-item title="Settings" icon="settings" to="/settings/"></menu-item>
+      <menu-item title="Dashboard" icon="home" to="/"></menu-item>
+      <menu-item title="Bookmarks" icon="bookmarks" to="/favourites/"></menu-item>
+      <menu-item title="Map" icon="map" to="/map/"></menu-item>
+      <menu-item title="Search" icon="search" to="/search/"></menu-item>
+      <v-divider></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
   </v-navigation-drawer>
@@ -26,12 +27,23 @@ export default {
   },
 
   computed: mapGetters([
-    'drawer'
+    'drawer',
+    'realUser'
   ]),
 
-  methods: mapActions([
-    'setDrawer'
-  ])
+  methods: {
+    clickLogOut () {
+      this.logOut()
+        .catch(error => this.showError(error.message))
+    },
+
+    ...mapActions([
+      'setDrawer',
+      'showLoginDialog',
+      'logOut',
+      'showError'
+    ])
+  }
 }
 </script>
 
@@ -40,6 +52,17 @@ export default {
   .v-navigation-drawer {
     border-radius: 0 0 100px 0;
     background-color: var(--v-secondary-base) !important;
+  }
+
+  .v-navigation-drawer .v-list__tile * {
+    color: #fff;
+  }
+
+  .v-navigation-drawer .v-divider {
+    margin-left: 16px;
+    margin-right: 16px;
+    border-color: var(--v-secondary-lighten5) !important;
+    border-width: 1px;
   }
 }
 </style>

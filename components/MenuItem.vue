@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile :to="to" :exact="to === '/'" ripple>
+  <v-list-tile :to="to" :exact="to === '/'" @click.stop="$emit('click', $event.target)" ripple>
     <v-list-tile-action>
       <v-icon>{{ icon }}</v-icon>
     </v-list-tile-action>

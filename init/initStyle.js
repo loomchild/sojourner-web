@@ -10,8 +10,13 @@ import '@/preload.css'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#54BECA',
-    secondary: '#A12F88'
+    primary: {
+      base: '#54BECA'
+    },
+    secondary: {
+      base: '#A12F88',
+      lighten5: '#FFF0E8'
+    }
   },
   options: {
     customProperties: true
