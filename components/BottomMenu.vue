@@ -25,9 +25,6 @@ export default {
 </script>
 
 <style>
-#bottom-menu .v-btn {
-  opacity: 1;
-}
 </style>
 
 
