@@ -11,6 +11,7 @@
       <v-divider></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
+    <img class="menu-logo" src="@/assets/menu-logo.png">
   </v-navigation-drawer>
 </template>
 
@@ -54,6 +55,10 @@ export default {
     background-color: var(--v-secondary-base) !important;
   }
 
+  .v-navigation-drawer .v-list {
+    margin-top: 33px;
+  }
+
   .v-navigation-drawer .v-list__tile * {
     color: #fff;
   }
@@ -63,6 +68,13 @@ export default {
     margin-right: 16px;
     border-color: var(--v-secondary-lighten5) !important;
     border-width: 1px;
+  }
+
+  .menu-logo {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    opacity: 0.5;
   }
 }
 </style>
