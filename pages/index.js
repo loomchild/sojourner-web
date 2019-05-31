@@ -7,12 +7,9 @@ import About from './About'
 import SearchEvents from './SearchEvents'
 import BuildingMap from './BuildingMap'
 import CampusMap from './CampusMap'
-import ConferenceTracks from './ConferenceTracks'
 import ConferenceTrackEvents from './ConferenceTrackEvents'
 import EventDetails from './EventDetails'
 import FavouriteEvents from './FavouriteEvents'
-import Rooms from './Rooms'
-import RoomEvents from './RoomEvents'
 import Settings from './Settings'
 import TypeTracksOrEvents from './TypeTracksOrEvents'
 
@@ -52,25 +49,9 @@ const router = new Router({
       props: true
     },
     {
-      path: '/tracks',
-      name: 'tracks',
-      component: ConferenceTracks
-    },
-    {
       path: '/track/:trackName?',
       name: 'track',
       component: ConferenceTrackEvents,
-      props: true
-    },
-    {
-      path: '/rooms',
-      name: 'rooms',
-      component: Rooms
-    },
-    {
-      path: '/room/:roomName?',
-      name: 'room',
-      component: RoomEvents,
       props: true
     },
     {

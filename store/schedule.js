@@ -124,30 +124,6 @@ const trackStats = (tracks, eventsByTrack) => {
   })
 }
 
-const roomStats = (rooms, eventsByRoom) => {
-  return rooms.map(room => {
-    const events = eventsByRoom[room.name] ? eventsByRoom[room.name] : []
-    const eventsByTrack = _.groupBy(events, event => event.track.name)
-    const eventsByDay = _.groupBy(events, event => event.day.index)
-    const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
-      .map(track => ({
-        track: track,
-        days: _.uniq(eventsByTrack[track.name].map(event => event.day.name)).sort()
-      }))
-    const days = {}
-    Object.keys(eventsByDay).forEach(dayIndex => {
-      days[dayIndex] = _.uniq(eventsByDay[dayIndex].map(event => event.track))
-    })
-
-    return {
-      room: room,
-      events: events,
-      tracks: tracks,
-      days: days
-    }
-  })
-}
-
 const typeStats = (types, eventsByType) => {
   return types.map(type => {
     const events = eventsByType[type.name] || []
@@ -213,23 +189,11 @@ export default {
         .sort(eventNaturalSort)
     },
 
-    allTrackStats: state => {
-      const tracks = Object.values(state.tracks).sort(firstBy('name'))
-      const eventsByTrack = _.groupBy(Object.values(state.events), event => event.track.name)
-      return trackStats(tracks, eventsByTrack)
-    },
-
     typeTrackStats: (state, getters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
       const tracks = _.uniqBy(typeEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
       const eventsByTrack = _.groupBy(Object.values(typeEvents), event => event.track.name)
       return trackStats(tracks, eventsByTrack)
-    },
-
-    allRoomStats: state => {
-      const rooms = Object.values(state.rooms).sort(firstBy('name'))
-      const eventsByRoom = _.groupBy(Object.values(state.events), event => event.room.name)
-      return roomStats(rooms, eventsByRoom)
     },
 
     allTypeStats: state => {
