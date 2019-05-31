@@ -161,8 +161,11 @@ export default {
 
     warnAboutLosingData ({dispatch, commit, state, getters}) {
       if (!getters.realUser && !state.persistent && !state.loseDataWarning) {
-        return dispatch('showWarning', 'You are neither logged in, nor persisted. Please click on Anonymous button in the top right corner to fix that - otherwise your data might be lost.')
-          .then(() => commit('shownLoseDataWarning'))
+        return dispatch('showNotification', {
+          color: 'warning',
+          message: 'To assure that your data is preserved, please either allow persistent data storage or log-in. Click on user icon in the top right corner to fix that!',
+          timeout: 0
+        }).then(() => commit('shownLoseDataWarning'))
       }
     }
   }

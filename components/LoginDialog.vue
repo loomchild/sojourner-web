@@ -71,8 +71,8 @@
                 <p>This will allow permanently storing your data (favourite events, etc.) on this device, but it won't be possible to share it between devices.</p>
                 <p>For this to work, you need:
                   <ol>
-                    <li>To bookmark this page.</li>
-                    <li>A modern browser that supports Storage API, such as Firefox or Chromium. On Firefox Mobile this feature is still disabled by default - enable all <code>dom.storageManager.*</code> preferences.</li>
+                    <li>To bookmark or add this app to your home screen.</li>
+                    <li>Use a browser that supports Storage API, such as Firefox or Chrome. On Firefox Mobile all <code>dom.storageManager.*</code> preferences must be enabled.</li>
                   </ol>
                 </p>
               </v-flex>
