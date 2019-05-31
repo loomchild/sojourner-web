@@ -50,8 +50,8 @@ export default {
     },
 
     setFavourite ({dispatch}, eventId) {
-      dispatch('warnAboutLosingData')
-      return dispatch('getUserRef')
+      return dispatch('assurePersistent')
+        .then(() => dispatch('getUserRef'))
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(Number(eventId))}))
     },
 
@@ -64,8 +64,8 @@ export default {
     },
 
     unsetFavourite ({dispatch}, eventId) {
-      dispatch('warnAboutLosingData')
-      return dispatch('getUserRef')
+      return dispatch('assurePersistent')
+        .then(() => dispatch('getUserRef'))
         .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayRemove(Number(eventId))}))
     },
 

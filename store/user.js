@@ -159,13 +159,19 @@ export default {
       }
     },
 
-    warnAboutLosingData ({dispatch, commit, state, getters}) {
-      if (!getters.realUser && !state.persistent && !state.loseDataWarning) {
-        return dispatch('showNotification', {
-          color: 'warning',
-          message: 'To assure that your data is preserved, please either allow persistent data storage or log-in. Click on user icon in the top right corner to fix that!',
-          timeout: 0
-        }).then(() => commit('shownLoseDataWarning'))
+    assurePersistent ({dispatch, commit, state, getters}) {
+      if (!getters.realUser && !state.persistent) {
+        return dispatch('persist')
+          .catch(e => {
+            if (!state.loseDataWarning) {
+              console.error(e)
+              return dispatch('showNotification', {
+                message: 'To assure that your data is preserved, please either allow persistent data storage (bookmarking or adding to home screen might help) or log-in.',
+                timeout: 0,
+                color: 'warning'
+              }).then(() => commit('shownLoseDataWarning'))
+            }
+          })
       }
     }
   }

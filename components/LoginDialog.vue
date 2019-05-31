@@ -3,7 +3,6 @@
     <v-tabs v-model="action">
       <v-tab>Log In</v-tab>
       <v-tab>Register</v-tab>
-      <v-tab>Persist</v-tab>
       <v-tab-item>
         <v-form ref="formLogin" @submit.prevent="clickLogIn">
           <v-card>
@@ -14,7 +13,6 @@
               <v-container grid-list-md>
                 <v-flex xs12 class="switch-tab">
                   You don't have an account yet? <a @click="action = 1">Register</a> instead.<br/>
-                  You want to use only this device? <a @click="action = 2">Persist</a> your data instead.
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus autocapitalize="none"></v-text-field>
@@ -54,36 +52,10 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="error" @click="hideLoginDialog">Cancel</v-btn>
-              <v-btn type="submit" color="info">Register</v-btn>
+              <v-btn type="submit" color="success">Register</v-btn>
             </v-card-actions>
           </v-card>
         </v-form>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card>
-          <v-card-title>
-            <span class="headline">Persist</span>
-          </v-card-title>
-          <v-card-text>
-            <v-container grid-list-md>
-              <v-flex xs12>
-                <p>Enable persistent storage in your browser.</p>
-                <p>This will allow permanently storing your data (favourite events, etc.) on this device, but it won't be possible to share it between devices.</p>
-                <p>For this to work, you need:
-                  <ol>
-                    <li>To bookmark or add this app to your home screen.</li>
-                    <li>Use a browser that supports Storage API, such as Firefox or Chrome. On Firefox Mobile all <code>dom.storageManager.*</code> preferences must be enabled.</li>
-                  </ol>
-                </p>
-              </v-flex>
-            </v-container>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="success" v-if="persistent" :ripple="false">Already persistent</v-btn>
-            <v-btn color="error" v-else @click="enablePersistence">Enable Persistence</v-btn>
-          </v-card-actions>
-        </v-card>
       </v-tab-item>
     </v-tabs>
   </v-dialog>
@@ -101,8 +73,7 @@ export default {
     action: 0
   }),
   computed: mapGetters([
-    'loginDialog',
-    'persistent'
+    'loginDialog'
   ]),
   methods: {
     reset () {
@@ -155,23 +126,10 @@ export default {
         })
     },
 
-    enablePersistence () {
-      this.persist()
-        .then(() => {
-          location.assign(`${location.href}?notification=${JSON.stringify({color: 'success', message: 'Persistence enabled'})}`)
-          location.reload()
-        })
-        .catch(error => {
-          console.error(error)
-          this.showError('Unable to activate persistence')
-        })
-    },
-
     ...mapActions([
       'showLoginDialog',
       'hideLoginDialog',
       'logIn',
-      'persist',
       'register',
       'showSuccess',
       'showError'
