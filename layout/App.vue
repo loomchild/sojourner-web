@@ -16,6 +16,7 @@
     </v-content>
     <notification></notification>
     <analytics></analytics>
+    <login-dialog></login-dialog>
     <bottom-menu></bottom-menu>
   </v-app>
 </template>
@@ -30,6 +31,7 @@ import MainMenu from '@/components/MainMenu'
 import BottomMenu from '@/components/BottomMenu'
 import MainToolbar from '@/components/MainToolbar'
 import Notification from '@/components/Notification'
+import LoginDialog from '@/components/LoginDialog'
 
 export default {
   name: 'app',
@@ -39,7 +41,8 @@ export default {
     'main-menu': MainMenu,
     'main-toolbar': MainToolbar,
     'bottom-menu': BottomMenu,
-    'notification': Notification
+    'notification': Notification,
+    'login-dialog': LoginDialog
   },
 
   methods: mapActions([
