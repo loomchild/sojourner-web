@@ -3,7 +3,7 @@
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
-      <keep-alive include="all-events,favourite-events,conference-tracks,rooms">
+      <keep-alive>
         <router-view></router-view>
       </keep-alive>
     </v-content>
@@ -125,5 +125,19 @@ html {
 
 .v-list__tile__action {
   cursor: default;
+}
+
+.v-tabs.days .v-tabs__item {
+  border-radius: 20px 20px 0px 0px;
+  border-color: var(--v-secondary-base);
+  border-width: 1px;
+  border-style: solid;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 1;
+}
+
+.v-tabs.days .v-tabs__item--active {
+  background-color: var(--v-secondary-base);
 }
 </style>

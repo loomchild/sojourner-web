@@ -157,6 +157,8 @@ export default {
     types: state => state.types,
     events: state => state.events,
 
+    allDays: state => Object.values(state.days).sort(firstBy('index')),
+
     allEvents: state => Object.values(state.events).sort(eventNaturalSort),
 
     typeEvents: state => typeName => Object.values(state.events)

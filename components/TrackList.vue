@@ -3,7 +3,7 @@
     <v-list three-line>
       <template v-for="(track, index) in tracks">
         <conference-track :track="track"></conference-track>
-        <v-divider v-if="index + 1 < tracks.length"></v-divider>
+        <v-divider></v-divider>
       </template>
     </v-list>
   </div>
