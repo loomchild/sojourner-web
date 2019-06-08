@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout justify-center align-top>
-      <v-card :style="{borderTopColor: event.track.color}">
+      <v-card>
         <v-card-title primary-title class="title"><h2>
           {{ event.title }}
           <favourite :event="event"></favourite>

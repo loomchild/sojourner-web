@@ -13,8 +13,6 @@
     "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
   "dependencies": {
-    "blueimp-md5": "^2.10.0",
-    "colorsys": "^1.0.19",
     "firebase": "^5.8.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.4",
