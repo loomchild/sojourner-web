@@ -1,7 +1,8 @@
 <template>
-  <v-container fluid>
+  <v-container fluid fill-height>
     <v-layout justify-center align-top>
       <v-card>
+        <div class="image"></div>
         <v-card-title primary-title>
           <div class="event-info">
             {{ event.day.name }} {{ event.start }}-{{ event.end }}
@@ -76,13 +77,19 @@ export default {
 
 <style>
 .v-card {
+  background-color: var(--v-primary-lighten3) !important;
+}
+
+.v-card .image {
   background-color: #EDBAA7 !important;
   background-image: url(~assets/background-hexagon.png);
   background-size: 100% auto;
+  height: calc(22vh + 80px);
+  margin-bottom: -80px;
+  width: 100%;
 }
 
 .v-card__title--primary {
-  margin-top: 22vh;
   border-radius: 0 80px 0 0 !important;
   display: block;
 }
@@ -107,7 +114,7 @@ export default {
 
 .v-card__title--primary div.speakers {
   padding-top: 11px;
-  padding-bottom: 11px;
+  padding-bottom: 16px;
 }
 
 .v-card__title {
@@ -116,10 +123,6 @@ export default {
 
 .v-card__title, .v-card__text {
   padding-bottom: 0;
-}
-
-.v-card__text {
-  background-color: var(--v-primary-lighten3);
 }
 
 .v-card__text .favourite {
