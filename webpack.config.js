@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'build.js?[hash]',
+    filename: '[name].[contenthash].js',
     devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
       ? `webpack-generated:///${info.resourcePath}?${info.hash}`
       : `webpack-code:///${info.resourcePath}`,
@@ -39,6 +39,11 @@ module.exports = {
           test: /preload\.css$/,
           chunks: 'all',
           enforce: true
+        },
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial'
         }
       }
     }
@@ -109,11 +114,10 @@ module.exports = {
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',
-      hash: true,
       inject: false
     }),
     new BundleAnalyzerPlugin({
@@ -129,7 +133,6 @@ if (process.env.NODE_ENV === 'test') {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.mode = 'production'
-  module.exports.output.filename = 'build.js'
   module.exports.devtool = 'source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
