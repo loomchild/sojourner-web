@@ -2,23 +2,27 @@
   <v-container fluid>
     <v-layout justify-center align-top>
       <v-card>
-        <v-card-title primary-title class="title"><h2>
-          {{ event.title }}
-          <favourite :event="event"></favourite>
-        </h2></v-card-title>
-        <v-card-title v-if="event.exists" class="grey--text text--lighten-1">
-          {{ event.persons.join(', ') }},
-          {{ event.start }}-{{ event.end }} {{ event.day.name }},
-          &nbsp;<span><router-link :to="`/track/${event.track.name}`">{{ event.track.name }}</router-link></span>,
-          &nbsp;<span><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
-          &nbsp;<span class="roomstate" v-if="state.icon"><v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon></span>,
+        <v-card-title primary-title class="title">
+          <div class="event-info">
+            {{ event.day.name }} {{ event.start }}-{{ event.end }}
+            | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
+          </div>
+          <h2>{{ event.title }}</h2>
+          <h3>{{ event.subtitle }}</h3>
+          <div class="speakers grey--text">
+            {{ event.persons.join(', ') }}
+          </div>
         </v-card-title>
-        <v-card-title v-if="event.subtitle" class="subtitle"><h3>{{ event.subtitle }}</h3></v-card-title>
-        <v-card-text v-if="event.abstract" v-html="event.abstract" class="abstract"></v-card-text>
-        <v-card-text v-if="event.description" v-html="event.description" class="description"></v-card-text>
-        <v-card-text v-if="event.links.length > 0" class="links">
-          Links:
-          <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
+        <v-card-text>
+          <div>
+            <favourite :event="event"></favourite>
+          </div>
+          <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
+          <div v-if="event.description" v-html="event.description" class="description"></div>
+          <div v-if="event.links.length > 0" class="links">
+            Links:
+            <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
+          </div>
         </v-card-text>
       </v-card>
     </v-layout>
@@ -71,47 +75,81 @@ export default {
 </script>
 
 <style>
-  .v-card {
-    width: 100%;
-    border-top: 10px solid transparent;
-  }
+.v-card {
+  background-color: #EDBAA7 !important;
+  background-image: url(~assets/background-hexagon.png);
+  background-size: 100% auto;
+}
 
-  .v-card__title, .v-card__text {
-    padding-bottom: 0;
-  }
+.v-card__title--primary {
+  margin-top: 22vh;
+  border-radius: 0 80px 0 0 !important;
+}
 
-  .abstract {
-    font-style: italic;
-  }
+.v-card__title--primary div, .v-card__title--primary h3 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: normal;
+}
 
-  .description {
-    padding-top: 0;
-  }
+.v-card__title--primary h2 {
+  font-weight: inherit;
+  font-size: 16px;
+  line-height: 24px;
+}
 
-  .links {
-    padding-top: 0;
-    margin-bottom: 16px;
-    counter-reset: link-counter;
-  }
+.v-card__title--primary div.event-info, .v-card__title--primary div.event-info a {
+  color: var(--v-secondary-base);
+  padding-bottom: 4px;
+  text-decoration: none;
+}
 
-  .link {
-    margin-bottom: 0;
-  }
+.v-card__title--primary div.speakers {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
 
-  .link:before {
-    content: '['counter(link-counter)'] ';
-    counter-increment: link-counter;
-  }
+.v-card__title {
+  background-color: white;
+}
 
-  .roomstate .icon {
-    font-size: 18px;
-    vertical-align: text-bottom;
-    cursor: default;
-  }
+.v-card__title, .v-card__text {
+  padding-bottom: 0;
+}
 
-  .v-card__title a {
-    text-decoration: none;
-  }
+.v-card__text {
+  background-color: var(--v-primary-lighten3);
+}
+
+.v-card__text .favourite {
+  position: absolute;
+  right: 24px;
+  transform: translateY(-36px);
+}
+
+.v-card__text .favourite i {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.links {
+  padding-top: 0;
+  padding-bottom: 16px;
+  counter-reset: link-counter;
+}
+
+.link {
+  margin-bottom: 0;
+}
+
+.link a {
+  color: var(--v-secondary-base);
+}
+
+.link:before {
+  content: '['counter(link-counter)'] ';
+  counter-increment: link-counter;
+}
 </style>
 
 

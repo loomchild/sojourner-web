@@ -11,7 +11,8 @@ import '@/preload.css'
 Vue.use(Vuetify, {
   theme: {
     primary: {
-      base: '#54BECA'
+      base: '#54BECA',
+      lighten3: '#DCEBED'
     },
     secondary: {
       base: '#A12F88',
