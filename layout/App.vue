@@ -114,6 +114,10 @@ html {
   margin: auto;
 }
 
+.container {
+  padding: 0;
+}
+
 .v-divider.day {
   border-width: 12px;
   border-color: #fafafa;

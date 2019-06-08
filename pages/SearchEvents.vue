@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <v-container fluid>
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none"/>
-    <v-list three-line>
-      <template v-for="(event, index) in events">
-        <event :event="event"></event>
-        <v-divider></v-divider>
-      </template>
-    </v-list>
-  </div>
+    <v-layout justify-center align-top>
+      <v-list three-line>
+        <template v-for="(event, index) in events">
+          <event :event="event"></event>
+          <v-divider></v-divider>
+        </template>
+      </v-list>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
