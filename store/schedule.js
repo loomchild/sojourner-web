@@ -110,10 +110,12 @@ const trackStats = (tracks, eventsByTrack) => {
         room: room,
         days: _.uniq(eventsByRoom[room.name].map(event => event.day.name)).sort()
       }))
-    const days = {}
-    Object.keys(eventsByDay).forEach(dayIndex => {
-      days[dayIndex] = _.uniq(eventsByDay[dayIndex].map(event => event.room))
-    })
+
+    const days = _.uniqBy(events.sort(eventNaturalSort).map(event => event.day), day => day.index)
+      .map(day => ({
+        day,
+        rooms: _.uniq(eventsByDay[day.index].map(event => event.room)).sort(firstBy('name'))
+      }))
 
     return {
       track: track,

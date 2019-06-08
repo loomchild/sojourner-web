@@ -4,7 +4,7 @@
       <v-list-tile-title>{{ track.track.name }}</v-list-tile-title>
       <v-list-tile-sub-title>
         {{ track.events.length }} events |
-        {{ track.rooms.map(room => room.room.name).join(', ') }}
+        {{ track.days.map(day => `${day.day.name} - ${day.rooms.map(room => room.name).join(', ')}`).join(' | ') }}
       </v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action v-if="state.icon" @click.prevent="">
