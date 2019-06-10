@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'build.js',
+    filename: '[name].js',
     devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
       ? `webpack-generated:///${info.resourcePath}?${info.hash}`
       : `webpack-code:///${info.resourcePath}`,
@@ -31,30 +31,6 @@ module.exports = {
     }
   },
   mode: 'development',
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0,
-      cacheGroups: {
-        styles: {
-          name: 'preload',
-          test: /preload\.css$/,
-          chunks: 'all',
-          enforce: true
-        },
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          name (module) {
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `npm.${packageName.replace('@', '')}`
-          }
-        }
-      }
-    }
-  },
   stats: {
     children: false
   },
@@ -135,7 +111,6 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'test') {
-  module.exports.optimization = undefined
   module.exports.devtool = 'inline-source-map'
 }
 
@@ -143,6 +118,30 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.mode = 'production'
   module.exports.output.filename = '[name].[contenthash].js'
   module.exports.devtool = 'source-map'
+  module.exports.optimization = {
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        styles: {
+          name: 'preload',
+          test: /preload\.css$/,
+          chunks: 'all',
+          enforce: true
+        },
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          name (module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace('@', '')}`
+          }
+        }
+      }
+    }
+  }
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
