@@ -2,12 +2,15 @@
   <v-container fluid>
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none"/>
     <v-layout justify-center align-top>
-      <v-list three-line>
+      <v-list v-if="query" three-line>
         <template v-for="(event, index) in events">
           <event :event="event"></event>
           <v-divider></v-divider>
         </template>
       </v-list>
+      <div v-else class="search-help">
+        <v-icon>subdirectory_arrow_left</v-icon> Start typing to search for an event by title, description, track, speaker, room, etc.
+      </div>
     </v-layout>
   </v-container>
 </template>
@@ -71,12 +74,20 @@ export default {
 </script>
 
 <style>
-  .layout {
-    width: 100%;
-  }
+.layout {
+  width: 100%;
+}
 
-  .v-list {
-    width: 100%;
-    padding: 0;
-  }
+.v-list {
+  width: 100%;
+  padding: 0;
+}
+
+.search-help {
+  padding: 12px;
+}
+
+.search-help i {
+  transform: rotate(90deg);
+}
 </style>
