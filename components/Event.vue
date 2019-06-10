@@ -3,7 +3,10 @@
     <v-list-tile-content v-ripple>
       <v-list-tile-sub-title>
         <span>{{ event.start }}-{{ event.end }}</span>
-        <span v-if="showRoom">| {{ event.room.name }}</span>
+        <span v-if="showRoom">
+          | {{ event.room.name }}
+          <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
+        </span>
         <span v-if="!showRoom && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
       <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import Favourite from './Favourite'
 
 export default {
@@ -27,6 +31,16 @@ export default {
 
   components: {
     favourite: Favourite
+  },
+
+  computed: {
+    state () {
+      return this.roomState(this.event.room.name)
+    },
+
+    ...mapGetters([
+      'roomState'
+    ])
   }
 }
 </script>
@@ -47,5 +61,11 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline;
+}
+
+.event .v-list__tile__sub-title i {
+  font-size: 16px;
+  vertical-align: text-bottom;
+  margin-left: 1px;
 }
 </style>
