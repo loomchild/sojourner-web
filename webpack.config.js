@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: '[name].[contenthash].js',
+    filename: '[name].js',
     devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
       ? `webpack-generated:///${info.resourcePath}?${info.hash}`
       : `webpack-code:///${info.resourcePath}`,
@@ -140,6 +140,7 @@ if (process.env.NODE_ENV === 'test') {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.mode = 'production'
+  module.exports.output.filename = '[name].[contenthash].js'
   module.exports.devtool = 'source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
