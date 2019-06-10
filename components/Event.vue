@@ -3,7 +3,8 @@
     <v-list-tile-content v-ripple>
       <v-list-tile-sub-title>
         <span>{{ event.start }}-{{ event.end }}</span>
-        <span v-if="event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
+        <span v-if="showRoom">| {{ event.room.name }}</span>
+        <span v-if="!showRoom && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
       <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
     </v-list-tile-content>
@@ -19,7 +20,10 @@ import Favourite from './Favourite'
 export default {
   name: 'event',
 
-  props: ['event'],
+  props: [
+    'event',
+    'showRoom'
+  ],
 
   components: {
     favourite: Favourite

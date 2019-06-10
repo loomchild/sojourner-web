@@ -1,5 +1,5 @@
 <template>
-  <event-list :events="events"></event-list>
+  <event-list :events="events" show-room></event-list>
 </template>
 
 <script>

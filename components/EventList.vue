@@ -8,7 +8,7 @@
         <v-tab-item :transition="transition" :reverseTransition="transition">
           <v-list three-line>
             <template v-for="(event, index) in dayEvents.events">
-              <event :event="event"></event>
+              <event :event="event" :show-room="showRoom"></event>
               <v-divider></v-divider>
             </template>
           </v-list>
@@ -33,9 +33,10 @@ export default {
     'event': Event
   },
 
-  props: [
-    'events'
-  ],
+  props: {
+    events: Array,
+    showRoom: Boolean
+  },
 
   data: () => ({
     day: 0,
