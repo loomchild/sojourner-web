@@ -5,11 +5,9 @@
       <v-list-tile-sub-title>
         {{ track.events.length }} events |
         {{ track.days.map(day => `${day.day.name} - ${day.rooms.map(room => room.name).join(', ')}`).join(' | ') }}
+        <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
       </v-list-tile-sub-title>
     </v-list-tile-content>
-    <v-list-tile-action v-if="state.icon" @click.prevent="">
-      <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
-    </v-list-tile-action>
   </v-list-tile>
 </template>
 
@@ -52,5 +50,11 @@ export default {
 
 .track .v-list__tile__sub-title {
   color: var(--v-secondary-base) !important;
+}
+
+.track .v-list__tile__sub-title i {
+  font-size: 16px;
+  vertical-align: text-bottom;
+  margin-left: 1px;
 }
 </style>
