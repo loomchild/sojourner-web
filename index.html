@@ -11,8 +11,10 @@
     <link rel="manifest" href="/assets/manifest.json">
     <title>Sojourner</title>
     <base target="_blank">
+    <% if (htmlWebpackPlugin.files.chunks.preload) { %>
     <link rel="preload" as="style" href="<%= htmlWebpackPlugin.files.chunks.preload.css %>">
     <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.preload.css %>">
+    <% } %>
   </head>
   <body>
     <div id="app">

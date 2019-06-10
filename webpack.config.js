@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: '[name].js',
+    filename: 'build.js',
     devtoolModuleFilenameTemplate: info => info.resourcePath.match(/^\.\/\S*?\.vue$/)
       ? `webpack-generated:///${info.resourcePath}?${info.hash}`
       : `webpack-code:///${info.resourcePath}`,
@@ -135,6 +135,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'test') {
+  module.exports.optimization = undefined
   module.exports.devtool = 'inline-source-map'
 }
 
