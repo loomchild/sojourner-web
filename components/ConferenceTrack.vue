@@ -53,7 +53,7 @@ export default {
 }
 
 .track .v-list__tile__sub-title i {
-  font-size: 16px;
+  font-size: 17px;
   vertical-align: text-bottom;
   margin-left: 1px;
 }
