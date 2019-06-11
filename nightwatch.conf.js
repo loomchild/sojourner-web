@@ -1,26 +1,22 @@
 module.exports = {
   src_folders: ['test/e2e'],
 
-  selenium: {
+  webdriver: {
     start_process: true,
-    server_path: require('selenium-server').path,
+    server_path: 'node_modules/.bin/chromedriver',
     host: '127.0.0.1',
-    port: 4444,
-    cli_args: {
-      'webdriver.chrome.driver': require('chromedriver').path
-    }
+    port: 9515,
+    cli_args: [
+      '--verbose'
+    ]
   },
 
   test_settings: {
     default: {
-      selenium_port: 4444,
-      selenium_host: 'localhost',
-      silent: true,
       globals: {
         url: 'http://localhost:8080'
       }
     },
-
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
