@@ -63,7 +63,7 @@
     "mini-css-extract-plugin": "^0.7.0",
     "mocha": "^3.2.0",
     "nightwatch": "^1.1.0",
-    "puppeteer": "^1.17.0",
+    "puppeteer": "~1.13.0",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.23.1",
