@@ -2,7 +2,7 @@
   <v-snackbar :timeout="notification.timeout" :color="notification.color" bottom multi-line :value="notificationVisible" @input="setNotificationVisible">
     {{ notification.message }}
     <v-btn v-if="notification.button" flat small @click.native="setNotificationVisible(false); notification.button.handler();">{{ notification.button.title }}</v-btn>
-    <v-btn v-else flat small icon @click.native="setNotificationVisible(false)"><v-icon>close</v-icon></v-btn>
+    <v-btn flat small icon @click.native="setNotificationVisible(false)"><v-icon>close</v-icon></v-btn>
   </v-snackbar>
 </template>
 
