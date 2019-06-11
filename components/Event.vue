@@ -5,7 +5,7 @@
         <span>{{ event.start }}-{{ event.end }}</span>
         <span v-if="showRoom">
           | {{ event.room.name }}
-          <v-icon color="secondary" :title="state.name">{{ state.icon }}</v-icon>
+          <room-state :room="event.room"></room-state>
         </span>
         <span v-if="!showRoom && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
 import Favourite from './Favourite'
+import RoomState from './RoomState'
 
 export default {
   name: 'event',
@@ -30,17 +30,8 @@ export default {
   ],
 
   components: {
-    favourite: Favourite
-  },
-
-  computed: {
-    state () {
-      return this.roomState(this.event.room.name)
-    },
-
-    ...mapGetters([
-      'roomState'
-    ])
+    Favourite,
+    RoomState
   }
 }
 </script>
@@ -61,11 +52,5 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline;
-}
-
-.event .v-list__tile__sub-title i {
-  font-size: 17px;
-  vertical-align: text-bottom;
-  margin-left: 1px;
 }
 </style>

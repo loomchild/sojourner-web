@@ -7,6 +7,7 @@
           <div class="event-info">
             {{ event.day.name }} {{ event.start }}-{{ event.end }}
             | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
+            <room-state :room="event.room"></room-state>
           </div>
           <h2>{{ event.title }}</h2>
           <h3>{{ event.subtitle }}</h3>
@@ -35,12 +36,14 @@ import {mapGetters} from 'vuex'
 
 import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
+import RoomState from '@/components/RoomState'
 
 export default {
   name: 'event-details',
 
   components: {
-    favourite: Favourite
+    Favourite,
+    RoomState
   },
 
   props: [
@@ -52,13 +55,8 @@ export default {
       return this.events[this.eventId] || new Event()
     },
 
-    state () {
-      return this.roomState(this.event.room.name)
-    },
-
     ...mapGetters([
-      'events',
-      'roomState'
+      'events'
     ])
   },
 
