@@ -3,6 +3,7 @@
 module.exports = {
   roomStatePollInterval: 60,
   analyticsUrl: '',
+  sentryDsn: '',
 
   firebase: {
     apiKey: 'AIzaSyDdGLMo8SACp-7E2g_HXaPs-0VWjBktRpA',

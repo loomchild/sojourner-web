@@ -13,6 +13,8 @@
     "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
   "dependencies": {
+    "@sentry/browser": "^5.4.0",
+    "@sentry/integrations": "^5.4.1",
     "firebase": "^5.11.1",
     "localforage": "^1.7.3",
     "lodash": "^4.17.11",
