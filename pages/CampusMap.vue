@@ -43,13 +43,13 @@ export default {
 
   @media (min-aspect-ratio: 1/1) {
     .map-container {
-      max-width: 78%;
+      max-width: calc(69% - 65px);
     }
   }
 
   @media (min-aspect-ratio: 16/9) and (max-height: 550px) {
     .map-container {
-      max-width: 68%;
+      max-width: calc(54% - 65px);
     }
   }
 
