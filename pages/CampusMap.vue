@@ -13,18 +13,8 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-
 export default {
   name: 'campus-map',
-
-  methods: mapActions([
-    'showZoomTip'
-  ]),
-
-  created () {
-    this.showZoomTip()
-  },
 
   metaInfo () {
     return {
