@@ -99,46 +99,6 @@ const scoreEvent = (event, keywords) => {
 
 const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] || 0, -1).thenBy('title')
 
-const trackStats = (tracks, eventsByTrack) => {
-  return tracks.map(track => {
-    const events = eventsByTrack[track.name] ? eventsByTrack[track.name] : []
-    const eventsByRoom = _.groupBy(events, event => event.room.name)
-    const eventsByDay = _.groupBy(events, event => event.day.index)
-
-    const rooms = _.uniqBy(events.sort(eventNaturalSort).map(event => event.room), room => room.name)
-      .map(room => ({
-        room: room,
-        days: _.uniq(eventsByRoom[room.name].map(event => event.day.name)).sort()
-      }))
-
-    const days = _.uniqBy(events.sort(eventNaturalSort).map(event => event.day), day => day.index)
-      .map(day => ({
-        day,
-        rooms: _.uniq(eventsByDay[day.index].map(event => event.room)).sort(firstBy('name'))
-      }))
-
-    return {
-      track: track,
-      events: events,
-      days: days,
-      rooms: rooms
-    }
-  })
-}
-
-const typeStats = (types, eventsByType) => {
-  return types.map(type => {
-    const events = eventsByType[type.name] || []
-    const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
-
-    return {
-      type,
-      events,
-      tracks
-    }
-  })
-}
-
 export default {
   state: {
     scheduleInitialized: false,
@@ -195,15 +155,45 @@ export default {
 
     typeTrackStats: (state, getters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
-      const tracks = _.uniqBy(typeEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
-      const eventsByTrack = _.groupBy(Object.values(typeEvents), event => event.track.name)
-      return trackStats(tracks, eventsByTrack)
+      const eventsByDay = _.groupBy(Object.values(typeEvents), event => event.day.index)
+
+      return getters.allDays.map(day => {
+        const dayEvents = eventsByDay[day.index]
+        const dayTracks = _.uniqBy(dayEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
+        const tracks = dayTracks.map(track => {
+          const events = dayEvents.filter(event => event.track.name === track.name).sort(eventNaturalSort)
+
+          const rooms = _.uniqBy(events.map(event => event.room), room => room.name)
+          // I assume there's maximum one room per track per day, could warn if not the case
+          const room = rooms[0]
+
+          return {
+            track,
+            room,
+            events
+          }
+        })
+
+        return {
+          day,
+          tracks
+        }
+      })
     },
 
     allTypeStats: state => {
       const types = Object.values(state.types).sort(firstBy('priority'))
       const eventsByType = _.groupBy(Object.values(state.events), event => event.type.name)
-      return typeStats(types, eventsByType)
+      return types.map(type => {
+        const events = eventsByType[type.name] || []
+        const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
+
+        return {
+          type,
+          events,
+          tracks
+        }
+      })
     }
   },
 
