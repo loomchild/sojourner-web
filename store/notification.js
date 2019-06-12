@@ -1,4 +1,4 @@
-const DEFAULT_NOTIFICATION_TIMEOUT = 7000
+const DEFAULT_NOTIFICATION_TIMEOUT = 10000
 
 export default {
   state: {
