@@ -15,10 +15,6 @@
         </v-tab-item>
       </template>
     </v-tabs>
-    <v-list three-line>
-      <template v-for="(event, index) in events">
-      </template>
-    </v-list>
   </div>
 </template>
 
