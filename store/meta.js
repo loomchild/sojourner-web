@@ -2,13 +2,17 @@ export default {
   state: {
     title: null,
 
-    drawer: null
+    drawer: null,
+
+    tab: 0
   },
 
   getters: {
     title: state => state.title,
 
-    drawer: state => state.drawer
+    drawer: state => state.drawer,
+
+    tab: state => state.tab
   },
 
   mutations: {
@@ -18,6 +22,10 @@ export default {
 
     setDrawer (state, drawer) {
       state.drawer = drawer
+    },
+
+    setTab (state, tab) {
+      state.tab = tab
     }
   },
 
@@ -32,6 +40,10 @@ export default {
 
     toggleDrawer ({commit, state}) {
       commit('setDrawer', !state.drawer)
+    },
+
+    setTab ({commit}, tab) {
+      commit('setTab', tab)
     },
 
     initA2HSTip ({commit, state, dispatch}) {

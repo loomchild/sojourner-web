@@ -146,4 +146,9 @@ html {
 .v-tabs.days .v-tabs__item--active {
   background-color: var(--v-secondary-base);
 }
+
+/* Sometimes window height stays 0px (Vuetify bug?), forcing undefined height */
+.v-tabs.days .v-window__container--is-active {
+  height: unset !important;
+}
 </style>
