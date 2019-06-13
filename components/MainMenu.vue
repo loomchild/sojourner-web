@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app clipped fixed :value="drawer" @input="setDrawer" mobile-break-point="960" width="250" height="480">
+  <v-navigation-drawer app clipped fixed :value="drawer" @change="setDrawer" mobile-break-point="960" width="250" height="480">
     <v-list :dark="$vuetify.breakpoint.smAndDown">
       <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
