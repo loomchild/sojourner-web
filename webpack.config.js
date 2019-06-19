@@ -10,6 +10,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const config = require('./config.js')
+
 module.exports = {
   context: path.resolve(__dirname, '.'),
   entry: './main.js',
@@ -157,7 +159,18 @@ if (process.env.NODE_ENV === 'production') {
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/',
-      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers']
+      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.')),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            broadcastUpdate: {
+              channelName: 'update-schedule'
+            }
+          }
+        }
+      ]
     })
   ])
 }

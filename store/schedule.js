@@ -299,6 +299,20 @@ export default {
       return dispatch('initSchedule', 'reload')
     },
 
+    notifyRefreshSchedule ({dispatch}) {
+      dispatch('showNotification', {
+        message: 'New schedule is available.',
+        color: 'info',
+        timeout: 0,
+        button: {
+          title: 'REFRESH',
+          handler: () => {
+            dispatch('refreshSchedule')
+          }
+        }
+      })
+    },
+
     reindexEvents ({state, commit, dispatch}) {
       const index = {}
       for (let event of Object.values(state.events)) {
