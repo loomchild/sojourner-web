@@ -1,7 +1,7 @@
 <template>
   <div>
-    <track-list v-if="tracks.length > 1" :tracks="tracks"></track-list>
-    <event-list v-if="tracks.length === 1" :events="events"></event-list>
+    <track-list v-if="multipleTracks" :tracks="tracks"></track-list>
+    <event-list v-else :events="events"></event-list>
   </div>
 </template>
 
@@ -30,6 +30,10 @@ export default {
 
     events () {
       return this.typeEvents(this.typeName)
+    },
+
+    multipleTracks () {
+      return this.tracks.some(track => track.tracks.length > 1)
     },
 
     ...mapGetters({
