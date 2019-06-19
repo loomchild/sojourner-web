@@ -19,3 +19,4 @@ globals:
   should: true
   TIMESTAMP: true
   COMMITHASH: true
+  VERSION: true

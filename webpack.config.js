@@ -94,7 +94,9 @@ module.exports = {
       'static/'
     ]),
     new webpack.DefinePlugin({
-      'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss'))
+      'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
+      'COMMITHASH': JSON.stringify('unknown'),
+      'VERSION': JSON.stringify('unknown')
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'

@@ -26,17 +26,22 @@
 </template>
 
 <script>
-import config from '@/config'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'about',
 
-  data: () => ({
-    version: config.version,
-    commithash: config.commithash,
-    commiturl: `https://github.com/loomchild/sojourner-web/commit/${config.commithash}`,
-    timestamp: config.timestamp
-  }),
+  computed: {
+    commiturl () {
+      return `https://github.com/loomchild/sojourner-web/commit/${this.commithash}`
+    },
+
+    ...mapGetters([
+      'timestamp',
+      'commithash',
+      'version'
+    ])
+  },
 
   metaInfo () {
     return {

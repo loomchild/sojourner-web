@@ -8,6 +8,12 @@ export default {
   },
 
   getters: {
+    timestamp: () => TIMESTAMP,
+
+    commithash: () => COMMITHASH,
+
+    version: () => VERSION,
+
     title: state => state.title,
 
     drawer: state => state.drawer,
