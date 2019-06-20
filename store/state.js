@@ -69,7 +69,7 @@ export default {
     },
 
     initRoomStateUpdater ({dispatch, state, commit}) {
-      if (!config.roomStateUrl) {
+      if (!config.roomStateUrl || !config.roomStatePollInterval || state.roomStateUpdaterInitialized) {
         return
       }
       const scheduleRefreshRoomStates = (attempt = 0) => {
@@ -82,9 +82,7 @@ export default {
             setTimeout(() => scheduleRefreshRoomStates(attempt + 1), config.roomStatePollInterval * 1000)
           })
       }
-      if (!state.roomStateUpdaterInitialized && config.roomStatePollInterval > 0) {
-        scheduleRefreshRoomStates()
-      }
+      scheduleRefreshRoomStates()
     }
   }
 }
