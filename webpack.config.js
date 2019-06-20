@@ -110,7 +110,26 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled'
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new GenerateSW({
+      cacheId: 'sojourner',
+      importWorkboxFrom: process.env.NODE_ENV === 'development' ? 'cdn' : 'local', // Bug, tracked here https://github.com/GoogleChrome/workbox/issues/1338
+      clientsClaim: true,
+      skipWaiting: true,
+      navigateFallback: '/index.html',
+      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.')),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            broadcastUpdate: {
+              channelName: 'workbox'
+            }
+          }
+        }
+      ]
+    })
   ]
 }
 
@@ -152,25 +171,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new GenerateSW({
-      cacheId: 'sojourner',
-      importWorkboxFrom: 'local',
-      clientsClaim: true,
-      skipWaiting: true,
-      navigateFallback: '/',
-      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.')),
-          handler: 'StaleWhileRevalidate',
-          options: {
-            broadcastUpdate: {
-              channelName: 'workbox'
-            }
-          }
-        }
-      ]
     })
   ])
 }
