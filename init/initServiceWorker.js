@@ -1,5 +1,6 @@
 import {Workbox} from 'workbox-window'
 
+import config from '@/config'
 import store from '@/store'
 
 export default function () {
@@ -9,6 +10,13 @@ export default function () {
     wb.addEventListener('activated', event => {
       if (event.isUpdate) {
         store.dispatch('notifyNewVersion')
+      } else {
+        wb.messageSW({
+          type: 'CACHE_URLS',
+          payload: {
+            urlsToCache: [config.scheduleUrl]
+          }
+        })
       }
     })
 
