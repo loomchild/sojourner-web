@@ -6,7 +6,7 @@ export default function () {
   if ('serviceWorker' in navigator) {
     const wb = new Workbox('/service-worker.js')
 
-    wb.addEventListener('installed', event => {
+    wb.addEventListener('activated', event => {
       if (event.isUpdate) {
         store.dispatch('notifyNewVersion')
       }
