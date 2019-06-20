@@ -166,7 +166,7 @@ if (process.env.NODE_ENV === 'production') {
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
-              channelName: 'update-schedule'
+              channelName: 'workbox'
             }
           }
         }
