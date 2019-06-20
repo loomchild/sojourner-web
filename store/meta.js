@@ -85,6 +85,21 @@ export default {
           })
         }, 60 * 1000)
       }
+    },
+
+    notifyNewVersion ({dispatch}) {
+      dispatch('showNotification', {
+        message: 'New version is available.',
+        color: 'info',
+        timeout: 0,
+        button: {
+          title: 'REFRESH',
+          handler: () => {
+            window.location.reload()
+          }
+        }
+      })
     }
+
   }
 }

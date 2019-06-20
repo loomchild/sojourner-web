@@ -8,7 +8,7 @@ export default function () {
 
     wb.addEventListener('installed', event => {
       if (event.isUpdate) {
-        console.log('Update available')
+        store.dispatch('notifyNewVersion')
       }
     })
 
