@@ -74,7 +74,7 @@ export default {
                 }
               }
             })
-          }, 30 * 1000)
+          }, 60 * 1000)
         }
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/)) {
