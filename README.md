@@ -50,3 +50,10 @@ You can test it locally by running:
 The deployment happens automatically to Netlify, nothing specific to do.
 
 *Note: use annotated tags to make them visible on About page.*
+
+# Miscellaneous
+
+## Handling images
+
+Resize PNGs using Tiny PNG: https://tinypng.com/
+This could be done with GIMP, but unfortunately it doesn't preserve transparency when converting PNGs to indexed mode.
