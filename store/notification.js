@@ -2,24 +2,21 @@ const DEFAULT_NOTIFICATION_TIMEOUT = 10000
 
 export default {
   state: {
-    notification: { message: '', color: null },
-    notificationVisible: false
+    notifications: []
   },
 
   mutations: {
-    setNotification (state, notification) {
-      state.notification = notification
+    pushNotification (state, notification) {
+      state.notifications.push(notification)
     },
 
-    setNotificationVisible (state, notificationVisible) {
-      state.notificationVisible = notificationVisible
+    popNotification (state) {
+      state.notifications.shift()
     }
   },
 
   getters: {
-    notification: state => state.notification,
-
-    notificationVisible: state => state.notificationVisible
+    notifications: state => state.notifications
   },
 
   actions: {
@@ -29,16 +26,15 @@ export default {
       }
     },
 
-    setNotificationVisible ({commit}, notificationVisible) {
-      commit('setNotificationVisible', notificationVisible)
+    hideNotification ({commit}) {
+      commit('popNotification')
     },
 
     showNotification ({commit}, notification) {
       if (notification.timeout === undefined) {
         notification.timeout = DEFAULT_NOTIFICATION_TIMEOUT
       }
-      commit('setNotification', notification)
-      commit('setNotificationVisible', true)
+      commit('pushNotification', notification)
     },
 
     showMessage ({dispatch}, message) {
