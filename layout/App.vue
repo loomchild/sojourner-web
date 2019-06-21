@@ -114,6 +114,14 @@ html {
 
 .center {
   margin: auto;
+  width: 150px;
+  height: 150px;
+}
+
+@media screen and (display-mode: standalone) {
+  .center .spinner {
+    animation: scale-in 300ms ease-in both;
+  }
 }
 
 .container {

@@ -16,8 +16,10 @@ html, body {
   transform: translate(-50%,-50%);
 }
 
-.middle .spinner {
-  animation: scale-in 300ms ease-in both;
+@media screen and (display-mode: browser) {
+  .middle .spinner {
+    animation: scale-in 300ms ease-in both;
+  }
 }
 
 /* Spinner */
