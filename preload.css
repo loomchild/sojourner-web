@@ -16,6 +16,10 @@ html, body {
   transform: translate(-50%,-50%);
 }
 
+.middle .spinner {
+  animation: scale-in 300ms ease-in both;
+}
+
 /* Spinner */
 
 @keyframes spin {
@@ -37,7 +41,6 @@ html, body {
   width: 150px;
   height: 150px;
   background-image: url(~assets/logo-small-inner.png);
-  animation: scale-in 300ms ease-in both;
 }
 
 .spinner::before {
