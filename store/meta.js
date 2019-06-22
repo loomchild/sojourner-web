@@ -60,7 +60,6 @@ export default {
           setTimeout(() => {
             dispatch('showNotification', {
               message: 'Add this application to your home screen.',
-              color: 'info',
               timeout: 0,
               button: {
                 title: 'ADD',
@@ -79,10 +78,7 @@ export default {
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/)) {
         setTimeout(() => {
-          dispatch('showNotification', {
-            message: 'If you enjoy this application, please consider adding it to your home screen.',
-            color: 'info'
-          })
+          dispatch('showMessage', 'If you enjoy this application, please consider adding it to your home screen.')
         }, 60 * 1000)
       }
     },
@@ -90,7 +86,6 @@ export default {
     notifyNewVersion ({dispatch}) {
       dispatch('showNotification', {
         message: 'New version is available.',
-        color: 'info',
         timeout: 0,
         button: {
           title: 'REFRESH',

@@ -130,11 +130,7 @@ export default {
       return new Promise((resolve, reject) => {
         const request = window.indexedDB.open('sojourner-test')
         request.onerror = () => {
-          dispatch('showNotification', {
-            color: 'error',
-            message: 'Unable to initialize IndexedDB, are you browsing in private mode?',
-            timeout: 0
-          })
+          dispatch('showError', 'Unable to initialize IndexedDB, are you browsing in private mode?')
           reject(new Error('Unable to open IndexedDB'))
         }
         request.onsuccess = () => {
@@ -167,8 +163,8 @@ export default {
               console.error(e)
               return dispatch('showNotification', {
                 message: 'To assure that your data is preserved, please either allow persistent data storage (bookmarking or adding to home screen might help) or log-in.',
-                timeout: 0,
-                color: 'warning'
+                level: 'warning',
+                timeout: 0
               }).then(() => commit('shownLoseDataWarning'))
             }
           })

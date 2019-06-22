@@ -60,7 +60,7 @@ export default {
             if (emergencyRooms.length > 0) {
               /* dispatch('showNotification', {
                  message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
-                 color: 'warning',
+                 level: 'warning',
                  timeout: 0
               }) */
             }

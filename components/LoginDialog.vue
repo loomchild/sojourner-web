@@ -101,7 +101,7 @@ export default {
 
       this.logIn({email: this.email, password: this.password})
         .then(() => {
-          this.showSuccess('Logged in successfully')
+          this.showMessage('Logged in successfully')
           this.reset()
           this.setLoginDialog(false)
         })
@@ -117,7 +117,7 @@ export default {
 
       this.register({email: this.email, password: this.password})
         .then(() => {
-          this.showSuccess('Registered successfully')
+          this.showMessage('Registered successfully')
           this.reset()
           this.setLoginDialog(false)
         })
@@ -131,7 +131,7 @@ export default {
       'hideLoginDialog',
       'logIn',
       'register',
-      'showSuccess',
+      'showMessage',
       'showError'
     ])
   }

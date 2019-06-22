@@ -32,19 +32,15 @@ export default {
     },
 
     showMessage ({dispatch}, message) {
-      dispatch('showNotification', {message, color: null})
-    },
-
-    showSuccess ({dispatch}, message) {
-      dispatch('showNotification', {message, color: 'success'})
+      dispatch('showNotification', {message})
     },
 
     showWarning ({dispatch}, message) {
-      dispatch('showNotification', {message, color: 'warning'})
+      dispatch('showNotification', {message, level: 'warning'})
     },
 
     showError ({dispatch}, message) {
-      dispatch('showNotification', {message, color: 'error'})
+      dispatch('showNotification', {message, level: 'error'})
     }
   }
 }

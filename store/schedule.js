@@ -302,7 +302,6 @@ export default {
     notifyRefreshSchedule ({dispatch}) {
       dispatch('showNotification', {
         message: 'New schedule is available.',
-        color: 'info',
         timeout: 0,
         button: {
           title: 'REFRESH',
