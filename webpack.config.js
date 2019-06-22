@@ -68,13 +68,24 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               name: '[path][name].[ext]?[hash]',
               limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
