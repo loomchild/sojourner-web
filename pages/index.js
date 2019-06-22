@@ -10,7 +10,6 @@ import CampusMap from './CampusMap'
 import ConferenceTrackEvents from './ConferenceTrackEvents'
 import EventDetails from './EventDetails'
 import FavouriteEvents from './FavouriteEvents'
-import Settings from './Settings'
 import TypeTracksOrEvents from './TypeTracksOrEvents'
 
 window.history.scrollRestoration = 'manual'
@@ -64,11 +63,6 @@ const router = new Router({
       name: 'building-map',
       component: BuildingMap,
       props: true
-    },
-    {
-      path: '/settings',
-      name: 'settings',
-      component: Settings
     },
     {
       path: '/about',
