@@ -20,12 +20,6 @@ export default {
   },
 
   actions: {
-    initNotification ({dispatch}, notification) {
-      if (notification) {
-        dispatch('showNotification', JSON.parse(notification))
-      }
-    },
-
     hideNotification ({commit}) {
       commit('popNotification')
     },

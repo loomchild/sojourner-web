@@ -53,7 +53,6 @@ export default {
     'initUser',
     'initRoomStateUpdater',
     'initA2HSTip',
-    'initNotification',
     'setTitle'
   ]),
 
@@ -74,7 +73,6 @@ export default {
       this.initUser()
       this.initRoomStateUpdater()
       this.initA2HSTip()
-      this.initNotification(this.$route.query.notification)
     })
   },
 
