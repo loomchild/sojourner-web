@@ -1,3 +1,7 @@
+function isStandalone () {
+  return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches
+}
+
 export default {
   state: {
     title: null,
@@ -76,7 +80,7 @@ export default {
           }, 60 * 1000)
         }
         window.addEventListener('beforeinstallprompt', handler)
-      } else if (navigator.userAgent.match(/Mobile|Tablet/)) {
+      } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
         setTimeout(() => {
           dispatch('showMessage', 'If you enjoy this application, please consider adding it to your home screen.')
         }, 60 * 1000)
