@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar :value="notification.message" @change="hide" :timeout="notification.timeout" :color="notification.color" bottom multi-line>
+  <v-snackbar :value="notification.message" @change="hide" :timeout="notification.timeout" color="primary" bottom multi-line>
     {{ notification.message }}
     <v-spacer></v-spacer>
     <v-btn v-if="notification.button" flat small @click.native="button()">{{ notification.button.title }}</v-btn>
