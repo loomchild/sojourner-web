@@ -23,7 +23,6 @@
     "moment": "^2.24.0",
     "pouchdb": "^7.0.0",
     "thenby": "^1.3.0",
-    "typeface-roboto": "0.0.54",
     "typeface-rubik": "0.0.72",
     "vue": "^2.6.10",
     "vue-meta": "^1.6.0",
