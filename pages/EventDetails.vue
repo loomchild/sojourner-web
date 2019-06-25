@@ -2,7 +2,7 @@
   <v-container fluid fill-height>
     <v-layout justify-center align-top>
       <v-card>
-        <div class="image"></div>
+        <div class="image" :style="{'--image': `url(${background})`}"></div>
         <v-card-title primary-title>
           <div class="event-info">
             {{ event.day.name }} {{ event.start }}-{{ event.end }}
@@ -55,6 +55,10 @@ export default {
       return this.events[this.eventId] || new Event()
     },
 
+    background () {
+      return this.event ? require(`@/assets/${this.event.type.background}`) : ''
+    },
+
     ...mapGetters([
       'events'
     ])
@@ -79,9 +83,8 @@ export default {
 }
 
 .v-card .image {
-  background-color: #EDBAA7 !important;
-  background-image: url(~assets/background-hexagon.png);
-  background-size: 100% auto;
+  background: linear-gradient(#EDBAA788, #EDBAA788), var(--image);
+  background-size: auto, 100% auto;
   height: calc(22vh + 80px);
   margin-bottom: -80px;
   width: 100%;
