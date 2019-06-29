@@ -19,7 +19,7 @@ Download node dependencies:
 
 Start the local development server:
 
-    npm run start
+    npm run dev
 
 # Test
 
@@ -45,7 +45,7 @@ Static application can be generated into dist/ directory using:
 
 You can test it locally by running:
 
-    npm run serve
+    npm run start
 
 The deployment happens automatically to Netlify, nothing specific to do.
 

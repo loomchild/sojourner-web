@@ -9,7 +9,7 @@ script:
   - npm run lint
   - npm run test
   - npm run build
-  - npm run serve &
+  - npm run start &
   - sleep 1
   - xvfb-run npm run test-e2e
   - pkill node
