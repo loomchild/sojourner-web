@@ -45,7 +45,7 @@ export default {
 
   metaInfo () {
     return {
-      title: 'Favourites'
+      title: 'Bookmarks'
     }
   }
 }
