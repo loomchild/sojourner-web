@@ -1,11 +1,28 @@
 <template>
-  <v-container id="dashboard" fluid fill-height>
+  <v-container v-if="$vuetify.breakpoint.xsOnly" id="dashboard" fluid fill-height>
     <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple v-go="`/type/${type.type.name}`">
+      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple d-flex v-go="`/type/${type.type.name}`">
         <article>
-          <section>{{ type.type.name }}</section>
+          <h2>{{ type.type.name }}</h2>
           <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
         </article>
+      </v-flex>
+    </v-layout>
+  </v-container>
+  <v-container v-else id="dashboard" fluid fill-height grid-list-xl>
+    <v-layout column>
+      <v-spacer></v-spacer>
+      <v-flex xs6>
+        <h1>FOSDEM'19 Program</h1>
+        <v-layout row>
+          <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple v-go="`/type/${type.type.name}`">
+            <article>
+              <h2>{{ type.type.name }}</h2>
+              <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
+            </article>
+            <div class="circle"> </div>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -39,49 +56,100 @@ export default {
   background-position: center;
 }
 
-.layout .flex {
-  display: flex;
-  flex-direction: column;
+#dashboard .layout .flex {
   cursor: pointer;
 }
 
-.layout .flex:nth-child(1) {
-  background-color: #508F8999;
-}
-
-.layout .flex:nth-child(2) {
-  background-color: #519BA699;
-}
-
-.layout .flex:nth-child(3) {
-  /* TODO */
-  background-color: #6aacb699;
-}
-
-.layout .flex:nth-last-child(2) {
-  background-color: #CCB19499;
-}
-
-.layout .flex:nth-last-child(1) {
-  background-color: #633D5C99;
-}
-
-.layout .flex article {
+#dashboard .layout .flex article {
   margin: auto;
   text-align: center;
   color: white;
 }
 
-.layout .flex article section {
+#dashboard .layout .flex article h2 {
   font-size: 38px;
   line-height: 46px;
   font-weight: lighter;
 }
 
-.layout .flex article footer {
+#dashboard .layout .flex article footer {
   font-size: 12px;
   line-height: 14px;
   text-transform: uppercase;
   opacity: 0.7;
 }
+
+#dashboard .layout .flex:nth-child(1),
+#dashboard .layout .layout .flex:nth-child(1) .circle {
+  background-color: #508F8999;
+}
+
+#dashboard .layout .flex:nth-child(2),
+#dashboard .layout .layout .flex:nth-child(2) .circle {
+  background-color: #519BA699;
+}
+
+#dashboard .layout .flex:nth-child(3),
+#dashboard .layout .layout .flex:nth-child(3) .circle {
+  background-color: #6aacb699;
+}
+
+#dashboard .layout .flex:nth-last-child(2),
+#dashboard .layout .layout .flex:nth-last-child(2) .circle {
+  background-color: #CCB19499;
+}
+
+#dashboard .layout .flex:nth-last-child(1),
+#dashboard .layout .layout .flex:nth-last-child(1) .circle {
+  background-color: #633D5C99;
+}
+
+@media only screen and (min-width:600px) {
+  #dashboard {
+    background-image: none;
+    max-width: 960px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #dashboard .layout .flex {
+    background-color: transparent !important;
+    margin-top: auto;
+    cursor: default;
+  }
+
+  #dashboard .layout .layout .flex {
+    cursor: pointer;
+  }
+
+  #dashboard .layout .flex h1 {
+    font-size: 80px;
+    line-height: 1em;
+    font-family: 'Roboto Condensed', Arial;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--v-secondary-base);
+  }
+
+  #dashboard .layout .flex article h2 {
+    font-size: 26px;
+    line-height: 31px;
+    font-weight: normal;
+  }
+
+  #dashboard .layout .flex article footer {
+    margin-top: 6px;
+  }
+
+  #dashboard .layout .flex .circle {
+    display: block;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 </style>

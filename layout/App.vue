@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" :style="{backgroundColor: $route.path === '/' ? 'var(--v-primary-base)' : '#fafafa'}">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
@@ -104,7 +104,7 @@ html {
   overflow-y: auto;
 }
 
-@media only screen and (max-width:959px) {
+@media only screen and (max-width:599px) {
   .v-snack--bottom {
     margin-bottom: 56px;
   }
