@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav dark id="bottom-menu" app fixed :value="$vuetify.breakpoint.smAndDown" color="secondary">
+  <v-bottom-nav dark id="bottom-menu" app fixed :value="$vuetify.breakpoint.xsOnly" color="secondary">
     <v-btn flat to="/">
       <v-icon>home</v-icon>
     </v-btn>
