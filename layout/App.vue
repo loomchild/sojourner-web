@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" :style="{backgroundColor: $route.path === '/' ? 'var(--v-primary-base)' : '#fafafa'}">
+  <v-app id="app" :class="{root: isRoot}">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
@@ -77,6 +77,10 @@ export default {
   },
 
   computed: {
+    isRoot () {
+      return this.$route.path === '/'
+    },
+
     ...mapGetters([
       'scheduleInitialized'
     ])
@@ -133,6 +137,21 @@ html {
 
 .application--wrap {
   min-height: var(--screenHeight, 100vh) !important;
+}
+
+.root .application--wrap {
+  background-image: url(~assets/dashboard.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+@media only screen and (min-width:600px) {
+  .root .application--wrap {
+    background-color: var(--v-primary-base) !important;
+    background-image: url(~assets/dashboard-desktop.png);
+    background-size: 33%;
+    background-position: right bottom;
+  }
 }
 
 .v-list__tile__action {

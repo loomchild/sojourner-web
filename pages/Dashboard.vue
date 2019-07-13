@@ -11,8 +11,7 @@
   </v-container>
   <v-container v-else id="dashboard" fluid fill-height grid-list-xl>
     <v-layout column>
-      <v-spacer></v-spacer>
-      <v-flex xs6>
+      <v-flex lg6 xs7>
         <h1>FOSDEM'19 Program</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple v-go="`/type/${type.type.name}`">
@@ -51,9 +50,6 @@ export default {
 <style>
 #dashboard {
   padding: 0;
-  background-image: url(~assets/dashboard.jpg);
-  background-size: cover;
-  background-position: center;
 }
 
 #dashboard .layout .flex {
