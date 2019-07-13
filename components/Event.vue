@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .event .v-list__tile__title {
   white-space: normal;
   height: auto;
@@ -45,9 +45,6 @@ export default {
 
 .event .v-list__tile__sub-title {
   color: var(--v-secondary-base) !important;
-}
-
-.event .v-list__tile__sub-title {
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
