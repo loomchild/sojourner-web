@@ -20,7 +20,7 @@ function updateGoDirective (el, binding, vnode) {
 
 Vue.directive('go', {
   bind: addGoDirective,
-  update: updateGoDirective,
+  componentUpdated: updateGoDirective,
   unbind: removeGoDirective
 })
 
