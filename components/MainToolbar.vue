@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar id="toolbar" v-if="$vuetify.breakpoint.xsOnly" app fixed flat color="primary">
+  <v-toolbar v-if="$vuetify.breakpoint.xsOnly" app fixed flat color="primary">
     <v-toolbar-side-icon dark v-if="$vuetify.breakpoint.xsOnly && dashboard" @click.stop="toggleDrawer"></v-toolbar-side-icon>
     <v-btn v-if="!dashboard" @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>
@@ -7,7 +7,7 @@
     <v-toolbar-title>{{ title }}</v-toolbar-title>
     <v-spacer></v-spacer>
   </v-toolbar>
-  <v-toolbar id="toolbar" v-else app absolute flat height="82px" color="primary">
+  <v-toolbar v-else app absolute flat height="82px" color="primary">
     <v-layout>
       <router-link class="logo" v-ripple to="/">
         Sojourner
@@ -51,22 +51,26 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.v-toolbar__title {
+  color: white;
+}
+
 @media only screen and (min-width:600px) {
-  #toolbar, #toolbar .logo {
+  .v-toolbar, .logo {
     color: white;
     font-size: 18px;
     font-weight: normal;
     line-height: 33px;
   }
 
-  #toolbar .layout {
+  .layout {
     max-width: 960px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  #toolbar .logo {
+  .logo {
     background-image: url(~assets/logo-toolbar.png);
     background-position: left center;
     padding-left: 41px;
@@ -75,7 +79,7 @@ export default {
     align-items: center;
   }
 
-  #toolbar .v-btn {
+  .v-btn {
     font-size: 18px;
     font-weight: normal;
     text-transform: none;
@@ -86,7 +90,7 @@ export default {
     min-width: 0;
   }
 
-  #toolbar .v-btn--active::before {
+  .v-btn--active::before {
     background-color: initial;
     border-bottom: 2px solid var(--v-secondary-base);
     opacity: 1.0;
@@ -95,10 +99,5 @@ export default {
     /*width: calc(100% - 54px);
     left: 27px;*/
   }
-
-}
-
-#toolbar .v-toolbar__title {
-  color: white;
 }
 </style>
