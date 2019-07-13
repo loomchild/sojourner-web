@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .v-card {
     width: 100%;
     height: 100%;
@@ -69,5 +69,3 @@ export default {
     margin-bottom: 7px;
   }
 </style>
-
-
