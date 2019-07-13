@@ -80,6 +80,7 @@ export default {
 <style>
 .v-card {
   background-color: var(--v-primary-lighten3) !important;
+  width: 100%;
 }
 
 .v-card .image {
