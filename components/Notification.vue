@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-snack button {
   margin-left: 10px !important;
 }

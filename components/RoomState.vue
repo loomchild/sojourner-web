@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 i.room-state {
   font-size: 17px;
   vertical-align: text-bottom;

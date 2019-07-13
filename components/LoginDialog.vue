@@ -138,7 +138,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .switch-tab {
   margin-bottom: 1rem;
 }

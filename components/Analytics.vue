@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .pixel {
   border: 0;
   position: absolute;

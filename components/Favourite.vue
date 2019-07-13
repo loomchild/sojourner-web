@@ -29,10 +29,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .favourite {
     cursor: pointer;
   }
 </style>
-
-
