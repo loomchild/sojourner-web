@@ -17,7 +17,7 @@
         </v-card-title>
         <v-card-text>
           <div>
-            <favourite :event="event"></favourite>
+            <favourite :event="event" large></favourite>
           </div>
           <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
           <div v-if="event.description" v-html="event.description" class="description"></div>
@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-card {
   background-color: var(--v-primary-lighten3) !important;
   width: 100%;
@@ -131,11 +131,6 @@ export default {
   position: absolute;
   right: 24px;
   transform: translateY(-36px);
-}
-
-.v-card__text .favourite i {
-  font-size: 40px;
-  font-weight: normal;
 }
 
 .links {
