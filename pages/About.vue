@@ -4,11 +4,6 @@
       <v-card>
         <v-card-text>
           <v-layout row wrap>
-            <v-flex xs12>
-              <div class="logo">
-                <a href="https://fosdem.org"><img src="@/assets/logo.png"></a>
-              </div>
-            </v-flex>
             <v-flex sm12 md6 offset-md3>
               <div class="infos body-2">
                 <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ commithash }}</a></p>
