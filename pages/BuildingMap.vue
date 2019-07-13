@@ -33,18 +33,22 @@ export default {
 </script>
 
 <style scoped>
-  .map-container {
-    width: 100%;
-    height: 100%;
-  }
+.container {
+  background-color: #ffffff;
+}
 
-  .map {
-    display: block;
-    max-width: 100%;
-    max-height: calc(100vh - 100px);
-    object-fit: contain;
-    margin: auto;
-  }
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 100px);
+  object-fit: contain;
+  margin: auto;
+}
 </style>
 
 

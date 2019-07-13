@@ -25,71 +25,75 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: #ffffff;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-aspect-ratio: 1/1) {
   .map-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: calc(69% - 65px);
   }
+}
 
-  @media (min-aspect-ratio: 1/1) {
-    .map-container {
-      max-width: calc(69% - 65px);
-    }
+@media (min-aspect-ratio: 16/9) and (max-height: 550px) {
+  .map-container {
+    max-width: calc(54% - 65px);
   }
+}
 
-  @media (min-aspect-ratio: 16/9) and (max-height: 550px) {
-    .map-container {
-      max-width: calc(54% - 65px);
-    }
-  }
+.map {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: calc(990 / 1386 * 100%);
+  background-image: url(~assets/campus.png);
+  background-size: 100% 100%;
+}
 
-  .map {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-top: calc(990 / 1386 * 100%);
-    background-image: url(~assets/campus.png);
-    background-size: 100% 100%;
-  }
+.map a {
+  position: absolute;
+}
 
-  .map a {
-    position: absolute;
-  }
+#building-k {
+  top: 27%;
+  left: 21.5%;
+  width: 11.5%;
+  height: 10%;
+}
 
-  #building-k {
-    top: 27%;
-    left: 21.5%;
-    width: 11.5%;
-    height: 10%;
-  }
+#building-j {
+  top: 67.5%;
+  left: 32%;
+  width: 11%;
+  height: 15.5%;
+}
 
-  #building-j {
-    top: 67.5%;
-    left: 32%;
-    width: 11%;
-    height: 15.5%;
-  }
+#building-h {
+  top: 59%;
+  left: 43.0%;
+  width: 6.5%;
+  height: 23%;
+}
 
-  #building-h {
-    top: 59%;
-    left: 43.0%;
-    width: 6.5%;
-    height: 23%;
-  }
+#building-aw {
+  top: 65%;
+  left: 53.5%;
+  width: 6.5%;
+  height: 9.5%;
+}
 
-  #building-aw {
-    top: 65%;
-    left: 53.5%;
-    width: 6.5%;
-    height: 9.5%;
-  }
-
-  #building-u {
-    top: 43.5%;
-    left: 51.5%;
-    width: 26.5%;
-    height: 11.5%;
-  }
+#building-u {
+  top: 43.5%;
+  left: 51.5%;
+  width: 26.5%;
+  height: 11.5%;
+}
 </style>
