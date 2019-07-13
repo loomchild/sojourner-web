@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .track .v-list__tile__title {
   white-space: normal;
   height: auto;
