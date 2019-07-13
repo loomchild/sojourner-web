@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.smAndDown" id="dashboard" fluid fill-height>
+  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height>
     <v-layout row wrap>
       <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex v-go="`/type/${type.type.name}`">
         <article>
@@ -9,7 +9,7 @@
       </v-flex>
     </v-layout>
   </v-container>
-  <v-container v-else id="dashboard" fluid fill-height grid-list-xl>
+  <v-container v-else fluid fill-height grid-list-xl>
     <v-layout column>
       <v-flex lg6 xs7>
         <h1>FOSDEM'19 Program</h1>
@@ -47,77 +47,77 @@ export default {
 }
 </script>
 
-<style>
-#dashboard {
+<style scoped>
+.container {
   padding: 0;
 }
 
-#dashboard .layout .flex {
+.layout .flex {
   cursor: pointer;
 }
 
-#dashboard .layout .flex article {
+.layout .flex article {
   margin: auto;
   text-align: center;
   color: white;
 }
 
-#dashboard .layout .flex article h2 {
+.layout .flex article h2 {
   font-size: 38px;
   line-height: 46px;
   font-weight: lighter;
 }
 
-#dashboard .layout .flex article footer {
+.layout .flex article footer {
   font-size: 12px;
   line-height: 14px;
   text-transform: uppercase;
   opacity: 0.7;
 }
 
-#dashboard .layout .flex:nth-child(1),
-#dashboard .layout .layout .flex:nth-child(1) .circle {
+.layout .flex:nth-child(1),
+.layout .layout .flex:nth-child(1) .circle {
   background-color: #508F8999;
 }
 
-#dashboard .layout .flex:nth-child(2),
-#dashboard .layout .layout .flex:nth-child(2) .circle {
+.layout .flex:nth-child(2),
+.layout .layout .flex:nth-child(2) .circle {
   background-color: #519BA699;
 }
 
-#dashboard .layout .flex:nth-child(3),
-#dashboard .layout .layout .flex:nth-child(3) .circle {
+.layout .flex:nth-child(3),
+.layout .layout .flex:nth-child(3) .circle {
   background-color: #6aacb699;
 }
 
-#dashboard .layout .flex:nth-last-child(2),
-#dashboard .layout .layout .flex:nth-last-child(2) .circle {
+.layout .flex:nth-last-child(2),
+.layout .layout .flex:nth-last-child(2) .circle {
   background-color: #CCB19499;
 }
 
-#dashboard .layout .flex:nth-last-child(1),
-#dashboard .layout .layout .flex:nth-last-child(1) .circle {
+.layout .flex:nth-last-child(1),
+.layout .layout .flex:nth-last-child(1) .circle {
   background-color: #633D5C99;
 }
 
 @media only screen and (min-width:960px) {
-  #dashboard {
+  .container {
     max-width: 960px;
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  #dashboard .layout .flex {
+  .layout .flex {
     background-color: transparent !important;
     margin-top: auto;
     cursor: default;
   }
 
-  #dashboard .layout .layout .flex {
+  .layout .layout .flex {
     cursor: pointer;
   }
 
-  #dashboard .layout .flex h1 {
+  .layout .flex h1 {
     font-size: 80px;
     line-height: 1em;
     font-family: 'Roboto Condensed', Arial;
@@ -126,17 +126,17 @@ export default {
     color: var(--v-secondary-base);
   }
 
-  #dashboard .layout .flex article h2 {
+  .layout .flex article h2 {
     font-size: 26px;
     line-height: 31px;
     font-weight: normal;
   }
 
-  #dashboard .layout .flex article footer {
+  .layout .flex article footer {
     margin-top: 6px;
   }
 
-  #dashboard .layout .flex .circle {
+  .layout .flex .circle {
     display: block;
     height: 27px;
     width: 27px;
