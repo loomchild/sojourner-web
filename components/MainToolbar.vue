@@ -9,9 +9,9 @@
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px" color="primary">
     <v-layout>
-      <router-link class="logo" v-ripple to="/">
+      <v-toolbar-title class="logo" v-ripple v-go="'/'">
         Sojourner
-      </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat dark :ripple="false" to="/">Program</v-btn>
       <v-btn flat dark :ripple="false" to="/favourites/">Bookmarks</v-btn>
@@ -62,6 +62,8 @@ export default {
     font-size: 18px;
     font-weight: normal;
     line-height: 33px;
+    letter-spacing: inherit;
+    user-select: none;
   }
 
   .layout {
