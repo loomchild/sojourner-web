@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" :class="{root: isRoot}">
+  <v-app :class="{root: isRoot}">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
