@@ -9,9 +9,9 @@
   </v-toolbar>
   <v-toolbar id="toolbar" v-else app absolute flat height="82px" color="primary">
     <v-layout>
-      <div class="logo">
+      <router-link class="logo" v-ripple to="/">
         Sojourner
-      </div>
+      </router-link>
       <v-spacer></v-spacer>
       <v-btn flat dark :ripple="false" to="/">Program</v-btn>
       <v-btn flat dark :ripple="false" to="/favourites/">Bookmarks</v-btn>
@@ -53,9 +53,10 @@ export default {
 
 <style>
 @media only screen and (min-width:600px) {
-  #toolbar {
+  #toolbar, #toolbar .logo {
     color: white;
     font-size: 18px;
+    font-weight: normal;
     line-height: 33px;
   }
 
@@ -69,6 +70,7 @@ export default {
     background-image: url(~assets/logo-toolbar.png);
     background-position: left center;
     padding-left: 41px;
+    padding-right: 10px;
     display: flex;
     align-items: center;
   }
