@@ -103,7 +103,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 html {
   overflow-y: auto;
 }
@@ -124,28 +124,31 @@ html {
   padding: 0;
 }
 
-.v-divider.day {
-  border-width: 12px;
-  border-color: #fafafa;
-}
-
-.application--wrap {
+.application {
   min-height: var(--screenHeight, 100vh) !important;
 }
 
-.root .application--wrap {
+.application.root {
   background-image: url(~assets/dashboard.jpg);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media only screen and (min-width:960px) {
-  .root .application--wrap {
+  .application.root {
     background-color: var(--v-primary-base) !important;
     background-image: url(~assets/dashboard-desktop.png);
     background-size: 33%;
     background-position: right bottom;
   }
+}
+</style>
+
+<style>
+/* Sometimes window height stays 0px (Vuetify bug?), forcing undefined height */
+.v-tabs.days .v-window__container--is-active {
+  height: unset !important;
 }
 
 .v-list__tile__action {
@@ -168,10 +171,5 @@ html {
 
 .v-tabs.days .v-tabs__item--active {
   background-color: var(--v-secondary-base);
-}
-
-/* Sometimes window height stays 0px (Vuetify bug?), forcing undefined height */
-.v-tabs.days .v-window__container--is-active {
-  height: unset !important;
 }
 </style>
