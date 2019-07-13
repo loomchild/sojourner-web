@@ -108,12 +108,6 @@ html {
   overflow-y: auto;
 }
 
-@media only screen and (max-width:599px) {
-  .v-snack--bottom {
-    margin-bottom: 56px;
-  }
-}
-
 .center {
   margin: auto;
   width: 150px;
@@ -145,7 +139,7 @@ html {
   background-position: center;
 }
 
-@media only screen and (min-width:600px) {
+@media only screen and (min-width:960px) {
   .root .application--wrap {
     background-color: var(--v-primary-base) !important;
     background-image: url(~assets/dashboard-desktop.png);

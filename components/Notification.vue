@@ -19,7 +19,7 @@ export default {
 
   computed: {
     color () {
-      return this.$vuetify.breakpoint.xsOnly ? 'primary' : 'secondary'
+      return this.$vuetify.breakpoint.smAndDown ? 'primary' : 'secondary'
     },
 
     ...mapGetters([
@@ -55,5 +55,11 @@ export default {
 <style scoped>
 .v-snack button {
   margin-left: 10px !important;
+}
+
+@media only screen and (max-width:959px) {
+  .v-snack--bottom {
+    margin-bottom: 56px;
+  }
 }
 </style>

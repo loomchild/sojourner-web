@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.xsOnly" id="dashboard" fluid fill-height>
+  <v-container v-if="$vuetify.breakpoint.smAndDown" id="dashboard" fluid fill-height>
     <v-layout row wrap>
       <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex v-go="`/type/${type.type.name}`">
         <article>
@@ -100,9 +100,8 @@ export default {
   background-color: #633D5C99;
 }
 
-@media only screen and (min-width:600px) {
+@media only screen and (min-width:960px) {
   #dashboard {
-    background-image: none;
     max-width: 960px;
     padding-left: 16px;
     padding-right: 16px;

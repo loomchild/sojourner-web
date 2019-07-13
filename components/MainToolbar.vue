@@ -1,6 +1,6 @@
 <template>
-  <v-toolbar v-if="$vuetify.breakpoint.xsOnly" app fixed flat color="primary">
-    <v-toolbar-side-icon dark v-if="$vuetify.breakpoint.xsOnly && dashboard" @click.stop="toggleDrawer"></v-toolbar-side-icon>
+  <v-toolbar v-if="$vuetify.breakpoint.smAndDown" app fixed flat color="primary">
+    <v-toolbar-side-icon dark v-if="$vuetify.breakpoint.smAndDown && dashboard" @click.stop="toggleDrawer"></v-toolbar-side-icon>
     <v-btn v-if="!dashboard" @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>
     </v-btn>
@@ -56,7 +56,7 @@ export default {
   color: white;
 }
 
-@media only screen and (min-width:600px) {
+@media only screen and (min-width:960px) {
   .v-toolbar, .logo {
     color: white;
     font-size: 18px;
