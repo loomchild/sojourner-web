@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
   .map-container {
     width: 100%;
     height: 100%;
@@ -41,7 +41,7 @@ export default {
   .map {
     display: block;
     max-width: 100%;
-    max-height: 100%;
+    max-height: calc(100vh - 100px);
     object-fit: contain;
     margin: auto;
   }
