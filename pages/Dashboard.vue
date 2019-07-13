@@ -14,7 +14,7 @@
       <v-flex lg6 xs7>
         <h1>FOSDEM'19 Program</h1>
         <v-layout row>
-          <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple v-go="`/type/${type.type.name}`">
+          <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
             <article>
               <h2>{{ type.type.name }}</h2>
               <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
