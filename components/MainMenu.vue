@@ -48,34 +48,27 @@ export default {
 }
 </script>
 
-<style>
-@media only screen and (max-width:959px) {
-  .v-navigation-drawer {
-    border-radius: 0 0 100px 0;
-    background-color: var(--v-secondary-base) !important;
-  }
+<style scroped>
+.v-navigation-drawer {
+  border-radius: 0 0 100px 0;
+  background-color: var(--v-secondary-base) !important;
+}
 
-  .v-navigation-drawer .v-list {
-    margin-top: 33px;
-  }
+.v-navigation-drawer .v-list {
+  margin-top: 33px;
+}
 
-  .v-navigation-drawer .v-list__tile * {
-    color: #fff;
-  }
+.v-navigation-drawer .v-divider {
+  margin-left: 16px;
+  margin-right: 16px;
+  border-color: var(--v-secondary-lighten5) !important;
+  border-width: 1px;
+}
 
-  .v-navigation-drawer .v-divider {
-    margin-left: 16px;
-    margin-right: 16px;
-    border-color: var(--v-secondary-lighten5) !important;
-    border-width: 1px;
-  }
-
-  .menu-logo {
-    position: absolute;
-    left: 16px;
-    bottom: 16px;
-    opacity: 0.5;
-  }
+.menu-logo {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  opacity: 0.5;
 }
 </style>
-
