@@ -55,6 +55,7 @@ export default {
 }
 
 .v-navigation-drawer .v-list {
+  padding: 0;
   margin-top: 33px;
 }
 
