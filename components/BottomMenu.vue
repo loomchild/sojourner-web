@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav dark app fixed :value="$vuetify.breakpoint.smAndDown" color="secondary">
+  <v-bottom-nav dark app fixed :value="hasBottomMenu" color="secondary">
     <v-btn flat to="/">
       <v-icon>home</v-icon>
     </v-btn>
@@ -20,7 +20,13 @@
 
 <script>
 export default {
-  name: 'bottom-menu'
+  name: 'bottom-menu',
+
+  computed: {
+    hasBottomMenu () {
+      return this.$vuetify.breakpoint.smAndDown && screen.height >= 600
+    }
+  }
 }
 </script>
 

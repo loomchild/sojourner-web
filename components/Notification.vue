@@ -57,7 +57,7 @@ export default {
   margin-left: 10px !important;
 }
 
-@media only screen and (max-width:959px) {
+@media only screen and (max-width:959px) and (min-height:600px) {
   .v-snack--bottom {
     margin-bottom: 56px;
   }
