@@ -27,6 +27,8 @@ export default {
 <style scoped>
   .map-container {
     position: relative;
+    width: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -90,9 +92,4 @@ export default {
     width: 26.5%;
     height: 11.5%;
   }
-
-
 </style>
-
-
-
