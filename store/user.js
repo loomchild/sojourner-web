@@ -58,7 +58,7 @@ export default {
       commit('setLoginDialog', false)
     },
 
-    initUser ({commit, dispatch, state, rootGetters}, user) {
+    initUser ({commit, dispatch, state, rootGetters}) {
       firebase.auth().onAuthStateChanged(async user => {
         if (state.userUnsubscribe) {
           await state.userUnsubscribe()
