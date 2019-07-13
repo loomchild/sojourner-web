@@ -1,5 +1,5 @@
 <template>
-  <span v-if="event.exists" class="favourite" @click.prevent="toggleFavouriteEvent()">
+  <span v-if="event.exists" class="favourite" :class="{large: large}" @click.prevent="toggleFavouriteEvent()">
     <v-icon color="secondary" v-if="favourites[event.id]">bookmark</v-icon>
     <v-icon color="secondary" v-else>bookmark_border</v-icon>
   </span>
@@ -11,7 +11,14 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'favourite',
 
-  props: ['event'],
+  props: {
+    event: {
+      type: Object
+    },
+    large: {
+      type: Boolean
+    }
+  },
 
   computed: mapGetters([
     'favourites'
@@ -30,7 +37,12 @@ export default {
 </script>
 
 <style scoped>
-  .favourite {
-    cursor: pointer;
-  }
+.favourite {
+  cursor: pointer;
+}
+
+.favourite.large i {
+  font-size: 40px;
+  font-weight: normal;
+}
 </style>
