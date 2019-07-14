@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" @input="setDrawer" width="250" height="480">
-    <v-list dark>
+    <v-list dark class="pa-0">
       <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
       <v-divider class="mx-3"></v-divider>
@@ -57,7 +57,6 @@ export default {
 }
 
 .v-navigation-drawer .v-list {
-  padding: 0;
   margin-top: 33px;
 }
 

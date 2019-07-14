@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none"/>
     <v-layout justify-center align-top>
-      <v-list v-if="query" three-line>
+      <v-list v-if="query" three-line class="pa-0">
         <template v-for="(event, index) in events">
           <event :event="event"></event>
           <v-divider></v-divider>
@@ -80,7 +80,6 @@ export default {
 
 .v-list {
   width: 100%;
-  padding: 0;
 }
 
 .search-help {

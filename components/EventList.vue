@@ -6,7 +6,7 @@
           {{ dayEvents.day.name }}
         </v-tab>
         <v-tab-item>
-          <v-list three-line>
+          <v-list three-line class="pa-0">
             <template v-for="(event, index) in dayEvents.events">
               <event :event="event" :show-room="showRoom"></event>
               <v-divider></v-divider>
@@ -57,7 +57,4 @@ export default {
 </script>
 
 <style scoped>
-.v-list {
-  padding: 0;
-}
 </style>

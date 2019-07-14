@@ -3,7 +3,7 @@
     <v-layout justify-center align-top>
       <v-card>
         <div class="image" :style="{'--image': `url(${background})`}"></div>
-        <v-card-title primary-title class="d-block">
+        <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.start }}-{{ event.end }}
             | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
@@ -15,15 +15,15 @@
             {{ event.persons.join(', ') }}
           </div>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pb-0">
           <div>
             <favourite :event="event" large></favourite>
           </div>
           <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
           <div v-if="event.description" v-html="event.description" class="description"></div>
-          <div v-if="event.links.length > 0" class="links">
+          <div v-if="event.links.length > 0" class="links pt-0 pb-3">
             Links:
-            <p v-for="link in event.links" class="link"><a :href="link.href">{{ link.title }}</a></p>
+            <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
           </div>
         </v-card-text>
       </v-card>
@@ -122,10 +122,6 @@ export default {
   background-color: white;
 }
 
-.v-card__title, .v-card__text {
-  padding-bottom: 0;
-}
-
 .v-card__text .favourite {
   position: absolute;
   right: 24px;
@@ -133,13 +129,7 @@ export default {
 }
 
 .links {
-  padding-top: 0;
-  padding-bottom: 16px;
   counter-reset: link-counter;
-}
-
-.link {
-  margin-bottom: 0;
 }
 
 .link a {

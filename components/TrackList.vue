@@ -6,7 +6,7 @@
           {{ dayTracks.day.name }}
         </v-tab>
         <v-tab-item>
-          <v-list three-line>
+          <v-list three-line class="pa-0">
             <template v-for="(track, index) in dayTracks.tracks">
               <conference-track :track="track"></conference-track>
               <v-divider></v-divider>
@@ -49,7 +49,4 @@ export default {
 </script>
 
 <style scoped>
-.v-list {
-  padding: 0;
-}
 </style>
