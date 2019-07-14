@@ -18,8 +18,11 @@
       <v-btn flat dark :ripple="false" to="/map/">Map</v-btn>
       <v-btn flat dark :ripple="false" to="/search/">Search</v-btn>
       <v-btn flat dark :ripple="false" to="/about/">About</v-btn>
-      <v-btn flat icon dark :ripple="false">
+      <v-btn v-if="!realUser" flat icon dark :ripple="false" @click.stop="showLoginDialog">
         <v-icon flat>person_outline</v-icon>
+      </v-btn>
+      <v-btn v-if="realUser" flat icon dark :ripple="false" @click.stop="clickLogOut">
+        <v-icon flat>person</v-icon>
       </v-btn>
     </v-layout>
   </v-toolbar>
@@ -36,7 +39,8 @@ export default {
     },
 
     ...mapGetters([
-      'title'
+      'title',
+      'realUser'
     ])
   },
   methods: {
@@ -44,8 +48,17 @@ export default {
       this.$router.go(-1)
     },
 
+    clickLogOut () {
+      return this.logOut()
+        .then(() => this.showMessage('Logged out successfully'))
+        .catch(error => this.showError(error.message))
+    },
+
     ...mapActions([
-      'toggleDrawer'
+      'toggleDrawer',
+      'showLoginDialog',
+      'logOut',
+      'showMessage'
     ])
   }
 }
