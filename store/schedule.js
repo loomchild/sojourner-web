@@ -194,6 +194,11 @@ export default {
           tracks
         }
       })
+    },
+
+    conferenceYear: () => {
+      const found = config.scheduleUrl.match(/\/(20\d\d)\//)
+      return found ? found[1] : null
     }
   },
 

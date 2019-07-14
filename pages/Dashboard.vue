@@ -12,7 +12,7 @@
   <v-container v-else fluid fill-height grid-list-xl>
     <v-layout column>
       <v-flex lg6 xs7>
-        <h1>FOSDEM'19 Program</h1>
+        <h1>FOSDEM{{ year }} Program</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
             <article>
@@ -34,8 +34,13 @@ export default {
   name: 'dashboard',
 
   computed: {
+    year () {
+      return this.conferenceYear ? `'${this.conferenceYear.substring(2)}` : ''
+    },
+
     ...mapGetters({
-      types: 'allTypeStats'
+      types: 'allTypeStats',
+      conferenceYear: 'conferenceYear'
     })
   },
 
