@@ -34,7 +34,8 @@ export default {
 
   methods: {
     clickLogOut () {
-      this.logOut()
+      return this.logOut()
+        .then(() => this.showMessage('Logged out successfully'))
         .catch(error => this.showError(error.message))
     },
 
@@ -42,7 +43,8 @@ export default {
       'setDrawer',
       'showLoginDialog',
       'logOut',
-      'showError'
+      'showError',
+      'showMessage'
     ])
   }
 }
