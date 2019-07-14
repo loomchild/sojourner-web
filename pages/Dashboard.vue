@@ -142,7 +142,6 @@ export default {
   }
 
   .layout .flex .circle {
-    display: block;
     height: 27px;
     width: 27px;
     border-radius: 50%;

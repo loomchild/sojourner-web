@@ -3,7 +3,7 @@
     <v-layout justify-center align-top>
       <v-card>
         <div class="image" :style="{'--image': `url(${background})`}"></div>
-        <v-card-title primary-title>
+        <v-card-title primary-title class="d-block">
           <div class="event-info">
             {{ event.day.name }} {{ event.start }}-{{ event.end }}
             | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
@@ -93,7 +93,6 @@ export default {
 
 .v-card__title--primary {
   border-radius: 0 80px 0 0 !important;
-  display: block;
 }
 
 .v-card__title--primary div, .v-card__title--primary h3 {
