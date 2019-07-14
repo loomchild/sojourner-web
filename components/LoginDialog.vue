@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="loginDialog" @change="setLoginDialog" @keydown.esc="setLoginDialog(false)" width="500">
+  <v-dialog :value="loginDialog" @input="setLoginDialog" @keydown.esc="setLoginDialog(false)" width="500">
     <v-tabs v-model="action">
       <v-tab>Log In</v-tab>
       <v-tab>Register</v-tab>
