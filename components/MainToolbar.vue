@@ -13,15 +13,15 @@
         Sojourner
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat dark :ripple="false" to="/">Program</v-btn>
-      <v-btn flat dark :ripple="false" to="/favourites/">Bookmarks</v-btn>
-      <v-btn flat dark :ripple="false" to="/map/">Map</v-btn>
-      <v-btn flat dark :ripple="false" to="/search/">Search</v-btn>
-      <v-btn flat dark :ripple="false" to="/about/">About</v-btn>
-      <v-btn v-if="!realUser" flat icon dark :ripple="false" @click.stop="showLoginDialog">
+      <v-btn flat dark class="mx-0" :ripple="false" to="/">Program</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">Bookmarks</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/map/">Map</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/search/">Search</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/about/">About</v-btn>
+      <v-btn v-if="!realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">
         <v-icon flat>person_outline</v-icon>
       </v-btn>
-      <v-btn v-if="realUser" flat icon dark :ripple="false" @click.stop="clickLogOut">
+      <v-btn v-if="realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="clickLogOut">
         <v-icon flat>person</v-icon>
       </v-btn>
     </v-layout>
@@ -97,8 +97,6 @@ export default {
     text-transform: none;
     padding-left: 15px;
     padding-right: 15px;
-    margin-left: 0;
-    margin-right: 0;
     min-width: 0;
   }
 
