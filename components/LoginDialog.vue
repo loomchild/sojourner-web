@@ -11,7 +11,7 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-flex xs12 class="switch-tab">
+                <v-flex xs12 class="mb-3">
                   You don't have an account yet? <a @click="action = 1">Register</a> instead.<br/>
                 </v-flex>
                 <v-flex xs12>
@@ -38,7 +38,7 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-flex xs12 class="switch-tab">
+                <v-flex xs12 class="mb-3">
                   You already have an account? <a @click="action = 0">Log In</a> instead.
                 </v-flex>
                 <v-flex xs12>
@@ -139,7 +139,4 @@ export default {
 </script>
 
 <style scoped>
-.switch-tab {
-  margin-bottom: 1rem;
-}
 </style>

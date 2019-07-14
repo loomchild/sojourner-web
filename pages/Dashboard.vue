@@ -19,7 +19,7 @@
               <h2>{{ type.type.name }}</h2>
               <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
             </article>
-            <div class="circle mx-auto"> </div>
+            <div class="circle mx-auto mt-3"> </div>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -143,7 +143,6 @@ export default {
     height: 27px;
     width: 27px;
     border-radius: 50%;
-    margin-top: 1rem;
   }
 }
 

@@ -3,12 +3,12 @@
     <v-list dark>
       <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
-      <v-divider></v-divider>
+      <v-divider class="mx-3"></v-divider>
       <menu-item title="Dashboard" icon="home" to="/"></menu-item>
       <menu-item title="Bookmarks" icon="bookmarks" to="/favourites/"></menu-item>
       <menu-item title="Map" icon="map" to="/map/"></menu-item>
       <menu-item title="Search" icon="search" to="/search/"></menu-item>
-      <v-divider></v-divider>
+      <v-divider class="mx-3"></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
     <img class="menu-logo" src="@/assets/menu-logo.png">
@@ -62,8 +62,6 @@ export default {
 }
 
 .v-navigation-drawer .v-divider {
-  margin-left: 16px;
-  margin-right: 16px;
   border-color: var(--v-secondary-lighten5) !important;
   border-width: 1px;
 }
