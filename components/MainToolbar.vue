@@ -9,7 +9,7 @@
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px" color="primary">
     <v-layout class="mx-auto">
-      <v-toolbar-title class="logo" v-ripple v-go="'/'" prepend-icon="home">
+      <v-toolbar-title class="logo d-flex" v-ripple v-go="'/'" prepend-icon="home">
         Sojourner
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -88,7 +88,6 @@ export default {
     background-position: left center;
     padding-left: 41px;
     padding-right: 10px;
-    display: flex;
     align-items: center;
   }
 
