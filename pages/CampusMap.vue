@@ -1,6 +1,6 @@
 <template>
   <v-container fluid fill-height>
-    <div class="map-container">
+    <div class="map-container mx-auto">
       <div class="map">
         <router-link id="building-k" to="/building/K">&nbsp;</router-link>
         <router-link id="building-j" to="/building/J">&nbsp;</router-link>
@@ -33,8 +33,6 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 @media (min-aspect-ratio: 1/1) {

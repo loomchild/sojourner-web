@@ -8,8 +8,8 @@
     <v-spacer></v-spacer>
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px" color="primary">
-    <v-layout>
-      <v-toolbar-title class="logo" v-ripple v-go="'/'">
+    <v-layout class="mx-auto">
+      <v-toolbar-title class="logo" v-ripple v-go="'/'" prepend-icon="home">
         Sojourner
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -81,8 +81,6 @@ export default {
 
   .layout {
     max-width: 960px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .logo {
