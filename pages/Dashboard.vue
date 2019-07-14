@@ -75,29 +75,24 @@ export default {
   opacity: 0.7;
 }
 
-.layout .flex:nth-child(1),
-.layout .layout .flex:nth-child(1) .circle {
-  background-color: #508F8999;
+.layout .flex:nth-child(1) {
+  background-color: #7FDBD399;
 }
 
-.layout .flex:nth-child(2),
-.layout .layout .flex:nth-child(2) .circle {
-  background-color: #519BA699;
+.layout .flex:nth-child(2) {
+  background-color: #54BECA99;
 }
 
-.layout .flex:nth-child(3),
-.layout .layout .flex:nth-child(3) .circle {
-  background-color: #6aacb699;
+.layout .flex:nth-child(3) {
+  background-color: #96C3C999;
 }
 
-.layout .flex:nth-last-child(2),
-.layout .layout .flex:nth-last-child(2) .circle {
-  background-color: #CCB19499;
+.layout .flex:nth-last-child(2) {
+  background-color: #E0D0BF99;
 }
 
-.layout .flex:nth-last-child(1),
-.layout .layout .flex:nth-last-child(1) .circle {
-  background-color: #633D5C99;
+.layout .flex:nth-last-child(1) {
+  background-color: #A18A9D99;
 }
 
 @media only screen and (min-width:960px) {
@@ -137,6 +132,26 @@ export default {
     height: 27px;
     width: 27px;
     border-radius: 50%;
+  }
+
+  .layout .layout .flex:nth-child(1) .circle {
+    background-color: #00E3CF;
+  }
+
+  .layout .layout .flex:nth-child(2) .circle {
+    background-color: #F7F7F7;
+  }
+
+  .layout .layout .flex:nth-child(3) .circle {
+    background-color: #00D4EF;
+  }
+
+  .layout .layout .flex:nth-last-child(2) .circle {
+    background-color: #DB8529;
+  }
+
+  .layout .layout .flex:nth-last-child(1) .circle {
+    background-color: #D900B4;
   }
 }
 
