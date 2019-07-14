@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" @input="setDrawer" width="250" height="480">
     <v-list dark>
-      <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog"></menu-item>
+      <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
       <v-divider></v-divider>
       <menu-item title="Dashboard" icon="home" to="/"></menu-item>
