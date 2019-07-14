@@ -105,10 +105,15 @@ export default {
     min-width: 0;
   }
 
-  .v-btn--active::before {
+  .v-btn::before {
     background-color: initial;
-    border-bottom: 2px solid var(--v-secondary-base);
     opacity: 1.0;
+    width: 0;
+    transition: width 0.15s ease-in;
+  }
+
+  .v-btn--active::before {
+    border-bottom: 2px solid var(--v-secondary-base);
     width: 28px;
     left: calc(50% - 14px);
     /*width: calc(100% - 54px);
