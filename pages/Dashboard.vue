@@ -2,7 +2,7 @@
   <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height>
     <v-layout row wrap>
       <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex v-go="`/type/${type.type.name}`">
-        <article>
+        <article class="ma-auto">
           <h2>{{ type.type.name }}</h2>
           <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
         </article>
@@ -11,7 +11,7 @@
   </v-container>
   <v-container v-else fluid fill-height grid-list-xl>
     <v-layout column>
-      <v-flex lg6 xs7>
+      <v-flex lg6 xs7 class="mt-auto">
         <h1>FOSDEM{{ year }} Program</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
@@ -62,7 +62,6 @@ export default {
 }
 
 .layout .flex article {
-  margin: auto;
   text-align: center;
   color: white;
 }
@@ -114,7 +113,6 @@ export default {
 
   .layout .flex {
     background-color: transparent !important;
-    margin-top: auto;
     cursor: default;
   }
 

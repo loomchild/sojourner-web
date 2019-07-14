@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <div class="map-container">
-      <img v-if="building" class="map d-block" :src="require(`@/assets/building-${building.name.toLowerCase()}.png`)">
+      <img v-if="building" class="map d-block ma-auto" :src="require(`@/assets/building-${building.name.toLowerCase()}.png`)">
     </div>
   </v-container>
 </template>
@@ -46,7 +46,6 @@ export default {
   max-width: 100%;
   max-height: calc(100vh - 100px);
   object-fit: contain;
-  margin: auto;
 }
 </style>
 
