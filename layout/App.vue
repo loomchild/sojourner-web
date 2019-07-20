@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="[page]">
+  <v-app :class="[page, layout]">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
@@ -82,7 +82,7 @@ export default {
     },
 
     layout () {
-      return this.$route.meta.layout || 'default'
+      return 'layout-' + (this.$route.meta.layout || 'default')
     },
 
     ...mapGetters([
