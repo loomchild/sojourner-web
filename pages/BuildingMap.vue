@@ -33,10 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  background-color: #ffffff;
-}
-
 .map-container {
   width: 100%;
   height: 100%;

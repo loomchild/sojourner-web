@@ -25,10 +25,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  background-color: #ffffff;
-}
-
 .map-container {
   position: relative;
   width: 100%;

@@ -127,6 +127,10 @@ html {
 .application {
   min-height: var(--screenHeight, 100vh) !important;
 }
+
+.application {
+  background-color: white;
+}
 </style>
 
 <style>
