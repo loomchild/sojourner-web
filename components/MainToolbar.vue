@@ -70,6 +70,11 @@ export default {
 }
 
 @media only screen and (min-width:960px) {
+  .v-icon, .v-btn, .v-toolbar {
+    transition: none !important;
+  }
+
+
   .v-toolbar, .logo {
     color: white;
     font-size: 18px;
