@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid fill-height class="content">
     <div class="map-container">
       <img v-if="building" class="map d-block ma-auto" :src="require(`@/assets/building-${building.name.toLowerCase()}.png`)">
     </div>

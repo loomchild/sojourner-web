@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid fill-height class="content">
     <div class="map-container mx-auto">
       <div class="map">
         <router-link id="building-k" to="/building/K">&nbsp;</router-link>
@@ -31,7 +31,7 @@ export default {
   height: 100%;
 }
 
-@media (min-aspect-ratio: 1/1) {
+@media (min-aspect-ratio: 1/1) and (max-height: 550px) {
   .map-container {
     max-width: calc(69% - 65px);
   }
