@@ -127,22 +127,6 @@ html {
 .application {
   min-height: var(--screenHeight, 100vh) !important;
 }
-
-.application.root {
-  background-image: url(~assets/dashboard.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-@media only screen and (min-width:960px) {
-  .application.root {
-    background-color: var(--v-primary-base) !important;
-    background-image: url(~assets/dashboard-desktop.png);
-    background-size: 33%;
-    background-position: right bottom;
-  }
-}
 </style>
 
 <style>
@@ -171,5 +155,14 @@ html {
 
 .v-tabs.days .v-tabs__item--active {
   background-color: var(--v-secondary-base);
+}
+
+h1.page-title {
+  font-size: 80px;
+  line-height: 1em;
+  font-family: 'Roboto Condensed', Arial;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--v-secondary-base);
 }
 </style>

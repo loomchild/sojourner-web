@@ -12,7 +12,7 @@
   <v-container v-else fluid fill-height grid-list-xl class="px-3">
     <v-layout column>
       <v-flex lg6 xs7 class="mt-auto">
-        <h1>{{ title }}</h1>
+        <h1 class="page-title">{{ title }}</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
             <article>
@@ -110,15 +110,6 @@ export default {
     cursor: pointer;
   }
 
-  .layout .flex h1 {
-    font-size: 80px;
-    line-height: 1em;
-    font-family: 'Roboto Condensed', Arial;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: var(--v-secondary-base);
-  }
-
   .layout .flex article h2 {
     font-size: 26px;
     line-height: 31px;
@@ -155,5 +146,22 @@ export default {
     background-color: #D900B4;
   }
 }
+</style>
 
+<style>
+.application.root {
+  background-image: url(~assets/dashboard.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (min-width:960px) {
+  .application.root {
+    background-color: var(--v-primary-base) !important;
+    background-image: url(~assets/dashboard-desktop.png);
+    background-size: 33%;
+    background-position: right bottom;
+  }
+}
 </style>
