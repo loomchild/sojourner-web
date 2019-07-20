@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-tabs class="days" color="primary" slider-color="none" :value="tab" @change="setTab" dark>
+  <v-container class="content">
+    <day-tabs>
       <template v-for="dayEvents in allDayEvents">
         <v-tab ripple :disabled="dayEvents.events.length === 0">
           {{ dayEvents.day.name }}
@@ -14,19 +14,22 @@
           </v-list>
         </v-tab-item>
       </template>
-    </v-tabs>
-  </div>
+    </day-tabs>
+    <div class="hidden-sm-and-down mb-5"></div>
+  </v-container>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import DayTabs from '@/components/DayTabs'
 import Event from '@/components/Event'
 
 export default {
   name: 'events',
 
   components: {
-    'event': Event
+    DayTabs,
+    Event
   },
 
   props: {

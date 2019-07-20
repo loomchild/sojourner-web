@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-tabs class="days" color="primary" slider-color="none" :value="tab" @change="setTab" dark>
+  <v-container class="content">
+    <day-tabs>
       <template v-for="dayTracks in tracks">
         <v-tab ripple :disabled="dayTracks.tracks.length === 0">
           {{ dayTracks.day.name }}
@@ -14,19 +14,22 @@
           </v-list>
         </v-tab-item>
       </template>
-    </v-tabs>
-  </div>
+    </day-tabs>
+    <div class="hidden-sm-and-down mb-5"></div>
+  </v-container>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import ConferenceTrack from '@/components/ConferenceTrack'
+import DayTabs from '@/components/DayTabs'
 
 export default {
   name: 'tracks',
 
   components: {
-    'conference-track': ConferenceTrack
+    DayTabs,
+    ConferenceTrack
   },
 
   props: [
