@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar :value="notification.message" @change="hide" :timeout="notification.timeout" :color="color" bottom multi-line>
+  <v-snackbar :value="notification.message" @input="hide" :timeout="notification.timeout" :color="color" bottom multi-line>
     {{ notification.message }}
     <v-spacer></v-spacer>
     <v-btn v-if="notification.button" flat small @click.native="button()">{{ notification.button.title }}</v-btn>
@@ -34,9 +34,11 @@ export default {
   },
 
   methods: {
-    hide () {
-      this.notification = {}
-      setTimeout(() => this.hideNotification(), 600)
+    hide (value) {
+      if (!value) {
+        this.notification = {}
+        setTimeout(() => this.hideNotification(), 600)
+      }
     },
 
     button () {
