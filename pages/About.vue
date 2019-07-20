@@ -6,7 +6,7 @@
           <v-layout row wrap>
             <v-flex sm12 md6 offset-md3>
               <div class="infos body-2">
-                <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ commithash }}</a></p>
+                <p><v-icon>book</v-icon> Version: <a :href="commiturl">{{ version }}</a></p>
                 <p><v-icon>alarm</v-icon> Timestamp: {{ timestamp }}</p>
                 <p><v-icon>fingerprint</v-icon> Author: <a href="https://loomchild.net">loomchild</a> / <a href="mailto:pub@loomchild.net?subject=Sojourner feedback">pub@loomchild.net</a></p>
                 <p><v-icon>code</v-icon> Code / Feedback: <a href="https://github.com/loomchild/sojourner-web">Github</a></p>

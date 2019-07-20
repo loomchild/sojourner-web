@@ -5,10 +5,13 @@ const moment = require('moment')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const {GenerateSW} = require('workbox-webpack-plugin')
+const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const gitRevisionPlugin = new GitRevisionPlugin()
 
 const config = require('./config.js')
 
@@ -108,8 +111,8 @@ module.exports = {
     ]),
     new webpack.DefinePlugin({
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
-      'COMMITHASH': JSON.stringify('unknown'),
-      'VERSION': JSON.stringify('unknown')
+      'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+      'VERSION': JSON.stringify(gitRevisionPlugin.version())
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
