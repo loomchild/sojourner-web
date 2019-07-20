@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="{root: isRoot}">
+  <v-app :class="[page]">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
     <v-content v-if="scheduleInitialized">
@@ -77,8 +77,8 @@ export default {
   },
 
   computed: {
-    isRoot () {
-      return this.$route.path === '/'
+    page () {
+      return this.$route.name
     },
 
     ...mapGetters([
