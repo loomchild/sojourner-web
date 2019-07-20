@@ -23,7 +23,10 @@ const router = new Router({
     {
       path: '/',
       name: 'root',
-      component: Dashboard
+      component: Dashboard,
+      meta: {
+        layout: 'cover'
+      }
     },
     {
       path: '/search',
@@ -67,7 +70,10 @@ const router = new Router({
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: About,
+      meta: {
+        layout: 'cover'
+      }
     }
   ],
 

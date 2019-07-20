@@ -8,7 +8,7 @@
       </keep-alive>
     </v-content>
     <v-content v-else>
-      <v-container fluid fill-height>
+      <v-container fluid fill-height class="content">
         <div class="center">
           <div class="spinner"></div>
         </div>
@@ -81,6 +81,10 @@ export default {
       return this.$route.name
     },
 
+    layout () {
+      return this.$route.meta.layout || 'default'
+    },
+
     ...mapGetters([
       'scheduleInitialized'
     ])
@@ -118,10 +122,6 @@ html {
   .center .spinner {
     animation: scale-in 300ms ease-in both;
   }
-}
-
-.container {
-  padding: 0;
 }
 
 .application {
@@ -164,5 +164,15 @@ h1.page-title {
   font-weight: bold;
   text-transform: uppercase;
   color: var(--v-secondary-base);
+}
+
+.container.content {
+  padding: 0;
+}
+
+@media only screen and (min-width:960px) {
+  .container.content {
+    max-width: 960px;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="pa-0">
+  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content pa-0">
     <v-layout row wrap>
       <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex v-go="`/type/${type.type.name}`">
         <article class="ma-auto">
@@ -9,7 +9,7 @@
       </v-flex>
     </v-layout>
   </v-container>
-  <v-container v-else fluid fill-height grid-list-xl class="px-3">
+  <v-container v-else fluid fill-height grid-list-xl class="content px-3">
     <v-layout column>
       <v-flex lg6 xs7 class="mt-auto">
         <h1 class="page-title">{{ title }}</h1>
@@ -97,10 +97,6 @@ export default {
 }
 
 @media only screen and (min-width:960px) {
-  .container {
-    max-width: 960px;
-  }
-
   .layout .flex {
     background-color: transparent !important;
     cursor: default;

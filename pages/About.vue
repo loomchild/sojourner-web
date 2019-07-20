@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="pa-0">
+  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout row wrap>
       <v-layout row wrap>
         <v-flex sm12 md6 offset-md3>
@@ -15,7 +15,7 @@
       </v-layout>
     </v-layout>
   </v-container>
-  <v-container v-else fluid fill-height grid-list-xl class="px-3">
+  <v-container v-else fluid fill-height grid-list-xl class="content px-3">
     <v-layout column>
       <v-flex lg6 xs7 class="mt-auto">
         <h1 class="page-title">About</h1>
@@ -87,12 +87,6 @@ a {
 
 .story a {
   font-weight: 600;
-}
-
-@media only screen and (min-width:960px) {
-  .container {
-    max-width: 960px;
-  }
 }
 </style>
 
