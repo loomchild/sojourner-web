@@ -7,7 +7,7 @@
     <v-toolbar-title>{{ title }}</v-toolbar-title>
     <v-spacer></v-spacer>
   </v-toolbar>
-  <v-toolbar v-else app absolute flat height="82px" color="primary">
+  <v-toolbar v-else app absolute flat height="82px">
     <v-layout class="mx-auto">
       <v-toolbar-title class="logo d-flex" v-ripple v-go="'/'" prepend-icon="home">
         Sojourner
@@ -76,12 +76,21 @@ export default {
 
 
   .v-toolbar, .logo {
+    background-color: var(--v-primary-base);
     color: white;
     font-size: 18px;
     font-weight: normal;
     line-height: 33px;
     letter-spacing: inherit;
     user-select: none;
+  }
+
+  .layout-default .v-toolbar,
+  .layout-default .logo,
+  .layout-default .v-toolbar__title,
+  .layout-default .v-btn {
+    background-color: white;
+    color: var(--grey-darken-4);
   }
 
   .layout {
