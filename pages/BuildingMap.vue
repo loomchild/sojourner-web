@@ -60,7 +60,7 @@ export default {
 
 @media (min-width: 960px) {
   .map {
-    max-height: calc(100vh - 360px);
+    max-height: calc(100vh - 320px);
     margin-left: 0;
     margin-right: 0;
   }

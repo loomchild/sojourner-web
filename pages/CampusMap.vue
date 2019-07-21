@@ -48,7 +48,7 @@ export default {
 
 @media (min-width: 960px) {
 .map-container {
-  max-width: calc(100vh - 300px * 990 / 1386);
+  max-width: calc(100vh - 220px * 990 / 1386);
   margin-left: 0;
   margin-right: 0;
 }}
