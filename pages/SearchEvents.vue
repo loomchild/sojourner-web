@@ -5,7 +5,7 @@
     <v-layout align-top>
       <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
         <template v-for="(event, index) in events">
-          <event :event="event"></event>
+          <event :event="event" show-day></event>
           <v-divider v-if="index + 1 < events.length"></v-divider>
         </template>
       </v-list>

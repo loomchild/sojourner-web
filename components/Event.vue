@@ -2,7 +2,12 @@
   <v-list-tile class="event" :to="`/event/${event.id}`"> 
     <v-list-tile-content v-ripple>
       <v-list-tile-sub-title>
-        <span>{{ event.start }}-{{ event.end }}</span>
+        <span v-if="showDay">
+          {{ event.day.name }}
+        </span>
+        <span>
+          {{ event.start }}-{{ event.end }}
+        </span>
         <span v-if="showRoom">
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
@@ -24,10 +29,11 @@ import RoomState from './RoomState'
 export default {
   name: 'event',
 
-  props: [
-    'event',
-    'showRoom'
-  ],
+  props: {
+    event: Object,
+    showRoom: Boolean,
+    showDay: Boolean
+  },
 
   components: {
     Favourite,
