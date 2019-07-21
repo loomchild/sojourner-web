@@ -37,12 +37,12 @@ export default {
   name: 'app',
 
   components: {
-    'analytics': Analytics,
-    'main-menu': MainMenu,
-    'main-toolbar': MainToolbar,
-    'bottom-menu': BottomMenu,
-    'notification': Notification,
-    'login-dialog': LoginDialog
+    Analytics,
+    MainMenu,
+    MainToolbar,
+    BottomMenu,
+    Notification,
+    LoginDialog
   },
 
   methods: mapActions([
