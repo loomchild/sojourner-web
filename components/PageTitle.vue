@@ -47,8 +47,14 @@ h1 {
 button {
   position: relative;
   float: left;
-  width: 60px;
-  margin-left: -65px;
+  margin-right: 20px;
   margin-top: -3px;
+}
+
+@media only screen and (min-width:1080px) {
+  button {
+    margin-right: 0;
+    margin-left: -50px;
+  }
 }
 </style>
