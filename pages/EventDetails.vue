@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
         <div class="image" :style="{'--image': `url(${background})`}"></div>
