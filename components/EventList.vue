@@ -1,5 +1,6 @@
 <template>
   <v-container class="content">
+    <page-title></page-title>
     <day-tabs>
       <template v-for="dayEvents in allDayEvents">
         <v-tab ripple :disabled="dayEvents.events.length === 0">
@@ -23,13 +24,15 @@
 import {mapActions, mapGetters} from 'vuex'
 import DayTabs from '@/components/DayTabs'
 import Event from '@/components/Event'
+import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'events',
 
   components: {
     DayTabs,
-    Event
+    Event,
+    PageTitle
   },
 
   props: {

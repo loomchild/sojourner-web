@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="content">
+    <page-title></page-title>
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none" color="secondary"/>
     <v-layout align-top>
       <v-list v-if="query" three-line class="pa-0">
@@ -18,16 +19,16 @@
 
 <script>
 import _ from 'lodash'
-
 import {mapActions} from 'vuex'
-
 import Event from '@/components/Event'
+import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'all-events',
 
   components: {
-    'event': Event
+    Event,
+    PageTitle
   },
 
   data: () => ({
