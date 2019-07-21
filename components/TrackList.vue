@@ -1,6 +1,6 @@
 <template>
   <v-container class="content">
-    <page-title></page-title>
+    <page-title back-arrow="secondary"></page-title>
     <day-tabs>
       <template v-for="dayTracks in tracks">
         <v-tab ripple :disabled="dayTracks.tracks.length === 0">

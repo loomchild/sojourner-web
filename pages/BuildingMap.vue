@@ -2,7 +2,7 @@
   <v-container fluid fill-height class="content">
     <v-layout column>
       <v-flex shrink>
-        <page-title></page-title>
+        <page-title back-arrow="secondary"></page-title>
       </v-flex>
       <v-flex grow>
         <div class="map-container">

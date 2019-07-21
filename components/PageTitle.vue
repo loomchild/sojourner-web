@@ -1,6 +1,6 @@
 <template>
   <header class="hidden-sm-and-down">
-    <button @click.stop="goBack">◂</button> 
+    <button v-if="backArrow" :style="{color : buttonColor}" @click.stop="goBack">◂</button> 
     <h1>
       {{ title }}
     </h1>
@@ -13,7 +13,24 @@ import {mapGetters} from 'vuex'
 export default {
   name: 'page-title',
 
+  props: {
+    backArrow: String
+  },
+
   computed: {
+    buttonColor () {
+      if (!this.backArrow) {
+        return
+      }
+      if (this.backArrow.startsWith('#')) {
+        return this.backArrow
+      }
+      if (!this.backArrow.includes('-')) {
+        return `var(--v-${this.backArrow}-base)`
+      }
+      return `var(--v-${this.backArrow})`
+    },
+
     ...mapGetters([
       'title'
     ])
@@ -45,6 +62,7 @@ h1 {
 }
 
 button {
+  color: var(--v-secondary-base);
   position: relative;
   float: left;
   margin-right: 20px;
