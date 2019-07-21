@@ -49,6 +49,14 @@ export default {
     showRoom: Boolean
   },
 
+  created () {
+    this.switchTabIfNoEvents()
+  },
+
+  activated () {
+    this.switchTabIfNoEvents()
+  },
+
   computed: {
     allDayEvents () {
       return this.allDays.map(day => ({
@@ -64,6 +72,13 @@ export default {
   },
 
   methods: {
+    switchTabIfNoEvents () {
+      if (!this.allDayEvents[this.tab] || this.allDayEvents[this.tab].events.length === 0) {
+        const tab = this.allDayEvents.findIndex(dayEvents => dayEvents && dayEvents.events.length > 0)
+        this.setTab(tab !== -1 ? tab : 0)
+      }
+    },
+
     ...mapActions([
       'setTab'
     ])

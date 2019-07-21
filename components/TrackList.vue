@@ -48,6 +48,14 @@ export default {
     'tracks'
   ],
 
+  created () {
+    this.switchTabIfNoTracks()
+  },
+
+  activated () {
+    this.switchTabIfNoTracks()
+  },
+
   computed: {
     ...mapGetters([
       'tab'
@@ -55,6 +63,13 @@ export default {
   },
 
   methods: {
+    switchTabIfNoTracks () {
+      if (!this.tracks[this.tab] || this.tracks[this.tab].tracks.length === 0) {
+        const tab = this.tracks.findIndex(dayTracks => dayTracks && dayTracks.tracks.length > 0)
+        this.setTab(tab !== -1 ? tab : 0)
+      }
+    },
+
     ...mapActions([
       'setTab'
     ])
