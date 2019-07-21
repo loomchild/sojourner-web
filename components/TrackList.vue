@@ -7,11 +7,20 @@
           {{ dayTracks.day.name }}
         </v-tab>
         <v-tab-item>
-          <v-list three-line class="pa-0">
+          <v-list v-if="dayTracks.tracks.length > 0" three-line class="pa-0">
             <template v-for="(track, index) in dayTracks.tracks">
               <conference-track :track="track"></conference-track>
-              <v-divider></v-divider>
+              <v-divider v-if="index + 1 < dayTracks.tracks.length"></v-divider>
             </template>
+          </v-list>
+          <v-list v-else>
+            <v-list-tile>
+              <v-list-tile-content>
+                <v-list-tile-sub-title>
+                  There are no tracks on this list.
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
           </v-list>
         </v-tab-item>
       </template>
