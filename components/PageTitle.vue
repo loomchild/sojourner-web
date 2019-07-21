@@ -55,6 +55,7 @@ header, h1 {
   font-family: 'Roboto Condensed', Arial;
   font-weight: bold;
   text-transform: uppercase;
+  line-height: 1em;
 }
 
 h1 {
