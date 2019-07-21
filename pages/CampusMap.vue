@@ -1,20 +1,33 @@
 <template>
-  <v-container fluid fill-height class="content">
-    <div class="map-container mx-auto">
-      <div class="map">
-        <router-link id="building-k" to="/building/K">&nbsp;</router-link>
-        <router-link id="building-j" to="/building/J">&nbsp;</router-link>
-        <router-link id="building-h" to="/building/H">&nbsp;</router-link>
-        <router-link id="building-aw" to="/building/AW">&nbsp;</router-link>
-        <router-link id="building-u" to="/building/U">&nbsp;</router-link>
-      </div>
-    </div>
+  <v-container fluid fill-hight class="content">
+    <v-layout column>
+      <v-flex shrink>
+        <page-title></page-title>
+      </v-flex>
+      <v-flex grow>
+        <div class="map-container">
+          <div class="map">
+            <router-link id="building-k" to="/building/K">&nbsp;</router-link>
+            <router-link id="building-j" to="/building/J">&nbsp;</router-link>
+            <router-link id="building-h" to="/building/H">&nbsp;</router-link>
+            <router-link id="building-aw" to="/building/AW">&nbsp;</router-link>
+            <router-link id="building-u" to="/building/U">&nbsp;</router-link>
+          </div>
+        </div>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
+import PageTitle from '@/components/PageTitle'
+
 export default {
   name: 'campus-map',
+
+  components: {
+    PageTitle
+  },
 
   metaInfo () {
     return {
@@ -29,7 +42,16 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+@media (min-width: 960px) {
+.map-container {
+  max-width: calc(100vh - 300px * 990 / 1386);
+  margin-left: 0;
+  margin-right: 0;
+}}
 
 @media (min-aspect-ratio: 1/1) and (max-height: 550px) {
   .map-container {
