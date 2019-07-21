@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <v-container class="content">
+    <page-title back-arrow="secondary"></page-title>
     <track-list v-if="multipleTracks" :tracks="tracks"></track-list>
     <event-list v-else :events="events"></event-list>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -10,13 +11,15 @@ import {mapGetters} from 'vuex'
 
 import TrackList from '@/components/TrackList'
 import EventList from '@/components/EventList'
+import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'type-tracks-or-events',
 
   components: {
-    'track-list': TrackList,
-    'event-list': EventList
+    TrackList,
+    EventList,
+    PageTitle
   },
 
   props: [

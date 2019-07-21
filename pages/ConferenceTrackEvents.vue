@@ -1,17 +1,22 @@
 <template>
-  <event-list :events="events"></event-list>
+  <v-container class="content">
+    <page-title back-arrow="secondary"></page-title>
+    <event-list :events="events"></event-list>
+  </v-container>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 
 import EventList from '@/components/EventList'
+import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'conference-track-events',
 
   components: {
-    'event-list': EventList
+    EventList,
+    PageTitle
   },
 
   props: [

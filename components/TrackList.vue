@@ -1,6 +1,5 @@
 <template>
-  <v-container class="content">
-    <page-title back-arrow="secondary"></page-title>
+  <div>
     <day-tabs>
       <template v-for="dayTracks in tracks">
         <v-tab ripple :disabled="dayTracks.tracks.length === 0">
@@ -26,22 +25,20 @@
       </template>
     </day-tabs>
     <div class="hidden-sm-and-down mb-5"></div>
-  </v-container>
+  </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import ConferenceTrack from '@/components/ConferenceTrack'
 import DayTabs from '@/components/DayTabs'
-import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'tracks',
 
   components: {
     DayTabs,
-    ConferenceTrack,
-    PageTitle
+    ConferenceTrack
   },
 
   props: [
