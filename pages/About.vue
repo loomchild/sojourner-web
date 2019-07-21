@@ -19,7 +19,7 @@
         </p>
         <p class="mb-2">
           <span>Updated:</span>
-          <span><a :href="commiturl">{{ timestamp }}</a></span>
+          <span>{{ timestamp }}</span>
         </p>
         <p class="mb-2">
           <span>Code:</span>
