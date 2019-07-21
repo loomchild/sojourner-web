@@ -3,13 +3,22 @@
     <page-title></page-title>
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none" color="secondary"/>
     <v-layout align-top>
-      <v-list v-if="query" three-line class="pa-0">
+      <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
         <template v-for="(event, index) in events">
           <event :event="event"></event>
-          <v-divider></v-divider>
+          <v-divider v-if="index + 1 < events.length"></v-divider>
         </template>
       </v-list>
-      <div v-else class="search-help">
+      <v-list v-if="validQuery && events.length == 0" >
+        <v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-sub-title>
+              No events found.
+            </v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <div v-if="!validQuery" class="search-help">
         <v-icon>subdirectory_arrow_left</v-icon> Start typing to search for an event by title, description, track, speaker, room, etc.
       </div>
     </v-layout>
@@ -50,9 +59,15 @@ export default {
     this.$refs.search.focus()
   },
 
+  computed: {
+    validQuery () {
+      return this.query && this.query.length >= 2
+    }
+  },
+
   methods: {
     search: _.debounce(function () {
-      if (!this.query || this.query.length <= 1) {
+      if (!this.validQuery) {
         this.events = []
         return
       }
