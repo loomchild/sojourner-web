@@ -33,8 +33,16 @@
     <page-title :back-arrow="typeColor"></page-title>
     <v-layout row>
       <v-flex xs4>
+        <div class="favourite">
+          <favourite :event="event" large></favourite>
+        </div>
+        <div class="mt-2">
+          <div class="image-background"></div>
+          <div class="image-shadow"></div>
+          <div class="image" :style="{'--image': `url(${background})`}"></div>
+        </div>
       </v-flex>
-      <v-flex xs8 class="pl-5">
+      <v-flex xs8 class="pl-5 pr-3">
         <div class="speakers grey--text">
           {{ event.speakers() }}
         </div>
@@ -116,8 +124,8 @@ export default {
 }
 
 .v-card .image {
-  background: linear-gradient(#EDBAA788, #EDBAA788), var(--image);
-  background-size: auto, 100% auto;
+  background: var(--image), #f4d9d0;
+  background-size: 100% auto, auto;
   height: calc(22vh + 80px);
   margin-bottom: -80px;
   width: 100%;
@@ -188,6 +196,33 @@ export default {
     font-size: 16px;
     font-weight: 500;
     padding-bottom: 0;
+  }
+
+  .favourite {
+    text-align: right;
+  }
+
+  .image-background {
+    position: absolute;
+    background-color: #F2F2F288;
+    width: 270px;
+    height: 270px;
+  }
+
+  .image-shadow {
+    position: absolute;
+    background-color: #EDBAA788;
+    width: 270px;
+    height: 270px;
+    transform: translateX(30px) translateY(30px);
+  }
+
+  .image {
+    position: absolute;
+    background: var(--image);
+    background-size: cover;
+    width: 270px;
+    height: 270px;
   }
 }
 </style>
