@@ -27,4 +27,8 @@ export default class Event {
       this.end = moment(this.start, TIME_FORMAT).add(moment.duration(this.duration)).format(TIME_FORMAT)
     }
   }
+
+  speakers () {
+    return this.persons.join(', ')
+  }
 }
