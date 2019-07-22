@@ -1,6 +1,6 @@
 <template>
   <v-container class="content">
-    <page-title back-arrow="secondary"></page-title>
+    <page-title :back-arrow="typeColor"></page-title>
     <track-list v-if="multipleTracks" :tracks="tracks"></track-list>
     <event-list v-else :events="events"></event-list>
   </v-container>
@@ -39,7 +39,13 @@ export default {
       return this.tracks.some(track => track.tracks.length > 1)
     },
 
+    typeColor () {
+      const type = this.types[this.typeName]
+      return type ? type.arrowColor : 'secondary'
+    },
+
     ...mapGetters({
+      types: 'types',
       typeTracks: 'typeTrackStats',
       typeEvents: 'typeEvents'
     })

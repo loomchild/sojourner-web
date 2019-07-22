@@ -1,6 +1,6 @@
 <template>
   <v-container class="content">
-    <page-title back-arrow="secondary"></page-title>
+    <page-title :back-arrow="trackColor"></page-title>
     <event-list :events="events"></event-list>
   </v-container>
 </template>
@@ -28,7 +28,13 @@ export default {
       return this.trackEvents(this.trackName)
     },
 
+    trackColor () {
+      const track = this.tracks[this.trackName]
+      return track ? track.type.arrowColor : 'secondary'
+    },
+
     ...mapGetters([
+      'tracks',
       'trackEvents'
     ])
   },

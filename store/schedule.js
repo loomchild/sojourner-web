@@ -47,8 +47,9 @@ const createRoom = (room, building) => Object.freeze(new Room({
   building: building
 }))
 
-const createTrack = (name) => Object.freeze(new Track({
-  name: name
+const createTrack = (name, type) => Object.freeze(new Track({
+  name: name,
+  type: type
 }))
 
 const createType = (name) => Object.freeze(new Type({
@@ -267,16 +268,16 @@ export default {
                   rooms[room.name] = room
                 }
                 for (const e of r.event || []) {
-                  const trackName = getText(e.track)
-                  let track = tracks[trackName]
-                  if (!track) {
-                    track = createTrack(trackName)
-                    tracks[trackName] = track
-                  }
-
                   const type = createType(getText(e.type))
                   if (!types[type.name]) {
                     types[type.name] = type
+                  }
+
+                  const trackName = getText(e.track)
+                  let track = tracks[trackName]
+                  if (!track) {
+                    track = createTrack(trackName, type)
+                    tracks[trackName] = track
                   }
 
                   const event = createEvent(e, day, room, track, type)

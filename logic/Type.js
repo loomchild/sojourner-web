@@ -9,6 +9,7 @@ export default class Type {
         this.background = 'background-1.png'
         this.mobileColor = '#7FDBD399'
         this.desktopColor = '#00E3CF'
+        this.arrowColor = this.desktopColor
         break
       case 'maintrack':
         this.name = 'Main tracks'
@@ -17,6 +18,7 @@ export default class Type {
         this.background = 'background-2.png'
         this.mobileColor = '#54BECA99'
         this.desktopColor = '#F7F7F7'
+        this.arrowColor = '#54BECA'
         break
       case 'devroom':
         this.name = 'Developer rooms'
@@ -25,6 +27,7 @@ export default class Type {
         this.background = 'background-3.png'
         this.mobileColor = '#96C3C999'
         this.desktopColor = '#00D4EF'
+        this.arrowColor = this.desktopColor
         break
       case 'lightningtalk':
         this.name = 'Lightning talks'
@@ -33,6 +36,7 @@ export default class Type {
         this.background = 'background-4.png'
         this.mobileColor = '#E0D0BF99'
         this.desktopColor = '#DB8529'
+        this.arrowColor = this.desktopColor
         break
       default:
         this.name = 'Other events'
@@ -41,6 +45,7 @@ export default class Type {
         this.background = 'background-5.png'
         this.mobileColor = '#A18A9D99'
         this.desktopColor = '#D900B4'
+        this.arrowColor = this.desktopColor
         break
     }
   }
