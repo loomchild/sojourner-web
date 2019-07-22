@@ -110,7 +110,7 @@ export default {
       meta: [{
         vmid: 'description',
         name: 'description',
-        content: this.event.abstract.replace(/<[^>]+>/g, '')
+        content: this.event.abstract ? this.event.abstract.replace(/<[^>]+>/g, '') : this.event.title
       }]
     }
   }
