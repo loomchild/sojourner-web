@@ -1,7 +1,7 @@
 <template>
   <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content pa-0">
     <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex v-go="`/type/${type.type.name}`">
+      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex :style="{backgroundColor: type.type.mobileColor}" v-go="`/type/${type.type.name}`">
         <article class="ma-auto">
           <h2>{{ type.type.name }}</h2>
           <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
@@ -19,7 +19,7 @@
               <h2>{{ type.type.name }}</h2>
               <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
             </article>
-            <div class="circle mx-auto mt-3"> </div>
+            <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}"> </div>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -76,26 +76,6 @@ export default {
   opacity: 0.7;
 }
 
-.layout .flex:nth-child(1) {
-  background-color: #7FDBD399;
-}
-
-.layout .flex:nth-child(2) {
-  background-color: #54BECA99;
-}
-
-.layout .flex:nth-child(3) {
-  background-color: #96C3C999;
-}
-
-.layout .flex:nth-last-child(2) {
-  background-color: #E0D0BF99;
-}
-
-.layout .flex:nth-last-child(1) {
-  background-color: #A18A9D99;
-}
-
 @media only screen and (min-width:960px) {
   .layout .flex {
     background-color: transparent !important;
@@ -120,26 +100,6 @@ export default {
     height: 27px;
     width: 27px;
     border-radius: 50%;
-  }
-
-  .layout .layout .flex:nth-child(1) .circle {
-    background-color: #00E3CF;
-  }
-
-  .layout .layout .flex:nth-child(2) .circle {
-    background-color: #F7F7F7;
-  }
-
-  .layout .layout .flex:nth-child(3) .circle {
-    background-color: #00D4EF;
-  }
-
-  .layout .layout .flex:nth-last-child(2) .circle {
-    background-color: #DB8529;
-  }
-
-  .layout .layout .flex:nth-last-child(1) .circle {
-    background-color: #D900B4;
   }
 }
 </style>
