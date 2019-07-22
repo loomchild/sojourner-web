@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height class="content">
+  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
         <div class="image" :style="{'--image': `url(${background})`}"></div>
@@ -12,7 +12,7 @@
           <h2>{{ event.title }}</h2>
           <h3>{{ event.subtitle }}</h3>
           <div class="speakers grey--text">
-            {{ event.persons.join(', ') }}
+            {{ event.speakers() }}
           </div>
         </v-card-title>
         <v-card-text class="pb-0">
@@ -29,6 +29,31 @@
       </v-card>
     </v-layout>
   </v-container>
+  <v-container v-else fluid class="content">
+    <page-title :back-arrow="typeColor"></page-title>
+    <v-layout row>
+      <v-flex xs4>
+      </v-flex>
+      <v-flex xs8 class="pl-5">
+        <div class="speakers grey--text">
+          {{ event.speakers() }}
+        </div>
+        <h2 class="event-title">{{ event.title }}</h2>
+        <h3 class="title mt-1">{{ event.subtitle }}</h3>
+        <div class="event-info my-4">
+          {{ event.day.name }} {{ event.start }}-{{ event.end }}
+          | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
+          <room-state :room="event.room"></room-state>
+        </div>
+        <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
+        <div v-if="event.description" v-html="event.description" class="description"></div>
+        <div v-if="event.links.length > 0" class="links pt-0 pb-3">
+          Links:
+          <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -37,13 +62,15 @@ import {mapGetters} from 'vuex'
 import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
 import RoomState from '@/components/RoomState'
+import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'event-details',
 
   components: {
     Favourite,
-    RoomState
+    RoomState,
+    PageTitle
   },
 
   props: [
@@ -57,6 +84,11 @@ export default {
 
     background () {
       return this.event ? require(`@/assets/${this.event.type.background}`) : ''
+    },
+
+    typeColor () {
+      const type = this.event.type
+      return type ? type.arrowColor : 'secondary'
     },
 
     ...mapGetters([
@@ -107,7 +139,7 @@ export default {
   line-height: 24px;
 }
 
-.v-card__title--primary div.event-info, .v-card__title--primary div.event-info a {
+.event-info, .event-info a {
   color: var(--v-secondary-base);
   padding-bottom: 4px;
   text-decoration: none;
@@ -140,6 +172,22 @@ export default {
   content: '['counter(link-counter)'] ';
   counter-increment: link-counter;
 }
+
+@media only screen and (min-width:960px) {
+  .speakers {
+    font-size: 18px;
+  }
+
+  .event-title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .event-info {
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 0;
+  }
+}
 </style>
-
-
