@@ -74,7 +74,7 @@ a {
 }
 
 .story {
-  line-height: 2rem;
+  line-height: 1.5;
 }
 
 .story a {
