@@ -4,7 +4,7 @@
       <v-flex shrink>
         <page-title></page-title>
       </v-flex>
-      <v-flex grow class="title font-weight-regular white--text">
+      <v-flex grow class="about-text">
         <p class="mb-2">
           <span>Author:</span>
           <span><a href="https://studio.untitledfactory.com" target="_blank">Untitled Factory Studio</a></span>
@@ -26,7 +26,7 @@
           <span><a href="https://github.com/loomchild/sojourner-web">Github</a></span>
         </p>
         <v-layout row>
-          <v-flex xs12 sm9 class="mt-4 title font-weight-regular white--text">
+          <v-flex xs12 sm9 class="mt-4 about-text">
             <p class="story">Sojourner is a conference companion. It is inspired by the original <a href="https://github.com/loomchild/sojour
     ner">Sojourner</a> mobile app for Nokia N900.</p>
           </v-flex>
@@ -82,12 +82,23 @@ a {
 }
 
 .content > .layout {
-  padding: 1rem;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.about-text {
+  color: white;
+  font-size: 16px;
+  line-height: 1;
 }
 
 @media only screen and (min-width:960px) {
   .content > .layout {
     padding: 0;
+  }
+
+  .about-text {
+    font-size: 20px;
   }
 }
 </style>
