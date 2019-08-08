@@ -14,12 +14,12 @@
           <span><a href="mailto:contact@untitledfactory.com?subject=Sojourner">contact@untitledfactory.com</a></span>
         </p>
         <p class="mb-2">
-          <span>Version:</span>
-          <span><a :href="commiturl">{{ version }}</a></span>
-        </p>
-        <p class="mb-2">
           <span>Updated:</span>
           <span>{{ timestamp }}</span>
+        </p>
+        <p class="mb-2">
+          <span>Version:</span>
+          <span><a :href="commiturl">{{ version }}</a></span>
         </p>
         <p class="mb-2">
           <span>Code:</span>
@@ -27,8 +27,7 @@
         </p>
         <v-layout row>
           <v-flex xs12 sm9 class="mt-4 about-text">
-            <p class="story">Sojourner is a conference companion. It is inspired by the original <a href="https://github.com/loomchild/sojour
-    ner">Sojourner</a> mobile app for Nokia N900.</p>
+            <p class="story">Sojourner is a conference companion. It is inspired by the original <a href="https://github.com/loomchild/sojourner">Sojourner</a> mobile app for Nokia N900.</p>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -71,14 +70,11 @@ export default {
 a {
   text-decoration: none;
   color: inherit;
+  font-weight: 500;
 }
 
 .story {
   line-height: 1.5;
-}
-
-.story a {
-  font-weight: 600;
 }
 
 .content > .layout {
