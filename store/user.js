@@ -73,7 +73,7 @@ export default {
 
           const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
             const favourites = {}
-            if (user.data().favourites) {
+            if (user && user.data() && user.data().favourites) {
               user.data().favourites.forEach(favourite => {
                 favourites[favourite] = true
               })
