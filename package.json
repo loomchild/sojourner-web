@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production webpack --hide-modules",
     "start": "http-server dist",
     "dev": "NODE_ENV=development webpack-dev-server --hot --disable-host-check",
-    "lint": "eslint --ext .js,.vue .",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "NODE_ENV=test karma start --single-run",
     "test-e2e": "NODE_ENV=test nightwatch --env chrome"
   },
