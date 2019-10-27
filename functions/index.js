@@ -1,17 +1,15 @@
-const express = require('express')
-const cors = require('cors')
+require('dotenv').config()
+
 const functions = require('firebase-functions')
-const { errorHandler, asyncHandler } = require('./errors')
-const fetchFosdem = require('./fetchFosdem')
+const admin = require('firebase-admin')
+const fetchFosdem = require('./fetch/fosdem')
+const store = require('./store')
 
-const api = express()
-api.use(cors({ origin: true }))
+admin.initializeApp({
+  storageBucket: 'sojourer-web.appspot.com'
+})
 
-api.get('/fosdem', asyncHandler(async (request, response) => {
-  const schedule = await fetchFosdem()
-  response.json(schedule)
-}))
-
-api.use(errorHandler)
-
-exports.schedule = functions.https.onRequest(api)
+exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
+  const fosdemData = await fetchFosdem()
+  await store(fosdemData, 'fosdem-2019.json')
+})

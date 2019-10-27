@@ -3,8 +3,8 @@ const xmltojson = require('xmltojson')
 xmltojson.stringToXML = (string) => new DOMParser().parseFromString(string, 'text/xml')
 
 const axios = require('axios')
-const Event = require('./logic//Event')
-const Link = require('./logic/Link')
+const Event = require('../logic/Event')
+const Link = require('../logic/Link')
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -56,7 +56,7 @@ const createEvent = (event, date, room) => {
   })
 }
 
-module.exports = async function fetchFosdem () {
+module.exports = async function () {
   const response = await axios.get(process.env.FOSDEM_SCHEDULE_URL)
 
   const json = xmltojson.parseString(response.data, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
