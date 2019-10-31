@@ -134,7 +134,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.')),
+          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.').replace('?', '\\?')),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
