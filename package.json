@@ -1,6 +1,6 @@
 {
   "name": "sojourner",
-  "description": "FOSDEM conference planner, version web",
+  "description": "Conference companion, offline-first progressive web app.",
   "version": "1.0.0",
   "author": "Jarek Lipski <loomchild@loomchild.net>",
   "private": true,
