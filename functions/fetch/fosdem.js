@@ -41,7 +41,7 @@ const createEvent = (event, date, room) => {
 
   return new Event({
     id: event.id.toString(),
-    start: getText(event.start),
+    startTime: getText(event.start),
     duration: getText(event.duration),
     title: getText(event.title),
     subtitle: getText(event.subtitle),

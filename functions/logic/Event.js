@@ -2,7 +2,7 @@ module.exports = class Event {
   constructor (data) {
     this.id = data.id
     this.date = data.date
-    this.startTime = data.start
+    this.startTime = data.startTime
     this.duration = data.duration
     this.title = data.title
     this.subtitle = data.subtitle
