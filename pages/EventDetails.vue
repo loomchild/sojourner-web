@@ -5,7 +5,7 @@
         <div class="image" :style="{'--image': `url(${background})`}"></div>
         <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
-            {{ event.day.name }} {{ event.start }}-{{ event.end }}
+            {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
             | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
             <room-state :room="event.room"></room-state>
           </div>
@@ -49,7 +49,7 @@
         <h2 class="event-title">{{ event.title }}</h2>
         <h3 class="title mt-1">{{ event.subtitle }}</h3>
         <div class="event-info my-4">
-          {{ event.day.name }} {{ event.start }}-{{ event.end }}
+          {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
           | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
           <room-state :room="event.room"></room-state>
         </div>

@@ -9,7 +9,7 @@ export default class Event {
   constructor (data = {}) {
     this.exists = !!data.id
     this.id = data.id
-    this.start = data.start
+    this.startTime = data.startTime
     this.duration = data.duration
     this.title = data.title
     this.subtitle = data.subtitle
@@ -23,8 +23,8 @@ export default class Event {
     this.persons = data.persons || []
     this.links = data.links || []
 
-    if (this.start && this.duration) {
-      this.end = moment(this.start, TIME_FORMAT).add(moment.duration(this.duration)).format(TIME_FORMAT)
+    if (this.startTime && this.duration) {
+      this.endTime = moment(this.startTime, TIME_FORMAT).add(moment.duration(this.duration)).format(TIME_FORMAT)
     }
   }
 

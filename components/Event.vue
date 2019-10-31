@@ -6,7 +6,7 @@
           {{ event.day.name }}
         </span>
         <span>
-          {{ event.start }}-{{ event.end }}
+          {{ event.startTime }}-{{ event.endTime }}
         </span>
         <span v-if="showRoom">
           | {{ event.room.name }}

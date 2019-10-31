@@ -1,4 +1,3 @@
-import xmltojson from 'xmltojson'
 import firstBy from 'thenby'
 import _ from 'lodash'
 
@@ -10,41 +9,13 @@ import Room from '@/logic/Room'
 import Track from '@/logic/Track'
 import Type from '@/logic/Type'
 
-const flattenAttributes = (element) => {
-  if (element instanceof Array) {
-    return element.map(flattenAttributes)
-  }
-
-  if (element instanceof Object) {
-    const keys = Object.keys(element)
-
-    if (keys.length === 1) {
-      const key = keys[0]
-      if (key === 'value') {
-        return element[key]
-      }
-    }
-
-    const newElement = {}
-    keys.forEach(e => {
-      newElement[e] = flattenAttributes(element[e])
-    })
-    return newElement
-  }
-
-  return element
-}
-
-const getText = (element) => element && element[0] && element[0].text && element[0].text[0] !== null ? element[0].text : undefined
-
-const createDay = (day) => Object.freeze(new Day({
-  index: day.index,
-  date: day.date
+const createDay = (date) => Object.freeze(new Day({
+  date: new Date(date)
 }))
 
 const createRoom = (room, building) => Object.freeze(new Room({
-  name: room.name,
-  building: building
+  name: room,
+  building
 }))
 
 const createTrack = (name, type) => Object.freeze(new Track({
@@ -57,30 +28,27 @@ const createType = (name) => Object.freeze(new Type({
 }))
 
 const createEvent = (event, day, room, track, type) => {
-  const persons = event.persons && event.persons[0] && event.persons[0].person
-    ? event.persons[0].person.map(person => person.text) : []
-  const links = event.links && event.links[0] && event.links[0].link
-    ? event.links[0].link.map(link => new Link({href: link.href, title: link.text})) : []
+  const links = event.links.map(link => new Link(link))
 
   return Object.freeze(new Event({
-    id: event.id.toString(),
-    start: getText(event.start),
-    duration: getText(event.duration),
-    title: getText(event.title),
-    subtitle: getText(event.subtitle),
-    abstract: getText(event.abstract),
-    description: getText(event.description),
+    id: event.id,
+    startTime: event.startTime,
+    duration: event.duration,
+    title: event.title,
+    subtitle: event.subtitle,
+    abstract: event.abstract,
+    description: event.description,
 
     type: type,
     track: track,
     day: day,
     room: room,
-    persons: persons,
+    persons: event.persons,
     links: links
   }))
 }
 
-const eventNaturalSort = firstBy(event => event.day.index).thenBy('start')
+const eventNaturalSort = firstBy(event => event.day.index).thenBy('startTime')
 
 const MAX_SEARCH_RESULTS = 50
 
@@ -198,7 +166,7 @@ export default {
     },
 
     conferenceYear: () => {
-      const found = config.scheduleUrl.match(/\/(20\d\d)\//)
+      const found = config.scheduleUrl.match(/-(20\d\d)/)
       return found ? found[1] : null
     }
   },
@@ -244,48 +212,47 @@ export default {
             throw new Error(`${response.status}: ${response.statusText}`)
           }
 
-          return response.text()
+          return response.json()
         })
-        .then(xml => {
-          const json = xmltojson.parseString(xml, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
-          return flattenAttributes(json.schedule)
-        })
-        .then(schedule => {
+        .then(conference => {
+          if (!conference.events) {
+            return
+          }
+
           const days = {}
           const events = {}
           const rooms = {}
           const tracks = {}
           const types = {}
 
-          for (const d of schedule[0].day || []) {
-            const day = createDay(d)
-            days[day.index] = day
-            for (const r of d.room || []) {
-              const building = getters.roomBuilding(r.name)
-              if (r.event && r.event.length > 0) {
-                const room = createRoom(r, building)
-                if (!rooms[room.name]) {
-                  rooms[room.name] = room
-                }
-                for (const e of r.event || []) {
-                  const type = createType(getText(e.type))
-                  if (!types[type.name]) {
-                    types[type.name] = type
-                  }
+          conference.events.forEach(e => {
+            // TODO: optimize all this, avoid creating objects upfront, look for lists first, meaybe in factory method
 
-                  const trackName = getText(e.track)
-                  let track = tracks[trackName]
-                  if (!track) {
-                    track = createTrack(trackName, type)
-                    tracks[trackName] = track
-                  }
-
-                  const event = createEvent(e, day, room, track, type)
-                  events[event.id] = event
-                }
-              }
+            const day = createDay(e.date)
+            if (!days[day.index]) {
+              days[day.index] = day
             }
-          }
+
+            // TODO: make buildings universal
+            const building = getters.roomBuilding(e.room)
+            const room = createRoom(e.room, building)
+            if (!rooms[room.name]) {
+              rooms[room.name] = room
+            }
+
+            const type = createType(e.type)
+            if (!types[type.name]) {
+              types[type.name] = type
+            }
+
+            const track = createTrack(e.track, type)
+            if (!tracks[track.name]) {
+              tracks[track.name] = track
+            }
+
+            const event = createEvent(e, day, room, track, type)
+            events[event.id] = event
+          })
 
           commit('setDays', days)
           commit('setRooms', rooms)
