@@ -78,5 +78,5 @@ module.exports = async function () {
     }
   }
 
-  return events
+  return { events }
 }

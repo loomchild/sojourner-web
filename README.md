@@ -57,3 +57,9 @@ The deployment happens automatically to Netlify, nothing specific to do.
 
 Resize PNGs using Tiny PNG: https://tinypng.com/
 This could be done with GIMP, but unfortunately it doesn't preserve transparency when converting PNGs to indexed mode.
+
+# Schedule
+
+## CORS
+
+To configure storage to allow CORS, see [cors configuration](https://firebase.google.com/docs/storage/web/download-files#cors_configuration) in documentation.
