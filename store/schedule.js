@@ -225,28 +225,34 @@ export default {
           const tracks = {}
           const types = {}
 
-          conference.events.forEach(e => {
-            // TODO: optimize all this, avoid creating objects upfront, look for lists first, meaybe in factory method
+          const dateCache = {}
 
-            const day = createDay(e.date)
-            if (!days[day.index]) {
+          conference.events.forEach(e => {
+            let day = dateCache[e.date]
+            if (!day) {
+              day = createDay(e.date)
               days[day.index] = day
+              dateCache[e.date] = day
             }
 
             // TODO: make buildings universal
             const building = getters.roomBuilding(e.room)
-            const room = createRoom(e.room, building)
-            if (!rooms[room.name]) {
+
+            let room = rooms[e.room]
+            if (!room) {
+              room = createRoom(e.room, building)
               rooms[room.name] = room
             }
 
-            const type = createType(e.type)
-            if (!types[type.name]) {
+            let type = types[e.type]
+            if (!type) {
+              type = createType(e.type)
               types[type.name] = type
             }
 
-            const track = createTrack(e.track, type)
-            if (!tracks[track.name]) {
+            let track = tracks[e.track]
+            if (!track) {
+              track = createTrack(e.track, type)
               tracks[track.name] = track
             }
 
