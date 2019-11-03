@@ -15,8 +15,6 @@ const gitRevisionPlugin = new GitRevisionPlugin()
 
 const dotenv = require('dotenv')
 
-const config = require('./config.js')
-
 dotenv.config()
 
 module.exports = {
@@ -116,7 +114,10 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
       'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
-      'VERSION': JSON.stringify(gitRevisionPlugin.version())
+      'VERSION': JSON.stringify(gitRevisionPlugin.version()),
+      'CONFERENCE': undefined,
+      'SCHEDULE_URL': undefined,
+      'ROOM_STATE_URL': undefined
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
@@ -138,7 +139,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^' + config.scheduleUrl.replace('.', '\\.').replace('?', '\\?')),
+          urlPattern: new RegExp('^' + process.env.SCHEDULE_URL.replace('.', '\\.').replace('?', '\\?')),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {

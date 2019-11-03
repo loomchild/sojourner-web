@@ -1,6 +1,5 @@
 import {Workbox} from 'workbox-window'
 
-import config from '@/config'
 import store from '@/store'
 
 export default function () {
@@ -14,7 +13,7 @@ export default function () {
         wb.messageSW({
           type: 'CACHE_URLS',
           payload: {
-            urlsToCache: [config.scheduleUrl]
+            urlsToCache: [process.env.SCHEDULE_URL]
           }
         })
       }

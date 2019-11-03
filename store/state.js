@@ -33,7 +33,7 @@ export default {
 
   actions: {
     refreshRoomStates ({commit, dispatch, state}) {
-      return fetch(config.roomStateUrl, {cache: 'no-store'})
+      return fetch(process.env.ROOM_STATE_URL, {cache: 'no-store'})
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
@@ -69,7 +69,7 @@ export default {
     },
 
     initRoomStateUpdater ({dispatch, state, commit}) {
-      if (!config.roomStateUrl || !config.roomStatePollInterval || state.roomStateUpdaterInitialized) {
+      if (!process.env.ROOM_STATE_URL || !config.roomStatePollInterval || state.roomStateUpdaterInitialized) {
         return
       }
       const scheduleRefreshRoomStates = (attempt = 0) => {

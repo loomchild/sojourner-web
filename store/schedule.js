@@ -1,7 +1,6 @@
 import firstBy from 'thenby'
 import _ from 'lodash'
 
-import config from '@/config'
 import Day from '@/logic/Day'
 import Event from '@/logic/Event'
 import Link from '@/logic/Link'
@@ -166,7 +165,7 @@ export default {
     },
 
     conferenceYear: () => {
-      const found = config.scheduleUrl.match(/-(20\d\d)/)
+      const found = process.env.SCHEDULE_URL.match(/-(20\d\d)/)
       return found ? found[1] : null
     }
   },
@@ -206,7 +205,7 @@ export default {
       if (!cache) {
         cache = 'default'
       }
-      return fetch(config.scheduleUrl, {cache})
+      return fetch(process.env.SCHEDULE_URL, {cache})
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
