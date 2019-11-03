@@ -12,11 +12,11 @@ export default {
   },
 
   getters: {
-    timestamp: () => TIMESTAMP,
+    timestamp: () => process.env.TIMESTAMP,
 
-    commithash: () => COMMITHASH,
+    commithash: () => process.env.COMMITHASH,
 
-    version: () => VERSION,
+    version: () => process.env.VERSION,
 
     title: state => state.title,
 

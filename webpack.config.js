@@ -13,7 +13,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const gitRevisionPlugin = new GitRevisionPlugin()
 
+const dotenv = require('dotenv')
+
 const config = require('./config.js')
+
+dotenv.config()
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -109,7 +113,7 @@ module.exports = {
       'assets/**/*',
       'static/'
     ]),
-    new webpack.DefinePlugin({
+    new webpack.EnvironmentPlugin({
       'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
       'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
       'VERSION': JSON.stringify(gitRevisionPlugin.version())
