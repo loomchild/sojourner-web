@@ -13,7 +13,7 @@
         Sojourner
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/">Program</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/">Programme</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">Bookmarks</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/map/">Map</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/search/">Search</v-btn>

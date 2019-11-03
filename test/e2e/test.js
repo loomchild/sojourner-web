@@ -4,7 +4,7 @@ module.exports = {
     browser.waitForElementVisible('body', 5000)
 
     browser.pause(1000) // wait for title update
-    browser.assert.title('FOSDEM\'19 Program | Sojourner')
+    browser.assert.title('FOSDEM\'19 | Sojourner')
 
     browser.end()
   }

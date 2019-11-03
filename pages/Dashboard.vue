@@ -42,7 +42,7 @@ export default {
 
   metaInfo () {
     return {
-      title: this.title
+      title: this.conferenceName
     }
   }
 }
