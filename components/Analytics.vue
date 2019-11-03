@@ -3,13 +3,11 @@
 </template>
 
 <script>
-import config from '@/config'
-
 export default {
   name: 'analytics',
 
   data: () => ({
-    analyticsImageUrl: config.analyticsUrl
+    analyticsImageUrl: process.env.ANALYTICS_URL
   })
 }
 </script>

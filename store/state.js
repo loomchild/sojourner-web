@@ -1,4 +1,3 @@
-import config from '@/config'
 import RoomState from '@/logic/RoomState'
 
 export default {
@@ -69,17 +68,18 @@ export default {
     },
 
     initRoomStateUpdater ({dispatch, state, commit}) {
-      if (!process.env.ROOM_STATE_URL || !config.roomStatePollInterval || state.roomStateUpdaterInitialized) {
+      if (!process.env.ROOM_STATE_URL || !process.env.ROOM_STATE_INTERVAL || state.roomStateUpdaterInitialized) {
         return
       }
+      const pollInterval = parseInt(process.env.ROOM_STATE_INTERVAL)
       const scheduleRefreshRoomStates = (attempt = 0) => {
         return dispatch('refreshRoomStates')
-          .then(() => setTimeout(scheduleRefreshRoomStates, config.roomStatePollInterval * 1000))
+          .then(() => setTimeout(scheduleRefreshRoomStates, pollInterval * 1000))
           .catch(() => {
             if (attempt > 3) {
               commit('setRoomStates', {})
             }
-            setTimeout(() => scheduleRefreshRoomStates(attempt + 1), config.roomStatePollInterval * 1000)
+            setTimeout(() => scheduleRefreshRoomStates(attempt + 1), pollInterval * 1000)
           })
       }
       scheduleRefreshRoomStates()
