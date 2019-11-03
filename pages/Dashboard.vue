@@ -12,7 +12,7 @@
   <v-container v-else fluid fill-height grid-list-xl class="content px-3">
     <v-layout column>
       <v-flex lg6 xs7 class="mt-auto">
-        <h1 class="page-title">{{ title }}</h1>
+        <h1 class="page-title">{{ conferenceName }}</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
             <article>
@@ -34,14 +34,9 @@ export default {
   name: 'dashboard',
 
   computed: {
-    title () {
-      const year = this.conferenceYear ? `'${this.conferenceYear.substring(2)}` : ''
-      return `FOSDEM${year} Program`
-    },
-
     ...mapGetters({
       types: 'allTypeStats',
-      conferenceYear: 'conferenceYear'
+      conferenceName: 'conferenceName'
     })
   },
 
@@ -110,6 +105,10 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+h1.page-title {
+  text-transform: none !important;
 }
 
 @media only screen and (min-width:960px) {

@@ -116,6 +116,7 @@ module.exports = {
       COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
       VERSION: JSON.stringify(gitRevisionPlugin.version()),
       CONFERENCE: undefined,
+      CONFERENCE_NAME: undefined,
       SCHEDULE_URL: undefined,
       ROOM_STATE_URL: undefined,
       ROOM_STATE_INTERVAL: undefined,

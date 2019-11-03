@@ -164,10 +164,7 @@ export default {
       })
     },
 
-    conferenceYear: () => {
-      const found = process.env.SCHEDULE_URL.match(/-(20\d\d)/)
-      return found ? found[1] : null
-    }
+    conferenceName: () => process.env.CONFERENCE_NAME
   },
 
   mutations: {
