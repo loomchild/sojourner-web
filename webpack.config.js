@@ -112,12 +112,21 @@ module.exports = {
       'static/'
     ]),
     new webpack.EnvironmentPlugin({
-      'TIMESTAMP': JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
-      'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
-      'VERSION': JSON.stringify(gitRevisionPlugin.version()),
-      'CONFERENCE': undefined,
-      'SCHEDULE_URL': undefined,
-      'ROOM_STATE_URL': undefined
+      TIMESTAMP: JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
+      COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
+      VERSION: JSON.stringify(gitRevisionPlugin.version()),
+      CONFERENCE: undefined,
+      SCHEDULE_URL: undefined,
+      ROOM_STATE_URL: undefined,
+      ROOM_STATE_INTERVAL: undefined,
+      ANALYTICS_URL: undefined,
+      SENTRY_DSN: undefined,
+      FIREBASE_API_KEY: undefined,
+      FIREBASE_AUTH_DOMAIN: undefined,
+      FIREBASE_DATABASE_URL: undefined,
+      FIREBASE_PROJECT_ID: undefined,
+      FIREBASE_STORAGE_BUCKET: undefined,
+      FIREBASE_MESSAGING_SENDER_ID: undefined
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
