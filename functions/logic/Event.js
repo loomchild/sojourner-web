@@ -11,8 +11,8 @@ module.exports = class Event {
     this.type = data.type
     this.track = data.track
     this.room = data.room
-    this.persons = data.persons || []
-    this.links = data.links || []
+    this.persons = data.persons
+    this.links = data.links
     Object.freeze(this)
   }
 }
