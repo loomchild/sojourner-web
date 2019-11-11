@@ -22,12 +22,15 @@ const createTrack = (name, type) => Object.freeze(new Track({
   type: type
 }))
 
-const createType = (name) => Object.freeze(new Type({
-  name: name
+const createType = (type, priority) => Object.freeze(new Type({
+  id: type.id,
+  priority,
+  name: type.name,
+  statName: type.statName
 }))
 
 const createEvent = (event, day, room, track, type) => {
-  const links = event.links.map(link => new Link(link))
+  const links = event.links ? event.links.map(link => new Link(link)) : []
 
   return Object.freeze(new Event({
     id: event.id,
@@ -218,8 +221,13 @@ export default {
           const days = {}
           const events = {}
           const rooms = {}
-          const tracks = {}
           const types = {}
+          const tracks = {}
+
+          const typeList = conference.types.map((t, index) => createType(t, index))
+          typeList.forEach((t) => {
+            types[t.id] = t
+          })
 
           const dateCache = {}
 
