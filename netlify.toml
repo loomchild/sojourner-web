@@ -1,9 +1,10 @@
 [context.production.environment]
-  VSITES_API_URL = "https://p2ln3mldp4.execute-api.us-east-1.amazonaws.com/dev/"
-  SENTRY_DSN = "https://eb257e9a92d049378915588247ad0d54@sentry.io/1501864"
-  SENTRY_AUTH_TOKEN = "5cad7b341af34a969d2d0c614db9388ddd9ee7cbd055484b902c075327958d2b"
-  SENTRY_PUBLISH_RELEASE = "true"
-  GOOGLE_ANALYTICS_ID = "UA-148724779-1"
+  FIREBASE_API_KEY = "AIzaSyDdGLMo8SACp-7E2g_HXaPs-0VWjBktRpA"
+  FIREBASE_AUTH_DOMAIN = "sojourer-web.firebaseapp.com"
+  FIREBASE_DATABASE_URL = "https://sojourer-web.firebaseio.com"
+  FIREBASE_PROJECT_ID = "sojourer-web"
+  FIREBASE_STORAGE_BUCKET = "sojourer-web.appspot.com"
+  FIREBASE_MESSAGING_SENDER_ID = "618264640987"
 
 [[headers]]
   for = "/service-worker.js"
