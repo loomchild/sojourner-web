@@ -1,0 +1,26 @@
+[context.production.environment]
+  VSITES_API_URL = "https://p2ln3mldp4.execute-api.us-east-1.amazonaws.com/dev/"
+  SENTRY_DSN = "https://eb257e9a92d049378915588247ad0d54@sentry.io/1501864"
+  SENTRY_AUTH_TOKEN = "5cad7b341af34a969d2d0c614db9388ddd9ee7cbd055484b902c075327958d2b"
+  SENTRY_PUBLISH_RELEASE = "true"
+  GOOGLE_ANALYTICS_ID = "UA-148724779-1"
+
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    cache-control = '''
+      max-age=0,
+      no-cache,
+      no-store,
+      must-revalidate'''
+
+[[redirects]]
+  from = "https://fosdem-sojourner.netlify.com/*"
+  to = "https://fosdem.sojourner.rocks/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
