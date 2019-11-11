@@ -17,6 +17,9 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
+const SCHEDULE_URL = process.env.SCHEDULE_URL ||
+  `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${process.env.CONFERENCE_ID}.json?alt=media`
+
 module.exports = {
   context: path.resolve(__dirname, '.'),
   entry: './main.js',
@@ -115,9 +118,9 @@ module.exports = {
       TIMESTAMP: JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
       COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
       VERSION: JSON.stringify(gitRevisionPlugin.version()),
-      CONFERENCE: undefined,
+      CONFERENCE_ID: undefined,
       CONFERENCE_NAME: undefined,
-      SCHEDULE_URL: undefined,
+      SCHEDULE_URL,
       ROOM_STATE_URL: undefined,
       ROOM_STATE_INTERVAL: undefined,
       ANALYTICS_URL: undefined,
@@ -149,7 +152,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^' + process.env.SCHEDULE_URL.replace('.', '\\.').replace('?', '\\?')),
+          urlPattern: new RegExp('^' + SCHEDULE_URL.replace('.', '\\.').replace('?', '\\?')),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
