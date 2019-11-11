@@ -56,10 +56,15 @@ const createEvent = (event, date, room) => {
   })
 }
 
-module.exports = async function () {
-  const response = await axios.get(process.env.FOSDEM_SCHEDULE_URL)
+module.exports = async function (scheduleUrl) {
+  const response = await axios.get(scheduleUrl)
 
-  const json = xmltojson.parseString(response.data, {attrKey: '', textKey: 'text', valueKey: 'value', attrsAsObject: false})
+  const json = xmltojson.parseString(response.data, {
+    attrKey: '',
+    textKey: 'text',
+    valueKey: 'value',
+    attrsAsObject: false
+  })
 
   const schedule = flattenAttributes(json.schedule)
 

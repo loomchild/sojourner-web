@@ -10,6 +10,6 @@ admin.initializeApp({
 })
 
 exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
-  const fosdemData = await fetchFosdem()
+  const fosdemData = await fetchFosdem(process.env.FOSDEM_SCHEDULE_URL)
   await store(fosdemData, 'fosdem-2019.json')
 })
