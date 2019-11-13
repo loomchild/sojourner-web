@@ -19,3 +19,10 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
   const flowconData = await fetchSched(process.env.FLOWCON_SCHEDULE_URL, process.env.FLOWCON_SCHEDULE_KEY)
   await store(flowconData, 'flowcon-2019.json')
 })
+
+/*
+const migrate = require('./migrate/001-migrateFavouritesToConference')
+exports.migrate = functions.pubsub.schedule('never').onRun(async (context) => {
+  await migrate()
+})
+*/
