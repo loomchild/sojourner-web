@@ -52,21 +52,21 @@ export default {
     setFavourite ({dispatch}, eventId) {
       return dispatch('assurePersistent')
         .then(() => dispatch('getUserRef'))
-        .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(Number(eventId))}))
+        .then(user => user.update({[`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayUnion(eventId)}))
     },
 
     setExistingFavourites ({state, dispatch}) {
-      const existingFavourites = Object.keys(state.favourites).map(eventId => Number(eventId))
+      const existingFavourites = Object.keys(state.favourites).map(eventId => eventId)
       if (existingFavourites.length > 0) {
         return dispatch('getUserRef')
-          .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayUnion(...existingFavourites)}))
+          .then(user => user.update({[`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites)}))
       }
     },
 
     unsetFavourite ({dispatch}, eventId) {
       return dispatch('assurePersistent')
         .then(() => dispatch('getUserRef'))
-        .then(user => user.update({favourites: firebase.firestore.FieldValue.arrayRemove(Number(eventId))}))
+        .then(user => user.update({[`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayRemove(eventId)}))
     },
 
     toggleFavourite ({state, dispatch}, eventId) {

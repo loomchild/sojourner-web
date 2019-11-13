@@ -72,13 +72,18 @@ export default {
           await dispatch('setExistingFavourites')
 
           const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
-            const favourites = {}
-            if (user && user.data() && user.data().favourites) {
-              user.data().favourites.forEach(favourite => {
-                favourites[favourite] = true
-              })
-              commit('setFavourites', favourites)
+            if (!user || !user.data() || !user.data()[process.env.CONFERENCE_ID]) {
+              return
             }
+            const conference = user.data()[process.env.CONFERENCE_ID]
+            if (!conference.favourites) {
+              return
+            }
+            const favourites = {}
+            conference.favourites.forEach(favourite => {
+              favourites[favourite] = true
+            })
+            commit('setFavourites', favourites)
           })
           commit('setUserUnsubscribe', userUnsubscribe)
         } else {
