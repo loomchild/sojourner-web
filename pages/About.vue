@@ -102,7 +102,7 @@ a {
 <style>
 .application.about {
   background-color: var(--v-primary-base) !important;
-  background-image: url(~assets/dashboard-desktop.png);
+  background-image: url(~confassets/dashboard-desktop.png);
   background-size: 100%;
   background-position: right bottom;
   background-repeat: no-repeat;

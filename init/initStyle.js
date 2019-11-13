@@ -7,16 +7,11 @@ import '@/main.styl'
 
 import '@/preload.css'
 
+const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+
 Vue.use(Vuetify, {
   theme: {
-    primary: {
-      base: '#54BECA',
-      lighten3: '#DCEBED'
-    },
-    secondary: {
-      base: '#A12F88',
-      lighten5: '#FFF0E8'
-    }
+    ...conference.colors
   },
   options: {
     customProperties: true

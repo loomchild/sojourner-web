@@ -1,0 +1,14 @@
+{
+  "name": "FLOWCON'19",
+  "assets": "flowcon",
+  "colors": {
+    "primary": {
+      "base": "#18181c",
+      "lighten3": "#18181c"
+    },
+    "secondary": {
+      "base": "#1d428a",
+      "lighten5": "#e2e6f1"
+    }
+  }
+}

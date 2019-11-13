@@ -114,7 +114,7 @@ h1.page-title {
 @media only screen and (min-width:960px) {
   .application.root {
     background-color: var(--v-primary-base) !important;
-    background-image: url(~assets/dashboard-desktop.png);
+    background-image: url(~confassets/dashboard-desktop.png);
     background-size: 33%;
     background-position: right bottom;
   }

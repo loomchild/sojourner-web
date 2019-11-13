@@ -42,7 +42,7 @@ html, body {
 .spinner {
   width: 150px;
   height: 150px;
-  background-image: url(~assets/logo-small-inner.png);
+  background-image: url(~confassets/logo-small-inner.png);
 }
 
 .spinner::before {
@@ -51,5 +51,5 @@ html, body {
   width: 150px;
   height: 150px;
   animation: spin 4000ms linear 300ms infinite;
-  background-image: url(~assets/logo-small-outer.png);
+  background-image: url(~confassets/logo-small-outer.png);
 }

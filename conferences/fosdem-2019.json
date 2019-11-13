@@ -1,0 +1,14 @@
+{
+  "name": "FOSDEM'19",
+  "assets": "fosdem",
+  "colors": {
+    "primary": {
+      "base": "#54BECA",
+      "lighten3": "#DCEBED"
+    },
+    "secondary": {
+      "base": "#A12F88",
+      "lighten5": "#FFF0E8"
+    }
+  }
+}

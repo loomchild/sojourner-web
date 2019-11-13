@@ -11,7 +11,7 @@
       <v-divider class="mx-3"></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
-    <img class="menu-logo" src="@/assets/menu-logo.png">
+    <img class="menu-logo" src="~confassets/menu-logo.png">
   </v-navigation-drawer>
 </template>
 

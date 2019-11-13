@@ -17,8 +17,11 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
+const CONFERENCE_ID = process.env.CONFERENCE_ID
 const SCHEDULE_URL = process.env.SCHEDULE_URL ||
-  `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${process.env.CONFERENCE_ID}.json?alt=media`
+  `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${CONFERENCE_ID}.json?alt=media`
+
+const conference = require(`./conferences/${CONFERENCE_ID}`)
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -37,7 +40,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname),
-      'assets': path.resolve(__dirname, 'assets')
+      'assets': path.resolve(__dirname, 'assets'),
+      'confassets': path.resolve(__dirname, 'assets', 'conferences', conference.assets)
     }
   },
   mode: 'development',

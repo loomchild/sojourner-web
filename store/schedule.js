@@ -8,6 +8,8 @@ import Room from '@/logic/Room'
 import Track from '@/logic/Track'
 import Type from '@/logic/Type'
 
+const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+
 const createDay = (date) => Object.freeze(new Day({
   date: new Date(date)
 }))
@@ -167,7 +169,7 @@ export default {
       })
     },
 
-    conferenceName: () => process.env.CONFERENCE_NAME
+    conferenceName: () => conference.name
   },
 
   mutations: {

@@ -99,7 +99,7 @@ export default {
   }
 
   .logo {
-    background-image: url(~assets/logo-toolbar.png);
+    background-image: url(~confassets/logo-toolbar.png);
     background-position: left center;
     padding-left: 41px;
     padding-right: 10px;
