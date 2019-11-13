@@ -35,6 +35,7 @@
     "workbox-window": "^4.3.1"
   },
   "devDependencies": {
+    "add-asset-webpack-plugin": "^1.0.0",
     "chai": "^3.5.0",
     "chai-datetime": "^1.5.0",
     "chromedriver": "74.0.0",

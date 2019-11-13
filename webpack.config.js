@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const AddAssetPlugin = require('add-asset-webpack-plugin')
 const gitRevisionPlugin = new GitRevisionPlugin()
 
 const dotenv = require('dotenv')
@@ -22,6 +22,21 @@ const SCHEDULE_URL = process.env.SCHEDULE_URL ||
   `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${CONFERENCE_ID}.json?alt=media`
 
 const conference = require(`./conferences/${CONFERENCE_ID}`)
+
+const ICON_SIZES = [56, 112, 192, 224, 512]
+const manifest = () => JSON.stringify({
+  short_name: conference.name,
+  name: `${conference.name} conference companion`,
+  icons: ICON_SIZES.map(size => ({
+    src: `/assets/sojourner-icon-${size}.png`,
+    sizes: `${size}x${size}`,
+    type: 'image/png'
+  })),
+  start_url: '/',
+  display: 'standalone',
+  background_color: conference.colors.primary.base,
+  theme_color: conference.colors.primary.base
+}, null, 2)
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -118,6 +133,7 @@ module.exports = {
       'assets/**/*',
       'static/'
     ]),
+    new AddAssetPlugin('assets/manifest.json', manifest),
     new webpack.EnvironmentPlugin({
       TIMESTAMP: JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
       COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
