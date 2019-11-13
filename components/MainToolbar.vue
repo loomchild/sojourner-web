@@ -10,7 +10,7 @@
   <v-toolbar v-else app absolute flat height="82px">
     <v-layout class="mx-auto">
       <v-toolbar-title class="logo d-flex" v-ripple v-go="'/'" prepend-icon="home">
-        Sojourner
+        {{ conferenceName }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat dark class="mx-0" :ripple="false" to="/">Programme</v-btn>
@@ -40,7 +40,8 @@ export default {
 
     ...mapGetters([
       'title',
-      'realUser'
+      'realUser',
+      'conferenceName'
     ])
   },
   methods: {
