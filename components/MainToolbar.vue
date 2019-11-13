@@ -9,9 +9,7 @@
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
     <v-layout class="mx-auto">
-      <v-toolbar-title class="logo d-flex" v-ripple v-go="'/'" prepend-icon="home">
-        {{ conferenceName }}
-      </v-toolbar-title>
+      <v-toolbar-title class="logo" v-ripple v-go="'/'" prepend-icon="home" />
       <v-spacer></v-spacer>
       <v-btn flat dark class="mx-0" :ripple="false" to="/">Programme</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">Bookmarks</v-btn>
@@ -76,7 +74,7 @@ export default {
   }
 
 
-  .v-toolbar, .logo {
+  .v-toolbar {
     background-color: var(--v-primary-base);
     color: white;
     font-size: 18px;
@@ -87,7 +85,6 @@ export default {
   }
 
   .layout-default .v-toolbar,
-  .layout-default .logo,
   .layout-default .v-toolbar__title,
   .layout-default .v-btn {
     background-color: white;
@@ -99,11 +96,14 @@ export default {
   }
 
   .logo {
-    background-image: url(~confassets/logo-toolbar.png);
+    background-color: transparent !important;
+    background-image: url(~confassets/menu-logo.png);
     background-position: left center;
-    padding-left: 41px;
-    padding-right: 10px;
-    align-items: center;
+    width: 200px;
+  }
+
+  .layout-default .logo {
+    filter: invert(1);
   }
 
   .v-btn {
