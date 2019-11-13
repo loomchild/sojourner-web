@@ -101,6 +101,9 @@ export default {
 
     allEvents: state => Object.values(state.events).sort(eventNaturalSort),
 
+    type: state => typeName => Object.values(state.types)
+      .find(type => type.name === typeName),
+
     typeEvents: state => typeName => Object.values(state.events)
       .filter(event => event.type.name === typeName)
       .sort(eventNaturalSort),

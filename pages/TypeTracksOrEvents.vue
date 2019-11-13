@@ -40,12 +40,12 @@ export default {
     },
 
     typeColor () {
-      const type = this.types[this.typeName]
+      const type = this.type(this.typeName)
       return type ? type.arrowColor : 'secondary'
     },
 
     ...mapGetters({
-      types: 'types',
+      type: 'type',
       typeTracks: 'typeTrackStats',
       typeEvents: 'typeEvents'
     })
