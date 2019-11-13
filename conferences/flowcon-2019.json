@@ -10,5 +10,44 @@
       "base": "#1d428a",
       "lighten5": "#e2e6f1"
     }
-  }
+  },
+  "types": [
+    {
+      "background": "background-1-alt.png",
+      "mobileColor": "#7FDBD399",
+      "desktopColor": "#f3827f",
+      "arrowColor": "#f3827f"
+    },
+    {
+      "background": "background-2-alt.png",
+      "mobileColor": "#54BECA99",
+      "desktopColor": "#ffbc57",
+      "arrowColor": "#ffbc57"
+    },
+    {
+      "background": "background-3-alt.png",
+      "mobileColor": "#96C3C999",
+      "desktopColor": "#efc8fe",
+      "arrowColor": "#efc8fe"
+    },
+    {
+      "background": "background-4-alt.png",
+      "mobileColor": "#E0D0BF99",
+      "desktopColor": "#44f4c4",
+      "arrowColor": "#44f4c4"
+    },
+    {
+      "background": "background-5-alt.png",
+      "mobileColor": "#A18A9D99",
+      "desktopColor": "#9edf7d",
+      "arrowColor": "#9edf7d"
+    },
+    {
+      "background": "background-5-alt.png",
+      "mobileColor": "#A18A9D99",
+      "desktopColor": "#b7cdff",
+      "arrowColor": "#b7cdff"
+    }
+  ]
+
 }

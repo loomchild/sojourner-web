@@ -24,12 +24,17 @@ const createTrack = (name, type) => Object.freeze(new Track({
   type: type
 }))
 
-const createType = (type, priority) => Object.freeze(new Type({
-  id: type.id,
-  priority,
-  name: type.name,
-  statName: type.statName
-}))
+const createType = (type, priority) => {
+  const conferenceType = priority < conference.types.length ? conference.types[priority] : conference.types[conference.types.length - 1]
+
+  return Object.freeze(new Type({
+    id: type.id,
+    priority,
+    name: type.name,
+    statName: type.statName,
+    ...conferenceType
+  }))
+}
 
 const createEvent = (event, day, room, track, type) => {
   const links = event.links ? event.links.map(link => new Link(link)) : []
