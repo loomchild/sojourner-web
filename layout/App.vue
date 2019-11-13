@@ -86,7 +86,8 @@ export default {
     },
 
     ...mapGetters([
-      'scheduleInitialized'
+      'scheduleInitialized',
+      'conferenceName'
     ])
   },
 
@@ -96,7 +97,7 @@ export default {
       meta: [{
         vmid: 'description',
         name: 'description',
-        content: 'FOSDEM conference companion'
+        content: `${this.conferenceName} conference companion`
       }],
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
