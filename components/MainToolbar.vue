@@ -99,11 +99,12 @@ export default {
     background-color: transparent !important;
     background-image: url(~confassets/menu-logo.png);
     background-position: left center;
+    background-size: auto 26px;
     width: 200px;
   }
 
   .layout-default .logo {
-    filter: invert(1);
+    filter: invert(0.9);
   }
 
   .v-btn {
