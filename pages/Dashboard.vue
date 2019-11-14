@@ -101,7 +101,7 @@ export default {
 
 <style>
 .application.root {
-  background-image: url(~assets/dashboard.jpg);
+  background-image: url(~confassets/dashboard.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
