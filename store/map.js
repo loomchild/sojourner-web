@@ -1,5 +1,7 @@
 import Building from '@/logic/Building'
 
+const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+
 export default {
   state: {
     buildings: {
@@ -12,6 +14,8 @@ export default {
   },
 
   getters: {
+    hasMap: () => conference.map,
+
     buildings: state => state.buildings,
 
     roomBuilding: state => roomName => Object.values(state.buildings).filter(building => building.containsRoom(roomName))[0]

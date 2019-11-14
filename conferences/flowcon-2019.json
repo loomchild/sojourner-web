@@ -1,5 +1,6 @@
 {
   "name": "FLOWCON'19",
+  "map": false,
   "assets": "flowcon",
   "colors": {
     "primary": {
@@ -49,5 +50,4 @@
       "arrowColor": "#b7cdff"
     }
   ]
-
 }

@@ -1,5 +1,6 @@
 {
   "name": "FOSDEM'19",
+  "map": true,
   "assets": "fosdem",
   "colors": {
     "primary": {

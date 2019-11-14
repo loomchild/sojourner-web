@@ -6,7 +6,7 @@
       <v-divider class="mx-3"></v-divider>
       <menu-item title="Dashboard" icon="home" to="/"></menu-item>
       <menu-item title="Bookmarks" icon="bookmarks" to="/favourites/"></menu-item>
-      <menu-item title="Map" icon="map" to="/map/"></menu-item>
+      <menu-item v-if="hasMap" title="Map" icon="map" to="/map/"></menu-item>
       <menu-item title="Search" icon="search" to="/search/"></menu-item>
       <v-divider class="mx-3"></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
@@ -29,7 +29,8 @@ export default {
 
   computed: mapGetters([
     'drawer',
-    'realUser'
+    'realUser',
+    'hasMap'
   ]),
 
   methods: {
