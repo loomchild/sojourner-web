@@ -8,7 +8,7 @@
       <v-icon>bookmarks</v-icon>
     </v-btn>
 
-    <v-btn flat to="/map/">
+    <v-btn v-if="hasMap" flat to="/map/">
       <v-icon>map</v-icon>
     </v-btn>
 
@@ -19,13 +19,19 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'bottom-menu',
 
   computed: {
     hasBottomMenu () {
       return this.$vuetify.breakpoint.smAndDown && screen.height >= 600
-    }
+    },
+
+    ...mapGetters([
+      'hasMap'
+    ])
   }
 }
 </script>
