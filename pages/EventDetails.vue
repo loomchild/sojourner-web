@@ -106,7 +106,7 @@ export default {
 
   metaInfo () {
     return {
-      title: this.event.track.name,
+      title: this.event.track.name || this.event.type.name,
       meta: [{
         vmid: 'description',
         name: 'description',
