@@ -1,4 +1,11 @@
 {
+  "types": [
+    {
+      "id": "keynote",
+      "name": "Keynotes",
+      "statName": "lectures"
+    }
+  ],
   "events": [
     {
       "id": "8967",
