@@ -15,6 +15,7 @@ export default class Event {
     this.subtitle = data.subtitle
     this.abstract = data.abstract
     this.description = data.description
+    this.language = data.language
 
     this.type = data.type || new Type()
     this.track = data.track || {}

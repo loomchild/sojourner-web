@@ -8,6 +8,9 @@
         <span>
           {{ event.startTime }}-{{ event.endTime }}
         </span>
+        <span v-if="event.language">
+          | {{ event.language }}
+        </span>
         <span v-if="showRoom">
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>

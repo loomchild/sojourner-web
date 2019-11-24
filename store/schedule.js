@@ -47,6 +47,7 @@ const createEvent = (event, day, room, track, type) => {
     subtitle: event.subtitle,
     abstract: event.abstract,
     description: event.description,
+    language: event.language,
 
     type: type,
     track: track,
