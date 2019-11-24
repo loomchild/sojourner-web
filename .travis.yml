@@ -10,7 +10,7 @@ script:
   - npm run lint
   - npm run test
   - npm run build
-  - npm run start &
+  - CONFERENCE_ID="fosdem-2019" npm run start &
   - sleep 1
   - xvfb-run npm run test-e2e
   - pkill node
