@@ -37,7 +37,8 @@ module.exports = async function (scheduleUrl, scheduleKey) {
       type: typeId,
       track: typeId,
       room,
-      persons: e.speakers ? e.speakers.map(speaker => speaker.name) : []
+      persons: e.speakers ? e.speakers.map(speaker => speaker.name) : [],
+      language: e.event_subtype
     })
   })
 

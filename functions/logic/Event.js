@@ -13,6 +13,7 @@ module.exports = class Event {
     this.room = data.room
     this.persons = data.persons
     this.links = data.links
+    this.language = data.language
     Object.freeze(this)
   }
 }
