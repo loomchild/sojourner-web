@@ -4,7 +4,7 @@ module.exports = {
     browser.waitForElementVisible('body', 5000)
     browser.waitForElementVisible('h1.page-title', 20000)
 
-    browser.assert.title('FOSDEM\'19 | Sojourner')
+    browser.assert.title('FLOWCON\'19 | Sojourner')
 
     browser.end()
   }

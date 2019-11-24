@@ -9,7 +9,7 @@ script:
   - cp sample.env .env
   - npm run lint
   - npm run test
-  - CONFERENCE_ID="fosdem-2019" npm run build
+  - CONFERENCE_ID="flowcon-2019" npm run build
   - npm run start &
   - sleep 1
   - xvfb-run npm run test-e2e
