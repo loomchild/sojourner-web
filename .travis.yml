@@ -5,6 +5,9 @@ node_js:
 
 sudo: required
 
+env:
+  - CONFERENCE_ID=fosdem-2019
+
 script:
   - cp sample.env .env
   - npm run lint
