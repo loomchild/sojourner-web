@@ -9,8 +9,8 @@ script:
   - cp sample.env .env
   - npm run lint
   - npm run test
-  - npm run build
-  - CONFERENCE_ID="fosdem-2019" npm run start &
+  - CONFERENCE_ID="fosdem-2019" npm run build
+  - npm run start &
   - sleep 1
   - xvfb-run npm run test-e2e
   - pkill node
