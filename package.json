@@ -10,7 +10,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --hot --disable-host-check",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "NODE_ENV=test ROOM_STATE_INTERVAL=0 CONFERENCE_ID=fosdem-2019 karma start --single-run",
-    "test-e2e": "NODE_ENV=test ROOM_STATE_INTERVAL=0 CONFERENCE_ID=fosdem-2019 nightwatch --env chrome"
+    "test-e2e": "nightwatch --env chrome"
   },
   "dependencies": {
     "@sentry/browser": "^5.4.0",
