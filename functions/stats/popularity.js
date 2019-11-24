@@ -12,7 +12,7 @@ module.exports = async function (conference) {
     favouriteCounts[favouriteCount] = (favouriteCounts[favouriteCount] || 0) + 1
   }
   console.log(`Users: ${userCount}`)
-  for (let favouriteCount of Object.keys(favouriteCounts).sort((l,r) => Number(l) - Number(r)).reverse()) {
+  for (let favouriteCount of Object.keys(favouriteCounts).sort((l, r) => Number(l) - Number(r)).reverse()) {
     console.log(`${favouriteCount} favourites: ${favouriteCounts[favouriteCount]} users`)
   }
 }
