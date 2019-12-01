@@ -1,5 +1,6 @@
 {
   "name": "FLOWCON'19",
+  "nameColor": "white",
   "map": false,
   "assets": "flowcon",
   "colors": {

@@ -178,7 +178,9 @@ export default {
       })
     },
 
-    conferenceName: () => conference.name
+    conferenceName: () => conference.name,
+
+    conferenceNameColor: () => conference.nameColor || ''
   },
 
   mutations: {
