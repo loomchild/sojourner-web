@@ -8,16 +8,18 @@
         <span>
           {{ event.startTime }}-{{ event.endTime }}
         </span>
-        <span v-if="event.language">
-          | {{ event.language }}
-        </span>
         <span v-if="showRoom">
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
         <span v-if="!showRoom && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
-      <v-list-tile-title class="event-title">{{ event.title }}</v-list-tile-title>
+      <v-list-tile-title class="event-title">
+        {{ event.title }}
+        <span v-if="event.language" class="font-weight-light">
+          ({{ event.language }})
+        </span>
+      </v-list-tile-title>
     </v-list-tile-content>
     <v-list-tile-action @click.prevent="">
       <favourite :event="event"></favourite>
