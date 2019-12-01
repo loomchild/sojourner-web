@@ -11,7 +11,7 @@
   </v-container>
   <v-container v-else fluid fill-height grid-list-xl class="content px-3">
     <v-layout column>
-      <v-flex lg6 xs7 class="mt-auto">
+      <v-flex xs6 class="mt-auto">
         <h1 class="page-title" :style="{ color: conferenceNameColor }">{{ conferenceName }}</h1>
         <v-layout row>
           <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
