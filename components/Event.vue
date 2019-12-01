@@ -12,7 +12,10 @@
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
-        <span v-if="!showRoom && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
+        <span v-if="showType">
+          | {{ event.type.name }}
+        </span>
+        <span v-if="(!(showRoom || showType) || $vuetify.breakpoint.mdAndUp) && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
       </v-list-tile-sub-title>
       <v-list-tile-title class="event-title">
         {{ event.title }}
@@ -37,7 +40,8 @@ export default {
   props: {
     event: Object,
     showRoom: Boolean,
-    showDay: Boolean
+    showDay: Boolean,
+    showType: Boolean
   },
 
   components: {

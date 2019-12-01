@@ -58,7 +58,7 @@ const createEvent = (event, day, room, track, type) => {
   }))
 }
 
-const eventNaturalSort = firstBy(event => event.day.index).thenBy('startTime')
+const eventNaturalSort = firstBy(event => event.day.index).thenBy('startTime').thenBy(event => event.type.priority).thenBy('endTime')
 
 const MAX_SEARCH_RESULTS = 50
 

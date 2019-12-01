@@ -8,7 +8,7 @@
         <v-tab-item>
           <v-list v-if="dayEvents.events.length > 0" three-line class="pa-0">
             <template v-for="(event, index) in dayEvents.events">
-              <event :event="event" :show-room="showRoom"></event>
+              <event :event="event" :show-room="showRoom" :show-type="showType"></event>
               <v-divider v-if="index + 1 < dayEvents.events.length"></v-divider>
             </template>
           </v-list>
@@ -43,7 +43,8 @@ export default {
 
   props: {
     events: Array,
-    showRoom: Boolean
+    showRoom: Boolean,
+    showType: Boolean
   },
 
   created () {

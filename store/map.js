@@ -14,7 +14,7 @@ export default {
   },
 
   getters: {
-    hasMap: () => conference.map,
+    hasMap: () => conference.features.map,
 
     buildings: state => state.buildings,
 

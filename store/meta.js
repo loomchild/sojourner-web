@@ -1,3 +1,5 @@
+const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+
 function isStandalone () {
   return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches
 }
@@ -22,7 +24,9 @@ export default {
 
     drawer: state => state.drawer,
 
-    tab: state => state.tab
+    tab: state => state.tab,
+
+    hasAll: state => conference.features.all
   },
 
   mutations: {

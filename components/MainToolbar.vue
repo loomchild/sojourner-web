@@ -13,6 +13,7 @@
       <v-spacer></v-spacer>
       <v-btn flat dark class="mx-0" :ripple="false" to="/">Programme</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">Bookmarks</v-btn>
+      <v-btn v-if="hasAll" flat dark class="mx-0" :ripple="false" to="/all/">All</v-btn>
       <v-btn v-if="hasMap" flat dark class="mx-0" :ripple="false" to="/map/">Map</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/search/">Search</v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/about/">About</v-btn>
@@ -39,6 +40,7 @@ export default {
     ...mapGetters([
       'title',
       'hasMap',
+      'hasAll',
       'realUser',
       'conferenceName'
     ])

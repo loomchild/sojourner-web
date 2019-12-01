@@ -11,6 +11,7 @@ import ConferenceTrackEvents from './ConferenceTrackEvents'
 import EventDetails from './EventDetails'
 import FavouriteEvents from './FavouriteEvents'
 import TypeTracksOrEvents from './TypeTracksOrEvents'
+import AllEvents from './AllEvents'
 
 window.history.scrollRestoration = 'manual'
 
@@ -37,6 +38,11 @@ const router = new Router({
       path: '/favourites',
       name: 'favourite-events',
       component: FavouriteEvents
+    },
+    {
+      path: '/all',
+      name: 'all-events',
+      component: AllEvents
     },
     {
       path: '/event/:eventId?',
