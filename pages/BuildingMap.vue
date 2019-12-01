@@ -6,7 +6,7 @@
       </v-flex>
       <v-flex grow>
         <div class="map-container">
-          <img v-if="building" class="map d-block" :src="require(`@/assets/building-${building.name.toLowerCase()}.png`)">
+          <img v-if="building" class="map d-block" :src="require(`confassets/building-${building.name.toLowerCase()}.png`)">
         </div>
       </v-flex>
     </v-layout>
