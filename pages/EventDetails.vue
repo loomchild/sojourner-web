@@ -91,7 +91,7 @@ export default {
     },
 
     background () {
-      return this.event ? require(`@/assets/${this.event.type.background}`) : ''
+      return this.event ? require(`confassets/${this.event.type.background}`) : ''
     },
 
     typeColor () {

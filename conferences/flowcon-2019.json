@@ -14,37 +14,37 @@
   },
   "types": [
     {
-      "background": "background-1-alt.png",
+      "background": "background-1.png",
       "mobileColor": "#f3827f",
       "desktopColor": "#f3827f",
       "arrowColor": "#f3827f"
     },
     {
-      "background": "background-2-alt.png",
+      "background": "background-2.png",
       "mobileColor": "#ffbc57",
       "desktopColor": "#ffbc57",
       "arrowColor": "#ffbc57"
     },
     {
-      "background": "background-3-alt.png",
+      "background": "background-3.png",
       "mobileColor": "#e29bfd",
       "desktopColor": "#efc8fe",
       "arrowColor": "#efc8fe"
     },
     {
-      "background": "background-4-alt.png",
+      "background": "background-4.png",
       "mobileColor": "#44f4c4",
       "desktopColor": "#44f4c4",
       "arrowColor": "#44f4c4"
     },
     {
-      "background": "background-5-alt.png",
+      "background": "background-5.png",
       "mobileColor": "#9edf7d",
       "desktopColor": "#9edf7d",
       "arrowColor": "#9edf7d"
     },
     {
-      "background": "background-5-alt.png",
+      "background": "background-6.png",
       "mobileColor": "#8baefe",
       "desktopColor": "#b7cdff",
       "arrowColor": "#b7cdff"
