@@ -1,6 +1,6 @@
 function log (logEntries) {
-  logEntries.forEach(function (log) {
-    console.log(`[${log.level}] ${log.message}`)
+  logEntries.forEach((entry) => {
+    console.log(`[${entry.level}] ${entry.message}`)
   })
 }
 
@@ -11,13 +11,17 @@ module.exports = {
 
       await browser.waitForElementVisible('body', 5000)
 
-      await browser.waitForElementVisible('h1.page-title', 10000)
+      await browser.waitForElementVisible('h1.page-title', 30000)
 
       await browser.assert.titleContains('| Sojourner')
 
       await browser.end()
     } finally {
-      await browser.getLog('browser', log)
+      const logAvailable = (await browser.isLogAvailable('browser')).value
+      if (logAvailable) {
+        const logEntries = (await browser.getLog('browser')).value
+        log(logEntries)
+      }
     }
   }
 }
