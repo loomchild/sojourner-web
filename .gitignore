@@ -80,3 +80,6 @@ tags
 .tern-port
 tests_output/
 dist/
+
+# Firebase local config
+.runtimeconfig.json

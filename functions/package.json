@@ -5,6 +5,7 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "NODE_ENV=production firebase deploy --only functions",
+    "config": "firebase functions:config:get",
     "logs": "firebase functions:log"
   },
   "engines": {
