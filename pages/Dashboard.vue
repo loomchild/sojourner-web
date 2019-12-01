@@ -9,7 +9,7 @@
       </v-flex>
     </v-layout>
   </v-container>
-  <v-container v-else fluid fill-height grid-list-xl class="content px-3">
+  <v-container v-else fluid fill-height grid-list-xl class="content">
     <v-layout column>
       <v-flex xs6 class="mt-auto">
         <h1 class="page-title" :style="{ color: conferenceNameColor }">{{ conferenceName }}</h1>
