@@ -16,13 +16,14 @@ module.exports = async function (scheduleUrl, scheduleKey) {
     const duration = moment.utc(endTime.diff(startTime))
 
     const typeId = e.event_type.toLowerCase().replace(/[^[a-z0-9- ]/g, '').replace(/\s+/g, '-')
-    const type = typeMap[typeId]
+    let type = typeMap[typeId]
     if (!type) {
-      typeMap[typeId] = {
+      type = {
         id: typeId,
         name: e.event_type,
         sort: e.event_type_sort
       }
+      typeMap[typeId] = type
     }
 
     const room = e.venue.replace(/\s*-\s*\d+p$/, '')
@@ -35,7 +36,7 @@ module.exports = async function (scheduleUrl, scheduleKey) {
       title: e.name,
       description: e.description,
       type: typeId,
-      track: typeId,
+      track: type.name,
       room,
       persons: e.speakers ? e.speakers.map(speaker => speaker.name) : [],
       language: e.event_subtype
