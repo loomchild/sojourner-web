@@ -130,7 +130,6 @@ module.exports = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
-      'assets/**/*',
       'static/'
     ]),
     new AddAssetPlugin('assets/manifest.json', manifest),
