@@ -11,7 +11,7 @@ module.exports = {
 
       await browser.waitForElementVisible('body', 5000)
 
-      await browser.waitForElementVisible('h1.page-title', 180000)
+      await browser.waitForElementVisible('h1.page-title', 10000)
 
       await browser.assert.titleContains('| Sojourner')
 

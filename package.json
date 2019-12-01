@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "NODE_ENV=test ROOM_STATE_INTERVAL=0 CONFERENCE_ID=fosdem-2019 karma start --single-run",
     "test-e2e": "nightwatch --env chrome",
-    "ci": "npm run lint && npm run test && npm run build && (npm run start &) && sleep 1 && xvfb-run npm run test-e2e && pkill node || (pkill node && exit 1)"
+    "ci": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {
     "@sentry/browser": "^5.4.0",
