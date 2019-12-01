@@ -22,6 +22,7 @@ module.exports = {
         browserName: 'chrome',
         javascriptEnabled: true,
         acceptSslCerts: true,
+        loggingPrefs: { 'browser': 'ALL' },
         chromeOptions: {
           binary: require('puppeteer').executablePath(),
           args: [
