@@ -1,6 +1,5 @@
 # Sojourner Web
 
-[![Build Status](https://api.travis-ci.org/loomchild/sojourner-web.svg)](https://travis-ci.org/loomchild/sojourner-web)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c9b2b95-ea25-4b11-ad7f-47d383770866/deploy-status)](https://app.netlify.com/sites/sojourner/deploys)
 
 > Sojourner conference companion PWA
@@ -34,8 +33,6 @@ Launch unit / integration tests:
 Launch end-to-end tests (local server must be running):
 
     npm run test-e2e
-
-All of the above tests are automatically executed by [Travis](https://travis-ci.org/loomchild/sojourner-web) after every commit.
 
 # Deploy
 
