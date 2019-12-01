@@ -4,7 +4,7 @@ module.exports = {
     browser.waitForElementVisible('body', 5000)
     browser.waitForElementVisible('h1.page-title', 10000)
 
-    browser.assert.title('FLOWCON\'19 | Sojourner')
+    browser.assert.titleContains('| Sojourner')
 
     browser.end()
   }
