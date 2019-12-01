@@ -116,7 +116,7 @@ h1.page-title {
   .application.root {
     background-color: var(--v-primary-base) !important;
     background-image: url(~confassets/dashboard-desktop.png);
-    background-size: 33%;
+    background-size: 100%;
     background-position: right bottom;
   }
 }
