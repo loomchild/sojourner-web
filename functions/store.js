@@ -23,4 +23,5 @@ module.exports = async function store (data, fileName) {
   console.log('Storing conference data')
   await file.save(stringData)
   await file.makePublic()
+  await file.setMetadata({ cacheControl: 'public, max-age=0, must-revalidate' })
 }
