@@ -6,7 +6,9 @@
         <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
-            | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
+            |
+            <span v-if="hasMap"><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+            <span v-else>{{ event.room.name }}</span>
             <room-state :room="event.room"></room-state>
           </div>
           <h2>{{ event.title }}</h2>
@@ -50,7 +52,9 @@
         <h3 class="title mt-1">{{ event.subtitle }}</h3>
         <div class="event-info my-4">
           {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
-          | <router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link>
+          |
+          <span v-if="hasMap"><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+          <span v-else>{{ event.room.name }}</span>
           <room-state :room="event.room"></room-state>
         </div>
         <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
@@ -100,7 +104,8 @@ export default {
     },
 
     ...mapGetters([
-      'events'
+      'events',
+      'hasMap'
     ])
   },
 
