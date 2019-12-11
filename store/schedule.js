@@ -81,6 +81,7 @@ const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] |
 export default {
   state: {
     scheduleInitialized: false,
+    scheduleUpdaterInitialized: false,
     days: {},
     rooms: {},
     tracks: {},
@@ -210,6 +211,10 @@ export default {
 
     setEventIndex (state, eventIndex) {
       state.eventIndex = eventIndex
+    },
+
+    initializeScheduleUpdater (state) {
+      state.scheduleUpdaterInitialized = true
     }
   },
 
@@ -306,6 +311,17 @@ export default {
           }
         }
       })
+    },
+
+    initScheduleUpdater ({dispatch, state, commit}) {
+      if (!process.env.SCHEDULE_INTERVAL || state.scheduleUpdaterInitialized) {
+        return
+      }
+      const pollInterval = parseInt(process.env.SCHEDULE_INTERVAL)
+
+      setInterval(() => dispatch('initSchedule'), pollInterval * 1000)
+
+      commit('initScheduleUpdater')
     },
 
     reindexEvents ({state, commit, dispatch}) {

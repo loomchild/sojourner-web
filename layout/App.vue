@@ -50,6 +50,7 @@ export default {
     'migrateLegacyFavourites',
     'initPersistent',
     'initSchedule',
+    'initScheduleUpdater',
     'initUser',
     'initRoomStateUpdater',
     'initA2HSTip',
@@ -70,6 +71,7 @@ export default {
     // This is not good enough, replace with lambda
     Vue.nextTick(() => {
       this.initSchedule()
+      this.initScheduleUpdater()
       this.initUser()
       this.initRoomStateUpdater()
       this.initA2HSTip()

@@ -139,6 +139,7 @@ module.exports = {
       VERSION: JSON.stringify(gitRevisionPlugin.version()),
       CONFERENCE_ID: undefined,
       SCHEDULE_URL,
+      SCHEDULE_INTERVAL: 0,
       ROOM_STATE_URL: '',
       ROOM_STATE_INTERVAL: 0,
       ANALYTICS_URL: '',
