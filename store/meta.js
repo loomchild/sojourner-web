@@ -85,6 +85,14 @@ export default {
         }
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
+        if (window.localStorage) {
+          const day = '' + new Date().getDate()
+          if (window.localStorage.getItem('a2hsTip') && window.localStorage.getItem('a2hsTip') === day) {
+            return
+          } else {
+            window.localStorage.setItem('a2hsTip', day)
+          }
+        }
         setTimeout(() => {
           dispatch('showMessage', 'If you enjoy this application, please consider adding it to your home screen.')
         }, 60 * 1000)
