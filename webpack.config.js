@@ -28,7 +28,7 @@ const manifest = () => JSON.stringify({
   short_name: conference.name,
   name: `${conference.name} conference companion`,
   icons: ICON_SIZES.map(size => ({
-    src: `/assets/sojourner-icon-${size}.png`,
+    src: `/assets/conferences/${conference.assets}/sojourner-icon-${size}.png`,
     sizes: `${size}x${size}`,
     type: 'image/png'
   })),
