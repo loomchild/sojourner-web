@@ -27,7 +27,7 @@
         </p>
         <v-layout row>
           <v-flex xs12 sm9 class="mt-4 about-text">
-            <p class="story">Sojourner is a conference companion. It is inspired by the original <a href="https://github.com/loomchild/sojourner">Sojourner</a> mobile app for Nokia N900.</p>
+            <p class="story">Sojourner is a conference companion. It is inspired by the original Sojourner mobile app for Nokia N900.</p>
           </v-flex>
         </v-layout>
       </v-flex>
