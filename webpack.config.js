@@ -26,7 +26,7 @@ const conference = require(`./conferences/${CONFERENCE_ID}`)
 const ICON_SIZES = [56, 112, 192, 224, 512]
 const manifest = () => JSON.stringify({
   short_name: conference.name,
-  name: `${conference.name} conference companion`,
+  name: `${conference.name}`,
   icons: ICON_SIZES.map(size => ({
     src: `/assets/conferences/${conference.assets}/sojourner-icon-${size}.png`,
     sizes: `${size}x${size}`,
