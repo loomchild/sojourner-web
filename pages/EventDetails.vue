@@ -23,10 +23,11 @@
           </div>
           <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
           <div v-if="event.description" v-html="event.description" class="description"></div>
-          <div v-if="event.links.length > 0" class="links pt-0 pb-3">
+          <div v-if="event.links.length > 0" class="links">
             Links:
             <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
           </div>
+          <div class="pt-0 pb-3"></div>
         </v-card-text>
       </v-card>
     </v-layout>
@@ -59,10 +60,11 @@
         </div>
         <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
         <div v-if="event.description" v-html="event.description" class="description"></div>
-        <div v-if="event.links.length > 0" class="links pt-0 pb-3">
+        <div v-if="event.links.length > 0" class="links">
           Links:
           <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
         </div>
+        <div class="pt-0 pb-5"></div>
       </v-flex>
     </v-layout>
   </v-container>
