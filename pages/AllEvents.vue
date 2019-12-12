@@ -1,7 +1,7 @@
 <template>
   <v-container class="content">
     <page-title></page-title>
-    <event-list :events="allEvents" show-type></event-list>
+    <event-list :events="allEvents" show-room show-persons></event-list>
   </v-container>
 </template>
 

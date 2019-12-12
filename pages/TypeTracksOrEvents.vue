@@ -2,7 +2,7 @@
   <v-container class="content">
     <page-title :back-arrow="typeColor"></page-title>
     <track-list v-if="multipleTracks" :tracks="tracks"></track-list>
-    <event-list v-else :events="events"></event-list>
+    <event-list v-else :events="events" show-room show-persons></event-list>
   </v-container>
 </template>
 

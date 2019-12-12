@@ -4,7 +4,7 @@
     <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none" color="secondary"/>
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
-        <event :event="event" show-day></event>
+        <event :event="event" show-day show-room show-persons></event>
         <v-divider v-if="index + 1 < events.length"></v-divider>
       </template>
     </v-list>

@@ -15,7 +15,9 @@
         <span v-if="showType">
           | {{ event.type.name }}
         </span>
-        <span v-if="(!(showRoom || showType) || $vuetify.breakpoint.mdAndUp) && event.persons.length > 0">| {{ event.persons.join(', ') }}</span>
+        <span v-if="showPersons && event.persons.length > 0">
+          | {{ event.persons.join(', ') }}
+        </span>
       </v-list-tile-sub-title>
       <v-list-tile-title class="event-title">
         {{ event.title }}
@@ -41,7 +43,8 @@ export default {
     event: Object,
     showRoom: Boolean,
     showDay: Boolean,
-    showType: Boolean
+    showType: Boolean,
+    showPersons: Boolean
   },
 
   components: {
