@@ -11,7 +11,7 @@ module.exports = async function (scheduleUrl, scheduleKey) {
   const typeMap = {}
 
   const events = json.map((e) => {
-    const startTime = moment(e.start_time, 'HH:mm:ss')
+    let startTime = moment(e.start_time, 'HH:mm:ss')
     const endTime = moment(e.end_time, 'HH:mm:ss')
     const duration = moment.utc(endTime.diff(startTime))
 
@@ -28,10 +28,18 @@ module.exports = async function (scheduleUrl, scheduleKey) {
 
     const room = e.venue.replace(/\s*-\s*\d+p$/, '')
 
+    if (e.id === '96cce7536d74ad22419502c2eef111b8') {
+      startTime = '10:45'
+    } else if (e.id === '32c6a1d7165d6c8f992a0ad2d4728cd6') {
+      startTime = '15:00'
+    } else {
+      startTime = startTime.format('HH:mm')
+    }
+
     return new Event({
       id: e.id,
       date: e.start_date,
-      startTime: startTime.format('HH:mm'),
+      startTime,
       duration: duration.format('HH:mm'),
       title: e.name,
       description: e.description,
