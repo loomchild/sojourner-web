@@ -8,8 +8,6 @@ const fetchFosdem = require('./fetch/fosdem')
 const fetchSched = require('./fetch/sched')
 const store = require('./store')
 
-// const popularity = require('./stats/popularity')
-
 admin.initializeApp({
   storageBucket: 'sojourer-web.appspot.com'
 })
@@ -25,8 +23,9 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
 })
 
 /*
+const popularity = require('./stats/popularity')
 exports.statPopularity = functions.pubsub.schedule('never').onRun(async (context) => {
-  await popularity('fosdem-2019')
+  await popularity('flowcon-2019')
 })
 */
 
