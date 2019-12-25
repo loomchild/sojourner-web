@@ -72,6 +72,9 @@ export default {
         return
       }
       const pollInterval = parseInt(process.env.ROOM_STATE_INTERVAL)
+      if (pollInterval <= 0) {
+        return
+      }
       const scheduleRefreshRoomStates = (attempt = 0) => {
         return dispatch('refreshRoomStates')
           .then(() => setTimeout(scheduleRefreshRoomStates, pollInterval * 1000))
