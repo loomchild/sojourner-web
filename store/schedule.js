@@ -76,7 +76,7 @@ const scoreEvent = (event, keywords) => {
   return score
 }
 
-const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] || 0, -1).thenBy('title')
+const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] || 0, -1).thenBy(eventNaturalSort)
 
 export default {
   state: {
