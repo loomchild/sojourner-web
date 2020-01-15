@@ -2,6 +2,17 @@ const axios = require('axios')
 const moment = require('moment')
 const Event = require('../logic/Event')
 const Type = require('../logic/Type')
+const Link = require('../logic/Link')
+
+const LINKS = {
+  '0d2ca077208b59fd4b61429113dfc573': 'https://www.youtube.com/watch?v=39u-WHz-9Cg&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=1',
+  '24911718a8cb47100861344e6f911a90': 'https://www.youtube.com/watch?v=D7GNBYjMxBw&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=2',
+  'dc2100463b0a8f11c79a162a320fbd72': 'https://www.youtube.com/watch?v=NfyURsZ17l8&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=3',
+  'e35739aa2946c4d2c623c8b832f57b56': 'https://www.youtube.com/watch?v=E88pnHQAfm0&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=4',
+  '52d9910ec3d4907fbb435bf654adf23f': 'https://www.youtube.com/watch?v=P0VMDomQxQk&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=5',
+  '6b2e0479a790ae48f39191bbb3885ab9': 'https://www.youtube.com/watch?v=re5jkjxBhLo&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=6',
+  '8031487dbf3f73a97600831e1cc16cce': 'https://www.youtube.com/watch?v=dEHtDfQTNcw&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=7'
+}
 
 module.exports = async function (scheduleUrl, scheduleKey) {
   const response = await axios.get(scheduleUrl, { params: { api_key: scheduleKey, format: 'json' } })
@@ -28,13 +39,7 @@ module.exports = async function (scheduleUrl, scheduleKey) {
 
     const room = e.venue.replace(/\s*-\s*\d+p$/, '')
 
-    if (e.id === '96cce7536d74ad22419502c2eef111b8') {
-      startTime = '10:45'
-    } else if (e.id === '32c6a1d7165d6c8f992a0ad2d4728cd6') {
-      startTime = '15:00'
-    } else {
-      startTime = startTime.format('HH:mm')
-    }
+    const links = LINKS[e.id] ? [new Link({ title: 'Video', href: LINKS[e.id] })] : []
 
     return new Event({
       id: e.id,
@@ -47,7 +52,8 @@ module.exports = async function (scheduleUrl, scheduleKey) {
       track: type.name,
       room,
       persons: e.speakers ? e.speakers.map(speaker => speaker.name) : [],
-      language: e.event_subtype
+      language: e.event_subtype,
+      links
     })
   })
 
