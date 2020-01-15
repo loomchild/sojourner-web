@@ -50,7 +50,7 @@ module.exports = async function (scheduleUrl, scheduleKey) {
     return new Event({
       id: e.id,
       date: e.start_date,
-      startTime,
+      startTime: startTime.format('HH:mm'),
       duration: duration.format('HH:mm'),
       title: e.name,
       description: e.description,
