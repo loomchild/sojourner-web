@@ -53,6 +53,12 @@ export default {
     }
   },
 
+  created () {
+    if (this.$route.query.q) {
+      this.query = this.$route.query.q
+    }
+  },
+
   activated () {
     this.$refs.search.focus()
   },
