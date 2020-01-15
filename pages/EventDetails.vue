@@ -60,7 +60,7 @@
         </div>
         <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
         <div v-if="event.description" v-html="event.description" class="description"></div>
-        <div v-if="event.links.length > 0" class="links">
+        <div v-if="event.links.length > 0" class="links mt-2">
           Links:
           <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
         </div>
