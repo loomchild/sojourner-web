@@ -130,7 +130,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
-      'static/'
+      'static/',
+      `assets/conferences/${conference.assets}/*`
     ]),
     new AddAssetPlugin('assets/manifest.json', manifest),
     new webpack.EnvironmentPlugin({
