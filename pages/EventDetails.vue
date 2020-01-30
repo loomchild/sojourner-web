@@ -22,8 +22,8 @@
             <favourite :event="event" large></favourite>
           </div>
           <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
-          <div v-if="event.description" v-html="event.description" class="description"></div>
-          <div v-if="event.links.length > 0" class="links mt-2">
+          <div v-if="event.description" v-html="event.description" class="description mt-3"></div>
+          <div v-if="event.links.length > 0" class="links mt-3">
             Links:
             <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
           </div>
@@ -59,8 +59,8 @@
           <room-state :room="event.room"></room-state>
         </div>
         <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
-        <div v-if="event.description" v-html="event.description" class="description"></div>
-        <div v-if="event.links.length > 0" class="links mt-2">
+        <div v-if="event.description" v-html="event.description" class="description mt-3"></div>
+        <div v-if="event.links.length > 0" class="links mt-3">
           Links:
           <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
         </div>
@@ -173,6 +173,14 @@ export default {
   position: absolute;
   right: 24px;
   transform: translateY(-36px);
+}
+
+.description /deep/ p, .abstract /deep/ p {
+  margin-bottom: 0;
+}
+
+.description /deep/ p:not(:first-child), .abstract /deep/ p:not(:first-child) {
+  margin-top: 16px;
 }
 
 .links {
