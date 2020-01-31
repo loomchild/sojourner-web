@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile class="event" :to="`/event/${event.id}`"> 
+  <v-list-tile v-if="event" class="event" :to="`/event/${event.id}`"> 
     <v-list-tile-content v-ripple>
       <v-list-tile-sub-title>
         <span v-if="showDay">

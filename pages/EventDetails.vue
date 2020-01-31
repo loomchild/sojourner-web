@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content">
+  <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
         <div class="image" :style="{'--image': `url(${background})`}"></div>
@@ -32,7 +32,7 @@
       </v-card>
     </v-layout>
   </v-container>
-  <v-container v-else fluid class="content">
+  <v-container v-else-if="event" fluid class="content">
     <page-title :back-arrow="typeColor"></page-title>
     <v-layout row>
       <v-flex xs4>
