@@ -7,7 +7,9 @@ export default {
 
   mutations: {
     pushNotification (state, notification) {
-      state.notifications.push(notification)
+      if (!state.notifications.some(n => n.message === notification.message)) {
+        state.notifications.push(notification)
+      }
     },
 
     popNotification (state) {

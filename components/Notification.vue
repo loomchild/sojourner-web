@@ -11,7 +11,7 @@
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
-  name: 'notification',
+  name: 'Notification',
 
   data: () => ({
     notification: {}
@@ -29,15 +29,27 @@ export default {
 
   watch: {
     notifications () {
-      this.notification = this.notifications[0] || {}
+      this.fetchNotification()
     }
   },
 
+  mounted () {
+    this.fetchNotification()
+  },
+
   methods: {
+    fetchNotification () {
+      this.notification = this.notifications[0] || {}
+    },
+
+    erase () {
+      this.notification = {}
+    },
+
     hide (value) {
-      if (!value) {
-        this.notification = {}
-        setTimeout(() => this.hideNotification(), 600)
+      if (!value && this.notification.message) {
+        this.erase()
+        setTimeout(() => this.hideNotification(), 300)
       }
     },
 
