@@ -48,11 +48,19 @@ const createEvent = (event, type, date, room) => {
   const links = event.links && event.links[0] && event.links[0].link
     ? event.links[0].link.map(link => new Link({href: link.href, title: link.text})) : []
 
+  let title = getText(event.title)
+  if (title.startsWith('CANCELLED')) {
+    return null
+  }
+  if (title.startsWith('AMENDMENT')) {
+    title = title.substring(10)
+  }
+
   return new Event({
     id: event.id.toString(),
     startTime: getText(event.start),
     duration: getText(event.duration),
-    title: getText(event.title),
+    title: title,
     subtitle: getText(event.subtitle),
     abstract: getText(event.abstract),
     description: getText(event.description),
@@ -117,7 +125,9 @@ module.exports = async function (scheduleUrl) {
         for (const e of r.event || []) {
           const type = getType(e, typeSet)
           const event = createEvent(e, type, date, room)
-          events.push(event)
+          if (event) {
+            events.push(event)
+          }
         }
       }
     }
