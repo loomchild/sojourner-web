@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar v-if="$vuetify.breakpoint.smAndDown" app fixed flat color="primary">
+  <v-toolbar v-if="$vuetify.breakpoint.smAndDown" app fixed flat color="primary" height="56">
     <v-toolbar-side-icon dark v-if="$vuetify.breakpoint.smAndDown && dashboard" @click.stop="toggleDrawer"></v-toolbar-side-icon>
     <v-btn v-if="!dashboard" @click.stop="goBack" flat icon dark>
       <v-icon>arrow_back</v-icon>
