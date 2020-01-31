@@ -126,10 +126,6 @@ html {
 }
 
 .application {
-  min-height: var(--screenHeight, 100vh) !important;
-}
-
-.application {
   background-color: white;
 }
 </style>
@@ -156,5 +152,9 @@ h1.page-title {
   .container.content {
     max-width: 960px;
   }
+}
+
+.application--wrap {
+  min-height: var(--screenHeight, 100vh) !important;
 }
 </style>
