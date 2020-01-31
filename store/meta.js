@@ -81,7 +81,7 @@ export default {
                 }
               }
             })
-          }, 60 * 1000)
+          }, 120 * 1000)
         }
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
@@ -95,7 +95,7 @@ export default {
         }
         setTimeout(() => {
           dispatch('showMessage', 'If you enjoy this application, please consider adding it to your home screen.')
-        }, 60 * 1000)
+        }, 180 * 1000)
       }
     },
 
