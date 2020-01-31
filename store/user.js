@@ -167,9 +167,8 @@ export default {
             if (!state.loseDataWarning) {
               console.error(e)
               return dispatch('showNotification', {
-                message: 'To assure that your data is preserved, please either allow persistent data storage (bookmarking or adding to home screen might help) or log-in.',
-                level: 'warning',
-                timeout: 0
+                message: 'To guarantee that your data is preserved, please either allow persistent data storage or log-in.',
+                level: 'warning'
               }).then(() => commit('shownLoseDataWarning'))
             }
           })
