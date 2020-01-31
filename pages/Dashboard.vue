@@ -52,6 +52,7 @@ export default {
 <style scoped>
 .layout .flex {
   cursor: pointer;
+  user-select: none;
 }
 
 .layout .flex article {
