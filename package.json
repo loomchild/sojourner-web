@@ -19,7 +19,6 @@
     "dotenv": "^8.2.0",
     "firebase": "^5.11.1",
     "git-revision-webpack-plugin": "^3.0.3",
-    "localforage": "^1.7.3",
     "lodash": "^4.17.11",
     "material-design-icons-iconfont": "^5.0.1",
     "memoizee": "^0.4.14",

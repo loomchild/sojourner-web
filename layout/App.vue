@@ -47,7 +47,6 @@ export default {
 
   methods: mapActions([
     'initIndexedDB',
-    'migrateLegacyFavourites',
     'initPersistent',
     'initSchedule',
     'initScheduleUpdater',
@@ -60,7 +59,6 @@ export default {
   created: async function () {
     try {
       await this.initIndexedDB()
-      await this.migrateLegacyFavourites()
       await this.initPersistent()
     } catch (error) {
       console.error(error)
