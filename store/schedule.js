@@ -141,7 +141,7 @@ export default {
       const eventsByDay = _.groupBy(Object.values(typeEvents), event => event.day.index)
 
       return getters.allDays.map(day => {
-        const dayEvents = eventsByDay[day.index]
+        const dayEvents = eventsByDay[day.index] || []
         const dayTracks = _.uniqBy(dayEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
         const tracks = dayTracks.map(track => {
           const events = dayEvents.filter(event => event.track.name === track.name).sort(eventNaturalSort)
