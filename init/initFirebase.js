@@ -12,7 +12,7 @@ export default async function () {
       storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
       messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
     })
-    await firebase.firestore().enablePersistence({ experimentalTabSynchronization: true })
+    await firebase.firestore().enablePersistence({ synchronizeTabs: true })
   } catch (error) {
     console.error(error)
   }
