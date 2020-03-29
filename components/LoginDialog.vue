@@ -11,7 +11,7 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-col cols="12" class="mb-3">
+                <v-col cols="12" class="mb-4">
                   You don't have an account yet? <a @click="action = 1">Register</a> instead.<br />
                 </v-col>
                 <v-col cols="12">
@@ -42,7 +42,7 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-col cols="12" class="mb-3">
+                <v-col cols="12" class="mb-4">
                   You already have an account? <a @click="action = 0">Log In</a> instead.
                 </v-col>
                 <v-col cols="12">

@@ -10,7 +10,7 @@
         </v-tab-item>
       </template>
     </day-tabs>
-    <div class="hidden-sm-and-down mb-5"></div>
+    <div class="hidden-sm-and-down mb-12"></div>
   </div>
 </template>
 

@@ -24,7 +24,7 @@
                 <h2>{{ type.type.name }}</h2>
                 <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
               </article>
-              <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}">
+              <div class="circle mx-auto mt-4" :style="{backgroundColor: type.type.desktopColor}">
               </div>
             </router-link>
           </v-col>

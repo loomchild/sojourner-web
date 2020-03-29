@@ -20,7 +20,7 @@
     <div v-if="!validQuery" class="search-help">
       <v-icon>subdirectory_arrow_left</v-icon> Start typing to search for an event by title, description, track, speaker, room, etc.
     </div>
-    <div class="hidden-sm-and-down mb-5"></div>
+    <div class="hidden-sm-and-down mb-12"></div>
   </v-container>
 </template>
 

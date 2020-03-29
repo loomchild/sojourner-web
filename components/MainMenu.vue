@@ -3,7 +3,7 @@
     <v-list dark class="pa-0">
       <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
-      <v-divider class="mx-3"></v-divider>
+      <v-divider class="mx-4"></v-divider>
       <menu-item title="Programme" icon="home" to="/"></menu-item>
       <menu-item v-if="hasLive" title="Live" icon="live_tv" to="/live"></menu-item>
       <menu-item title="Bookmarks" icon="bookmarks" to="/favourites/"></menu-item>
@@ -11,7 +11,7 @@
       <menu-item v-if="hasMap" title="Map" icon="map" to="/map/"></menu-item>
       <menu-item title="Search" icon="search" to="/search/"></menu-item>
       <menu-item v-if="stands" title="Stands" icon="storefront" :href="stands"></menu-item>
-      <v-divider class="mx-3"></v-divider>
+      <v-divider class="mx-4"></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
     <img class="menu-logo" src="~confassets/menu-logo.png">

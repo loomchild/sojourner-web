@@ -29,14 +29,14 @@
             <favourite :event="event" large></favourite>
           </div>
           <div v-if="event.abstract" class="abstract" v-html="event.abstract"></div>
-          <div v-if="event.description" class="description mt-3" v-html="event.description"></div>
-          <div v-if="event.links.length > 0" class="links mt-3">
+          <div v-if="event.description" class="description mt-4" v-html="event.description"></div>
+          <div v-if="event.links.length > 0" class="links mt-4">
             Links:
             <p v-for="link in event.links" :key="link.href" class="link mb-0">
               <a :href="link.href">{{ link.title }}</a>
             </p>
           </div>
-          <div class="pt-0 pb-3"></div>
+          <div class="pt-0 pb-4"></div>
         </v-card-text>
       </v-card>
     </v-row>
@@ -59,7 +59,7 @@
           </v-img>
         </div>
       </v-col>
-      <v-col cols="8" class="pl-5 pr-3">
+      <v-col cols="8" class="pl-12 pr-4">
         <div class="speakers grey--text">
           {{ event.speakers() }}
         </div>
@@ -69,7 +69,7 @@
         <h3 class="title mt-1">
           {{ event.subtitle }}
         </h3>
-        <div class="event-info my-4">
+        <div class="event-info my-6">
           {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
           <span v-if="hasRooms">
             |
@@ -79,14 +79,14 @@
           </span>
         </div>
         <div v-if="event.abstract" class="abstract" v-html="event.abstract"></div>
-        <div v-if="event.description" class="description mt-3" v-html="event.description"></div>
-        <div v-if="event.links.length > 0" class="links mt-3">
+        <div v-if="event.description" class="description mt-4" v-html="event.description"></div>
+        <div v-if="event.links.length > 0" class="links mt-4">
           Links:
           <p v-for="link in event.links" :key="link.href" class="link mb-0">
             <a :href="link.href">{{ link.title }}</a>
           </p>
         </div>
-        <div class="pt-0 pb-5"></div>
+        <div class="pt-0 pb-12"></div>
       </v-col>
     </v-row>
   </v-container>
