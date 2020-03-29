@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" @input="setDrawer" width="250" height="480">
+  <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="480" @input="setDrawer">
     <v-list dark class="pa-0">
       <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import MenuItem from './MenuItem'
 
 export default {
-  name: 'main-menu',
+  name: 'MainMenu',
 
   components: {
     'menu-item': MenuItem

@@ -6,22 +6,25 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 import EventList from '@/components/EventList'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'conference-track-events',
+  name: 'ConferenceTrackEvents',
 
   components: {
     EventList,
     PageTitle
   },
 
-  props: [
-    'trackName'
-  ],
+  props: {
+    trackName: {
+      type: String,
+      required: true
+    }
+  },
 
   computed: {
     events () {

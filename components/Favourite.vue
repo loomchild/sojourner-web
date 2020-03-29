@@ -1,19 +1,20 @@
 <template>
   <span v-if="event.exists" class="favourite" :class="{large: large}" @click.prevent="toggleFavouriteEvent()">
-    <v-icon color="secondary" v-if="favourites[event.id]">bookmark</v-icon>
-    <v-icon color="secondary" v-else>bookmark_border</v-icon>
+    <v-icon v-if="favourites[event.id]" color="secondary">bookmark</v-icon>
+    <v-icon v-else color="secondary">bookmark_border</v-icon>
   </span>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'favourite',
+  name: 'Favourite',
 
   props: {
     event: {
-      type: Object
+      type: Object,
+      required: true
     },
     large: {
       type: Boolean

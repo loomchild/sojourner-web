@@ -6,7 +6,7 @@ module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
-      'ChromeHeadlessNoSandbox': {
+      ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }
@@ -14,8 +14,8 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai-string', 'chai-datetime', 'sinon-chai'],
     reporters: ['spec'],
     files: [
-      {pattern: 'test/unit/*.test.js', watched: false},
-      {pattern: 'test/unit/**/*.test.js', watched: false}
+      { pattern: 'test/unit/*.test.js', watched: false },
+      { pattern: 'test/unit/**/*.test.js', watched: false }
     ],
     preprocessors: {
       'test/unit/*.test.js': ['webpack', 'sourcemap'],

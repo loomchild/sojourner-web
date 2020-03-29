@@ -14,17 +14,22 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'building-map',
+  name: 'BuildingMap',
 
   components: {
     PageTitle
   },
 
-  props: ['buildingName'],
+  props: {
+    buildingName: {
+      type: String,
+      required: true
+    }
+  },
 
   computed: {
     building () {
@@ -66,7 +71,3 @@ export default {
   }
 }
 </style>
-
-
-
-

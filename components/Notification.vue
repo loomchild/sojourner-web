@@ -1,14 +1,18 @@
 <template>
-  <v-snackbar :value="notification.message" @input="hide" :timeout="notification.timeout" :color="color" bottom multi-line>
+  <v-snackbar :value="notification.message" :timeout="notification.timeout" :color="color" bottom multi-line @input="hide">
     {{ notification.message }}
     <v-spacer></v-spacer>
-    <v-btn v-if="notification.button" flat small @click.native="button()">{{ notification.button.title }}</v-btn>
-    <v-btn flat small icon @click.native="hide()"><v-icon>close</v-icon></v-btn>
+    <v-btn v-if="notification.button" flat small @click.native="button()">
+      {{ notification.button.title }}
+    </v-btn>
+    <v-btn flat small icon @click.native="hide()">
+      <v-icon>close</v-icon>
+    </v-btn>
   </v-snackbar>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Notification',

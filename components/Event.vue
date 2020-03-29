@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile v-if="event" class="event" :to="`/event/${event.id}`"> 
+  <v-list-tile v-if="event" class="event" :to="`/event/${event.id}`">
     <v-list-tile-content v-ripple>
       <v-list-tile-sub-title>
         <span v-if="showDay">
@@ -37,19 +37,22 @@ import Favourite from './Favourite'
 import RoomState from './RoomState'
 
 export default {
-  name: 'event',
-
-  props: {
-    event: Object,
-    showRoom: Boolean,
-    showDay: Boolean,
-    showType: Boolean,
-    showPersons: Boolean
-  },
+  name: 'Event',
 
   components: {
     Favourite,
     RoomState
+  },
+
+  props: {
+    event: {
+      type: Object,
+      required: true
+    },
+    showRoom: Boolean,
+    showDay: Boolean,
+    showType: Boolean,
+    showPersons: Boolean
   }
 }
 </script>

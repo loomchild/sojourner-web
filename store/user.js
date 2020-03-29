@@ -50,15 +50,15 @@ export default {
   },
 
   actions: {
-    showLoginDialog ({commit}) {
+    showLoginDialog ({ commit }) {
       commit('setLoginDialog', true)
     },
 
-    hideLoginDialog ({commit}) {
+    hideLoginDialog ({ commit }) {
       commit('setLoginDialog', false)
     },
 
-    initUser ({commit, dispatch, state, rootGetters}) {
+    initUser ({ commit, dispatch, state, rootGetters }) {
       firebase.auth().onAuthStateChanged(async user => {
         if (state.userUnsubscribe) {
           await state.userUnsubscribe()
@@ -92,33 +92,33 @@ export default {
       })
     },
 
-    register ({commit, rootGetters, dispatch}, {email, password}) {
+    register ({ commit, rootGetters, dispatch }, { email, password }) {
       return firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(response => getUserRefHelper(response.user).set({}))
     },
 
-    logIn ({commit, rootGetters, dispatch}, {email, password}) {
+    logIn ({ commit, rootGetters, dispatch }, { email, password }) {
       return firebase.auth().signInWithEmailAndPassword(email, password)
     },
 
-    logOut ({commit}) {
+    logOut ({ commit }) {
       return firebase.auth().signOut()
     },
 
-    getUserRef ({state}) {
+    getUserRef ({ state }) {
       if (state.user) {
         return getUserRefHelper(state.user)
       } else {
         return firebase.auth().signInAnonymously()
           .then(response => {
             const userData = getUserRefHelper(response.user)
-            userData.set({}, {merge: true})
+            userData.set({}, { merge: true })
             return userData
           })
       }
     },
 
-    initPersistent ({commit, dispatch}) {
+    initPersistent ({ commit, dispatch }) {
       if (navigator.storage && navigator.storage.persisted) {
         return navigator.storage.persisted()
           .then(persistent => {
@@ -131,7 +131,7 @@ export default {
       }
     },
 
-    initIndexedDB ({dispatch}) {
+    initIndexedDB ({ dispatch }) {
       return new Promise((resolve, reject) => {
         const request = window.indexedDB.open('sojourner-test')
         request.onerror = () => {
@@ -145,7 +145,7 @@ export default {
       })
     },
 
-    persist ({commit}) {
+    persist ({ commit }) {
       if (navigator.storage && navigator.storage.persist) {
         return navigator.storage.persist()
           .then(persistent => {
@@ -160,7 +160,7 @@ export default {
       }
     },
 
-    assurePersistent ({dispatch, commit, state, getters}) {
+    assurePersistent ({ dispatch, commit, state, getters }) {
       if (!getters.realUser && !state.persistent) {
         return dispatch('persist')
           .catch(e => {

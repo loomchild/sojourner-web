@@ -1,14 +1,14 @@
 <template>
-  <v-tabs class="days" slider-color="none" :value="tab" @change="setTab" :color="$vuetify.breakpoint.smAndDown ? 'primary' : 'white'" :dark="$vuetify.breakpoint.smAndDown">
+  <v-tabs class="days" slider-color="none" :value="tab" :color="$vuetify.breakpoint.smAndDown ? 'primary' : 'white'" :dark="$vuetify.breakpoint.smAndDown" @change="setTab">
     <slot></slot>
   </v-tabs>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'day-tabs',
+  name: 'DayTabs',
 
   computed: {
     ...mapGetters([

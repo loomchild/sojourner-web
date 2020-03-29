@@ -24,7 +24,7 @@
 <script>
 import Vue from 'vue'
 
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 import Analytics from '@/components/Analytics'
 import MainMenu from '@/components/MainMenu'
@@ -34,7 +34,7 @@ import Notification from '@/components/Notification'
 import LoginDialog from '@/components/LoginDialog'
 
 export default {
-  name: 'app',
+  name: 'App',
 
   components: {
     Analytics,
@@ -45,16 +45,20 @@ export default {
     LoginDialog
   },
 
-  methods: mapActions([
-    'initIndexedDB',
-    'initPersistent',
-    'initSchedule',
-    'initScheduleUpdater',
-    'initUser',
-    'initRoomStateUpdater',
-    'initA2HSTip',
-    'setTitle'
-  ]),
+  computed: {
+    page () {
+      return this.$route.name
+    },
+
+    layout () {
+      return 'layout-' + (this.$route.meta.layout || 'default')
+    },
+
+    ...mapGetters([
+      'scheduleInitialized',
+      'conferenceName'
+    ])
+  },
 
   created: async function () {
     try {
@@ -76,21 +80,6 @@ export default {
     })
   },
 
-  computed: {
-    page () {
-      return this.$route.name
-    },
-
-    layout () {
-      return 'layout-' + (this.$route.meta.layout || 'default')
-    },
-
-    ...mapGetters([
-      'scheduleInitialized',
-      'conferenceName'
-    ])
-  },
-
   metaInfo () {
     return {
       titleTemplate: chunk => chunk ? `${chunk} | Sojourner` : 'Sojourner',
@@ -104,7 +93,18 @@ export default {
         this.setTitle(title === 'Sojourner' ? '' : title.slice(0, -12))
       }
     }
-  }
+  },
+
+  methods: mapActions([
+    'initIndexedDB',
+    'initPersistent',
+    'initSchedule',
+    'initScheduleUpdater',
+    'initUser',
+    'initRoomStateUpdater',
+    'initA2HSTip',
+    'setTitle'
+  ])
 }
 </script>
 

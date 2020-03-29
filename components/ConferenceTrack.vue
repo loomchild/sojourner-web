@@ -15,12 +15,17 @@
 import RoomState from './RoomState'
 
 export default {
-  name: 'conference-track',
-
-  props: ['track'],
+  name: 'ConferenceTrack',
 
   components: {
     RoomState
+  },
+
+  props: {
+    track: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import store from './store'
 import init from './init'
-import {router} from './pages'
+import { router } from './pages'
 import App from '@/layout/App'
 
 init()
@@ -12,8 +12,8 @@ new Vue({
   el: '#app',
   router,
   store,
-  template: '<app></app>',
   components: {
     app: App
-  }
+  },
+  template: '<app></app>'
 })

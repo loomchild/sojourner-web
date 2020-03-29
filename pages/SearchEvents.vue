@@ -1,14 +1,14 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <v-text-field ref="search" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" v-model="query" autocapitalize="none" color="secondary"/>
+    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" autocapitalize="none" color="secondary" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
-        <event :event="event" show-day show-room show-persons></event>
-        <v-divider v-if="index + 1 < events.length"></v-divider>
+        <event :key="`ev-${event.id}`" :event="event" show-day show-room show-persons></event>
+        <v-divider v-if="index + 1 < events.length" :key="`div-${event.id}`"></v-divider>
       </template>
     </v-list>
-    <v-list v-if="validQuery && events.length == 0" >
+    <v-list v-if="validQuery && events.length == 0">
       <v-list-tile>
         <v-list-tile-content>
           <v-list-tile-sub-title>
@@ -26,12 +26,12 @@
 
 <script>
 import _ from 'lodash'
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 import Event from '@/components/Event'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'all-events',
+  name: 'AllEvents',
 
   components: {
     Event,
@@ -42,6 +42,12 @@ export default {
     query: '',
     events: []
   }),
+
+  computed: {
+    validQuery () {
+      return this.query && this.query.length >= 2
+    }
+  },
 
   watch: {
     query () {
@@ -61,12 +67,6 @@ export default {
 
   activated () {
     this.$refs.search.focus()
-  },
-
-  computed: {
-    validQuery () {
-      return this.query && this.query.length >= 2
-    }
   },
 
   methods: {

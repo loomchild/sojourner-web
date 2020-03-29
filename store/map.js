@@ -5,11 +5,11 @@ const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
 export default {
   state: {
     buildings: {
-      'J': new Building({name: 'J'}),
-      'H': new Building({name: 'H'}),
-      'AW': new Building({name: 'AW'}),
-      'U': new Building({name: 'U'}),
-      'K': new Building({name: 'K'})
+      J: new Building({ name: 'J' }),
+      H: new Building({ name: 'H' }),
+      AW: new Building({ name: 'AW' }),
+      U: new Building({ name: 'U' }),
+      K: new Building({ name: 'K' })
     }
   },
 

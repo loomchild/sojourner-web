@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 import EventList from '@/components/EventList'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'favourite-events',
+  name: 'FavouriteEvents',
 
   components: {
     EventList,
@@ -34,18 +34,18 @@ export default {
     }
   },
 
-  methods: {
-    initializeFavouriteEvents () {
-      this.events = this.favouriteEvents
-    }
-  },
-
   created () {
     this.initializeFavouriteEvents()
   },
 
   activated () {
     this.initializeFavouriteEvents()
+  },
+
+  methods: {
+    initializeFavouriteEvents () {
+      this.events = this.favouriteEvents
+    }
   },
 
   metaInfo () {

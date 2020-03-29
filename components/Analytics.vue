@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'analytics',
+  name: 'Analytics',
 
   data: () => ({
     analyticsImageUrl: process.env.ANALYTICS_URL

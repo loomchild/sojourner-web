@@ -1,10 +1,10 @@
 <template>
   <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content pa-0">
     <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.type.name" xs12 grow v-ripple="{class: 'white--text'}" d-flex :style="{backgroundColor: type.type.mobileColor}" v-go="`/type/${type.type.name}`">
+      <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`" xs12 grow d-flex :style="{backgroundColor: type.type.mobileColor}">
         <article class="ma-auto">
           <h2>{{ type.type.name }}</h2>
-          <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
+          <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
         </article>
       </v-flex>
     </v-layout>
@@ -12,14 +12,17 @@
   <v-container v-else fluid fill-height grid-list-xl class="content">
     <v-layout column>
       <v-flex xs6 class="mt-auto">
-        <h1 class="page-title" :style="{ color: conferenceNameColor }">{{ conferenceName }}</h1>
+        <h1 class="page-title" :style="{ color: conferenceNameColor }">
+          {{ conferenceName }}
+        </h1>
         <v-layout row>
-          <v-flex v-for="type in types" :key="type.type.name" shrink v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`">
+          <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`" shrink>
             <article>
               <h2>{{ type.type.name }}</h2>
-              <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length}} {{ type.type.statName }}</footer>
+              <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
             </article>
-            <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}"> </div>
+            <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}">
+            </div>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -28,10 +31,10 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'dashboard',
+  name: 'Dashboard',
 
   computed: {
     ...mapGetters({

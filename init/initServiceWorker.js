@@ -1,4 +1,4 @@
-import {Workbox} from 'workbox-window'
+import { Workbox } from 'workbox-window'
 
 import store from '@/store'
 

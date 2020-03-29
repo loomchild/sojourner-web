@@ -4,11 +4,11 @@ const moment = require('moment')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const {GenerateSW} = require('workbox-webpack-plugin')
+const { GenerateSW } = require('workbox-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const AddAssetPlugin = require('add-asset-webpack-plugin')
 const gitRevisionPlugin = new GitRevisionPlugin()
@@ -53,10 +53,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname),
-      'assets': path.resolve(__dirname, 'assets'),
-      'confassets': path.resolve(__dirname, 'assets', 'conferences', conference.assets)
+      assets: path.resolve(__dirname, 'assets'),
+      confassets: path.resolve(__dirname, 'assets', 'conferences', conference.assets)
     }
   },
   mode: 'development',

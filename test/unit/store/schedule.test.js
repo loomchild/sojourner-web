@@ -8,7 +8,7 @@ describe('data/getSchedule', () => {
 
   beforeEach(() => {
     stubbedFetch = sinon.stub(window, 'fetch')
-    fetch.resolves(new Response(JSON.stringify(json), {status: 200}))
+    fetch.resolves(new Response(JSON.stringify(json), { status: 200 }))
   })
 
   afterEach(() => {

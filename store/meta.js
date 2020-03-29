@@ -44,23 +44,23 @@ export default {
   },
 
   actions: {
-    setTitle ({commit}, title) {
+    setTitle ({ commit }, title) {
       commit('setTitle', title)
     },
 
-    setDrawer ({commit}, drawer) {
+    setDrawer ({ commit }, drawer) {
       commit('setDrawer', drawer)
     },
 
-    toggleDrawer ({commit, state}) {
+    toggleDrawer ({ commit, state }) {
       commit('setDrawer', !state.drawer)
     },
 
-    setTab ({commit}, tab) {
+    setTab ({ commit }, tab) {
       commit('setTab', tab)
     },
 
-    initA2HSTip ({commit, state, dispatch}) {
+    initA2HSTip ({ commit, state, dispatch }) {
       if (window.onbeforeinstallprompt !== undefined) {
         const handler = (e) => {
           e.preventDefault()
@@ -99,7 +99,7 @@ export default {
       }
     },
 
-    notifyNewVersion ({dispatch}) {
+    notifyNewVersion ({ dispatch }) {
       dispatch('showNotification', {
         message: 'New version is available.',
         timeout: 0,

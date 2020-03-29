@@ -4,6 +4,7 @@ const Event = require('../logic/Event')
 const Type = require('../logic/Type')
 const Link = require('../logic/Link')
 
+/* eslint-disable quote-props */
 const LINKS = {
   '0d2ca077208b59fd4b61429113dfc573': 'https://www.youtube.com/watch?v=39u-WHz-9Cg&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=1',
   '24911718a8cb47100861344e6f911a90': 'https://www.youtube.com/watch?v=D7GNBYjMxBw&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=2',
@@ -19,6 +20,7 @@ const LINKS = {
   'eaf18224a4a4a4956ddb7a767df822d0': 'https://www.youtube.com/watch?v=QsGL1RkmnyU&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=13',
   'e05d0c8e09d002308984f96ff3aa88f8': 'https://www.youtube.com/watch?v=dGKAwRodbjA&list=PLAqbkwjzg7IOr9yJlptM_jMdjIzSONY_1&index=14'
 }
+/* eslint-enable quote-props */
 
 module.exports = async function (scheduleUrl, scheduleKey) {
   const response = await axios.get(scheduleUrl, { params: { api_key: scheduleKey, format: 'json' } })
@@ -28,7 +30,7 @@ module.exports = async function (scheduleUrl, scheduleKey) {
   const typeMap = {}
 
   const events = json.map((e) => {
-    let startTime = moment(e.start_time, 'HH:mm:ss')
+    const startTime = moment(e.start_time, 'HH:mm:ss')
     const endTime = moment(e.end_time, 'HH:mm:ss')
     const duration = moment.utc(endTime.diff(startTime))
 

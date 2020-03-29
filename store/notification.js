@@ -22,27 +22,27 @@ export default {
   },
 
   actions: {
-    hideNotification ({commit}) {
+    hideNotification ({ commit }) {
       commit('popNotification')
     },
 
-    showNotification ({commit}, notification) {
+    showNotification ({ commit }, notification) {
       if (notification.timeout === undefined) {
         notification.timeout = DEFAULT_NOTIFICATION_TIMEOUT
       }
       commit('pushNotification', notification)
     },
 
-    showMessage ({dispatch}, message) {
-      dispatch('showNotification', {message})
+    showMessage ({ dispatch }, message) {
+      dispatch('showNotification', { message })
     },
 
-    showWarning ({dispatch}, message) {
-      dispatch('showNotification', {message, level: 'warning'})
+    showWarning ({ dispatch }, message) {
+      dispatch('showNotification', { message, level: 'warning' })
     },
 
-    showError ({dispatch}, message) {
-      dispatch('showNotification', {message, level: 'error'})
+    showError ({ dispatch }, message) {
+      dispatch('showNotification', { message, level: 'error' })
     }
   }
 }

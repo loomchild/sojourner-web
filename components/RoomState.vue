@@ -1,16 +1,21 @@
 <template>
-  <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name">{{ state.icon }}</v-icon>
+  <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name">
+    {{ state.icon }}
+  </v-icon>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'room-state',
+  name: 'RoomState',
 
-  props: [
-    'room'
-  ],
+  props: {
+    room: {
+      type: Object,
+      default: null
+    }
+  },
 
   computed: {
     state () {
@@ -31,4 +36,3 @@ i.room-state {
   margin-left: 1px;
 }
 </style>
-

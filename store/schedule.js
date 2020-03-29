@@ -219,11 +219,11 @@ export default {
   },
 
   actions: {
-    initSchedule ({commit, getters, dispatch}, cache) {
+    initSchedule ({ commit, getters, dispatch }, cache) {
       if (!cache) {
         cache = 'default'
       }
-      return fetch(process.env.SCHEDULE_URL, {cache})
+      return fetch(process.env.SCHEDULE_URL, { cache })
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
@@ -292,7 +292,7 @@ export default {
         .then(() => dispatch('reindexEvents'))
     },
 
-    refreshSchedule ({dispatch}) {
+    refreshSchedule ({ dispatch }) {
       if (!navigator.onLine) {
         return Promise.reject(new Error('Offline'))
       }
@@ -300,7 +300,7 @@ export default {
       return dispatch('initSchedule', 'reload')
     },
 
-    notifyRefreshSchedule ({dispatch}) {
+    notifyRefreshSchedule ({ dispatch }) {
       dispatch('showNotification', {
         message: 'New schedule is available.',
         timeout: 0,
@@ -313,7 +313,7 @@ export default {
       })
     },
 
-    initScheduleUpdater ({dispatch, state, commit}) {
+    initScheduleUpdater ({ dispatch, state, commit }) {
       if (!process.env.SCHEDULE_INTERVAL || state.scheduleUpdaterInitialized) {
         return
       }
@@ -324,9 +324,9 @@ export default {
       commit('initScheduleUpdater')
     },
 
-    reindexEvents ({state, commit, dispatch}) {
+    reindexEvents ({ state, commit, dispatch }) {
       const index = {}
-      for (let event of Object.values(state.events)) {
+      for (const event of Object.values(state.events)) {
         const blob = JSON.stringify(event, null, 2).toLowerCase()
           .replace(/"[a-zA-Z0-9_]+":|/g, '').replace(/",|"|/g, '')
         index[event.id] = blob
@@ -336,11 +336,11 @@ export default {
       dispatch('searchEvents', 'warm')
     },
 
-    searchEvents ({state}, query) {
+    searchEvents ({ state }, query) {
       const keywords = query.toLowerCase().split(' ')
       let foundEvents = []
 
-      for (let [eventId, blob] of Object.entries(state.eventIndex)) {
+      for (const [eventId, blob] of Object.entries(state.eventIndex)) {
         if (keywords.every(keyword => blob.includes(keyword))) {
           foundEvents.push(state.events[eventId])
         }

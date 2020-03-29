@@ -1,6 +1,8 @@
 <template>
   <header class="hidden-sm-and-down">
-    <button v-if="backArrow" :style="{color : buttonColor}" @click.stop="goBack">◂</button> 
+    <button v-if="backArrow" :style="{color : buttonColor}" @click.stop="goBack">
+      ◂
+    </button>
     <h1>
       {{ title }}
     </h1>
@@ -8,13 +10,16 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'page-title',
+  name: 'PageTitle',
 
   props: {
-    backArrow: String
+    backArrow: {
+      type: String,
+      default: null
+    }
   },
 
   computed: {

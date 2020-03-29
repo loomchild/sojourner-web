@@ -1,7 +1,7 @@
 <template>
   <v-toolbar v-if="$vuetify.breakpoint.smAndDown" app fixed flat color="primary" height="56">
-    <v-toolbar-side-icon dark v-if="$vuetify.breakpoint.smAndDown && dashboard" @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-btn v-if="!dashboard" @click.stop="goBack" flat icon dark>
+    <v-toolbar-side-icon v-if="$vuetify.breakpoint.smAndDown && dashboard" dark @click.stop="toggleDrawer"></v-toolbar-side-icon>
+    <v-btn v-if="!dashboard" flat icon dark @click.stop="goBack">
       <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-toolbar-title>{{ title }}</v-toolbar-title>
@@ -9,29 +9,45 @@
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
     <v-layout class="mx-auto">
-      <v-toolbar-title class="logo" v-ripple v-go="'/'" prepend-icon="home" />
+      <v-toolbar-title v-ripple v-go="'/'" class="logo" prepend-icon="home" />
       <v-spacer></v-spacer>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/">Programme</v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">Bookmarks</v-btn>
-      <v-btn v-if="hasAll" flat dark class="mx-0" :ripple="false" to="/all/">All</v-btn>
-      <v-btn v-if="hasMap" flat dark class="mx-0" :ripple="false" to="/map/">Map</v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/search/">Search</v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/about/">About</v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/">
+        Programme
+      </v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">
+        Bookmarks
+      </v-btn>
+      <v-btn v-if="hasAll" flat dark class="mx-0" :ripple="false" to="/all/">
+        All
+      </v-btn>
+      <v-btn v-if="hasMap" flat dark class="mx-0" :ripple="false" to="/map/">
+        Map
+      </v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/search/">
+        Search
+      </v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/about/">
+        About
+      </v-btn>
       <v-btn v-if="!realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">
-        <v-icon flat>person_outline</v-icon>
+        <v-icon flat>
+          person_outline
+        </v-icon>
       </v-btn>
       <v-btn v-if="realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="clickLogOut">
-        <v-icon flat>person</v-icon>
+        <v-icon flat>
+          person
+        </v-icon>
       </v-btn>
     </v-layout>
   </v-toolbar>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'main-toolbar',
+  name: 'MainToolbar',
   computed: {
     dashboard () {
       return this.$route.path === '/'
@@ -75,7 +91,6 @@ export default {
   .v-icon, .v-btn, .v-toolbar {
     transition: none !important;
   }
-
 
   .v-toolbar {
     background-color: var(--v-primary-base);

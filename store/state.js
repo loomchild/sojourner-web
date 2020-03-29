@@ -15,7 +15,7 @@ export default {
       if (roomState) {
         return roomState
       } else {
-        return new RoomState({room: roomName})
+        return new RoomState({ room: roomName })
       }
     }
   },
@@ -31,8 +31,8 @@ export default {
   },
 
   actions: {
-    refreshRoomStates ({commit, dispatch, state}) {
-      return fetch(process.env.ROOM_STATE_URL, {cache: 'no-store'})
+    refreshRoomStates ({ commit, dispatch, state }) {
+      return fetch(process.env.ROOM_STATE_URL, { cache: 'no-store' })
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
@@ -67,7 +67,7 @@ export default {
         })
     },
 
-    initRoomStateUpdater ({dispatch, state, commit}) {
+    initRoomStateUpdater ({ dispatch, state, commit }) {
       if (!process.env.ROOM_STATE_URL || !process.env.ROOM_STATE_INTERVAL || state.roomStateUpdaterInitialized) {
         return
       }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
-import {createLocalVue, shallow} from 'vue-test-utils'
+import { createLocalVue, shallow } from 'vue-test-utils'
 
 import App from '@/layout/App'
 

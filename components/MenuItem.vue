@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile :to="to" :exact="to === '/'" @click.stop="$emit('click', $event.target)" ripple>
+  <v-list-tile :to="to" :exact="to === '/'" ripple @click.stop="$emit('click', $event.target)">
     <v-list-tile-action>
       <v-icon>{{ icon }}</v-icon>
     </v-list-tile-action>
@@ -11,11 +11,24 @@
 
 <script>
 export default {
-  name: 'menu-item',
-  props: ['icon', 'title', 'to']
+  name: 'MenuItem',
+
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    to: {
+      type: String,
+      default: null
+    }
+  }
 }
 </script>
 
 <style scoped>
 </style>
-

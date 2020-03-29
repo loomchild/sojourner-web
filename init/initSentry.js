@@ -11,7 +11,7 @@ export default async function () {
 
     Sentry.init({
       dsn: process.env.SENTRY_DSN,
-      integrations: [new Integrations.Vue({Vue})]
+      integrations: [new Integrations.Vue({ Vue })]
     })
 
     console.log('Sentry initialized')

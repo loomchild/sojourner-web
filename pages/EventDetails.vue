@@ -21,11 +21,13 @@
           <div>
             <favourite :event="event" large></favourite>
           </div>
-          <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
-          <div v-if="event.description" v-html="event.description" class="description mt-3"></div>
+          <div v-if="event.abstract" class="abstract" v-html="event.abstract"></div>
+          <div v-if="event.description" class="description mt-3" v-html="event.description"></div>
           <div v-if="event.links.length > 0" class="links mt-3">
             Links:
-            <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
+            <p v-for="link in event.links" :key="link.href" class="link mb-0">
+              <a :href="link.href">{{ link.title }}</a>
+            </p>
           </div>
           <div class="pt-0 pb-3"></div>
         </v-card-text>
@@ -49,8 +51,12 @@
         <div class="speakers grey--text">
           {{ event.speakers() }}
         </div>
-        <h2 class="event-title">{{ event.title }}</h2>
-        <h3 class="title mt-1">{{ event.subtitle }}</h3>
+        <h2 class="event-title">
+          {{ event.title }}
+        </h2>
+        <h3 class="title mt-1">
+          {{ event.subtitle }}
+        </h3>
         <div class="event-info my-4">
           {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
           |
@@ -58,11 +64,13 @@
           <span v-else>{{ event.room.name }}</span>
           <room-state :room="event.room"></room-state>
         </div>
-        <div v-if="event.abstract" v-html="event.abstract" class="abstract"></div>
-        <div v-if="event.description" v-html="event.description" class="description mt-3"></div>
+        <div v-if="event.abstract" class="abstract" v-html="event.abstract"></div>
+        <div v-if="event.description" class="description mt-3" v-html="event.description"></div>
         <div v-if="event.links.length > 0" class="links mt-3">
           Links:
-          <p v-for="link in event.links" class="link mb-0"><a :href="link.href">{{ link.title }}</a></p>
+          <p v-for="link in event.links" :key="link.href" class="link mb-0">
+            <a :href="link.href">{{ link.title }}</a>
+          </p>
         </div>
         <div class="pt-0 pb-5"></div>
       </v-flex>
@@ -71,7 +79,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
@@ -79,7 +87,7 @@ import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'event-details',
+  name: 'EventDetails',
 
   components: {
     Favourite,
@@ -87,9 +95,12 @@ export default {
     PageTitle
   },
 
-  props: [
-    'eventId'
-  ],
+  props: {
+    eventId: {
+      type: String,
+      required: true
+    }
+  },
 
   computed: {
     event () {

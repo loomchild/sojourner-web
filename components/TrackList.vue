@@ -2,14 +2,14 @@
   <div>
     <day-tabs>
       <template v-for="dayTracks in tracks">
-        <v-tab ripple :disabled="dayTracks.tracks.length === 0">
+        <v-tab :key="dayTracks.day.name" ripple :disabled="dayTracks.tracks.length === 0">
           {{ dayTracks.day.name }}
         </v-tab>
-        <v-tab-item>
+        <v-tab-item :key="dayTracks.day.name">
           <v-list v-if="dayTracks.tracks.length > 0" three-line class="pa-0">
             <template v-for="(track, index) in dayTracks.tracks">
-              <conference-track :track="track"></conference-track>
-              <v-divider v-if="index + 1 < dayTracks.tracks.length"></v-divider>
+              <conference-track :key="`${dayTracks.day.name}-${track.track.name}`" :track="track"></conference-track>
+              <v-divider v-if="index + 1 < dayTracks.tracks.length" :key="`div-${dayTracks.day.name}-${track.track.name}`"></v-divider>
             </template>
           </v-list>
           <v-list v-else>
@@ -29,21 +29,30 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import ConferenceTrack from '@/components/ConferenceTrack'
 import DayTabs from '@/components/DayTabs'
 
 export default {
-  name: 'tracks',
+  name: 'Tracks',
 
   components: {
     DayTabs,
     ConferenceTrack
   },
 
-  props: [
-    'tracks'
-  ],
+  props: {
+    tracks: {
+      type: Array,
+      default: () => []
+    }
+  },
+
+  computed: {
+    ...mapGetters([
+      'tab'
+    ])
+  },
 
   created () {
     this.switchTabIfNoTracks()
@@ -51,12 +60,6 @@ export default {
 
   activated () {
     this.switchTabIfNoTracks()
-  },
-
-  computed: {
-    ...mapGetters([
-      'tab'
-    ])
   },
 
   methods: {

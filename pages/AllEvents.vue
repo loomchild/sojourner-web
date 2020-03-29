@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 import EventList from '@/components/EventList'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'all-events',
+  name: 'AllEvents',
 
   components: {
     EventList,

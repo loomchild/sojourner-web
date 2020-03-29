@@ -46,7 +46,7 @@ const createEvent = (event, type, date, room) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
   const links = event.links && event.links[0] && event.links[0].link
-    ? event.links[0].link.map(link => new Link({href: link.href, title: link.text})) : []
+    ? event.links[0].link.map(link => new Link({ href: link.href, title: link.text })) : []
 
   let title = getText(event.title)
   if (title.startsWith('CANCELLED')) {

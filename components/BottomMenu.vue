@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'bottom-menu',
+  name: 'BottomMenu',
 
   computed: {
     hasBottomMenu () {

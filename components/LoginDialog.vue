@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="loginDialog" @input="setLoginDialog" @keydown.esc="setLoginDialog(false)" width="500">
+  <v-dialog :value="loginDialog" width="500" @input="setLoginDialog" @keydown.esc="setLoginDialog(false)">
     <v-tabs v-model="action">
       <v-tab>Log In</v-tab>
       <v-tab>Register</v-tab>
@@ -12,20 +12,24 @@
             <v-card-text>
               <v-container grid-list-md>
                 <v-flex xs12 class="mb-3">
-                  You don't have an account yet? <a @click="action = 1">Register</a> instead.<br/>
+                  You don't have an account yet? <a @click="action = 1">Register</a> instead.<br />
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus autocapitalize="none" autocomplete="username"></v-text-field>
+                  <v-text-field v-model="email" label="Email" name="name" :rules="[v => !!v || 'Email is required']" required autofocus autocapitalize="none" autocomplete="username"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Password" v-model="password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" @click:append="showPassword = !showPassword" autocomplete="current-password"></v-text-field>
+                  <v-text-field v-model="password" label="Password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" autocomplete="current-password" @click:append="showPassword = !showPassword"></v-text-field>
                 </v-flex>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="error" @click="hideLoginDialog">Cancel</v-btn>
-              <v-btn type="submit" color="success">Log In</v-btn>
+              <v-btn color="error" @click="hideLoginDialog">
+                Cancel
+              </v-btn>
+              <v-btn type="submit" color="success">
+                Log In
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-form>
@@ -42,17 +46,21 @@
                   You already have an account? <a @click="action = 0">Log In</a> instead.
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Email" name="name" v-model="email" :rules="[v => !!v || 'Email is required']" required autofocus autocomplete="username"></v-text-field>
+                  <v-text-field v-model="email" label="Email" name="name" :rules="[v => !!v || 'Email is required']" required autofocus autocomplete="username"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Password" v-model="password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" @click:append="showPassword = !showPassword" autocomplete="new-password"></v-text-field>
+                  <v-text-field v-model="password" label="Password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" autocomplete="new-password" @click:append="showPassword = !showPassword"></v-text-field>
                 </v-flex>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="error" @click="hideLoginDialog">Cancel</v-btn>
-              <v-btn type="submit" color="success">Register</v-btn>
+              <v-btn color="error" @click="hideLoginDialog">
+                Cancel
+              </v-btn>
+              <v-btn type="submit" color="success">
+                Register
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-form>
@@ -62,10 +70,10 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'login-dialog',
+  name: 'LoginDialog',
   data: () => ({
     email: '',
     password: '',
@@ -99,7 +107,7 @@ export default {
     clickLogIn () {
       if (!this.$refs.formLogin.validate()) return
 
-      this.logIn({email: this.email, password: this.password})
+      this.logIn({ email: this.email, password: this.password })
         .then(() => {
           this.showMessage('Logged in successfully')
           this.reset()
@@ -115,7 +123,7 @@ export default {
     clickRegister () {
       if (!this.$refs.formRegister.validate()) return
 
-      this.register({email: this.email, password: this.password})
+      this.register({ email: this.email, password: this.password })
         .then(() => {
           this.showMessage('Registered successfully')
           this.reset()

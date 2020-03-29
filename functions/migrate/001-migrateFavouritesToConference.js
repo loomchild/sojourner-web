@@ -2,7 +2,7 @@ const admin = require('firebase-admin')
 
 module.exports = async function () {
   const snapshot = await admin.firestore().collection('users').get()
-  for (let doc of snapshot.docs) {
+  for (const doc of snapshot.docs) {
     const user = doc.data()
     if (user.favourites) {
       const favouriteStrings = user.favourites.map(f => f.toString())

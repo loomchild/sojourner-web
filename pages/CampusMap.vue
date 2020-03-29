@@ -7,11 +7,21 @@
       <v-flex grow>
         <div class="map-container">
           <div class="map">
-            <router-link id="building-k" to="/building/K">&nbsp;</router-link>
-            <router-link id="building-j" to="/building/J">&nbsp;</router-link>
-            <router-link id="building-h" to="/building/H">&nbsp;</router-link>
-            <router-link id="building-aw" to="/building/AW">&nbsp;</router-link>
-            <router-link id="building-u" to="/building/U">&nbsp;</router-link>
+            <router-link id="building-k" to="/building/K">
+&nbsp;
+            </router-link>
+            <router-link id="building-j" to="/building/J">
+&nbsp;
+            </router-link>
+            <router-link id="building-h" to="/building/H">
+&nbsp;
+            </router-link>
+            <router-link id="building-aw" to="/building/AW">
+&nbsp;
+            </router-link>
+            <router-link id="building-u" to="/building/U">
+&nbsp;
+            </router-link>
           </div>
         </div>
       </v-flex>
@@ -23,7 +33,7 @@
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'campus-map',
+  name: 'CampusMap',
 
   components: {
     PageTitle

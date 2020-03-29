@@ -2,14 +2,14 @@
   <div>
     <day-tabs>
       <template v-for="dayEvents in allDayEvents">
-        <v-tab ripple :disabled="dayEvents.events.length === 0">
+        <v-tab :key="dayEvents.day.name" ripple :disabled="dayEvents.events.length === 0">
           {{ dayEvents.day.name }}
         </v-tab>
-        <v-tab-item>
+        <v-tab-item :key="dayEvents.day.name">
           <v-list v-if="dayEvents.events.length > 0" three-line class="pa-0">
             <template v-for="(event, index) in dayEvents.events">
-              <event :event="event" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event>
-              <v-divider v-if="index + 1 < dayEvents.events.length"></v-divider>
+              <event :key="event.id" :event="event" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event>
+              <v-divider v-if="index + 1 < dayEvents.events.length" :key="`div-${event.id}`"></v-divider>
             </template>
           </v-list>
           <v-list v-else>
@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import DayTabs from '@/components/DayTabs'
 import Event from '@/components/Event'
 
 export default {
-  name: 'events',
+  name: 'Events',
 
   components: {
     DayTabs,
@@ -42,18 +42,13 @@ export default {
   },
 
   props: {
-    events: Array,
+    events: {
+      type: Array,
+      default: () => []
+    },
     showRoom: Boolean,
     showType: Boolean,
     showPersons: Boolean
-  },
-
-  created () {
-    this.switchTabIfNoEvents()
-  },
-
-  activated () {
-    this.switchTabIfNoEvents()
   },
 
   computed: {
@@ -68,6 +63,14 @@ export default {
       'allDays',
       'tab'
     ])
+  },
+
+  created () {
+    this.switchTabIfNoEvents()
+  },
+
+  activated () {
+    this.switchTabIfNoEvents()
   },
 
   methods: {

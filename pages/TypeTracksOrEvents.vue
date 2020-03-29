@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 import TrackList from '@/components/TrackList'
 import EventList from '@/components/EventList'
 import PageTitle from '@/components/PageTitle'
 
 export default {
-  name: 'type-tracks-or-events',
+  name: 'TypeTracksOrEvents',
 
   components: {
     TrackList,
@@ -22,9 +22,12 @@ export default {
     PageTitle
   },
 
-  props: [
-    'typeName'
-  ],
+  props: {
+    typeName: {
+      type: String,
+      required: true
+    }
+  },
 
   computed: {
     tracks () {
