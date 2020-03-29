@@ -1,10 +1,12 @@
 <template>
-  <v-container fluid fill-height class="content">
-    <v-layout column>
-      <v-flex shrink>
+  <v-container fluid class="content fill-height">
+    <v-row>
+      <v-col class="shrink">
         <page-title></page-title>
-      </v-flex>
-      <v-flex grow class="about-text">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="about-text grow">
         <p class="mb-2">
           <span>Author:</span>
           <span><a href="https://jareklipski.com" target="_blank">Jarek Lipski</a></span>
@@ -29,15 +31,15 @@
             </a>
           </span>
         </p>
-        <v-layout row>
-          <v-flex xs12 sm9 class="mt-4 about-text">
+        <v-row>
+          <v-col cols="12" sm="9" class="mt-4 about-text">
             <p class="story">
               Sojourner is a conference companion. It is inspired by the original Sojourner mobile app for Nokia N900.
             </p>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

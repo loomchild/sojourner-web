@@ -8,7 +8,7 @@
       </keep-alive>
     </v-content>
     <v-content v-else>
-      <v-container fluid fill-height class="content">
+      <v-container fluid class="content fill-height">
         <div class="center">
           <div class="spinner"></div>
         </div>

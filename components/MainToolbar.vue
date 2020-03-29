@@ -18,8 +18,8 @@
     </v-btn>
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
-    <v-layout class="mx-auto">
-      <v-toolbar-title v-ripple class="logo" prepend-icon="home">
+    <v-row class="mx-auto">
+      <v-toolbar-title v-ripple class="logo" prepend-icon="home" />
         <router-link to="/" class="d-block" style="height: 100%">
           &nbsp;
         </router-link>
@@ -59,7 +59,7 @@
           person
         </v-icon>
       </v-btn>
-    </v-layout>
+    </v-row>
   </v-toolbar>
 </template>
 

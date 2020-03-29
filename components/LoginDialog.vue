@@ -11,15 +11,15 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-flex xs12 class="mb-3">
+                <v-col cols="12" class="mb-3">
                   You don't have an account yet? <a @click="action = 1">Register</a> instead.<br />
-                </v-flex>
-                <v-flex xs12>
+                </v-col>
+                <v-col cols="12">
                   <v-text-field v-model="email" label="Email" name="name" :rules="[v => !!v || 'Email is required']" required autofocus autocapitalize="none" autocomplete="username"></v-text-field>
-                </v-flex>
-                <v-flex xs12>
+                </v-col>
+                <v-col cols="12">
                   <v-text-field v-model="password" label="Password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" autocomplete="current-password" @click:append="showPassword = !showPassword"></v-text-field>
-                </v-flex>
+                </v-col>
               </v-container>
             </v-card-text>
             <v-card-actions>
@@ -42,15 +42,15 @@
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
-                <v-flex xs12 class="mb-3">
+                <v-col cols="12" class="mb-3">
                   You already have an account? <a @click="action = 0">Log In</a> instead.
-                </v-flex>
-                <v-flex xs12>
+                </v-col>
+                <v-col cols="12">
                   <v-text-field v-model="email" label="Email" name="name" :rules="[v => !!v || 'Email is required']" required autofocus autocomplete="username"></v-text-field>
-                </v-flex>
-                <v-flex xs12>
+                </v-col>
+                <v-col cols="12">
                   <v-text-field v-model="password" label="Password" name="password" :rules="[v => !!v || 'Password is required']" required :type="showPassword ? 'text' : 'password'" :append-icon="showPassword ? 'visibility_off' : 'visibility'" autocomplete="new-password" @click:append="showPassword = !showPassword"></v-text-field>
-                </v-flex>
+                </v-col>
               </v-container>
             </v-card-text>
             <v-card-actions>

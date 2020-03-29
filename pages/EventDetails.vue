@@ -1,6 +1,6 @@
 <template>
-  <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid fill-height class="content">
-    <v-layout justify-center align-top>
+  <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid class="content fill-height">
+    <v-row class="align-top" justify="center">
       <v-card>
         <v-img id="event-video" :src="background" :aspect-ratio="16/9" class="image d-flex" @click="playEvent">
           <v-icon v-if="canPlayEvent" color="white" x-large>
@@ -39,12 +39,12 @@
           <div class="pt-0 pb-3"></div>
         </v-card-text>
       </v-card>
-    </v-layout>
+    </v-row>
   </v-container>
   <v-container v-else-if="event" fluid class="content">
     <page-title :back-arrow="typeColor"></page-title>
-    <v-layout row>
-      <v-flex xs4>
+    <v-row>
+      <v-col cols="4">
         <div class="icons">
           <chat :event="event" class="mr-2"></chat>
           <favourite :event="event" large></favourite>
@@ -58,8 +58,8 @@
             </v-icon>
           </v-img>
         </div>
-      </v-flex>
-      <v-flex xs8 class="pl-6 pr-3">
+      </v-col>
+      <v-col cols="8" class="pl-5 pr-3">
         <div class="speakers grey--text">
           {{ event.speakers() }}
         </div>
@@ -87,8 +87,8 @@
           </p>
         </div>
         <div class="pt-0 pb-5"></div>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

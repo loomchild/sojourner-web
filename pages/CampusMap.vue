@@ -1,31 +1,33 @@
 <template>
-  <v-container fluid fill-hight class="content">
-    <v-layout column>
-      <v-flex shrink>
+  <v-container fluid class="content fill-hight">
+    <v-row>
+      <v-col class="shrink">
         <page-title></page-title>
-      </v-flex>
-      <v-flex grow>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="grow">
         <div class="map-container">
           <div class="map">
             <router-link id="building-k" to="/building/K">
-&nbsp;
+              &nbsp;
             </router-link>
             <router-link id="building-j" to="/building/J">
-&nbsp;
+              &nbsp;
             </router-link>
             <router-link id="building-h" to="/building/H">
-&nbsp;
+              &nbsp;
             </router-link>
             <router-link id="building-aw" to="/building/AW">
-&nbsp;
+              &nbsp;
             </router-link>
             <router-link id="building-u" to="/building/U">
-&nbsp;
+              &nbsp;
             </router-link>
           </div>
         </div>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

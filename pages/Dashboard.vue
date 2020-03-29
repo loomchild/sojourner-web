@@ -1,24 +1,24 @@
 <template>
-  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content pa-0">
-    <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" xs12 grow d-flex :style="{backgroundColor: type.type.mobileColor}">
+  <v-container v-if="$vuetify.breakpoint.smAndDown" fluid class="content pa-0 fill-height">
+    <v-row>
+      <v-col v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" class="grow d-flex" cols="12" :style="{backgroundColor: type.type.mobileColor}">
         <router-link :to="`/type/${type.type.name}`" class="d-flex">
           <article class="ma-auto">
             <h2>{{ type.type.name }}</h2>
             <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
           </article>
         </router-link>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
-  <v-container v-else fluid fill-height grid-list-xl class="content">
-    <v-layout column>
-      <v-flex xs6 class="mt-auto">
+  <v-container v-else fluid grid-list-xl class="content fill-height">
+    <v-row>
+      <v-col cols="6" class="mt-auto">
         <h1 class="page-title" :style="{ color: conferenceNameColor }">
           {{ conferenceName }}
         </h1>
-        <v-layout row>
-          <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" shrink>
+        <v-row>
+          <v-col v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" class="shrink">
             <router-link :to="`/type/${type.type.name}`" class="d-block">
               <article>
                 <h2>{{ type.type.name }}</h2>
@@ -27,10 +27,10 @@
               <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}">
               </div>
             </router-link>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

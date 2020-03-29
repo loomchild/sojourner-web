@@ -1,15 +1,17 @@
 <template>
-  <v-container fluid fill-height class="content">
-    <v-layout column>
-      <v-flex shrink>
+  <v-container fluid class="content fill-height">
+    <v-row>
+      <v-col class="shrink">
         <page-title back-arrow="secondary"></page-title>
-      </v-flex>
-      <v-flex grow>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="grow">
         <div class="map-container">
           <img v-if="building" class="map d-block" :src="require(`confassets/building-${building.name.toLowerCase()}.png`)">
         </div>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
