@@ -26,7 +26,8 @@ module.exports = {
         chromeOptions: {
           binary: require('puppeteer').executablePath(),
           args: [
-            '--no-sandbox'
+            '--no-sandbox',
+            'window-size=1280,800'
           ]
         }
       }
