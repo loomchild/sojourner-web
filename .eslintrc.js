@@ -17,6 +17,7 @@ module.exports = {
 
   plugins: [
     'vue',
+    'vuetify',
     'mocha',
     'chai-friendly'
   ],
@@ -36,6 +37,9 @@ module.exports = {
       "error", {
         "singleline": 16
       }
-    ]
+    ],
+    'vuetify/no-deprecated-classes': 'error',
+    'vuetify/grid-unknown-attributes': 'error',
+    'vuetify/no-legacy-grid': 'error'
   }
 }
