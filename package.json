@@ -26,12 +26,12 @@
     "typeface-roboto-condensed": "0.0.75",
     "typeface-rubik": "0.0.72",
     "vue": "^2.6.11",
-    "vue-meta": "^1.6.0",
-    "vue-router": "^2.3.3",
+    "vue-meta": "^2.3.3",
+    "vue-router": "^3.1.6",
     "vue-test-utils": "^1.0.0-beta.11",
     "vuetify": "^1.5.24",
     "vuex": "^3.1.3",
-    "workbox-window": "^4.3.1"
+    "workbox-window": "^5.1.2"
   },
   "devDependencies": {
     "add-asset-webpack-plugin": "^1.0.0",
