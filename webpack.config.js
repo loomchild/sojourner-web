@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const moment = require('moment')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
@@ -128,7 +128,7 @@ module.exports = {
   devtool: 'eval-source-map',
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       'static/',
       `assets/conferences/${conference.assets}/*`
@@ -165,7 +165,6 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new GenerateSW({
       cacheId: 'sojourner',
-      importWorkboxFrom: process.env.NODE_ENV === 'development' ? 'cdn' : 'local', // Bug, tracked here https://github.com/GoogleChrome/workbox/issues/1338
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/index.html',
