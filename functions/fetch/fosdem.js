@@ -6,6 +6,7 @@ const axios = require('axios')
 const Event = require('../logic/Event')
 const Type = require('../logic/Type')
 const Link = require('../logic/Link')
+const Video = require('../logic/Video')
 
 const flattenAttributes = (element) => {
   if (element instanceof Array) {
@@ -42,11 +43,35 @@ const getType = (event, typeSet) => {
   return type
 }
 
+const getVideoType = (url) => {
+  if (url.endsWith('.mp4')) {
+    return 'video/mp4'
+  } else if (url.endsWith('.webm')) {
+    return 'video/webm'
+  } else {
+    return null
+  }
+}
+
 const createEvent = (event, type, date, room) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
-  const links = event.links && event.links[0] && event.links[0].link
+  const allLinks = event.links && event.links[0] && event.links[0].link
     ? event.links[0].link.map(link => new Link({ href: link.href, title: link.text })) : []
+
+  const links = []
+  const videos = []
+  for (const link of allLinks) {
+    const videoType = getVideoType(link.href)
+    if (link.title.startsWith('Video recording') && videoType) {
+      videos.push(new Video({
+        type: videoType,
+        url: link.href
+      }))
+    } else {
+      links.push(link)
+    }
+  }
 
   let title = getText(event.title)
   if (title.startsWith('CANCELLED')) {
@@ -69,7 +94,8 @@ const createEvent = (event, type, date, room) => {
     date: date,
     room: room,
     persons: persons,
-    links: links
+    links: links,
+    videos
   })
 }
 
