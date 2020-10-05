@@ -2,7 +2,11 @@
   <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
-        <div class="image" :style="{'--image': `url(${background})`}"></div>
+        <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9" class="image">
+          <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%;">
+            <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
+          </video>
+        </v-img>
         <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
@@ -41,13 +45,17 @@
         <div class="favourite">
           <favourite :event="event" large></favourite>
         </div>
-        <div class="mt-2">
+        <div class="mt-2 image-wrapper">
           <div class="image-background"></div>
           <div class="image-shadow"></div>
-          <div class="image" :style="{'--image': `url(${background})`}"></div>
+          <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9">
+            <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%;">
+              <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
+            </video>
+          </v-img>
         </div>
       </v-flex>
-      <v-flex xs8 class="pl-5 pr-3">
+      <v-flex xs8 class="pl-6 pr-3">
         <div class="speakers grey--text">
           {{ event.speakers() }}
         </div>
@@ -136,21 +144,24 @@ export default {
 </script>
 
 <style scoped>
+.image-wrapper {
+  position: relative;
+  width: 320px;
+  height: 180px;
+}
+
+.pl-6 {
+  margin-left: 64px !important;
+}
+
 .v-card {
   background-color: var(--v-primary-lighten3) !important;
   width: 100%;
 }
 
 .v-card .image {
-  background: var(--image), #f4d9d0;
+  background: #f4d9d0;
   background-size: 100% auto, auto;
-  height: calc(22vh + 80px);
-  margin-bottom: -80px;
-  width: 100%;
-}
-
-.v-card__title--primary {
-  border-radius: 0 80px 0 0 !important;
 }
 
 .v-card__title--primary div, .v-card__title--primary h3 {
@@ -231,24 +242,16 @@ export default {
   .image-background {
     position: absolute;
     background-color: #F2F2F288;
-    width: 270px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
   }
 
   .image-shadow {
     position: absolute;
     background-color: #EDBAA788;
-    width: 270px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
     transform: translateX(30px) translateY(30px);
-  }
-
-  .image {
-    position: absolute;
-    background: var(--image);
-    background-size: cover;
-    width: 270px;
-    height: 270px;
   }
 }
 </style>

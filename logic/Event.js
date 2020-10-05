@@ -23,6 +23,7 @@ export default class Event {
     this.room = data.room || new Room()
     this.persons = data.persons || []
     this.links = data.links || []
+    this.videos = data.videos || []
 
     if (this.startTime && this.duration) {
       this.endTime = moment(this.startTime, TIME_FORMAT).add(moment.duration(this.duration)).format(TIME_FORMAT)

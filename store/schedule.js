@@ -7,6 +7,7 @@ import Link from '@/logic/Link'
 import Room from '@/logic/Room'
 import Track from '@/logic/Track'
 import Type from '@/logic/Type'
+import Video from '@/logic/Video'
 
 const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
 
@@ -38,6 +39,7 @@ const createType = (type, priority) => {
 
 const createEvent = (event, day, room, track, type) => {
   const links = event.links ? event.links.map(link => new Link(link)) : []
+  const videos = event.videos ? event.videos.map(video => new Video(video)) : []
 
   return Object.freeze(new Event({
     id: event.id,
@@ -54,7 +56,8 @@ const createEvent = (event, day, room, track, type) => {
     day: day,
     room: room,
     persons: event.persons,
-    links: links
+    links: links,
+    videos
   }))
 }
 
