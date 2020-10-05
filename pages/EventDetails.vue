@@ -3,7 +3,7 @@
     <v-layout justify-center align-top>
       <v-card>
         <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9" class="image">
-          <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%;">
+          <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%; height: 100%">
             <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
           </video>
         </v-img>
@@ -49,7 +49,7 @@
           <div class="image-background"></div>
           <div class="image-shadow"></div>
           <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9">
-            <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%;">
+            <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block" style="width: 100%; height: 100%">
               <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
             </video>
           </v-img>
