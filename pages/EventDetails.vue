@@ -2,11 +2,7 @@
   <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
-        <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9" class="image">
-          <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block video">
-            <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
-          </video>
-        </v-img>
+        <player :event="event" />
         <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
@@ -48,11 +44,7 @@
         <div class="mt-2 image-wrapper">
           <div class="image-background"></div>
           <div class="image-shadow"></div>
-          <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9">
-            <video v-if="event.videos.length > 0" controls poster="~confassets/video.jpg" preload="none" class="d-block video">
-              <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
-            </video>
-          </v-img>
+          <player :event="event" />
         </div>
       </v-flex>
       <v-flex xs8 class="pl-6 pr-3">
@@ -93,6 +85,7 @@ import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
 import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
+import Player from '@/components/Player'
 
 export default {
   name: 'EventDetails',
@@ -100,7 +93,8 @@ export default {
   components: {
     Favourite,
     RoomState,
-    PageTitle
+    PageTitle,
+    Player
   },
 
   props: {
@@ -113,10 +107,6 @@ export default {
   computed: {
     event () {
       return this.events[this.eventId] || new Event()
-    },
-
-    background () {
-      return this.event ? require(`confassets/${this.event.type.background}`) : ''
     },
 
     typeColor () {
@@ -150,12 +140,6 @@ export default {
   height: 180px;
 }
 
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-
 .pl-6 {
   margin-left: 64px !important;
 }
@@ -163,11 +147,6 @@ export default {
 .v-card {
   background-color: var(--v-primary-lighten3) !important;
   width: 100%;
-}
-
-.v-card .image {
-  background: #f4d9d0;
-  background-size: 100% auto, auto;
 }
 
 .v-card__title--primary div, .v-card__title--primary h3 {
