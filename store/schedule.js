@@ -40,6 +40,7 @@ const createType = (type, priority) => {
 const createEvent = (event, day, room, track, type) => {
   const links = event.links ? event.links.map(link => new Link(link)) : []
   const videos = event.videos ? event.videos.map(video => new Video(video)) : []
+  // const videos = [new Video({ type: 'application/vnd.apple.mpegurl', url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' })]
 
   return Object.freeze(new Event({
     id: event.id,
