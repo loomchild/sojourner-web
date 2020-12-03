@@ -1,16 +1,16 @@
 <template>
   <div v-if="event" :key="event.id" :style="style" class="player" :class="{ floating: !style }">
+    <v-btn v-if="!style" flat icon absolute title="Back to event" :to="`/event/${event.id}`" class="hover-button ma-1">
+      <v-icon color="white">
+        event_seat
+      </v-icon>
+    </v-btn>
+    <v-btn flat icon absolute title="Close video" class="hover-button right ma-1" @click="stop">
+      <v-icon color="white">
+        close
+      </v-icon>
+    </v-btn>
     <v-img :aspect-ratio="16/9">
-      <v-btn v-if="!style" flat icon absolute title="Back to event" :to="`/event/${event.id}`" class="hover-button ma-1">
-        <v-icon color="white">
-          event_seat
-        </v-icon>
-      </v-btn>
-      <v-btn flat icon absolute title="Close video" class="hover-button right ma-1" @click="stop">
-        <v-icon color="white">
-          close
-        </v-icon>
-      </v-btn>
       <video v-if="event.videos.length > 0" ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
         <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
       </video>
@@ -109,6 +109,13 @@ export default {
   width: 450px;
   max-width: 60vw;
   border: 1px solid black;
+}
+
+.hover-button {
+  top: -40px;
+  background-color: black;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .hover-button.right {
