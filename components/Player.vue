@@ -1,15 +1,17 @@
 <template>
   <div v-if="event" :key="event.id" :style="style" class="player" :class="{ floating: !style }">
-    <v-btn v-if="!style" flat icon absolute title="Back to event" :to="`/event/${event.id}`" class="hover-button ma-1">
-      <v-icon color="white">
-        event_seat
-      </v-icon>
-    </v-btn>
-    <v-btn flat icon absolute title="Close video" class="hover-button right ma-1" @click="stop">
-      <v-icon color="white">
-        close
-      </v-icon>
-    </v-btn>
+    <div class="button-panel">
+      <v-btn v-if="!style" flat icon title="Back to event" :to="`/event/${event.id}`" class="hover-button ml-2 mr-0">
+        <v-icon color="white">
+          event_seat
+        </v-icon>
+      </v-btn>
+      <v-btn flat icon title="Close video" class="hover-button ml-2 mr-0" @click="stop">
+        <v-icon color="white">
+          close
+        </v-icon>
+      </v-btn>
+    </div>
     <v-img :aspect-ratio="16/9">
       <video v-if="event.videos.length > 0" ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
         <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
@@ -108,7 +110,21 @@ export default {
   bottom: 56px;
   width: 450px;
   max-width: 60vw;
-  border: 1px solid black;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.button-panel {
+  position: absolute;
+  right: 0;
+}
+
+.floating .button-panel {
+  top: -40px;
+}
+
+.player:not(.floating) .button-panel {
+  bottom: -40px;
 }
 
 .hover-button {
@@ -116,19 +132,13 @@ export default {
 }
 
 .floating .hover-button {
-  top: -40px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .player:not(.floating) .hover-button {
-  bottom: -40px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-.hover-button.right {
-  right: 0;
 }
 
 @media only screen and (min-width:960px) {
