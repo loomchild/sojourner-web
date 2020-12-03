@@ -112,10 +112,19 @@ export default {
 }
 
 .hover-button {
+  background-color: #00000088;
+}
+
+.floating .hover-button {
   top: -40px;
-  background-color: black;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.player:not(.floating) .hover-button {
+  bottom: -40px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .hover-button.right {
