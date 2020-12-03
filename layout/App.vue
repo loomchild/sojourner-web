@@ -17,6 +17,7 @@
     <notification></notification>
     <analytics></analytics>
     <login-dialog></login-dialog>
+    <player></player>
     <bottom-menu></bottom-menu>
   </v-app>
 </template>
@@ -32,6 +33,7 @@ import BottomMenu from '@/components/BottomMenu'
 import MainToolbar from '@/components/MainToolbar'
 import Notification from '@/components/Notification'
 import LoginDialog from '@/components/LoginDialog'
+import Player from '@/components/Player'
 
 export default {
   name: 'App',
@@ -42,7 +44,8 @@ export default {
     MainToolbar,
     BottomMenu,
     Notification,
-    LoginDialog
+    LoginDialog,
+    Player
   },
 
   computed: {
@@ -156,5 +159,9 @@ h1.page-title {
 
 .application--wrap {
   min-height: var(--screenHeight, 100vh) !important;
+}
+
+.clickable {
+  cursor: pointer;
 }
 </style>

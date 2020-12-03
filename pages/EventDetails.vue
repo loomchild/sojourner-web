@@ -2,7 +2,11 @@
   <v-container v-if="event && $vuetify.breakpoint.smAndDown" fluid fill-height class="content">
     <v-layout justify-center align-top>
       <v-card>
-        <player :event="event" />
+        <v-img id="event-video" :src="background" :aspect-ratio="16/9" class="image d-flex" @click="playEvent">
+          <v-icon color="white" x-large>
+            play_arrow
+          </v-icon>
+        </v-img>
         <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
@@ -44,7 +48,11 @@
         <div class="mt-2 image-wrapper">
           <div class="image-background"></div>
           <div class="image-shadow"></div>
-          <player :event="event" />
+          <v-img id="event-video" :src="background" :aspect-ratio="16/9" class=" image clickable d-flex" @click="playEvent">
+            <v-icon color="white" x-large>
+              play_arrow
+            </v-icon>
+          </v-img>
         </div>
       </v-flex>
       <v-flex xs8 class="pl-6 pr-3">
@@ -79,13 +87,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
 import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
-import Player from '@/components/Player'
 
 export default {
   name: 'EventDetails',
@@ -93,8 +100,7 @@ export default {
   components: {
     Favourite,
     RoomState,
-    PageTitle,
-    Player
+    PageTitle
   },
 
   props: {
@@ -114,9 +120,42 @@ export default {
       return type ? type.arrowColor : 'secondary'
     },
 
+    background () {
+      if (!this.event) {
+        return ''
+      }
+      if (this.event.videos.length > 0) {
+        return require('confassets/video.jpg')
+      }
+      return require(`confassets/${this.event.type.background}`)
+    },
+
     ...mapGetters([
       'events',
       'hasMap'
+    ])
+  },
+
+  activated () {
+    this.$nextTick(() => this.dockPlayer(this.eventId))
+  },
+
+  updated () {
+    this.$nextTick(() => this.dockPlayer(this.eventId))
+  },
+
+  deactivated () {
+    this.dockPlayer(null)
+  },
+
+  methods: {
+    playEvent () {
+      this.play(this.event)
+    },
+
+    ...mapActions([
+      'play',
+      'dockPlayer'
     ])
   },
 
@@ -147,6 +186,14 @@ export default {
 .v-card {
   background-color: var(--v-primary-lighten3) !important;
   width: 100%;
+}
+
+.image {
+  align-items: center;
+}
+.v-card .image {
+  background: #f4d9d0;
+  background-size: 100% auto, auto;
 }
 
 .v-card__title--primary div, .v-card__title--primary h3 {

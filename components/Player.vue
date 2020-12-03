@@ -1,12 +1,25 @@
 <template>
-  <v-img :key="event.id" :src="event.videos.length === 0 ? background : undefined" :aspect-ratio="16/9" class="image">
-    <video v-if="event.videos.length > 0" ref="video" controls poster="~confassets/video.jpg" preload="none" class="d-block video">
-      <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
-    </video>
-  </v-img>
+  <div v-if="event" :key="event.id" :style="style" class="player" :class="{ floating: !style }">
+    <v-img :aspect-ratio="16/9">
+      <v-btn v-if="!style" flat icon absolute title="Back to event" :to="`/event/${event.id}`" class="hover-button ma-1">
+        <v-icon color="white">
+          event_seat
+        </v-icon>
+      </v-btn>
+      <v-btn flat icon absolute title="Close video" class="hover-button right ma-1" @click="stop">
+        <v-icon color="white">
+          close
+        </v-icon>
+      </v-btn>
+      <video v-if="event.videos.length > 0" ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
+        <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
+      </video>
+    </v-img>
+  </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import Hls from 'hls.js'
 let hls = null
 const STREAM_TYPE = 'application/vnd.apple.mpegurl'
@@ -14,45 +27,70 @@ const STREAM_TYPE = 'application/vnd.apple.mpegurl'
 export default {
   name: 'Player',
 
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
-  },
+  data: () => ({
+    style: null
+  }),
 
   computed: {
-    background () {
-      return this.event ? require(`confassets/${this.event.type.background}`) : ''
-    }
+    docked () {
+      return this.$route.name === 'event' && this.dockedPlayer
+    },
+
+    ...mapGetters({
+      event: 'playerEvent',
+      dockedPlayer: 'dockedPlayer'
+    })
   },
 
-  activated () {
-    this.updateEvent()
+  watch: {
+    event (event) {
+      if (event) {
+        this.$nextTick(() => {
+          const videoEl = this.$refs.video
+
+          if (!videoEl || videoEl.canPlayType(STREAM_TYPE) || !Hls.isSupported()) {
+            return
+          }
+
+          if (this.event.videos.length !== 1 || this.event.videos[0].type !== STREAM_TYPE) {
+            return
+          }
+
+          if (hls) {
+            hls.destroy()
+          }
+          hls = new Hls()
+
+          hls.attachMedia(videoEl)
+          hls.on(Hls.Events.MEDIA_ATTACHED, () =>
+            hls.loadSource(this.event.videos[0].url)
+          )
+        })
+      }
+    },
+
+    docked (docked) {
+      if (docked) {
+        this.$nextTick(() => {
+          const eventVideo = document.getElementById('event-video')
+          const rect = eventVideo.getBoundingClientRect()
+          this.style = {
+            position: 'absolute',
+            left: rect.left + 'px',
+            top: rect.top + 'px',
+            width: rect.width + 'px'
+          }
+        })
+      } else {
+        this.style = null
+      }
+    }
   },
 
   methods: {
-    updateEvent () {
-      const videoEl = this.$refs.video
-
-      if (!videoEl || videoEl.canPlayType(STREAM_TYPE) || !Hls.isSupported()) {
-        return
-      }
-
-      if (this.event.videos.length !== 1 || this.event.videos[0].type !== STREAM_TYPE) {
-        return
-      }
-
-      if (hls) {
-        hls.destroy()
-      }
-      hls = new Hls()
-
-      hls.attachMedia(videoEl)
-      hls.on(Hls.Events.MEDIA_ATTACHED, () =>
-        hls.loadSource(this.event.videos[0].url)
-      )
-    }
+    ...mapActions([
+      'stop'
+    ])
   }
 }
 </script>
@@ -64,10 +102,32 @@ export default {
   object-fit: fill;
 }
 
-@media only screen and (max-width:959px) {
-  .image {
-    background: #f4d9d0;
-    background-size: 100% auto, auto;
+.floating {
+  position: fixed;
+  right: 0;
+  bottom: 56px;
+  width: 450px;
+  max-width: 60vw;
+  border: 1px solid black;
+}
+
+.hover-button.right {
+  right: 0;
+}
+
+@media only screen and (min-width:960px) {
+  .hover-button {
+    opacity: 0;
+  }
+}
+
+.player:hover .hover-button {
+  opacity: 1.0;
+}
+
+@media only screen and (min-width:960px) {
+  .floating {
+    bottom: 0;
   }
 }
 </style>
