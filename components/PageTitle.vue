@@ -4,7 +4,7 @@
       ◂
     </button>
     <h1>
-      {{ title }}
+      {{ pageTitle }}
     </h1>
   </header>
 </template>
@@ -37,7 +37,7 @@ export default {
     },
 
     ...mapGetters([
-      'title'
+      'pageTitle'
     ])
   },
 

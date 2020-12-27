@@ -161,11 +161,12 @@ export default {
 
   metaInfo () {
     return {
-      title: this.event.track.name || this.event.type.name,
+      title: this.event.title || '',
+      pageTitle: this.event.track.name || this.event.type.name,
       meta: [{
         vmid: 'description',
         name: 'description',
-        content: this.event.abstract ? this.event.abstract.replace(/<[^>]+>/g, '') : this.event.title
+        content: this.event.abstract ? this.event.abstract.replace(/<[^>]+>/g, '') : ''
       }]
     }
   }

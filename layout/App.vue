@@ -94,6 +94,8 @@ export default {
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
         this.setTitle(title === 'Sojourner' ? '' : title.slice(0, -12))
+        const pageTitle = newMetaInfo.pageTitle
+        this.setPageTitle(pageTitle)
       }
     }
   },
@@ -106,7 +108,8 @@ export default {
     'initUser',
     'initRoomStateUpdater',
     'initA2HSTip',
-    'setTitle'
+    'setTitle',
+    'setPageTitle'
   ])
 }
 </script>

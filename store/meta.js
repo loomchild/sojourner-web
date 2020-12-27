@@ -8,6 +8,8 @@ export default {
   state: {
     title: null,
 
+    pageTitle: null,
+
     drawer: null,
 
     tab: 0
@@ -22,6 +24,8 @@ export default {
 
     title: state => state.title,
 
+    pageTitle: state => state.pageTitle || state.title,
+
     drawer: state => state.drawer,
 
     tab: state => state.tab,
@@ -32,6 +36,10 @@ export default {
   mutations: {
     setTitle (state, title) {
       state.title = title
+    },
+
+    setPageTitle (state, pageTitle) {
+      state.pageTitle = pageTitle
     },
 
     setDrawer (state, drawer) {
@@ -46,6 +54,10 @@ export default {
   actions: {
     setTitle ({ commit }, title) {
       commit('setTitle', title)
+    },
+
+    setPageTitle ({ commit }, pageTitle) {
+      commit('setPageTitle', pageTitle)
     },
 
     setDrawer ({ commit }, drawer) {
