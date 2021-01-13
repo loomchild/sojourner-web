@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const fetchFosdem = require('./fetch/fosdem')
-const fetchSched = require('./fetch/sched')
+// const fetchSched = require('./fetch/sched')
 const store = require('./store')
 
 admin.initializeApp({
@@ -14,13 +14,15 @@ admin.initializeApp({
 
 exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
   const fosdemData = await fetchFosdem(functions.config().fosdem.url)
-  await store(fosdemData, 'fosdem-2020.json')
+  await store(fosdemData, 'fosdem-2021.json')
 })
 
+/*
 exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
   const flowconData = await fetchSched(functions.config().flowcon.url, functions.config().flowcon.key)
   await store(flowconData, 'flowcon-2019.json')
 })
+*/
 
 /*
 const popularity = require('./stats/popularity')
