@@ -3,7 +3,8 @@
   "nameColor": "white",
   "features": {
     "map": false,
-    "all": true
+    "all": true,
+    "rooms": true
   },
   "assets": "flowcon",
   "colors": {

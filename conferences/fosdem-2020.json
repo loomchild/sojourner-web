@@ -2,7 +2,8 @@
   "name": "FOSDEM'20",
   "features": {
     "map": true,
-    "all": false
+    "all": false,
+    "rooms": true
   },
   "assets": "fosdem",
   "colors": {

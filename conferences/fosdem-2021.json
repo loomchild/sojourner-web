@@ -2,7 +2,8 @@
   "name": "FOSDEM'21 Online",
   "features": {
     "map": false,
-    "all": false
+    "all": false,
+    "rooms": false
   },
   "assets": "fosdem",
   "colors": {

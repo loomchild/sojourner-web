@@ -30,7 +30,9 @@ export default {
 
     tab: state => state.tab,
 
-    hasAll: state => conference.features.all
+    hasAll: state => conference.features.all,
+
+    hasRooms: () => conference.features.rooms
   },
 
   mutations: {

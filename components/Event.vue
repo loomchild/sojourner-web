@@ -8,7 +8,7 @@
         <span>
           {{ event.startTime }}-{{ event.endTime }}
         </span>
-        <span v-if="showRoom">
+        <span v-if="hasRooms && showRoom">
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Favourite from './Favourite'
 import RoomState from './RoomState'
 
@@ -53,6 +55,12 @@ export default {
     showDay: Boolean,
     showType: Boolean,
     showPersons: Boolean
+  },
+
+  computed: {
+    ...mapGetters([
+      'hasRooms'
+    ])
   }
 }
 </script>
