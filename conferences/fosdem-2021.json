@@ -1,7 +1,7 @@
 {
   "name": "FOSDEM'21 Online",
   "features": {
-    "map": true,
+    "map": false,
     "all": false
   },
   "assets": "fosdem",
