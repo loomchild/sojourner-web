@@ -305,16 +305,7 @@ export default {
     },
 
     notifyRefreshSchedule ({ dispatch }) {
-      dispatch('showNotification', {
-        message: 'New schedule is available.',
-        timeout: 0,
-        button: {
-          title: 'REFRESH',
-          handler: () => {
-            dispatch('refreshSchedule')
-          }
-        }
-      })
+      dispatch('refreshSchedule')
     },
 
     initScheduleUpdater ({ dispatch, state, commit }) {
@@ -325,7 +316,7 @@ export default {
 
       setInterval(() => dispatch('initSchedule'), pollInterval * 1000)
 
-      commit('initScheduleUpdater')
+      commit('initializeScheduleUpdater')
     },
 
     reindexEvents ({ state, commit, dispatch }) {

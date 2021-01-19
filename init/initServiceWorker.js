@@ -21,9 +21,7 @@ export default function () {
 
     wb.addEventListener('message', event => {
       if (event.data.type === 'CACHE_UPDATED') {
-        setTimeout(() => {
-          store.dispatch('notifyRefreshSchedule')
-        }, 10000)
+        store.dispatch('notifyRefreshSchedule')
       }
     })
 
