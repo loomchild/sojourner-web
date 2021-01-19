@@ -65,7 +65,6 @@ export default {
 
   created: async function () {
     try {
-      await this.initIndexedDB()
       await this.initPersistent()
     } catch (error) {
       console.error(error)
@@ -101,7 +100,6 @@ export default {
   },
 
   methods: mapActions([
-    'initIndexedDB',
     'initPersistent',
     'initSchedule',
     'initScheduleUpdater',
