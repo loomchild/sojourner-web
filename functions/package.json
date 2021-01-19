@@ -1,7 +1,7 @@
 {
   "name": "sojourner-functions",
   "scripts": {
-    "serve": "firebase serve --only functions",
+    "dev": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "NODE_ENV=production firebase deploy --only functions",
@@ -14,7 +14,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
-    "firebase-admin": "^8.6.1",
+    "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.1.0",
     "moment": "^2.24.0",
     "xmldom": "^0.1.27",

@@ -3,7 +3,7 @@ const admin = require('firebase-admin')
 module.exports = async function store (data, fileName) {
   const bucket = admin.storage().bucket()
 
-  const file = bucket.file(`/conferences/${fileName}`)
+  const file = bucket.file(`conferences/${fileName}`)
   const stringData = JSON.stringify(data, null, 2)
 
   const exists = (await file.exists())[0]
