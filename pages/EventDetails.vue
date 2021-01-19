@@ -3,7 +3,7 @@
     <v-layout justify-center align-top>
       <v-card>
         <v-img id="event-video" :src="background" :aspect-ratio="16/9" class="image d-flex" @click="playEvent">
-          <v-icon color="white" x-large>
+          <v-icon v-if="canPlayEvent" color="white" x-large>
             play_arrow
           </v-icon>
         </v-img>
@@ -50,8 +50,8 @@
         <div class="mt-2 image-wrapper">
           <div class="image-background"></div>
           <div class="image-shadow"></div>
-          <v-img id="event-video" :src="background" :aspect-ratio="16/9" class=" image clickable d-flex" @click="playEvent">
-            <v-icon color="white" x-large>
+          <v-img id="event-video" :src="background" :aspect-ratio="16/9" class=" image d-flex" :class="{ clickable: canPlayEvent }" @click="playEvent">
+            <v-icon v-if="canPlayEvent" color="white" x-large>
               play_arrow
             </v-icon>
           </v-img>
@@ -124,6 +124,10 @@ export default {
       return type ? type.arrowColor : 'secondary'
     },
 
+    canPlayEvent () {
+      return this.event.videos.length > 0
+    },
+
     background () {
       if (!this.event) {
         return ''
@@ -155,7 +159,9 @@ export default {
 
   methods: {
     playEvent () {
-      this.play(this.event)
+      if (this.canPlayEvent) {
+        this.play(this.event)
+      }
     },
 
     ...mapActions([
