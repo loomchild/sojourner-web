@@ -32,7 +32,9 @@ export default {
 
     hasAll: state => conference.features.all,
 
-    hasRooms: () => conference.features.rooms
+    hasRooms: () => conference.features.rooms,
+
+    previousEditions: () => conference.previousEditions
   },
 
   mutations: {

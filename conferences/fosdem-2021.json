@@ -5,6 +5,10 @@
     "all": false,
     "rooms": false
   },
+  "previousEditions": {
+    "2019": "https://fosdem-n900.sojourner.rocks",
+    "2020": "https://2020.fosdem.sojourner.rocks"
+  },
   "assets": "fosdem",
   "colors": {
     "primary": {

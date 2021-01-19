@@ -7,11 +7,7 @@
       <v-flex grow class="about-text">
         <p class="mb-2">
           <span>Author:</span>
-          <span><a href="https://studio.untitledfactory.com" target="_blank">Untitled Factory Studio</a></span>
-        </p>
-        <p class="mb-2">
-          <span>Support:</span>
-          <span><a href="mailto:contact@untitledfactory.com?subject=Sojourner">contact@untitledfactory.com</a></span>
+          <span><a href="https://jareklipski.com" target="_blank">Jarek Lipski</a></span>
         </p>
         <p class="mb-2">
           <span>Updated:</span>
@@ -19,11 +15,19 @@
         </p>
         <p class="mb-2">
           <span>Version:</span>
-          <span><a :href="commiturl">{{ version }}</a></span>
+          <span><a :href="commiturl" target="_blank">{{ version }}</a></span>
         </p>
         <p class="mb-2">
-          <span>Code:</span>
-          <span><a href="https://github.com/loomchild/sojourner-web">Github</a></span>
+          <span>Code / Issues:</span>
+          <span><a href="https://github.com/loomchild/sojourner-web" target="_blank">Github</a></span>
+        </p>
+        <p v-if="previousEditionList" class="mb-2">
+          <span>Previous editions:</span>
+          <span v-for="(edition, index) in previousEditionList" :key="edition.label">
+            <a :href="edition.link" target="_blank">
+              {{ edition.label }}<span v-if="index < (previousEditionList.length - 1)">, </span>
+            </a>
+          </span>
         </p>
         <v-layout row>
           <v-flex xs12 sm9 class="mt-4 about-text">
@@ -53,10 +57,20 @@ export default {
       return `https://github.com/loomchild/sojourner-web/commit/${this.commithash}`
     },
 
+    previousEditionList () {
+      if (!this.previousEditions) {
+        return null
+      }
+      const list = Object.entries(this.previousEditions).map(([key, value]) => ({ label: key.toString(), link: value }))
+      list.sort((l, r) => r.label.localeCompare(l.label))
+      return list
+    },
+
     ...mapGetters([
       'timestamp',
       'commithash',
-      'version'
+      'version',
+      'previousEditions'
     ])
   },
 
