@@ -136,9 +136,9 @@ module.exports = {
     ]),
     new AddAssetPlugin('assets/manifest.json', manifest),
     new webpack.EnvironmentPlugin({
-      TIMESTAMP: JSON.stringify(moment().format('YYYY-MM-DD HH:mm:ss')),
-      COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
-      VERSION: JSON.stringify(gitRevisionPlugin.version()),
+      TIMESTAMP: moment().format('YYYY-MM-DD HH:mm:ss'),
+      COMMITHASH: gitRevisionPlugin.commithash(),
+      VERSION: gitRevisionPlugin.version(),
       CONFERENCE_ID: undefined,
       SCHEDULE_URL,
       SCHEDULE_INTERVAL: 0,
