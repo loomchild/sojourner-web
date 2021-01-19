@@ -26,8 +26,7 @@ export default {
 
   actions: {
     setFavourite ({ dispatch }, eventId) {
-      return dispatch('assurePersistent')
-        .then(() => dispatch('getUserRef'))
+      return dispatch('getUserRef')
         .then(user => user.update({ [`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayUnion(eventId) }))
     },
 
@@ -40,8 +39,7 @@ export default {
     },
 
     unsetFavourite ({ dispatch }, eventId) {
-      return dispatch('assurePersistent')
-        .then(() => dispatch('getUserRef'))
+      return dispatch('getUserRef')
         .then(user => user.update({ [`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayRemove(eventId) }))
     },
 

@@ -12,9 +12,7 @@ export default {
 
     loginDialog: false,
 
-    persistent: false,
-
-    loseDataWarning: false
+    persistent: false
   },
 
   getters: {
@@ -42,10 +40,6 @@ export default {
 
     setPersistent (state, persistent) {
       state.persistent = persistent
-    },
-
-    shownLoseDataWarning (state) {
-      state.loseDataWarning = true
     }
   },
 
@@ -157,21 +151,6 @@ export default {
           })
       } else {
         return Promise.reject(new Error('Persistence not supported by the browser'))
-      }
-    },
-
-    assurePersistent ({ dispatch, commit, state, getters }) {
-      if (!getters.realUser && !state.persistent) {
-        return dispatch('persist')
-          .catch(e => {
-            if (!state.loseDataWarning) {
-              console.error(e)
-              return dispatch('showNotification', {
-                message: 'To guarantee that your data is preserved, please either allow persistent data storage or log-in.',
-                level: 'warning'
-              }).then(() => commit('shownLoseDataWarning'))
-            }
-          })
       }
     }
   }
