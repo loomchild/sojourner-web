@@ -7,7 +7,7 @@
             play_arrow
           </v-icon>
         </v-img>
-        <v-card-title primary-title class="d-block pb-0">
+        <v-card-title primary-title class="d-block pb-2">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
             <span v-if="hasRooms">
@@ -23,8 +23,9 @@
             {{ event.speakers() }}
           </div>
         </v-card-title>
-        <v-card-text class="pb-0">
-          <div>
+        <v-card-text class="pt-4 pb-0">
+          <div class="icons">
+            <chat :event="event" class="mr-2"></chat>
             <favourite :event="event" large></favourite>
           </div>
           <div v-if="event.abstract" class="abstract" v-html="event.abstract"></div>
@@ -44,7 +45,8 @@
     <page-title :back-arrow="typeColor"></page-title>
     <v-layout row>
       <v-flex xs4>
-        <div class="favourite">
+        <div class="icons">
+          <chat :event="event" class="mr-2"></chat>
           <favourite :event="event" large></favourite>
         </div>
         <div class="mt-2 image-wrapper">
@@ -97,6 +99,7 @@ import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
 import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
+import Chat from '@/components/Chat'
 
 export default {
   name: 'EventDetails',
@@ -104,7 +107,8 @@ export default {
   components: {
     Favourite,
     RoomState,
-    PageTitle
+    PageTitle,
+    Chat
   },
 
   props: {
@@ -235,10 +239,10 @@ export default {
   background-color: white;
 }
 
-.v-card__text .favourite {
+.v-card__text .icons {
   position: absolute;
   right: 24px;
-  transform: translateY(-36px);
+  transform: translateY(-44px);
 }
 
 .description /deep/ p, .abstract /deep/ p {
@@ -279,7 +283,7 @@ export default {
     padding-bottom: 0;
   }
 
-  .favourite {
+  .icons {
     text-align: right;
   }
 

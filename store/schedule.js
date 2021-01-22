@@ -58,7 +58,8 @@ const createEvent = (event, day, room, track, type) => {
     room: room,
     persons: event.persons,
     links: links,
-    videos
+    videos,
+    chat: event.chat
   }))
 }
 

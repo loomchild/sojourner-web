@@ -24,6 +24,7 @@ export default class Event {
     this.persons = data.persons || []
     this.links = data.links || []
     this.videos = data.videos || []
+    this.chat = data.chat
 
     if (this.startTime && this.duration) {
       this.endTime = moment(this.startTime, TIME_FORMAT).add(moment.duration(this.duration)).format(TIME_FORMAT)
