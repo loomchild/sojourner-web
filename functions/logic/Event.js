@@ -15,6 +15,7 @@ module.exports = class Event {
     this.links = data.links
     this.videos = data.videos
     this.language = data.language
+    this.chat = data.chat
     Object.freeze(this)
   }
 }

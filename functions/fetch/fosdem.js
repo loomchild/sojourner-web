@@ -81,6 +81,8 @@ const createEvent = (event, type, date, room) => {
     title = title.substring(10)
   }
 
+  const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${room.substring(2)}:fosdem.org` : null
+
   return new Event({
     id: event.id.toString(),
     startTime: getText(event.start),
@@ -95,7 +97,8 @@ const createEvent = (event, type, date, room) => {
     room: room,
     persons: persons,
     links: links,
-    videos
+    videos,
+    chat
   })
 }
 
