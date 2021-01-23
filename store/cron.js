@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-const CRON_UPDATE_INTERVAL = 1000
+const CRON_UPDATE_INTERVAL = 60 * 1000
 const TIME_FORMAT = 'HH:mm'
 const DATE_FORMAT = 'YYYY-MM-DD'
 const SOON_MINUTES = 10
