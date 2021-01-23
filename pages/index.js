@@ -12,6 +12,7 @@ import EventDetails from './EventDetails'
 import FavouriteEvents from './FavouriteEvents'
 import TypeTracksOrEvents from './TypeTracksOrEvents'
 import AllEvents from './AllEvents'
+import LiveEvents from './LiveEvents'
 
 window.history.scrollRestoration = 'manual'
 
@@ -43,6 +44,11 @@ const router = new Router({
       path: '/all',
       name: 'all-events',
       component: AllEvents
+    },
+    {
+      path: '/live',
+      name: 'live-events',
+      component: LiveEvents
     },
     {
       path: '/event/:eventId?',

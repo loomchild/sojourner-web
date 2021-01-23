@@ -83,6 +83,8 @@ const scoreEvent = (event, keywords) => {
 
 const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] || 0, -1).thenBy(eventNaturalSort)
 
+const eventLiveSort = (favourites) => firstBy(event => !favourites[event.id]).thenBy(eventNaturalSort)
+
 export default {
   state: {
     scheduleInitialized: false,
@@ -130,7 +132,7 @@ export default {
         .sort(eventNaturalSort)
     },
 
-    favouriteAddedEvents: (state, rootGetters) => oldFavouriteEvents => {
+    favouriteAddedEvents: (state, getters, rootState, rootGetters) => oldFavouriteEvents => {
       const favourites = rootGetters.favourites
       const oldFavourites = {}
       oldFavouriteEvents.forEach(oldFavouriteEvent => {
@@ -182,6 +184,17 @@ export default {
           tracks
         }
       })
+    },
+
+    liveEvents: (state, getters, rootState, rootGetters) => {
+      const currentDate = rootGetters.currentDate
+      const currentTime = rootGetters.currentTime
+      const soonTime = rootGetters.soonTime
+      const favourites = rootGetters.favourites
+      const events = Object.values(state.events)
+        .filter(event => event.happeningNow(currentDate, currentTime, soonTime))
+        .sort(eventLiveSort(favourites))
+      return events
     },
 
     conferenceName: () => conference.name,

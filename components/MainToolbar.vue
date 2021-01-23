@@ -14,6 +14,9 @@
       <v-btn flat dark class="mx-0" :ripple="false" to="/">
         Programme
       </v-btn>
+      <v-btn flat dark class="mx-0" :ripple="false" to="/live">
+        Live
+      </v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">
         Bookmarks
       </v-btn>

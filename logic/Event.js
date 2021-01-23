@@ -34,4 +34,10 @@ export default class Event {
   speakers () {
     return this.persons.join(', ')
   }
+
+  happeningNow (currentDate, minTime, maxTime) {
+    return this.day.dateString === currentDate &&
+      this.startTime <= maxTime && this.endTime >= minTime &&
+      this.track.name !== 'Infodesk'
+  }
 }

@@ -5,6 +5,11 @@
       Programme
     </v-btn>
 
+    <v-btn flat to="/live/">
+      <v-icon>live_tv</v-icon>
+      Live
+    </v-btn>
+
     <v-btn flat to="/favourites/">
       <v-icon>bookmarks</v-icon>
       Bookmarks
