@@ -53,7 +53,4 @@ export default {
   color: #ffffff;
 }
 
-.v-tabs.days .v-window {
-  border: 1px solid #0000001e;
-}
 </style>

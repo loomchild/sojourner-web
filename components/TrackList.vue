@@ -79,4 +79,7 @@ export default {
 </script>
 
 <style scoped>
+.v-list {
+  border: 1px solid #0000001e;
+}
 </style>

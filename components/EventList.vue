@@ -6,21 +6,7 @@
           {{ dayEvents.day.name }}
         </v-tab>
         <v-tab-item :key="dayEvents.day.name">
-          <v-list v-if="dayEvents.events.length > 0" three-line class="pa-0">
-            <template v-for="(event, index) in dayEvents.events">
-              <event :key="event.id" :event="event" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event>
-              <v-divider v-if="index + 1 < dayEvents.events.length" :key="`div-${event.id}`"></v-divider>
-            </template>
-          </v-list>
-          <v-list v-else>
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-list-tile-sub-title>
-                  There are no events on this list.
-                </v-list-tile-sub-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
+          <event-list-plain :events="dayEvents.events" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event-list-plain>
         </v-tab-item>
       </template>
     </day-tabs>
@@ -31,14 +17,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import DayTabs from '@/components/DayTabs'
-import Event from '@/components/Event'
+import EventListPlain from '@/components/EventListPlain'
 
 export default {
   name: 'Events',
 
   components: {
     DayTabs,
-    Event
+    EventListPlain
   },
 
   props: {
