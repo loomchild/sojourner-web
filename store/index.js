@@ -9,6 +9,7 @@ import schedule from './schedule'
 import state from './state'
 import user from './user'
 import player from './player'
+import cron from './cron'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     schedule,
     state,
     user,
-    player
+    player,
+    cron
   }
 })

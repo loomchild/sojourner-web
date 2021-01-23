@@ -79,6 +79,7 @@ export default {
       this.initUser()
       this.initRoomStateUpdater()
       this.initA2HSTip()
+      this.initCron()
     })
   },
 
@@ -106,6 +107,7 @@ export default {
     'initUser',
     'initRoomStateUpdater',
     'initA2HSTip',
+    'initCron',
     'setTitle',
     'setPageTitle'
   ])
