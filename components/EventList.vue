@@ -6,7 +6,7 @@
           {{ dayEvents.day.name }}
         </v-tab>
         <v-tab-item :key="dayEvents.day.name">
-          <event-list-plain :events="dayEvents.events" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event-list-plain>
+          <event-list-plain :events="dayEvents.events" :show-room="showRoom" :show-track="showTrack" :show-type="showType" :show-persons="showPersons"></event-list-plain>
         </v-tab-item>
       </template>
     </day-tabs>
@@ -33,6 +33,7 @@ export default {
       default: () => []
     },
     showRoom: Boolean,
+    showTrack: Boolean,
     showType: Boolean,
     showPersons: Boolean
   },

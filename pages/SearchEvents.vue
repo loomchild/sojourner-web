@@ -4,7 +4,7 @@
     <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" autocapitalize="none" color="secondary" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
-        <event :key="`ev-${event.id}`" :event="event" show-day show-room show-persons></event>
+        <event :key="`ev-${event.id}`" :event="event" show-day show-room :show-track="!hasRooms" show-persons></event>
         <v-divider v-if="index + 1 < events.length" :key="`div-${event.id}`"></v-divider>
       </template>
     </v-list>
@@ -26,7 +26,7 @@
 
 <script>
 import _ from 'lodash'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Event from '@/components/Event'
 import PageTitle from '@/components/PageTitle'
 
@@ -46,7 +46,11 @@ export default {
   computed: {
     validQuery () {
       return this.query && this.query.length >= 2
-    }
+    },
+
+    ...mapGetters([
+      'hasRooms'
+    ])
   },
 
   watch: {

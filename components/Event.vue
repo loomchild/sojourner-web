@@ -12,6 +12,9 @@
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
+        <span v-if="showTrack">
+          | {{ event.track.name }}
+        </span>
         <span v-if="showType">
           | {{ event.type.name }}
         </span>
@@ -52,6 +55,7 @@ export default {
       required: true
     },
     showRoom: Boolean,
+    showTrack: Boolean,
     showDay: Boolean,
     showType: Boolean,
     showPersons: Boolean

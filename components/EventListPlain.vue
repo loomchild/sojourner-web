@@ -2,7 +2,7 @@
   <div>
     <v-list v-if="events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
-        <event :key="event.id" :event="event" :show-room="showRoom" :show-type="showType" :show-persons="showPersons"></event>
+        <event :key="event.id" :event="event" :show-room="showRoom" :show-track="showTrack" :show-type="showType" :show-persons="showPersons"></event>
         <v-divider v-if="index + 1 < events.length" :key="`div-${event.id}`"></v-divider>
       </template>
     </v-list>
@@ -34,6 +34,7 @@ export default {
       default: () => []
     },
     showRoom: Boolean,
+    showTrack: Boolean,
     showType: Boolean,
     showPersons: Boolean
   }
