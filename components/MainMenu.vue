@@ -10,6 +10,7 @@
       <menu-item v-if="hasAll" title="All" icon="view_headline" to="/all/"></menu-item>
       <menu-item v-if="hasMap" title="Map" icon="map" to="/map/"></menu-item>
       <menu-item title="Search" icon="search" to="/search/"></menu-item>
+      <menu-item title="Stands" icon="storefront" :href="stands"></menu-item>
       <v-divider class="mx-3"></v-divider>
       <menu-item title="About" icon="info" to="/about/"></menu-item>
     </v-list>
@@ -33,7 +34,8 @@ export default {
     'drawer',
     'realUser',
     'hasMap',
-    'hasAll'
+    'hasAll',
+    'stands'
   ]),
 
   methods: {

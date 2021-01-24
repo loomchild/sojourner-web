@@ -29,6 +29,9 @@
       <v-btn flat dark class="mx-0" :ripple="false" to="/search/">
         Search
       </v-btn>
+      <v-btn v-if="stands" flat dark class="mx-0" :ripple="false" :href="stands" target="_blank">
+        Stands
+      </v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/about/">
         About
       </v-btn>
@@ -61,7 +64,8 @@ export default {
       'hasMap',
       'hasAll',
       'realUser',
-      'conferenceName'
+      'conferenceName',
+      'stands'
     ])
   },
   methods: {

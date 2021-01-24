@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile :to="to" :exact="to === '/'" ripple @click.stop="$emit('click', $event.target)">
+  <v-list-tile :to="to" :exact="to === '/'" :href="href" :target="href ? '_blank' : undefined" ripple @click.stop="$emit('click', $event.target)">
     <v-list-tile-action>
       <v-icon>{{ icon }}</v-icon>
     </v-list-tile-action>
@@ -23,6 +23,10 @@ export default {
       default: ''
     },
     to: {
+      type: String,
+      default: null
+    },
+    href: {
       type: String,
       default: null
     }

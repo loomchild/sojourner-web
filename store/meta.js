@@ -34,7 +34,9 @@ export default {
 
     hasRooms: () => conference.features.rooms,
 
-    previousEditions: () => conference.previousEditions
+    previousEditions: () => conference.previousEditions,
+
+    stands: () => conference.stands
   },
 
   mutations: {

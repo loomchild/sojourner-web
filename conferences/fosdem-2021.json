@@ -9,6 +9,7 @@
     "2019": "https://fosdem-n900.sojourner.rocks",
     "2020": "https://2020.fosdem.sojourner.rocks"
   },
+  "stands": "https://stands.fosdem.org/",
   "assets": "fosdem",
   "colors": {
     "primary": {
