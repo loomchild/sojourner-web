@@ -1,6 +1,8 @@
 import moment from 'moment'
 
-const CRON_UPDATE_INTERVAL = 60 * 1000
+const TEST = false
+
+const CRON_UPDATE_INTERVAL = !TEST ? 60 * 1000 : 1000
 const TIME_FORMAT = 'HH:mm'
 const DATE_FORMAT = 'YYYY-MM-DD'
 const SOON_MINUTES = 10
@@ -43,13 +45,17 @@ export default {
       setInterval(() => dispatch('updateCron'), CRON_UPDATE_INTERVAL)
     },
 
-    updateCron ({ commit }) {
-      const date = new Date()
-      // const date = moment().year(2021).month('February').date(6).hour(10).minute(moment().second())
+    updateCron ({ commit, dispatch }) {
+      const date = !TEST ? new Date() : moment().year(2021).month('February').date(6).hour(10).minute(moment().second())
       const currentDate = getDate(date)
       const currentTime = getTime(date)
       commit('setCurrentDate', currentDate)
       commit('setCurrentTime', currentTime)
+
+      dispatch('notifyTrackEvent')
+      if (TEST) {
+        console.log(currentTime)
+      }
     }
   }
 }
