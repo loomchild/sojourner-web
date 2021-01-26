@@ -81,6 +81,11 @@ const createEvent = (event, type, date, room) => {
     title = title.substring(10)
   }
 
+  const track = getText(event.track)
+  if (type === 'other' && track.endsWith('stand')) {
+    return null
+  }
+
   const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${room.substring(2)}:fosdem.org` : null
 
   return new Event({
@@ -92,7 +97,7 @@ const createEvent = (event, type, date, room) => {
     abstract: getText(event.abstract),
     description: getText(event.description),
     type: type,
-    track: getText(event.track),
+    track: track,
     date: date,
     room: room,
     persons: persons,
