@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style scoped>
+.chat {
+  text-decoration: none;
+}
+
 .chat i {
   font-size: 40px;
   font-weight: normal;

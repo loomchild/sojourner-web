@@ -7,7 +7,7 @@
             play_arrow
           </v-icon>
         </v-img>
-        <v-card-title primary-title class="d-block pb-2">
+        <v-card-title primary-title class="d-block pb-0">
           <div class="event-info">
             {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
             <span v-if="hasRooms">
@@ -23,7 +23,7 @@
             {{ event.speakers() }}
           </div>
         </v-card-title>
-        <v-card-text class="pt-4 pb-0">
+        <v-card-text class="pb-0">
           <div class="icons">
             <chat :event="event" class="mr-2"></chat>
             <favourite :event="event" large></favourite>
