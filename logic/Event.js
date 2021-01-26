@@ -36,6 +36,9 @@ export default class Event {
   }
 
   happeningNow (currentDate, minTime, maxTime) {
+    if (!maxTime) {
+      maxTime = minTime
+    }
     return this.day.dateString === currentDate &&
       this.startTime <= maxTime && this.endTime >= minTime &&
       this.track.name !== 'Infodesk'

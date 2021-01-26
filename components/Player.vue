@@ -1,5 +1,5 @@
 <template>
-  <div v-if="event" :key="event.id" :style="style" class="player" :class="{ floating: !style }">
+  <div v-if="event && videos.length > 0" :key="videos[0].url" :style="style" class="player" :class="{ floating: !style }">
     <div class="button-panel">
       <v-btn v-if="!style" flat icon title="Back to event" :to="`/event/${event.id}`" class="hover-button ml-2 mr-0">
         <v-icon color="white">
@@ -13,8 +13,8 @@
       </v-btn>
     </div>
     <v-img :aspect-ratio="16/9">
-      <video v-if="event.videos.length > 0" ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
-        <source v-for="video in event.videos" :key="video.url" :src="video.url" :type="video.type">
+      <video ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
+        <source v-for="video in videos" :key="video.url" :src="video.url" :type="video.type">
       </video>
     </v-img>
   </div>
@@ -30,12 +30,18 @@ export default {
   name: 'Player',
 
   data: () => ({
-    style: null
+    style: null,
+
+    url: null
   }),
 
   computed: {
     docked () {
       return this.$route.name === 'event' && this.dockedPlayer
+    },
+
+    videos () {
+      return this.event ? this.event.videos : []
     },
 
     ...mapGetters({
@@ -54,7 +60,7 @@ export default {
             return
           }
 
-          if (this.event.videos.length !== 1 || this.event.videos[0].type !== STREAM_TYPE) {
+          if (this.videos.length !== 1 || this.videos[0].type !== STREAM_TYPE || this.videos[0].url === this.url) {
             return
           }
 
@@ -64,9 +70,10 @@ export default {
           hls = new Hls()
 
           hls.attachMedia(videoEl)
-          hls.on(Hls.Events.MEDIA_ATTACHED, () =>
-            hls.loadSource(this.event.videos[0].url)
-          )
+          hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+            hls.loadSource(this.videos[0].url)
+            this.url = this.videos[0].url
+          })
         })
       }
     },

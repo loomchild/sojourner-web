@@ -197,6 +197,17 @@ export default {
       return events
     },
 
+    liveTrackEvent: (state, getters, rootState, rootGetters) => trackName => {
+      if (!trackName) {
+        return null
+      }
+      const currentDate = rootGetters.currentDate
+      const currentTime = rootGetters.currentTime
+      const event = getters.trackEvents(trackName)
+        .find(event => event.happeningNow(currentDate, currentTime))
+      return event || null
+    },
+
     conferenceName: () => conference.name,
 
     conferenceNameColor: () => conference.nameColor || ''

@@ -1,8 +1,12 @@
+import { router } from '@/pages'
+
 export default {
   state: {
     playerEvent: null,
 
-    currentEventId: null
+    currentEventId: null,
+
+    trackEventNotifiedId: null
   },
 
   getters: {
@@ -18,6 +22,10 @@ export default {
 
     setCurrentEventId (state, currentEventId) {
       state.currentEventId = currentEventId
+    },
+
+    setTrackEventNotifiedId (state, eventId) {
+      state.trackEventNotifiedId = eventId
     }
   },
 
@@ -45,6 +53,26 @@ export default {
 
     dockPlayer ({ commit }, eventId) {
       commit('setCurrentEventId', eventId)
+    },
+
+    notifyTrackEvent ({ state, getters, commit, dispatch, rootGetters }) {
+      if (!getters.dockedPlayer) {
+        return
+      }
+
+      const playerEvent = state.playerEvent
+      const trackEvent = rootGetters.liveTrackEvent(playerEvent.track.name)
+
+      if (trackEvent && trackEvent.id !== playerEvent.id && trackEvent.startTime > playerEvent.startTime && state.trackEventNotifiedId !== trackEvent.id) {
+        dispatch('showMessage', 'Advancing to currently streamed event in this track...')
+
+        setTimeout(() => {
+          commit('setPlayerEvent', trackEvent)
+          router.push(`/event/${trackEvent.id}`)
+        }, 5000)
+
+        commit('setTrackEventNotifiedId', trackEvent.id)
+      }
     }
   }
 }
