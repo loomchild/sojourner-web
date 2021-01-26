@@ -4,7 +4,7 @@
     <v-btn v-if="!dashboard" flat icon dark @click.stop="goBack">
       <v-icon>arrow_back</v-icon>
     </v-btn>
-    <v-toolbar-title>{{ title }}</v-toolbar-title>
+    <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
     <v-spacer></v-spacer>
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
@@ -60,7 +60,7 @@ export default {
     },
 
     ...mapGetters([
-      'title',
+      'pageTitle',
       'hasMap',
       'hasAll',
       'realUser',
