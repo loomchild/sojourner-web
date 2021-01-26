@@ -208,6 +208,24 @@ export default {
       return event || null
     },
 
+    nextTrackEvent: (state, getters) => event => {
+      if (!event) {
+        return null
+      }
+      const trackEvents = getters.trackEvents(event.track.name)
+      const index = trackEvents.findIndex(e => e.id === event.id)
+      return trackEvents[index + 1] || null
+    },
+
+    previousTrackEvent: (state, getters) => event => {
+      if (!event) {
+        return null
+      }
+      const trackEvents = getters.trackEvents(event.track.name)
+      const index = trackEvents.findIndex(e => e.id === event.id)
+      return trackEvents[index - 1] || null
+    },
+
     conferenceName: () => conference.name,
 
     conferenceNameColor: () => conference.nameColor || ''

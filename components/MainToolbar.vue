@@ -6,6 +6,16 @@
     </v-btn>
     <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
     <v-spacer></v-spacer>
+    <v-btn v-if="eventDetails" flat icon dark replace class="mx-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+      <v-icon color="secondary">
+        arrow_upward
+      </v-icon>
+    </v-btn>
+    <v-btn v-if="eventDetails" flat icon dark replace class="ml-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+      <v-icon color="secondary">
+        arrow_downward
+      </v-icon>
+    </v-btn>
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
     <v-layout class="mx-auto">
@@ -59,13 +69,32 @@ export default {
       return this.$route.path === '/'
     },
 
+    eventDetails () {
+      if (this.$route.name !== 'event') {
+        return null
+      }
+      const eventId = this.$route.params.eventId
+      return this.events[eventId]
+    },
+
+    nextEvent () {
+      return this.nextTrackEvent(this.eventDetails)
+    },
+
+    previousEvent () {
+      return this.previousTrackEvent(this.eventDetails)
+    },
+
     ...mapGetters([
       'pageTitle',
       'hasMap',
       'hasAll',
       'realUser',
       'conferenceName',
-      'stands'
+      'stands',
+      'events',
+      'nextTrackEvent',
+      'previousTrackEvent'
     ])
   },
   methods: {

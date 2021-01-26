@@ -1,10 +1,20 @@
 <template>
   <header class="hidden-sm-and-down">
-    <button v-if="backArrow" :style="{color : buttonColor}" @click.stop="goBack">
+    <button v-if="backArrow" class="back" :style="{color : buttonColor}" @click.stop="goBack">
       ◂
     </button>
     <h1>
       {{ pageTitle }}
+      <v-btn v-if="eventDetails" flat icon replace class="ml-2 mr-0 mt-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+        <v-icon color="secondary" style="transform: translateY(2px) rotate(-90deg)">
+          play_arrow
+        </v-icon>
+      </v-btn>
+      <v-btn v-if="eventDetails" flat icon replace class="ml-0 mt-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+        <v-icon color="secondary" style="transform: translateY(-2px) rotate(90deg)">
+          play_arrow
+        </v-icon>
+      </v-btn>
     </h1>
   </header>
 </template>
@@ -36,8 +46,27 @@ export default {
       return `var(--v-${this.backArrow})`
     },
 
+    eventDetails () {
+      if (this.$route.name !== 'event') {
+        return null
+      }
+      const eventId = this.$route.params.eventId
+      return this.events[eventId]
+    },
+
+    nextEvent () {
+      return this.nextTrackEvent(this.eventDetails)
+    },
+
+    previousEvent () {
+      return this.previousTrackEvent(this.eventDetails)
+    },
+
     ...mapGetters([
-      'pageTitle'
+      'pageTitle',
+      'events',
+      'nextTrackEvent',
+      'previousTrackEvent'
     ])
   },
 
@@ -67,7 +96,7 @@ h1 {
   color: var(--v-secondary-base);
 }
 
-button {
+button.back {
   color: var(--v-secondary-base);
   position: relative;
   float: left;
@@ -75,8 +104,12 @@ button {
   margin-top: -3px;
 }
 
+.v-icon {
+  font-size: 48px;
+}
+
 @media only screen and (min-width:1080px) {
-  button {
+  button.back {
     margin-right: 0;
     margin-left: -50px;
   }
