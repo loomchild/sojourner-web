@@ -105,7 +105,7 @@ export default {
 </style>
 
 <style>
-.application.root {
+#app.application.root {
   background-image: url(~confassets/dashboard.jpg);
   background-size: cover;
   background-position: center;
@@ -117,7 +117,7 @@ h1.page-title {
 }
 
 @media only screen and (min-width:960px) {
-  .application.root {
+  #app.application.root {
     background-color: var(--v-primary-base) !important;
     background-image: url(~confassets/dashboard-desktop.png);
     background-size: 100%;
