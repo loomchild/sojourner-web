@@ -120,11 +120,11 @@ module.exports = async function (scheduleUrl) {
   const schedule = flattenAttributes(json.schedule)
 
   const types = [
-    new Type({
+    /* new Type({
       id: 'keynote',
       name: 'Keynotes',
       statName: 'lectures'
-    }),
+    }), */
     new Type({
       id: 'maintrack',
       name: 'Main tracks',
