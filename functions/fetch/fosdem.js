@@ -73,6 +73,17 @@ const createEvent = (event, type, date, room) => {
     }
   }
 
+  const live = ['2021-02-06', '2021-02-07'].includes(new Date().toISOString().substring(0, 10))
+  if (live && !room.startsWith('B.') && !room.startsWith('I.') && !room.startsWith('S.')) {
+    const normalizedRoom = room.toLowerCase().replace(/\./g, '')
+    const type = 'application/vnd.apple.mpegurl'
+    const url = `https://stream.fosdem.org/${normalizedRoom}.m3u8`
+    videos.push(new Video({
+      type,
+      url
+    }))
+  }
+
   let title = getText(event.title)
   if (title.startsWith('CANCELLED')) {
     return null
