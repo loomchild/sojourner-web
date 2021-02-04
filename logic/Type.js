@@ -1,5 +1,5 @@
 export default class Type {
-  constructor (data) {
+  constructor (data = {}) {
     this.id = data.id
     this.priority = data.priority
     this.name = data.name
