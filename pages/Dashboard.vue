@@ -1,11 +1,13 @@
 <template>
   <v-container v-if="$vuetify.breakpoint.smAndDown" fluid fill-height class="content pa-0">
     <v-layout row wrap>
-      <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`" xs12 grow d-flex :style="{backgroundColor: type.type.mobileColor}">
-        <article class="ma-auto">
-          <h2>{{ type.type.name }}</h2>
-          <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
-        </article>
+      <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" xs12 grow d-flex :style="{backgroundColor: type.type.mobileColor}">
+        <router-link :to="`/type/${type.type.name}`" class="d-flex">
+          <article class="ma-auto">
+            <h2>{{ type.type.name }}</h2>
+            <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
+          </article>
+        </router-link>
       </v-flex>
     </v-layout>
   </v-container>
@@ -16,13 +18,15 @@
           {{ conferenceName }}
         </h1>
         <v-layout row>
-          <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" v-go="`/type/${type.type.name}`" shrink>
-            <article>
-              <h2>{{ type.type.name }}</h2>
-              <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
-            </article>
-            <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}">
-            </div>
+          <v-flex v-for="type in types" :key="type.type.name" v-ripple="{class: 'white--text'}" shrink>
+            <router-link :to="`/type/${type.type.name}`" class="d-block">
+              <article>
+                <h2>{{ type.type.name }}</h2>
+                <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
+              </article>
+              <div class="circle mx-auto mt-3" :style="{backgroundColor: type.type.desktopColor}">
+              </div>
+            </router-link>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -54,8 +58,11 @@ export default {
 
 <style scoped>
 .layout .flex {
-  cursor: pointer;
   user-select: none;
+}
+
+.layout .flex a {
+  text-decoration: none;
 }
 
 .layout .flex article {
@@ -79,11 +86,6 @@ export default {
 @media only screen and (min-width:960px) {
   .layout .flex {
     background-color: transparent !important;
-    cursor: default;
-  }
-
-  .layout .layout .flex {
-    cursor: pointer;
   }
 
   .layout .flex article h2 {
