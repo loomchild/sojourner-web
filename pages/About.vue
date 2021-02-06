@@ -36,15 +36,6 @@
             </p>
           </v-flex>
         </v-layout>
-        <v-layout row>
-          <v-flex xs12 class="mt-4 about-text">
-            <v-btn @click="update">
-              Check for updates
-            </v-btn>
-            <br />
-            .......
-          </v-flex>
-        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -81,15 +72,6 @@ export default {
       'version',
       'previousEditions'
     ])
-  },
-
-  methods: {
-    async update () {
-      const registrations = await navigator.serviceWorker.getRegistrations()
-      for (const registration of registrations) {
-        registration.update()
-      }
-    }
   },
 
   metaInfo () {
