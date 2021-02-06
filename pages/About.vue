@@ -41,6 +41,8 @@
             <v-btn @click="update">
               Check for updates
             </v-btn>
+            <br />
+            .
           </v-flex>
         </v-layout>
       </v-flex>
