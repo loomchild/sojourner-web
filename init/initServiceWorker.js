@@ -31,7 +31,7 @@ export default function () {
         console.log('Checking for updates')
         registration.update()
       }
-    }, 5 * 60 * 1000)
+    }, 15 * 60 * 1000)
 
     wb.register()
   }
