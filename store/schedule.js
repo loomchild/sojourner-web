@@ -316,10 +316,9 @@ export default {
               rooms[room.name] = room
             }
 
-            let type = types[e.type]
+            const type = types[e.type]
             if (!type) {
-              type = createType(e.type)
-              types[type.name] = type
+              throw new Error(`Unknown type ${e.type}`)
             }
 
             let track = tracks[e.track]
