@@ -1,5 +1,6 @@
 import firstBy from 'thenby'
 import _ from 'lodash'
+import moment from 'moment'
 
 import Day from '@/logic/Day'
 import Event from '@/logic/Event'
@@ -10,6 +11,8 @@ import Type from '@/logic/Type'
 import Video from '@/logic/Video'
 
 const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+
+const TIME_FORMAT = 'HH:mm'
 
 const createDay = (date) => Object.freeze(new Day({
   date
@@ -44,7 +47,7 @@ const createEvent = (event, day, room, track, type) => {
 
   return Object.freeze(new Event({
     id: event.id,
-    startTime: event.startTime,
+    startTime: conference.features.localtimes ? moment.utc(event.startTime, TIME_FORMAT).add(-1, 'h').local().format(TIME_FORMAT) : event.startTime,
     duration: event.duration,
     title: event.title,
     subtitle: event.subtitle,

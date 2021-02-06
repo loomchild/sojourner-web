@@ -3,7 +3,8 @@
   "features": {
     "map": false,
     "all": false,
-    "rooms": false
+    "rooms": false,
+    "localtimes": true
   },
   "previousEditions": {
     "2019": "https://fosdem-n900.sojourner.rocks",
