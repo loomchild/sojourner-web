@@ -40,10 +40,11 @@ export default async function () {
     }, 5 * 60 * 1000)
 
     const registration = await wb.register()
-    console.log(registration)
-    registration.addEventListener('updatefound', function () {
-      var installingWorker = registration.installing
-      console.log('A new service worker is being installed:', installingWorker)
+    registration.addEventListener('updatefound', () => {
+      const installingWorker = registration.installing
+      installingWorker.addEventListener('statechange', () => {
+        console.log(installingWorker)
+      })
     })
   }
 }
