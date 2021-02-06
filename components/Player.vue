@@ -80,7 +80,7 @@ export default {
 
     docked (docked) {
       if (docked) {
-        this.$nextTick(() => {
+        setTimeout(() => {
           const eventVideo = document.getElementById('event-video')
           const rect = eventVideo.getBoundingClientRect()
           this.style = {
@@ -89,7 +89,7 @@ export default {
             top: rect.top + 'px',
             width: rect.width + 'px'
           }
-        })
+        }, 50)
       } else {
         this.style = null
       }
