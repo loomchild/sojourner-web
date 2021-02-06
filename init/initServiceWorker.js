@@ -28,7 +28,7 @@ export default function () {
     setInterval(async () => {
       const registrations = await navigator.serviceWorker.getRegistrations()
       for (const registration of registrations) {
-        console.log('Checking for updates')
+        console.log('Checking for updates 0001')
         registration.update()
       }
     }, 15 * 60 * 1000)
