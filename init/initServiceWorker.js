@@ -2,9 +2,9 @@ import { Workbox } from 'workbox-window'
 
 import store from '@/store'
 
-export default function () {
+export default async function () {
   if ('serviceWorker' in navigator) {
-    const wb = new Workbox('/service-worker.js')
+    const wb = new Workbox('/service-worker.js', { updateViaCache: 'none' })
 
     wb.addEventListener('installed', event => {
       console.log('install')
@@ -39,6 +39,11 @@ export default function () {
       }
     }, 5 * 60 * 1000)
 
-    wb.register()
+    const registration = await wb.register()
+    console.log(registration)
+    registration.addEventListener('updatefound', function () {
+      var installingWorker = registration.installing
+      console.log('A new service worker is being installed:', installingWorker)
+    })
   }
 }
