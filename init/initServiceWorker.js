@@ -31,20 +31,18 @@ export default async function () {
       }
     })
 
-    setInterval(async () => {
-      const registrations = await navigator.serviceWorker.getRegistrations()
-      for (const registration of registrations) {
-        console.log('Checking for updates...')
-        registration.update()
-      }
-    }, 5 * 60 * 1000)
-
     const registration = await wb.register()
     registration.addEventListener('updatefound', () => {
       const installingWorker = registration.installing
       installingWorker.addEventListener('statechange', () => {
-        console.log(installingWorker)
+        if (installingWorker.state === 'activated') {
+          store.dispatch('notifyNewVersion')
+        }
       })
     })
+
+    setInterval(async () => {
+      console.log('Checking for updates...')
+    }, 5 * 60 * 1000)
   }
 }
