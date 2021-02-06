@@ -32,6 +32,7 @@ export default async function () {
     })
 
     const registration = await wb.register()
+
     registration.addEventListener('updatefound', () => {
       const installingWorker = registration.installing
       installingWorker.addEventListener('statechange', () => {
@@ -44,6 +45,6 @@ export default async function () {
     setInterval(async () => {
       console.log('Checking for updates...')
       registration.update()
-    }, 60 * 1000)
+    }, 15 * 60 * 1000)
   }
 }
