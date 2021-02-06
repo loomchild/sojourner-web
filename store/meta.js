@@ -83,6 +83,14 @@ export default {
         const handler = (e) => {
           e.preventDefault()
           let deferredPrompt = e
+          if (window.localStorage) {
+            const day = '' + new Date().getDate()
+            if (window.localStorage.getItem('a2hsTip') && window.localStorage.getItem('a2hsTip') === day) {
+              return
+            } else {
+              window.localStorage.setItem('a2hsTip', day)
+            }
+          }
           setTimeout(() => {
             dispatch('showNotification', {
               message: 'Add this application to your home screen.',
