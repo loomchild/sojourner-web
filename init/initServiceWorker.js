@@ -6,8 +6,14 @@ export default function () {
   if ('serviceWorker' in navigator) {
     const wb = new Workbox('/service-worker.js')
 
+    wb.addEventListener('installed', event => {
+      console.log('install')
+    })
+
     wb.addEventListener('activated', event => {
+      console.log('activate')
       if (event.isUpdate) {
+        console.log('update')
         store.dispatch('notifyNewVersion')
       } else {
         wb.messageSW({
@@ -28,10 +34,10 @@ export default function () {
     setInterval(async () => {
       const registrations = await navigator.serviceWorker.getRegistrations()
       for (const registration of registrations) {
-        console.log('Checking for updates 0001')
+        console.log('Checking for updates...')
         registration.update()
       }
-    }, 15 * 60 * 1000)
+    }, 5 * 60 * 1000)
 
     wb.register()
   }
