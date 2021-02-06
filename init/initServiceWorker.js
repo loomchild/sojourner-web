@@ -25,6 +25,13 @@ export default function () {
       }
     })
 
+    setInterval(async () => {
+      const registrations = await navigator.serviceWorker.getRegistrations()
+      for (const registration of registrations) {
+        registration.update()
+      }
+    }, 5 * 60 * 1000)
+
     wb.register()
   }
 }
