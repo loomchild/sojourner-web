@@ -43,6 +43,7 @@ export default async function () {
 
     setInterval(async () => {
       console.log('Checking for updates...')
-    }, 5 * 60 * 1000)
+      registration.update()
+    }, 60 * 1000)
   }
 }
