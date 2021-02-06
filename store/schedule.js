@@ -12,7 +12,7 @@ import Video from '@/logic/Video'
 const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
 
 const createDay = (date) => Object.freeze(new Day({
-  date: new Date(date)
+  date
 }))
 
 const createRoom = (room, building) => Object.freeze(new Room({

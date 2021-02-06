@@ -4,7 +4,7 @@ const DATE_FORMAT = 'YYYY-MM-DD'
 
 export default class Day {
   constructor (data) {
-    this.date = data.date
+    this.date = moment(data.date).toDate()
     this.dateString = moment(this.date).format(DATE_FORMAT)
     this.index = (this.date.getDay() + 6) % 7
     this.name = WEEKDAYS[this.index]
