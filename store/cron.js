@@ -5,7 +5,7 @@ const TEST = false
 const CRON_UPDATE_INTERVAL = !TEST ? 60 * 1000 : 1000
 const TIME_FORMAT = 'HH:mm'
 const DATE_FORMAT = 'YYYY-MM-DD'
-const SOON_MINUTES = 14
+const SOON_MINUTES = 15
 
 function getDate (date) {
   return moment(date).format(DATE_FORMAT)
