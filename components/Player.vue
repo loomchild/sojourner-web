@@ -56,7 +56,7 @@ export default {
         this.$nextTick(() => {
           const videoEl = this.$refs.video
 
-          if (!videoEl || videoEl.canPlayType(STREAM_TYPE) || !Hls.isSupported()) {
+          if (!videoEl || videoEl.canPlayType(STREAM_TYPE) === 'probably' || !Hls.isSupported()) {
             return
           }
 
