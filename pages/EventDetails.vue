@@ -95,7 +95,6 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import Event from '@/logic/Event'
 import Favourite from '@/components/Favourite'
 import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
@@ -120,7 +119,7 @@ export default {
 
   computed: {
     event () {
-      return this.events[this.eventId] || new Event()
+      return this.events[this.eventId]
     },
 
     typeColor () {
@@ -175,6 +174,10 @@ export default {
   },
 
   metaInfo () {
+    if (!this.event) {
+      return {}
+    }
+
     return {
       title: this.event.title || '',
       pageTitle: this.event.track.name || this.event.type.name,
