@@ -14,7 +14,7 @@ admin.initializeApp({
 
 exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
   const fosdemData = await fetchFosdem(functions.config().fosdem.url)
-  await store(fosdemData, 'fosdem-2021.json')
+  await store(fosdemData, 'fosdem-2022.json')
 })
 
 /*
@@ -24,10 +24,12 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
 })
 */
 
+/*
 const popularity = require('./stats/popularity')
 exports.statPopularity = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2021')
 })
+*/
 
 /*
 const migrate = require('./migrate/001-migrateFavouritesToConference')
