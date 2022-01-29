@@ -73,7 +73,7 @@ const createEvent = (event, type, date, room) => {
     }
   }
 
-  const live = ['2021-02-06', '2021-02-07'].includes(new Date().toISOString().substring(0, 10))
+  const live = ['2022-02-05', '2022-02-06'].includes(new Date().toISOString().substring(0, 10))
   if (live && !room.startsWith('B.') && !room.startsWith('I.') && !room.startsWith('S.')) {
     const normalizedRoom = room.toLowerCase().replace(/\./g, '')
     const type = 'application/vnd.apple.mpegurl'
