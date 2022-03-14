@@ -16,8 +16,14 @@
       must-revalidate'''
 
 [[redirects]]
-  from = "https://fosdem-sojourner.netlify.com/*"
-  to = "https://fosdem.sojourner.rocks/:splat"
+  from = "https://fosdem.sojourner.rocks/*"
+  to = "https://2022.fosdem.sojourner.rocks/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://2022-fosdem-sojourner.netlify.app/*"
+  to = "https://2022.fosdem.sojourner.rocks/:splat"
   status = 301
   force = true
 
