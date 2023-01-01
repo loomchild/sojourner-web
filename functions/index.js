@@ -14,7 +14,7 @@ admin.initializeApp({
 
 exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
   const fosdemData = await fetchFosdem(functions.config().fosdem.url)
-  await store(fosdemData, 'fosdem-2022.json')
+  await store(fosdemData, 'fosdem-2023.json')
 })
 
 /*

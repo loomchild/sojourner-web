@@ -46,7 +46,7 @@ export default {
     },
 
     updateCron ({ commit, dispatch }) {
-      const date = !TEST ? new Date() : moment().year(2022).month('February').date(5).hour(10).minute(moment().second())
+      const date = !TEST ? new Date() : moment().year(2023).month('February').date(4).hour(10).minute(moment().second())
       const currentDate = getDate(date)
       const currentTime = getTime(date)
       commit('setCurrentDate', currentDate)
