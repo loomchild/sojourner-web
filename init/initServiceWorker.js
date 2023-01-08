@@ -12,6 +12,10 @@ export default async function () {
 
     wb.addEventListener('activated', event => {
       console.log('activate')
+      if (window.location.hostname === 'fosdem.sojourner.rocks') {
+        console.log('redirecting')
+        window.location.replace('https://2023.fosdem.sojourner.rocks')
+      }
       if (event.isUpdate) {
         console.log('update')
         store.dispatch('notifyNewVersion')
