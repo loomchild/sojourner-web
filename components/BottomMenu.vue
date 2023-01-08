@@ -5,7 +5,7 @@
       Programme
     </v-btn>
 
-    <v-btn flat to="/live/">
+    <v-btn v-if="hasLive" flat to="/live/">
       <v-icon>live_tv</v-icon>
       Live
     </v-btn>
@@ -45,7 +45,8 @@ export default {
 
     ...mapGetters([
       'hasMap',
-      'hasAll'
+      'hasAll',
+      'hasLive'
     ])
   }
 }

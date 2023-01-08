@@ -34,6 +34,8 @@ export default {
 
     hasRooms: () => conference.features.rooms,
 
+    hasLive: () => conference.features.live,
+
     previousEditions: () => conference.previousEditions,
 
     stands: () => conference.stands

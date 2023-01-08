@@ -3,6 +3,7 @@
   "features": {
     "map": true,
     "all": false,
+    "live": false,
     "rooms": true,
     "localtimes": true
   },
