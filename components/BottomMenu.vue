@@ -20,10 +20,10 @@
       All
     </v-btn>
 
-    <v-btn v-if="hasMap" flat to="/map/">
+    <!--<v-btn v-if="hasMap" flat to="/map/">
       <v-icon>map</v-icon>
       Map
-    </v-btn>
+    </v-btn-->
 
     <v-btn flat to="/search/">
       <v-icon>search</v-icon>
