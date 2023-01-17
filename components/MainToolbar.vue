@@ -28,7 +28,7 @@
       <v-btn flat dark class="mx-0" :ripple="false" to="/">
         Programme
       </v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/live">
+      <v-btn v-if="hasLive" flat dark class="mx-0" :ripple="false" to="/live">
         Live
       </v-btn>
       <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">
@@ -93,6 +93,7 @@ export default {
       'pageTitle',
       'hasMap',
       'hasAll',
+      'hasLive',
       'realUser',
       'conferenceName',
       'stands',
