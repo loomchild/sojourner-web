@@ -87,14 +87,9 @@ export default {
     return {
       titleTemplate: chunk => chunk ? `${chunk} | Sojourner` : 'Sojourner',
       meta: [{
-        hid: 'description',
+        vmid: 'description',
         name: 'description',
         content: `${this.conferenceName} conference companion`
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: `${window.location.origin}/sojourner-preview-s.jpg`
       }],
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
