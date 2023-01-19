@@ -86,6 +86,16 @@ export default {
   metaInfo () {
     return {
       titleTemplate: chunk => chunk ? `${chunk} | Sojourner` : 'Sojourner',
+      meta: [{
+        hid: 'description',
+        name: 'description',
+        content: `${this.conferenceName} conference companion`
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: `${window.location.origin}/sojourner-preview-s.jpg`
+      }],
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
         this.setTitle(title === 'Sojourner' ? '' : title.slice(0, -12))
