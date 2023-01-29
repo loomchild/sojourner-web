@@ -43,6 +43,14 @@ const getType = (event, typeSet) => {
   return type
 }
 
+const getRoomName = (room) => {
+  if (room.name.startsWith('D.')) {
+    return `${room.name} (online)`
+  }
+
+  return room.name
+}
+
 const getVideoType = (url) => {
   if (url.endsWith('.mp4')) {
     return 'video/mp4'
@@ -166,7 +174,7 @@ module.exports = async function (scheduleUrl) {
     const date = d.date
     for (const r of d.room || []) {
       if (r.event && r.event.length > 0) {
-        const room = r.name
+        const room = getRoomName(r)
         for (const e of r.event || []) {
           const type = getType(e, typeSet)
           const event = createEvent(e, type, date, room)
