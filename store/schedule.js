@@ -88,6 +88,8 @@ const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] |
 
 const eventLiveSort = (favourites) => firstBy(event => !favourites[event.id]).thenBy(eventNaturalSort)
 
+const roomSort = firstBy(room => room.name.includes('online') ? 1 : -1).thenBy('name')
+
 export default {
   state: {
     scheduleInitialized: false,
@@ -157,12 +159,11 @@ export default {
           const events = dayEvents.filter(event => event.track.name === track.name).sort(eventNaturalSort)
 
           const rooms = _.uniqBy(events.map(event => event.room), room => room.name)
-          // I assume there's maximum one room per track per day, could warn if not the case
-          const room = rooms[0]
+          rooms.sort(roomSort)
 
           return {
             track,
-            room,
+            rooms,
             events
           }
         })

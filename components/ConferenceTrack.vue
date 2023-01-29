@@ -5,8 +5,10 @@
       <v-list-tile-sub-title>
         {{ track.events.length }} events
         <span v-if="hasRooms">
-          | {{ track.room.name }}
-          <room-state :room="track.room"></room-state>
+          |
+          <span v-for="(room, index) in track.rooms" :key="room.name">
+            {{ room.name }}<room-state :room="room"></room-state><span v-if="index < track.rooms.length - 1">, </span>
+          </span>
         </span>
       </v-list-tile-sub-title>
     </v-list-tile-content>
