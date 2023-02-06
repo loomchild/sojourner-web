@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "rocks.sojourner.fosdem.app.twa",
+                     "sha256_cert_fingerprints": ["97:DA:2C:0E:9A:B4:18:C6:10:6C:D2:7C:1E:2D:0B:7B:D1:96:C4:54:2C:69:78:D1:BC:E1:C5:74:82:55:59:59"] }
+      }
+]

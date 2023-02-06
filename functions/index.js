@@ -26,8 +26,20 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
 
 /*
 const popularity = require('./stats/popularity')
-exports.statPopularity = functions.pubsub.schedule('never').onRun(async (context) => {
+exports.statPopularity2023 = functions.pubsub.schedule('never').onRun(async (context) => {
+  await popularity('fosdem-2023')
+})
+exports.statPopularity2022 = functions.pubsub.schedule('never').onRun(async (context) => {
+  await popularity('fosdem-2022')
+})
+exports.statPopularity2021 = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2021')
+})
+exports.statPopularity2020 = functions.pubsub.schedule('never').onRun(async (context) => {
+  await popularity('fosdem-2020')
+})
+exports.statPopularity2019 = functions.pubsub.schedule('never').onRun(async (context) => {
+  await popularity('fosdem-2019')
 })
 */
 
