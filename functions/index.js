@@ -12,7 +12,7 @@ admin.initializeApp({
   storageBucket: 'sojourer-web.appspot.com'
 })
 
-exports.storeFosdem = functions.pubsub.schedule('every 5 minutes').onRun(async (context) => {
+exports.storeFosdem = functions.pubsub.schedule('every 60 minutes').onRun(async (context) => {
   const fosdemData = await fetchFosdem(functions.config().fosdem.url)
   await store(fosdemData, 'fosdem-2023.json')
 })
