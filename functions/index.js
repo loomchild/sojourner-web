@@ -24,7 +24,6 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
 })
 */
 
-/*
 const popularity = require('./stats/popularity')
 exports.statPopularity2023 = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2023')
@@ -41,7 +40,6 @@ exports.statPopularity2020 = functions.pubsub.schedule('never').onRun(async (con
 exports.statPopularity2019 = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2019')
 })
-*/
 
 /*
 const migrate = require('./migrate/001-migrateFavouritesToConference')
