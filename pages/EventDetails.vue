@@ -66,7 +66,7 @@
         <h2 class="event-title">
           {{ event.title }}
         </h2>
-        <h3 class="title mt-1">
+        <h3 class="text-h6 mt-1">
           {{ event.subtitle }}
         </h3>
         <div class="event-info my-6">

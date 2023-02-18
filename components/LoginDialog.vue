@@ -7,7 +7,7 @@
         <v-form ref="formLogin" @submit.prevent="clickLogIn">
           <v-card>
             <v-card-title>
-              <span class="headline">Log In</span>
+              <span class="text-h5">Log In</span>
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>
@@ -38,7 +38,7 @@
         <v-form ref="formRegister" @submit.prevent="clickRegister">
           <v-card>
             <v-card-title>
-              <span class="headline">Register</span>
+              <span class="text-h5">Register</span>
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>

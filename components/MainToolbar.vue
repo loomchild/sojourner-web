@@ -19,7 +19,7 @@
   </v-toolbar>
   <v-toolbar v-else app absolute flat height="82px">
     <v-row class="mx-auto">
-      <v-toolbar-title v-ripple class="logo" prepend-icon="home" />
+      <v-toolbar-title v-ripple class="logo" prepend-icon="home">
         <router-link to="/" class="d-block" style="height: 100%">
           &nbsp;
         </router-link>
