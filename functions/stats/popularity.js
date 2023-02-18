@@ -16,6 +16,7 @@ module.exports = async function (conference) {
   let averageFavourites = 0
   const favouriteCounts = {}
   const favouriteOccurences = {}
+  const trackOccurences = {}
 
   const snapshot = await admin.firestore().collection('users').get()
   const events = await fetchEvents(conference)
@@ -37,8 +38,19 @@ module.exports = async function (conference) {
       maxFavourites = favouriteCount
     }
 
+    const tracks = new Set()
     for (const favourite of favourites) {
       favouriteOccurences[favourite] = (favouriteOccurences[favourite] || 0) + 1
+
+      const event = events[favourite]
+      if (event && event.track) {
+        const track = event.track.startsWith('Main Track') || event.track === 'Keynotes' ? 'Main Track & Keynotes' : event.track
+        tracks.add(track)
+      }
+    }
+
+    for (const track of tracks) {
+      trackOccurences[track] = (trackOccurences[track] || 0) + 1
     }
   }
 
@@ -54,7 +66,7 @@ module.exports = async function (conference) {
     .sort((l, r) => r.count - l.count)
 
   console.log('\nMost popular talks:')
-  for (let i = 0; i < 10; ++i) {
+  for (let i = 0; i < 13; ++i) {
     const { count, event } = popularEvents[i]
 
     const place = `${i + 1}`.padStart(2, ' ')
@@ -65,19 +77,12 @@ module.exports = async function (conference) {
     console.log(`${place}. [${result}] ${title} (${event.track}) (${speakers})`)
   }
 
-  const trackOccurences = {}
-  for (const { count, event } of popularEvents) {
-    if (event) {
-      trackOccurences[event.track] = (trackOccurences[event.track] || 0) + count
-    }
-  }
-
   const popularTracks = Object.entries(trackOccurences)
     .map(([track, count]) => ({ track, count }))
     .sort((l, r) => r.count - l.count)
 
   console.log('\nMost popular tracks:')
-  for (let i = 0; i < 10; ++i) {
+  for (let i = 0; i < 13; ++i) {
     const { count, track } = popularTracks[i]
     const place = `${i + 1}`.padStart(2, ' ')
     const result = `${count} users`.padStart(9, ' ')
