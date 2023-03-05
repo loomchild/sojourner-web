@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid class="content fill-height">
-    <v-row>
-      <v-col class="shrink">
+  <v-container fluid class="content">
+    <v-row class="ma-0">
+      <v-col class="pa-0">
         <page-title back-arrow="secondary"></page-title>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col class="grow">
+    <v-row class="ma-0">
+      <v-col class="grow pa-0 pa-md-2">
         <div class="map-container">
           <img v-if="building" class="map d-block" :src="require(`confassets/building-${building.name.toLowerCase()}.png`)">
         </div>

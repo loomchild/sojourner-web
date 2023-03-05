@@ -5,16 +5,18 @@
     </button>
     <h1>
       {{ pageTitle }}
-      <v-btn v-if="eventDetails" flat icon replace class="ml-2 mr-0 mt-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
-        <v-icon color="secondary" style="transform: translateY(2px) rotate(-90deg)">
-          play_arrow
-        </v-icon>
-      </v-btn>
-      <v-btn v-if="eventDetails" flat icon replace class="ml-0 mt-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
-        <v-icon color="secondary" style="transform: translateY(-2px) rotate(90deg)">
-          play_arrow
-        </v-icon>
-      </v-btn>
+      <div class="float-right">
+        <v-btn v-if="eventDetails" text icon replace class="ml-2 mr-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+          <v-icon color="secondary" style="transform: translateY(2px) rotate(-90deg)">
+            mdi-play
+          </v-icon>
+        </v-btn>
+        <v-btn v-if="eventDetails" text icon replace class="ml-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+          <v-icon color="secondary" style="transform: translateY(-2px) rotate(90deg)">
+            mdi-play
+          </v-icon>
+        </v-btn>
+      </div>
     </h1>
   </header>
 </template>
@@ -86,10 +88,10 @@ header {
 
 header, h1 {
   font-size: 60px;
-  font-family: 'Roboto Condensed', Arial;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1em;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 h1 {
@@ -105,7 +107,7 @@ button.back {
 }
 
 .v-icon {
-  font-size: 48px;
+  font-size: 48px !important;
 }
 
 @media only screen and (min-width:1080px) {

@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid class="content fill-hight">
-    <v-row>
-      <v-col class="shrink">
+  <v-container fluid class="content">
+    <v-row class="ma-0">
+      <v-col class="pa-0">
         <page-title></page-title>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col class="grow">
+    <v-row class="ma-0">
+      <v-col class="grow pa-2 pa-md-0">
         <div class="map-container">
           <div class="map">
             <router-link id="building-k" to="/building/K">

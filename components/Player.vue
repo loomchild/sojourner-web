@@ -1,19 +1,19 @@
 <template>
   <div v-if="event && videos.length > 0" :key="videos[0].url" :style="style" class="player" :class="{ floating: !style }">
     <div class="button-panel">
-      <v-btn v-if="!style" flat icon title="Back to event" :to="`/event/${event.id}`" class="hover-button ml-2 mr-0">
+      <v-btn v-if="!style" text icon title="Back to event" :to="`/event/${event.id}`" class="hover-button ml-2 mr-0">
         <v-icon color="white">
-          event_seat
+          mdi-seat
         </v-icon>
       </v-btn>
-      <v-btn flat icon title="Close video" class="hover-button ml-2 mr-0" @click="stop">
+      <v-btn text icon title="Close video" class="hover-button ml-2 mr-0" @click="stop">
         <v-icon color="white">
-          close
+          mdi-close
         </v-icon>
       </v-btn>
     </div>
     <v-img :aspect-ratio="16/9">
-      <video ref="video" controls poster="~confassets/video.jpg" autoplay class="d-block video">
+      <video ref="video" controls autoplay class="d-block video">
         <source v-for="video in videos" :key="video.url" :src="video.url" :type="video.type">
       </video>
     </v-img>
@@ -80,16 +80,14 @@ export default {
 
     docked (docked) {
       if (docked) {
-        setTimeout(() => {
-          const eventVideo = document.getElementById('event-video')
-          const rect = eventVideo.getBoundingClientRect()
-          this.style = {
-            position: 'absolute',
-            left: rect.left + 'px',
-            top: rect.top + 'px',
-            width: rect.width + 'px'
-          }
-        }, 50)
+        const eventVideo = document.getElementById('event-video')
+        const rect = eventVideo.getBoundingClientRect()
+        this.style = {
+          position: 'absolute',
+          left: rect.left + 'px',
+          top: rect.top + 'px',
+          width: rect.width + 'px'
+        }
       } else {
         this.style = null
       }
@@ -127,11 +125,11 @@ export default {
 }
 
 .floating .button-panel {
-  top: -40px;
+  top: -36px;
 }
 
 .player:not(.floating) .button-panel {
-  bottom: -40px;
+  bottom: -36px;
 }
 
 .hover-button {

@@ -1,8 +1,8 @@
 <template>
-  <v-list-tile class="track" :to="`/track/${track.track.name}`">
-    <v-list-tile-content v-ripple>
-      <v-list-tile-title>{{ track.track.name }}</v-list-tile-title>
-      <v-list-tile-sub-title>
+  <v-list-item class="track" ripple :to="`/track/${track.track.name}`">
+    <v-list-item-content class="align-content-center">
+      <v-list-item-title>{{ track.track.name }}</v-list-item-title>
+      <v-list-item-subtitle>
         {{ track.events.length }} events
         <span v-if="hasRooms">
           |
@@ -10,9 +10,9 @@
             {{ room.name }}<room-state :room="room"></room-state><span v-if="index < track.rooms.length - 1">, </span>
           </span>
         </span>
-      </v-list-tile-sub-title>
-    </v-list-tile-content>
-  </v-list-tile>
+      </v-list-item-subtitle>
+    </v-list-item-content>
+  </v-list-item>
 </template>
 
 <script>
@@ -43,13 +43,17 @@ export default {
 </script>
 
 <style scoped>
-.track .v-list__tile__title {
+.track .v-list-item__title {
   white-space: normal;
   height: auto;
   max-height: 48px;
 }
 
-.track .v-list__tile__sub-title {
+.track .v-list-item__subtitle {
   color: var(--v-secondary-base) !important;
+}
+
+.track .v-list-item__content > :not(:last-child) {
+  margin-bottom: 4px;
 }
 </style>

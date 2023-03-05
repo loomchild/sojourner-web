@@ -1,7 +1,7 @@
 <template>
   <span v-if="event.exists" class="favourite" :class="{large: large}" @click.prevent="toggleFavouriteEvent()">
-    <v-icon v-if="favourites[event.id]" color="secondary">bookmark</v-icon>
-    <v-icon v-else color="secondary">bookmark_border</v-icon>
+    <v-icon v-if="favourites[event.id]" color="secondary">mdi-bookmark</v-icon>
+    <v-icon v-else color="secondary">mdi-bookmark-outline</v-icon>
   </span>
 </template>
 

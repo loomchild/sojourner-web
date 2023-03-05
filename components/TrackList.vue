@@ -13,13 +13,13 @@
             </template>
           </v-list>
           <v-list v-else>
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-list-tile-sub-title>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>
                   There are no tracks on this list.
-                </v-list-tile-sub-title>
-              </v-list-tile-content>
-            </v-list-tile>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </v-tab-item>
       </template>
@@ -80,6 +80,6 @@ export default {
 
 <style scoped>
 .v-list {
-  border: 1px solid #0000001e;
+  border: 1px solid #0000001e !important;
 }
 </style>

@@ -1,66 +1,90 @@
 <template>
-  <v-toolbar v-if="$vuetify.breakpoint.smAndDown" app fixed flat color="primary" height="56">
-    <v-toolbar-side-icon v-if="$vuetify.breakpoint.smAndDown && dashboard" dark @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-btn v-if="!dashboard" flat icon dark @click.stop="goBack">
-      <v-icon>arrow_back</v-icon>
+  <v-app-bar v-if="$vuetify.breakpoint.smAndDown" app fixed flat dark color="primary" height="56">
+    <v-app-bar-nav-icon v-if="dashboard" dark @click.stop="toggleDrawer"></v-app-bar-nav-icon>
+    <v-btn v-if="!dashboard" text icon dark @click.stop="goBack">
+      <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
-    <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
+    <v-toolbar-title class="pl-0">
+      {{ pageTitle }}
+    </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn v-if="eventDetails" flat icon dark replace class="mx-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
-      <v-icon color="secondary">
-        arrow_upward
+    <v-btn v-if="eventDetails" text icon dark replace class="updown mx-0" :ripple="false" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+      <v-icon>
+        mdi-arrow-up
       </v-icon>
     </v-btn>
-    <v-btn v-if="eventDetails" flat icon dark replace class="ml-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
-      <v-icon color="secondary">
-        arrow_downward
+    <v-btn v-if="eventDetails" text icon dark replace class="updown ml-0" :ripple="false" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+      <v-icon>
+        mdi-arrow-down
       </v-icon>
     </v-btn>
-  </v-toolbar>
-  <v-toolbar v-else app absolute flat height="82px">
-    <v-row class="mx-auto">
-      <v-toolbar-title v-ripple class="logo" prepend-icon="home">
-        <router-link to="/" class="d-block" style="height: 100%">
+  </v-app-bar>
+  <v-app-bar v-else app absolute flat color="transparent" height="82px">
+    <v-row class="mx-auto" align="center">
+      <router-link v-ripple to="/" class="d-block">
+        <v-toolbar-title class="logo" prepend-icon="home">
           &nbsp;
-        </router-link>
-      </v-toolbar-title>
+        </v-toolbar-title>
+      </router-link>
       <v-spacer></v-spacer>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/">
+      <v-btn text dark class="mx-0" :ripple="false" to="/">
         Programme
       </v-btn>
-      <v-btn v-if="hasLive" flat dark class="mx-0" :ripple="false" to="/live">
+      <v-btn v-if="hasLive" text dark class="mx-0" :ripple="false" to="/live">
         Live
       </v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/favourites/">
+      <v-btn text dark class="mx-0" :ripple="false" to="/favourites/">
         Bookmarks
       </v-btn>
-      <v-btn v-if="hasAll" flat dark class="mx-0" :ripple="false" to="/all/">
+      <v-btn v-if="hasAll" text dark class="mx-0" :ripple="false" to="/all/">
         All
       </v-btn>
-      <v-btn v-if="hasMap" flat dark class="mx-0" :ripple="false" to="/map/">
+      <v-btn v-if="hasMap" text dark class="mx-0" :ripple="false" to="/map/">
         Map
       </v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/search/">
+      <v-btn text dark class="mx-0" :ripple="false" to="/search/">
         Search
       </v-btn>
-      <v-btn v-if="stands" flat dark class="mx-0" :ripple="false" :href="stands" target="_blank">
+      <v-btn v-if="stands" text dark class="mx-0" :ripple="false" :href="stands" target="_blank">
         Stands
       </v-btn>
-      <v-btn flat dark class="mx-0" :ripple="false" to="/about/">
+      <v-btn text dark class="mx-0" :ripple="false" to="/about/">
         About
       </v-btn>
-      <v-btn v-if="!realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">
-        <v-icon flat>
-          person_outline
+      <v-btn v-if="!realUser" text icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">
+        <v-icon text>
+          mdi-account-outline
         </v-icon>
       </v-btn>
-      <v-btn v-if="realUser" flat icon dark class="mx-0" :ripple="false" @click.stop="clickLogOut">
-        <v-icon flat>
-          person
-        </v-icon>
-      </v-btn>
+      <v-menu v-else offset-y left>
+        <template #activator="{ on, attrs }">
+          <v-btn text icon dark class="mx-0" :ripple="false" v-bind="attrs" v-on="on">
+            <v-icon text>
+              mdi-account
+            </v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="grey--text">{{ realUser.email }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click.stop="clickLogOut">
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-2">
+                  mdi-account-outline
+                </v-icon>
+                Log-out
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-row>
-  </v-toolbar>
+  </v-app-bar>
 </template>
 
 <script>
@@ -124,8 +148,8 @@ export default {
 </script>
 
 <style scoped>
-.v-toolbar__title {
-  color: white;
+.updown {
+  width: 36px !important;
 }
 
 @media only screen and (min-width:960px) {
@@ -133,24 +157,22 @@ export default {
     transition: none !important;
   }
 
-  .v-toolbar {
+  .v-app-bar {
     background-color: var(--v-primary-base);
     color: white;
     font-size: 18px;
     font-weight: normal;
     line-height: 33px;
-    letter-spacing: inherit;
     user-select: none;
   }
 
-  .layout-default .v-toolbar,
-  .layout-default .v-toolbar__title,
+  .layout-default .v-app-bar,
   .layout-default .v-btn {
     background-color: white;
     color: var(--grey-darken-4);
   }
 
-  .layout {
+  .row {
     max-width: 960px;
   }
 
@@ -177,13 +199,14 @@ export default {
 
   .v-btn::before {
     background-color: initial;
-    opacity: 1.0;
+    opacity: 1.0 !important;
     width: 0;
     transition: width 0.15s ease-in;
   }
 
   .v-btn--active::before {
     border-bottom: 2px solid var(--v-secondary-base);
+    border-radius: unset;
     width: 28px;
     left: calc(50% - 14px);
     /*width: calc(100% - 54px);

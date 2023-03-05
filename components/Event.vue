@@ -1,7 +1,7 @@
 <template>
-  <v-list-tile v-if="event" class="event" :to="`/event/${event.id}`">
-    <v-list-tile-content v-ripple>
-      <v-list-tile-sub-title>
+  <v-list-item v-if="event" ripple class="event pr-0" :to="`/event/${event.id}`">
+    <v-list-item-content class="align-content-center">
+      <v-list-item-subtitle>
         <span v-if="showDay">
           {{ event.day.name }}
         </span>
@@ -21,18 +21,20 @@
         <span v-if="showPersons && event.persons.length > 0">
           | {{ event.persons.join(', ') }}
         </span>
-      </v-list-tile-sub-title>
-      <v-list-tile-title class="event-title">
+      </v-list-item-subtitle>
+      <v-list-item-title class="event-title">
         {{ event.title }}
         <span v-if="event.language" class="font-weight-light">
           ({{ event.language }})
         </span>
-      </v-list-tile-title>
-    </v-list-tile-content>
-    <v-list-tile-action @click.prevent="">
-      <favourite :event="event"></favourite>
-    </v-list-tile-action>
-  </v-list-tile>
+      </v-list-item-title>
+    </v-list-item-content>
+    <v-list-item-action class="align-self-stretch ma-0 pa-4 d-flex align-center noclickable" @click.prevent.stop>
+      <v-list-item-action-text>
+        <favourite :event="event"></favourite>
+      </v-list-item-action-text>
+    </v-list-item-action>
+  </v-list-item>
 </template>
 
 <script>
@@ -61,6 +63,10 @@ export default {
     showPersons: Boolean
   },
 
+  data: () => ({
+    riple: false
+  }),
+
   computed: {
     ...mapGetters([
       'hasRooms'
@@ -70,17 +76,20 @@ export default {
 </script>
 
 <style scoped>
-.event .v-list__tile__title {
+.event .v-list-item__title {
   white-space: normal;
   height: auto;
-  max-height: 48px;
 }
 
-.event .v-list__tile__sub-title {
+.event .v-list-item__subtitle {
   color: var(--v-secondary-base) !important;
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline;
+}
+
+.event .v-list-item__content > :not(:last-child) {
+  margin-bottom: 4px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <a v-if="event.exists && event.chat" :href="event.chat" target="_blank" class="chat">
     <v-icon color="secondary" title="Open Chat">
-      question_answer
+      mdi-forum
     </v-icon>
   </a>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-tabs class="days" slider-color="none" :value="tab" :color="$vuetify.breakpoint.smAndDown ? 'primary' : 'white'" :dark="$vuetify.breakpoint.smAndDown" @change="setTab">
+  <v-tabs class="days" hide-slider :value="tab" :background-color="$vuetify.breakpoint.smAndDown ? 'primary' : 'white'" :dark="$vuetify.breakpoint.smAndDown" @change="setTab">
     <slot></slot>
   </v-tabs>
 </template>
@@ -34,11 +34,8 @@ export default {
   height: unset !important;
 }
 
-.v-tabs.days .v-tabs__div {
+.v-tabs.days .v-tab {
   min-width: 140px;
-}
-
-.v-tabs.days .v-tabs__item {
   border-radius: 20px 20px 0px 0px;
   border-color: var(--v-secondary-base);
   border-width: 1px;
@@ -46,11 +43,15 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   opacity: 1;
+  letter-spacing: inherit;
 }
 
-.v-tabs.days .v-tabs__item--active {
+.v-tabs.days .v-tab--active {
   background-color: var(--v-secondary-base);
   color: #ffffff;
 }
 
+.v-tab--disabled {
+  color: rgba(0,0,0,.34) !important;
+}
 </style>

@@ -1,13 +1,18 @@
 <template>
   <v-snackbar :value="notification.message" :timeout="notification.timeout" :color="color" bottom multi-line @input="hide">
-    {{ notification.message }}
-    <v-spacer></v-spacer>
-    <v-btn v-if="notification.button" flat small @click.native="button()">
-      {{ notification.button.title }}
-    </v-btn>
-    <v-btn flat small icon @click.native="hide()">
-      <v-icon>close</v-icon>
-    </v-btn>
+    <v-row>
+      <v-col cols="10">
+        {{ notification.message }}
+        <v-btn v-if="notification.button" text small @click.native="button()">
+          {{ notification.button.title }}
+        </v-btn>
+      </v-col>
+      <v-col cols="2" class="text-right">
+        <v-btn text small icon @click.native="hide()">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-snackbar>
 </template>
 
@@ -71,10 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.v-snack button {
-  margin-left: 10px !important;
-}
-
 @media only screen and (max-width:959px) and (min-height:600px) {
   .v-snack--bottom {
     margin-bottom: 56px;

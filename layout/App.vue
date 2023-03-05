@@ -2,18 +2,18 @@
   <v-app :class="[page, layout]">
     <main-menu></main-menu>
     <main-toolbar></main-toolbar>
-    <v-content v-if="scheduleInitialized">
+    <v-main v-if="scheduleInitialized">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    </v-content>
-    <v-content v-else>
+    </v-main>
+    <v-main v-else>
       <v-container fluid class="content fill-height">
         <div class="center">
           <div class="spinner"></div>
         </div>
       </v-container>
-    </v-content>
+    </v-main>
     <notification></notification>
     <analytics></analytics>
     <login-dialog></login-dialog>
@@ -131,8 +131,9 @@ html {
   }
 }
 
-.application {
+.v-application {
   background-color: white;
+  font-family: Rubik, sans-serif;
 }
 </style>
 
@@ -141,10 +142,15 @@ html {
   cursor: default;
 }
 
+.v-btn {
+  letter-spacing: inherit;
+  text-indent: inherit;
+}
+
 h1.page-title {
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 80px;
   line-height: 1em;
-  font-family: 'Roboto Condensed', Arial;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--v-secondary-base);
@@ -166,5 +172,13 @@ h1.page-title {
 
 .clickable {
   cursor: pointer;
+}
+
+.noclickable {
+  cursor: default !important;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 </style>

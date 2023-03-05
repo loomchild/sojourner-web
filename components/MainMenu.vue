@@ -1,18 +1,18 @@
 <template>
   <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="480" @input="setDrawer">
     <v-list dark class="pa-0">
-      <menu-item v-if="!realUser" title="Log-in" icon="person_outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
-      <menu-item v-if="realUser" title="Log-out" icon="person" @click="clickLogOut"></menu-item>
+      <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
+      <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
       <v-divider class="mx-4"></v-divider>
-      <menu-item title="Programme" icon="home" to="/"></menu-item>
-      <menu-item v-if="hasLive" title="Live" icon="live_tv" to="/live"></menu-item>
-      <menu-item title="Bookmarks" icon="bookmarks" to="/favourites/"></menu-item>
-      <menu-item v-if="hasAll" title="All" icon="view_headline" to="/all/"></menu-item>
-      <menu-item v-if="hasMap" title="Map" icon="map" to="/map/"></menu-item>
-      <menu-item title="Search" icon="search" to="/search/"></menu-item>
-      <menu-item v-if="stands" title="Stands" icon="storefront" :href="stands"></menu-item>
+      <menu-item title="Programme" icon="mdi-home" to="/"></menu-item>
+      <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" to="/live"></menu-item>
+      <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" to="/favourites/"></menu-item>
+      <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" to="/all/"></menu-item>
+      <menu-item v-if="hasMap" title="Map" icon="mdi-map" to="/map/"></menu-item>
+      <menu-item title="Search" icon="mdi-magnify" to="/search/"></menu-item>
+      <menu-item v-if="stands" title="Stands" icon="mdi-storefront" :href="stands"></menu-item>
       <v-divider class="mx-4"></v-divider>
-      <menu-item title="About" icon="info" to="/about/"></menu-item>
+      <menu-item title="About" icon="mdi-information" to="/about/"></menu-item>
     </v-list>
     <img class="menu-logo" src="~confassets/menu-logo.png">
   </v-navigation-drawer>

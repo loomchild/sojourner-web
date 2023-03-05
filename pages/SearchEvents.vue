@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="search" autocapitalize="none" color="secondary" />
+    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" color="secondary" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
         <event :key="`ev-${event.id}`" :event="event" show-day show-room :show-track="!hasRooms" show-persons></event>
@@ -9,16 +9,16 @@
       </template>
     </v-list>
     <v-list v-if="validQuery && events.length == 0">
-      <v-list-tile>
-        <v-list-tile-content>
-          <v-list-tile-sub-title>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-subtitle>
             No events found.
-          </v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
     <div v-if="!validQuery" class="search-help">
-      <v-icon>subdirectory_arrow_left</v-icon> Start typing to search for an event by title, description, track, speaker, room, etc.
+      <v-icon>mdi-subdirectory-arrow-left</v-icon> Start typing to search for an event by title, description, track, speaker, room, etc.
     </div>
     <div class="hidden-sm-and-down mb-12"></div>
   </v-container>
@@ -109,7 +109,7 @@ export default {
 
 @media only screen and (min-width:960px) {
   .v-list {
-    border: 1px solid #0000001e;
+    border: 1px solid #0000001e !important;
     width: 100%;
   }
 }
