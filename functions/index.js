@@ -4,9 +4,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
+const { assureAdmin } = require('./auth')
 const fetchFosdem = require('./fetch/fosdem')
 // const fetchSched = require('./fetch/sched')
 const store = require('./store')
+const adminUsers = require('./admin/users')
+const adminFavourites = require('./admin/favourites')
 
 admin.initializeApp({
   storageBucket: 'sojourer-web.appspot.com'
@@ -47,3 +50,13 @@ exports.migrate = functions.pubsub.schedule('never').onRun(async (context) => {
   await migrate()
 })
 */
+
+exports.adminUsers = functions.https.onCall(async (data, context) => {
+  assureAdmin(context)
+  return adminUsers()
+})
+
+exports.adminFavourites = functions.https.onCall(async (data, context) => {
+  assureAdmin(context)
+  return adminFavourites(data.conference)
+})
