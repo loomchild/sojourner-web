@@ -1,25 +1,13 @@
 const functions = require('firebase-functions')
-const { HttpsError } = functions.https
 
-function isAuthenticated (context) {
-  return !!context.auth
-}
+function isAdmin (req) {
+  const token = (req.headers.authorization || '').split(' ')[1]
 
-function isAdmin (context) {
-  return isAuthenticated(context) && !!context.auth.token.admin
-}
-
-function assureAuthenticated (context) {
-  if (!isAuthenticated(context)) {
-    throw new HttpsError('unauthenticated', 'Authentication required')
+  if (!token || token !== functions.config().admin.token) {
+    return false
   }
+
+  return true
 }
 
-function assureAdmin (context) {
-  assureAuthenticated(context)
-  if (!isAdmin(context)) {
-    throw new HttpsError('permission-denied', 'Permission denied')
-  }
-}
-
-module.exports = { assureAdmin, assureAuthenticated }
+module.exports = { isAdmin }

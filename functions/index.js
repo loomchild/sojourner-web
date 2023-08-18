@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-const { assureAdmin } = require('./auth')
+const { isAdmin } = require('./auth')
 const fetchFosdem = require('./fetch/fosdem')
 // const fetchSched = require('./fetch/sched')
 const store = require('./store')
@@ -51,12 +51,24 @@ exports.migrate = functions.pubsub.schedule('never').onRun(async (context) => {
 })
 */
 
-exports.adminUsers = functions.https.onCall(async (data, context) => {
-  assureAdmin(context)
-  return adminUsers()
+exports.adminUsers = functions.https.onRequest(async (req, res) => {
+  if (!isAdmin(req)) {
+    res.status(403).send('Forbidden')
+    return
+  }
+
+  const users = await adminUsers()
+
+  res.status(200).send(users)
 })
 
-exports.adminFavourites = functions.https.onCall(async (data, context) => {
-  assureAdmin(context)
-  return adminFavourites(data.conference)
+exports.adminFavourites = functions.https.onRequest(async (req, res) => {
+  if (!isAdmin(req)) {
+    res.status(403).send('Forbidden')
+    return
+  }
+
+  const favourites = await adminFavourites(req.query.conference)
+
+  res.status(200).send(favourites)
 })
