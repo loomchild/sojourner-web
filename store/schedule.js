@@ -10,7 +10,7 @@ import Track from '@/logic/Track'
 import Type from '@/logic/Type'
 import Video from '@/logic/Video'
 
-const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+import config from '@/config'
 
 const TIME_FORMAT = 'HH:mm'
 
@@ -29,7 +29,7 @@ const createTrack = (name, type) => Object.freeze(new Track({
 }))
 
 const createType = (type, priority) => {
-  const conferenceType = priority < conference.types.length ? conference.types[priority] : conference.types[conference.types.length - 1]
+  const conferenceType = priority < config.types.length ? config.types[priority] : config.types[config.types.length - 1]
 
   return Object.freeze(new Type({
     id: type.id,
@@ -47,7 +47,7 @@ const createEvent = (event, day, room, track, type) => {
 
   return Object.freeze(new Event({
     id: event.id,
-    startTime: conference.features.localtimes ? moment.utc(event.startTime, TIME_FORMAT).add(-1, 'h').local().format(TIME_FORMAT) : event.startTime,
+    startTime: config.features.localtimes ? moment.utc(event.startTime, TIME_FORMAT).add(-1, 'h').local().format(TIME_FORMAT) : event.startTime,
     duration: event.duration,
     title: event.title,
     subtitle: event.subtitle,
@@ -228,16 +228,12 @@ export default {
       const trackEvents = getters.trackEvents(event.track.name)
       const index = trackEvents.findIndex(e => e.id === event.id)
       return trackEvents[index - 1] || null
-    },
-
-    conferenceName: () => conference.name,
-
-    conferenceNameColor: () => conference.nameColor || ''
+    }
   },
 
   mutations: {
-    setScheduleInitialized (state) {
-      state.scheduleInitialized = true
+    setScheduleInitialized (state, initialized) {
+      state.scheduleInitialized = initialized
     },
 
     setDays (state, days) {
@@ -270,11 +266,14 @@ export default {
   },
 
   actions: {
-    initSchedule ({ commit, getters, dispatch }, cache) {
+    async initSchedule ({ commit, getters, dispatch, rootGetters }, cache) {
       if (!cache) {
         cache = 'default'
       }
-      return fetch(process.env.SCHEDULE_URL, { cache })
+
+      commit('setScheduleInitialized', false)
+
+      return fetch(rootGetters.conferenceScheduleUrl, { cache })
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status}: ${response.statusText}`)
@@ -337,7 +336,7 @@ export default {
           commit('setTracks', tracks)
           commit('setTypes', types)
           commit('setEvents', events)
-          commit('setScheduleInitialized')
+          commit('setScheduleInitialized', true)
         })
         .then(() => dispatch('reindexEvents'))
     },

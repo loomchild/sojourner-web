@@ -11,22 +11,17 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const AddAssetPlugin = require('add-asset-webpack-plugin')
+const config = require('./config')
+
 const gitRevisionPlugin = new GitRevisionPlugin()
 
 const dotenv = require('dotenv')
-
 dotenv.config()
-
-const CONFERENCE_ID = process.env.CONFERENCE_ID
-const SCHEDULE_URL = process.env.SCHEDULE_URL ||
-  `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${CONFERENCE_ID}.json?alt=media`
-
-const conference = require(`./conferences/${CONFERENCE_ID}`)
 
 const ICON_SIZES = [56, 112, 192, 224, 512]
 const manifest = () => JSON.stringify({
-  short_name: conference.name,
-  name: `${conference.name}`,
+  short_name: config.conference.name,
+  name: `${config.conference.name}`,
   icons: ICON_SIZES.map(size => ({
     src: `/assets/sojourner-icon-${size}.png`,
     sizes: `${size}x${size}`,
@@ -34,8 +29,8 @@ const manifest = () => JSON.stringify({
   })),
   start_url: '/',
   display: 'standalone',
-  background_color: conference.colors.primary.base,
-  theme_color: conference.colors.primary.base
+  background_color: config.colors.primary.base,
+  theme_color: config.colors.primary.base
 }, null, 2)
 
 module.exports = {
@@ -130,8 +125,6 @@ module.exports = {
       TIMESTAMP: moment().format('YYYY-MM-DD HH:mm:ss'),
       COMMITHASH: gitRevisionPlugin.commithash(),
       VERSION: gitRevisionPlugin.version(),
-      CONFERENCE_ID: undefined,
-      SCHEDULE_URL,
       SCHEDULE_INTERVAL: 0,
       ROOM_STATE_URL: '',
       ROOM_STATE_INTERVAL: 0,
@@ -163,7 +156,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^' + SCHEDULE_URL.replace('.', '\\.').replace('?', '\\?')),
+          urlPattern: new RegExp('^https://firebasestorage\\.googleapis\\.com/v0/b/sojourer-web\\.appspot\\.com/o/conferences%2F.*\\.json\\?alt=media$'),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {

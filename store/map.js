@@ -1,6 +1,6 @@
 import Building from '@/logic/Building'
 
-const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+import config from '@/config'
 
 export default {
   state: {
@@ -14,7 +14,7 @@ export default {
   },
 
   getters: {
-    hasMap: () => conference.features.map,
+    hasMap: () => config.features.map,
 
     buildings: state => state.buildings,
 

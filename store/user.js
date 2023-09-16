@@ -66,10 +66,10 @@ export default {
           await dispatch('setExistingFavourites')
 
           const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
-            if (!user || !user.data() || !user.data()[process.env.CONFERENCE_ID]) {
+            if (!user || !user.data() || !user.data()[rootGetters.conferenceId]) {
               return
             }
-            const conference = user.data()[process.env.CONFERENCE_ID]
+            const conference = user.data()[rootGetters.conferenceId]
             if (!conference.favourites) {
               return
             }

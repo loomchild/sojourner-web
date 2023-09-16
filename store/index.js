@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import conference from './conference'
 import meta from './meta'
 import notification from './notification'
 import favourite from './favourite'
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     notification,
     map,
     favourite,
+    conference,
     schedule,
     state,
     user,

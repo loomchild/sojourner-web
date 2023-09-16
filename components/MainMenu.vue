@@ -10,7 +10,6 @@
       <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" to="/all/"></menu-item>
       <menu-item v-if="hasMap" title="Map" icon="mdi-map" to="/map/"></menu-item>
       <menu-item title="Search" icon="mdi-magnify" to="/search/"></menu-item>
-      <menu-item v-if="stands" title="Stands" icon="mdi-storefront" :href="stands"></menu-item>
       <v-divider class="mx-4"></v-divider>
       <menu-item title="About" icon="mdi-information" to="/about/"></menu-item>
     </v-list>
@@ -36,7 +35,6 @@ export default {
     'hasMap',
     'hasAll',
     'hasLive',
-    'stands'
   ]),
 
   methods: {

@@ -1,4 +1,4 @@
-const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+import config from '@/config'
 
 function isStandalone () {
   return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches
@@ -30,15 +30,13 @@ export default {
 
     tab: state => state.tab,
 
-    hasAll: state => conference.features.all,
+    hasAll: state => config.features.all,
 
-    hasRooms: () => conference.features.rooms,
+    hasRooms: () => config.features.rooms,
 
-    hasLive: () => conference.features.live,
+    hasLive: () => config.features.live,
 
-    previousEditions: () => conference.previousEditions,
-
-    stands: () => conference.stands
+    previousEditions: () => []
   },
 
   mutations: {

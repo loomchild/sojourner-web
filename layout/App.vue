@@ -72,8 +72,8 @@ export default {
   },
 
   mounted () {
-    // This is not good enough, replace with lambda
     Vue.nextTick(() => {
+      this.initConference()
       this.initSchedule()
       this.initScheduleUpdater()
       this.initUser()
@@ -101,6 +101,7 @@ export default {
   },
 
   methods: mapActions([
+    'initConference',
     'initPersistent',
     'initSchedule',
     'initScheduleUpdater',

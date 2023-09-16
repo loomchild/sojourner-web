@@ -7,7 +7,9 @@ export default {
   },
 
   getters: {
-    favourites: (state) => state.favourites
+    favourites: (state) => state.favourites,
+
+    favouritesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favourites`
   },
 
   mutations: {
@@ -25,22 +27,22 @@ export default {
   },
 
   actions: {
-    setFavourite ({ dispatch }, eventId) {
+    setFavourite ({ dispatch, getters }, eventId) {
       return dispatch('getUserRef')
-        .then(user => user.update({ [`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayUnion(eventId) }))
+        .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(eventId) }))
     },
 
-    setExistingFavourites ({ state, dispatch }) {
+    setExistingFavourites ({ state, dispatch, getters }) {
       const existingFavourites = Object.keys(state.favourites).map(eventId => eventId)
       if (existingFavourites.length > 0) {
         return dispatch('getUserRef')
-          .then(user => user.update({ [`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites) }))
+          .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites) }))
       }
     },
 
-    unsetFavourite ({ dispatch }, eventId) {
+    unsetFavourite ({ dispatch, getters }, eventId) {
       return dispatch('getUserRef')
-        .then(user => user.update({ [`${process.env.CONFERENCE_ID}.favourites`]: firebase.firestore.FieldValue.arrayRemove(eventId) }))
+        .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayRemove(eventId) }))
     },
 
     toggleFavourite ({ state, dispatch }, eventId) {

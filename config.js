@@ -1,26 +1,30 @@
-export default {
-  editions: [
-    {
-      id: '2023',
-      name: 'FOSDEM 2023'
-    },
-    {
-      id: '2022',
-      name: 'FOSDEM 2022'
-    },
-    {
-      id: '2021',
-      name: 'FOSDEM 2021'
-    },
-    {
-      id: '2020',
-      name: 'FOSDEM 2020'
-    },
-    {
-      id: '2019',
-      name: 'FOSDEM 2019'
-    }
-  ],
+module.exports = {
+  conference: {
+    id: 'fosdem',
+    name: 'FOSDEM',
+    editions: [
+      {
+        id: '2023',
+        name: 'FOSDEM 2023'
+      },
+      {
+        id: '2022',
+        name: 'FOSDEM 2022'
+      },
+      {
+        id: '2021',
+        name: 'FOSDEM 2021'
+      },
+      {
+        id: '2020',
+        name: 'FOSDEM 2020'
+      },
+      {
+        id: '2019',
+        name: 'FOSDEM 2019'
+      }
+    ]
+  },
   features: {
     map: true,
     all: false,

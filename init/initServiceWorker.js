@@ -19,7 +19,7 @@ export default async function () {
         wb.messageSW({
           type: 'CACHE_URLS',
           payload: {
-            urlsToCache: [process.env.SCHEDULE_URL]
+            urlsToCache: [store.getters.conferenceScheduleUrl]
           }
         })
       }

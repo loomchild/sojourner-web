@@ -14,7 +14,7 @@
   <v-container v-else fluid class="content fill-height align-start">
     <v-row>
       <v-col>
-        <h1 class="page-title mb-2" :style="{ color: conferenceNameColor }">
+        <h1 class="page-title mb-2">
           {{ conferenceName }}
         </h1>
         <v-row>
@@ -45,8 +45,7 @@ export default {
   computed: {
     ...mapGetters({
       types: 'allTypeStats',
-      conferenceName: 'conferenceName',
-      conferenceNameColor: 'conferenceNameColor'
+      conferenceName: 'conferenceName'
     })
   },
 
