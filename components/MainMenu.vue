@@ -14,7 +14,7 @@
       <v-divider class="mx-4"></v-divider>
       <menu-item title="About" icon="mdi-information" to="/about/"></menu-item>
     </v-list>
-    <img class="menu-logo" src="~confassets/menu-logo.png">
+    <img class="menu-logo" src="~assets/menu-logo.png">
   </v-navigation-drawer>
 </template>
 

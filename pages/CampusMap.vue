@@ -82,7 +82,7 @@ export default {
   width: 100%;
   height: 0;
   padding-top: calc(990 / 1386 * 100%);
-  background-image: url(~confassets/campus.png);
+  background-image: url(~assets/campus.png);
   background-size: 100% 100%;
 }
 

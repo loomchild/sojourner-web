@@ -114,7 +114,7 @@ export default {
 
 <style>
 #app.layout-cover {
-  background-image: url(~confassets/dashboard.jpg);
+  background-image: url(~assets/dashboard.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -127,7 +127,7 @@ h1.page-title {
 @media only screen and (min-width:960px) {
   #app.layout-cover {
     background-color: var(--v-primary-base) !important;
-    background-image: url(~confassets/dashboard-desktop.png);
+    background-image: url(~assets/dashboard-desktop.png);
     background-size: 100%;
     background-position: right bottom;
   }

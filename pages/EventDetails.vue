@@ -131,7 +131,7 @@ export default {
       if (!this.event) {
         return ''
       }
-      return require(`confassets/${this.event.type.background}`)
+      return require(`assets/${this.event.type.background}`)
     },
 
     ...mapGetters([

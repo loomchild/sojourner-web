@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-
-const conference = require(`@/conferences/${process.env.CONFERENCE_ID}`)
+import config from './config'
 
 Vue.use(Vuetify)
 
@@ -11,10 +10,10 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
-        ...conference.colors
+        ...config.colors
       },
       dark: {
-        ...conference.colors
+        ...config.colors
       }
     },
     options: {

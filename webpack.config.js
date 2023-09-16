@@ -28,7 +28,7 @@ const manifest = () => JSON.stringify({
   short_name: conference.name,
   name: `${conference.name}`,
   icons: ICON_SIZES.map(size => ({
-    src: `/assets/conferences/${conference.assets}/sojourner-icon-${size}.png`,
+    src: `/assets/sojourner-icon-${size}.png`,
     sizes: `${size}x${size}`,
     type: 'image/png'
   })),
@@ -55,8 +55,7 @@ module.exports = {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname),
-      assets: path.resolve(__dirname, 'assets'),
-      confassets: path.resolve(__dirname, 'assets', 'conferences', conference.assets)
+      assets: path.resolve(__dirname, 'assets')
     }
   },
   mode: 'development',
@@ -124,7 +123,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       'static/',
-      `assets/conferences/${conference.assets}/*`
+      'assets/*'
     ]),
     new AddAssetPlugin('assets/manifest.json', manifest),
     new webpack.EnvironmentPlugin({

@@ -178,7 +178,7 @@ export default {
 
   .logo {
     background-color: transparent !important;
-    background-image: url(~confassets/menu-logo.png);
+    background-image: url(~assets/menu-logo.png);
     background-position: left center;
     background-size: auto 26px;
     width: 200px;
