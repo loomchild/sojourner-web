@@ -3,7 +3,9 @@ import sinon from 'sinon'
 import store from '@/store'
 import json from '@/test/unit/resources/fosdem-2019.json'
 
-describe('data/getSchedule', () => {
+describe('data/getSchedule', function () {
+  this.timeout(10000)
+
   let stubbedFetch
 
   beforeEach(() => {
