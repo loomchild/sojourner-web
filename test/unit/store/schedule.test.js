@@ -17,10 +17,9 @@ describe('data/getSchedule', function () {
     stubbedFetch.restore()
   })
 
-  it('should retrieve all events', () => {
-    return store.dispatch('initSchedule')
-      .then(() => {
-        expect(store.state.schedule.events['8967']).to.not.be.undefined
-      })
+  it('should retrieve all events', async () => {
+    await store.dispatch('initSchedule')
+
+    expect(store.state.schedule.events['8967']).to.not.be.undefined
   })
 })

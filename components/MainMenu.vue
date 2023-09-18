@@ -1,9 +1,6 @@
 <template>
   <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="480" @input="setDrawer">
     <v-list dark class="pa-0">
-      <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
-      <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
-      <v-divider class="mx-4"></v-divider>
       <menu-item title="Programme" icon="mdi-home" to="/"></menu-item>
       <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" to="/live"></menu-item>
       <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" to="/favourites/"></menu-item>
@@ -11,6 +8,8 @@
       <menu-item v-if="hasMap" title="Map" icon="mdi-map" to="/map/"></menu-item>
       <menu-item title="Search" icon="mdi-magnify" to="/search/"></menu-item>
       <v-divider class="mx-4"></v-divider>
+      <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
+      <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
       <menu-item title="About" icon="mdi-information" to="/about/"></menu-item>
     </v-list>
     <img class="menu-logo" src="~assets/menu-logo.png">
@@ -34,14 +33,17 @@ export default {
     'realUser',
     'hasMap',
     'hasAll',
-    'hasLive',
+    'hasLive'
   ]),
 
   methods: {
-    clickLogOut () {
-      return this.logOut()
-        .then(() => this.showMessage('Logged out successfully'))
-        .catch(error => this.showError(error.message))
+    async clickLogOut () {
+      try {
+        await this.logOut()
+        this.showMessage('Logged out successfully')
+      } catch (error) {
+        this.showError(error.message)
+      }
     },
 
     ...mapActions([
@@ -62,7 +64,7 @@ export default {
 }
 
 .v-navigation-drawer .v-list {
-  margin-top: 33px;
+  margin-top: 16px;
 }
 
 .v-navigation-drawer .v-divider {

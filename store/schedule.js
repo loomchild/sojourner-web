@@ -273,72 +273,71 @@ export default {
 
       commit('setScheduleInitialized', false)
 
-      return fetch(rootGetters.conferenceScheduleUrl, { cache })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`${response.status}: ${response.statusText}`)
-          }
+      const response = await fetch(rootGetters.conferenceScheduleUrl, { cache })
 
-          return response.json()
-        })
-        .then(conference => {
-          if (!conference.events) {
-            return
-          }
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+      }
 
-          const days = {}
-          const events = {}
-          const rooms = {}
-          const types = {}
-          const tracks = {}
+      const conference = await response.json()
 
-          const typeList = conference.types.map((t, index) => createType(t, index))
-          typeList.forEach((t) => {
-            types[t.id] = t
-          })
+      if (!conference.events) {
+        return
+      }
 
-          const dateCache = {}
+      const days = {}
+      const events = {}
+      const rooms = {}
+      const types = {}
+      const tracks = {}
 
-          conference.events.forEach(e => {
-            let day = dateCache[e.date]
-            if (!day) {
-              day = createDay(e.date)
-              days[day.index] = day
-              dateCache[e.date] = day
-            }
+      const typeList = conference.types.map((t, index) => createType(t, index))
+      typeList.forEach((t) => {
+        types[t.id] = t
+      })
 
-            // TODO: make buildings universal
-            const building = getters.roomBuilding(e.room)
+      const dateCache = {}
 
-            let room = rooms[e.room]
-            if (!room) {
-              room = createRoom(e.room, building)
-              rooms[room.name] = room
-            }
+      conference.events.forEach(e => {
+        let day = dateCache[e.date]
+        if (!day) {
+          day = createDay(e.date)
+          days[day.index] = day
+          dateCache[e.date] = day
+        }
 
-            const type = types[e.type]
-            if (!type) {
-              throw new Error(`Unknown type ${e.type}`)
-            }
+        // TODO: make buildings universal
+        const building = getters.roomBuilding(e.room)
 
-            let track = tracks[e.track]
-            if (!track) {
-              track = createTrack(e.track, type)
-              tracks[track.name] = track
-            }
+        let room = rooms[e.room]
+        if (!room) {
+          room = createRoom(e.room, building)
+          rooms[room.name] = room
+        }
 
-            const event = createEvent(e, day, room, track, type)
-            events[event.id] = event
-          })
+        const type = types[e.type]
+        if (!type) {
+          throw new Error(`Unknown type ${e.type}`)
+        }
 
-          commit('setDays', days)
-          commit('setRooms', rooms)
-          commit('setTracks', tracks)
-          commit('setTypes', types)
-          commit('setEvents', events)
-          commit('setScheduleInitialized', true)
-        })
-        .then(() => dispatch('reindexEvents'))
+        let track = tracks[e.track]
+        if (!track) {
+          track = createTrack(e.track, type)
+          tracks[track.name] = track
+        }
+
+        const event = createEvent(e, day, room, track, type)
+        events[event.id] = event
+      })
+
+      commit('setDays', days)
+      commit('setRooms', rooms)
+      commit('setTracks', tracks)
+      commit('setTypes', types)
+      commit('setEvents', events)
+      commit('setScheduleInitialized', true)
+
+      await dispatch('reindexEvents')
     },
 
     refreshSchedule ({ dispatch }) {

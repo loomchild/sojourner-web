@@ -1,7 +1,7 @@
 const admin = require('firebase-admin')
 const { hashUid } = require('./common')
 
-async function listUsers(users = {}, token = undefined) {
+async function listUsers (users = {}, token = undefined) {
   const result = await admin.auth().listUsers(1000, token)
   result.users.forEach(user => {
     users[hashUid(user.uid)] = {

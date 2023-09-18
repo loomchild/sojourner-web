@@ -31,40 +31,37 @@ export default {
   },
 
   actions: {
-    refreshRoomStates ({ commit, dispatch, state }) {
-      return fetch(process.env.ROOM_STATE_URL, { cache: 'no-store' })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`${response.status}: ${response.statusText}`)
-          }
-          return response.json()
-        })
-        .then(response => {
-          const roomStates = {}
-          response.forEach(room => {
-            roomStates[room.roomname] = Object.freeze(new RoomState({
-              room: room.roomname,
-              state: parseInt(room.state)
-            }))
-          })
-          return roomStates
-        })
-        .then(roomStates => {
-          if (JSON.stringify(state.roomStates) !== JSON.stringify(roomStates)) {
-            commit('setRoomStates', roomStates)
+    async refreshRoomStates ({ commit, dispatch, state }) {
+      const response = await fetch(process.env.ROOM_STATE_URL, { cache: 'no-store' })
 
-            const emergencyRooms = Object.values(roomStates)
-              .filter(roomState => roomState.emergency)
-              .map(roomState => roomState.room)
-            if (emergencyRooms.length > 0) {
-              /* dispatch('showNotification', {
-                 message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
-                 level: 'warning',
-                 timeout: 0
-              }) */
-            }
-          }
-        })
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+      }
+
+      const states = await response.json()
+
+      const roomStates = {}
+      states.forEach(room => {
+        roomStates[room.roomname] = Object.freeze(new RoomState({
+          room: room.roomname,
+          state: parseInt(room.state)
+        }))
+      })
+
+      if (JSON.stringify(state.roomStates) !== JSON.stringify(roomStates)) {
+        commit('setRoomStates', roomStates)
+
+        const emergencyRooms = Object.values(roomStates)
+          .filter(roomState => roomState.emergency)
+          .map(roomState => roomState.room)
+        if (emergencyRooms.length > 0) {
+          /* dispatch('showNotification', {
+             message: `Emergency evacuation of rooms: ${emergencyRooms.join(', ')}`,
+             level: 'warning',
+             timeout: 0
+          }) */
+        }
+      }
     },
 
     initRoomStateUpdater ({ dispatch, state, commit }) {

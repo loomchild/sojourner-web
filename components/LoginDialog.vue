@@ -146,34 +146,32 @@ export default {
       }
     },
 
-    clickLogIn () {
+    async clickLogIn () {
       if (!this.formLogin.validate()) return
 
-      this.logIn({ email: this.email, password: this.password })
-        .then(() => {
-          this.showMessage('Logged in successfully')
-          this.reset()
-          this.setLoginDialog(false)
-        })
-        .catch(error => {
-          this.showError(error.message)
-          this.password = ''
-          this.showPassword = false
-        })
+      try {
+        await this.logIn({ email: this.email, password: this.password })
+        this.showMessage('Logged in successfully')
+        this.reset()
+        this.setLoginDialog(false)
+      } catch (error) {
+        this.showError(error.message)
+        this.password = ''
+        this.showPassword = false
+      }
     },
 
-    clickRegister () {
+    async clickRegister () {
       if (!this.formRegister.validate()) return
 
-      this.register({ email: this.email, password: this.password })
-        .then(() => {
-          this.showMessage('Registered successfully')
-          this.reset()
-          this.setLoginDialog(false)
-        })
-        .catch(error => {
-          this.showError(error.message)
-        })
+      try {
+        await this.register({ email: this.email, password: this.password })
+        this.showMessage('Registered successfully')
+        this.reset()
+        this.setLoginDialog(false)
+      } catch (error) {
+        this.showError(error.message)
+      }
     },
 
     ...mapActions([

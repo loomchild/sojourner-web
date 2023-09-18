@@ -27,22 +27,22 @@ export default {
   },
 
   actions: {
-    setFavourite ({ dispatch, getters }, eventId) {
-      return dispatch('getUserRef')
-        .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(eventId) }))
+    async setFavourite ({ dispatch, getters }, eventId) {
+      const user = await dispatch('getUserRef')
+      await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(eventId) })
     },
 
-    setExistingFavourites ({ state, dispatch, getters }) {
+    async setExistingFavourites ({ state, dispatch, getters }) {
       const existingFavourites = Object.keys(state.favourites).map(eventId => eventId)
       if (existingFavourites.length > 0) {
-        return dispatch('getUserRef')
-          .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites) }))
+        const user = await dispatch('getUserRef')
+        await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites) })
       }
     },
 
-    unsetFavourite ({ dispatch, getters }, eventId) {
-      return dispatch('getUserRef')
-        .then(user => user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayRemove(eventId) }))
+    async unsetFavourite ({ dispatch, getters }, eventId) {
+      const user = await dispatch('getUserRef')
+      await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayRemove(eventId) })
     },
 
     toggleFavourite ({ state, dispatch }, eventId) {

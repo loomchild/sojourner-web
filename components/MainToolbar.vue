@@ -65,7 +65,9 @@
         <v-list>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="grey--text">{{ realUser.email }}</v-list-item-title>
+              <v-list-item-title class="grey--text">
+                {{ realUser.email }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click.stop="clickLogOut">
@@ -127,10 +129,13 @@ export default {
       this.$router.go(-1)
     },
 
-    clickLogOut () {
-      return this.logOut()
-        .then(() => this.showMessage('Logged out successfully'))
-        .catch(error => this.showError(error.message))
+    async clickLogOut () {
+      try {
+        await this.logOut()
+        this.showMessage('Logged out successfully')
+      } catch (error) {
+        this.showError(error.message)
+      }
     },
 
     ...mapActions([

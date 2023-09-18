@@ -74,15 +74,12 @@ export default {
   },
 
   methods: {
-    search: _.debounce(function () {
+    search: _.debounce(async function () {
       if (!this.validQuery) {
         this.events = []
         return
       }
-      this.searchEvents(this.query)
-        .then(events => {
-          this.events = events
-        })
+      this.events = await this.searchEvents(this.query)
     }, 150),
 
     ...mapActions([

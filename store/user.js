@@ -86,9 +86,9 @@ export default {
       })
     },
 
-    register ({ commit, rootGetters, dispatch }, { email, password }) {
-      return firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(response => getUserRefHelper(response.user).set({}))
+    async register ({ commit, rootGetters, dispatch }, { email, password }) {
+      const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
+      await getUserRefHelper(response.user).set({})
     },
 
     logIn ({ commit, rootGetters, dispatch }, { email, password }) {
@@ -99,42 +99,37 @@ export default {
       return firebase.auth().signOut()
     },
 
-    getUserRef ({ state }) {
+    async getUserRef ({ state }) {
       if (state.user) {
         return getUserRefHelper(state.user)
       } else {
-        return firebase.auth().signInAnonymously()
-          .then(response => {
-            const userData = getUserRefHelper(response.user)
-            userData.set({}, { merge: true })
-            return userData
-          })
+        const response = await firebase.auth().signInAnonymously()
+        const userData = getUserRefHelper(response.user)
+        await userData.set({}, { merge: true })
+        return userData
       }
     },
 
-    initPersistent ({ commit, dispatch }) {
+    async initPersistent ({ commit, dispatch }) {
       if (navigator.storage && navigator.storage.persisted) {
-        return navigator.storage.persisted()
-          .then(persistent => {
-            if (persistent) {
-              commit('setPersistent', true)
-            }
-          })
+        const persistent = await navigator.storage.persisted()
+        if (persistent) {
+          commit('setPersistent', true)
+        }
       } else {
         commit('setPersistent', false)
       }
     },
 
-    persist ({ commit }) {
+    async persist ({ commit }) {
       if (navigator.storage && navigator.storage.persist) {
-        return navigator.storage.persist()
-          .then(persistent => {
-            if (persistent) {
-              commit('setPersistent', true)
-            } else {
-              throw new Error('Could not enable persistence')
-            }
-          })
+        const persistent = await navigator.storage.persist()
+
+        if (persistent) {
+          commit('setPersistent', true)
+        } else {
+          throw new Error('Could not enable persistence')
+        }
       } else {
         return Promise.reject(new Error('Persistence not supported by the browser'))
       }
