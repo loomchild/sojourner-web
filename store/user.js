@@ -1,7 +1,8 @@
-import firebase from 'firebase/app'
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut } from 'firebase/auth'
+import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore'
 
 function getUserRefHelper (user) {
-  return firebase.firestore().collection('users').doc(user.uid)
+  return doc(getFirestore(), 'users', user.uid)
 }
 
 export default {
@@ -53,7 +54,7 @@ export default {
     },
 
     initUser ({ commit, dispatch, state, rootGetters }) {
-      firebase.auth().onAuthStateChanged(async user => {
+      onAuthStateChanged(getAuth(), async user => {
         if (state.userUnsubscribe) {
           await state.userUnsubscribe()
           commit('setUserUnsubscribe', null)
@@ -65,7 +66,7 @@ export default {
 
           await dispatch('setExistingFavourites')
 
-          const userUnsubscribe = getUserRefHelper(user).onSnapshot(user => {
+          const userUnsubscribe = onSnapshot(getUserRefHelper(user), user => {
             if (!user || !user.data() || !user.data()[rootGetters.conferenceId]) {
               return
             }
@@ -87,26 +88,26 @@ export default {
     },
 
     async register ({ commit, rootGetters, dispatch }, { email, password }) {
-      const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
+      const response = await createUserWithEmailAndPassword(getAuth(), email, password)
       await getUserRefHelper(response.user).set({})
     },
 
     logIn ({ commit, rootGetters, dispatch }, { email, password }) {
-      return firebase.auth().signInWithEmailAndPassword(email, password)
+      return signInWithEmailAndPassword(getAuth(), email, password)
     },
 
     logOut ({ commit }) {
-      return firebase.auth().signOut()
+      return signOut(getAuth())
     },
 
     async getUserRef ({ state }) {
       if (state.user) {
         return getUserRefHelper(state.user)
       } else {
-        const response = await firebase.auth().signInAnonymously()
-        const userData = getUserRefHelper(response.user)
-        await userData.set({}, { merge: true })
-        return userData
+        const response = await signInAnonymously(getAuth())
+        const user = getUserRefHelper(response.user)
+        await setDoc(user, {}, { merge: true })
+        return user
       }
     },
 

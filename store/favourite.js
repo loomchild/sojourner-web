@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import firebase from 'firebase/app'
+import { updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
 
 export default {
   state: {
@@ -29,20 +29,20 @@ export default {
   actions: {
     async setFavourite ({ dispatch, getters }, eventId) {
       const user = await dispatch('getUserRef')
-      await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(eventId) })
+      await updateDoc(user, { [getters.favouritesPath]: arrayUnion(eventId) })
     },
 
     async setExistingFavourites ({ state, dispatch, getters }) {
       const existingFavourites = Object.keys(state.favourites).map(eventId => eventId)
       if (existingFavourites.length > 0) {
         const user = await dispatch('getUserRef')
-        await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayUnion(...existingFavourites) })
+        await updateDoc(user, { [getters.favouritesPath]: arrayUnion(...existingFavourites) })
       }
     },
 
     async unsetFavourite ({ dispatch, getters }, eventId) {
       const user = await dispatch('getUserRef')
-      await user.update({ [getters.favouritesPath]: firebase.firestore.FieldValue.arrayRemove(eventId) })
+      await updateDoc(user, { [getters.favouritesPath]: arrayRemove(eventId) })
     },
 
     toggleFavourite ({ state, dispatch }, eventId) {

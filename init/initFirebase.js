@@ -1,10 +1,10 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
+import { initializeApp, getApp } from 'firebase/app'
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore'
+import { initializeAuth } from 'firebase/auth'
 
 export default async function () {
   try {
-    firebase.initializeApp({
+    initializeApp({
       apiKey: process.env.FIREBASE_API_KEY,
       authDomain: process.env.FIREBASE_AUTH_DOMAIN,
       databaseURL: process.env.FIREBASE_DATABASE_URL,
@@ -12,7 +12,12 @@ export default async function () {
       storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
       messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
     })
-    await firebase.firestore().enablePersistence({ synchronizeTabs: true })
+
+    initializeAuth(getApp())
+
+    initializeFirestore(getApp(), {
+      localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+    })
   } catch (error) {
     console.error(error)
   }
