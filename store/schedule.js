@@ -1,5 +1,6 @@
 import firstBy from 'thenby'
-import _ from 'lodash'
+import groupBy from 'lodash/groupBy'
+import uniqBy from 'lodash/uniqBy'
 import moment from 'moment'
 
 import Day from '@/logic/Day'
@@ -150,15 +151,15 @@ export default {
 
     typeTrackStats: (state, getters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
-      const eventsByDay = _.groupBy(Object.values(typeEvents), event => event.day.index)
+      const eventsByDay = groupBy(Object.values(typeEvents), event => event.day.index)
 
       return getters.allDays.map(day => {
         const dayEvents = eventsByDay[day.index] || []
-        const dayTracks = _.uniqBy(dayEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
+        const dayTracks = uniqBy(dayEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
         const tracks = dayTracks.map(track => {
           const events = dayEvents.filter(event => event.track.name === track.name).sort(eventNaturalSort)
 
-          const rooms = _.uniqBy(events.map(event => event.room), room => room.name)
+          const rooms = uniqBy(events.map(event => event.room), room => room.name)
           rooms.sort(roomSort)
 
           return {
@@ -177,10 +178,10 @@ export default {
 
     allTypeStats: state => {
       const types = Object.values(state.types).sort(firstBy('priority'))
-      const eventsByType = _.groupBy(Object.values(state.events), event => event.type.name)
+      const eventsByType = groupBy(Object.values(state.events), event => event.type.name)
       return types.map(type => {
         const events = eventsByType[type.name] || []
-        const tracks = _.uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
+        const tracks = uniqBy(events.sort(eventNaturalSort).map(event => event.track), track => track.name)
 
         return {
           type,
