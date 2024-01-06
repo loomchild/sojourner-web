@@ -94,7 +94,7 @@ export default {
           setTimeout(() => {
             dispatch('showNotification', {
               message: 'Add this application to your home screen.',
-              timeout: 0,
+              timeout: -1,
               button: {
                 title: 'ADD',
                 handler: () => {
@@ -128,7 +128,7 @@ export default {
     notifyNewVersion ({ dispatch }) {
       dispatch('showNotification', {
         message: 'New version is available.',
-        timeout: 0,
+        timeout: -1,
         button: {
           title: 'REFRESH',
           handler: () => {

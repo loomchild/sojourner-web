@@ -1,4 +1,5 @@
 import config from '@/config'
+import { router } from '@/pages'
 
 export default {
   state: {
@@ -9,6 +10,10 @@ export default {
 
   getters: {
     conferenceEdition: (state, getters) => state.conferenceEdition,
+
+    latestConferenceEdition: (state) => config.conference.editions[0],
+
+    isLatestConferenceEdition: (state, getters) => state.conferenceEdition === getters.latestConferenceEdition,
 
     conferenceId: state => state.conferenceId,
 
@@ -27,10 +32,26 @@ export default {
   },
 
   actions: {
-    initConference ({ commit, getters }, editionId) {
-      const editions = config.conference.editions
-      const edition = editionId ? editions.find(edition => edition.id === editionId) : editions[0]
+    initConference ({ commit, getters, dispatch }, editionId) {
+      const edition = editionId ? config.conference.editions.find(edition => edition.id === editionId) : getters.latestEdition
       commit('setConferenceEdition', edition)
+
+      if (!getters.isLatestConferenceEdition) {
+        dispatch(
+          'showNotification',
+          {
+            message: 'You are browsing past conference edition.',
+            timeout: -1,
+            button: {
+              title: 'GO TO CURRENT',
+              handler: () => {
+                router.push({ name: 'dashboard', params: { editionId: getters.latestConferenceEdition.id } })
+              }
+            }
+          },
+          { root: true }
+      )
+      }
     }
   }
 }
