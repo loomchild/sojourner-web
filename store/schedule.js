@@ -95,6 +95,7 @@ export default {
   state: {
     scheduleInitialized: false,
     scheduleUpdaterInitialized: false,
+    lastModified: null,
     days: {},
     rooms: {},
     tracks: {},
@@ -237,6 +238,10 @@ export default {
       state.scheduleInitialized = initialized
     },
 
+    setLastModified (state, lastModified) {
+      state.lastModified = lastModified
+    },
+
     setDays (state, days) {
       state.days = days
     },
@@ -267,18 +272,24 @@ export default {
   },
 
   actions: {
-    async initSchedule ({ commit, getters, dispatch, rootGetters }, cache) {
+    async initSchedule ({ state, commit, getters, dispatch, rootGetters }, cache) {
       if (!cache) {
         cache = 'default'
       }
-
-      commit('setScheduleInitialized', false)
 
       const response = await fetch(rootGetters.conferenceScheduleUrl, { cache })
 
       if (!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
+
+      const lastModified = response.headers.get('Last-Modified')
+      if (state.lastModified === lastModified) {
+        return
+      }
+
+      commit('setScheduleInitialized', false)
+      commit('setLastModified', lastModified)
 
       const conference = await response.json()
 
