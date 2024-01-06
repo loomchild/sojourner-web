@@ -34,7 +34,7 @@ export default {
 
     hasRooms: () => config.features.rooms,
 
-    hasLive: () => config.features.live
+    hasLive: (state, getters, rootState, rootGetters) => config.features.live && rootGetters.isLatestConferenceEdition,
   },
 
   mutations: {

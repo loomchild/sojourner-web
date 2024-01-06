@@ -14,7 +14,7 @@ export default {
   },
 
   getters: {
-    hasMap: () => config.features.map,
+    hasMap: (state, getters, rootState, rootGetters) => config.features.map && rootGetters.isLatestConferenceEdition,
 
     buildings: state => state.buildings,
 
