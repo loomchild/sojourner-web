@@ -36,7 +36,7 @@ export default {
       const edition = editionId ? config.conference.editions.find(edition => edition.id === editionId) : getters.latestEdition
       commit('setConferenceEdition', edition)
 
-      if (!getters.isLatestConferenceEdition) {
+      if (edition && !getters.isLatestConferenceEdition) {
         dispatch(
           'showNotification',
           {
@@ -45,13 +45,18 @@ export default {
             button: {
               title: 'GO TO CURRENT',
               handler: () => {
-                router.push({ name: 'dashboard', params: { editionId: getters.latestConferenceEdition.id } })
+                dispatch('switchConferenceEdition', getters.latestConferenceEdition.id)
               }
             }
           },
           { root: true }
       )
       }
+    },
+
+    switchConferenceEdition ({ _ }, editionId) {
+      router.push({ name: 'dashboard', params: { editionId } })
+      window.location.reload()
     }
   }
 }
