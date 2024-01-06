@@ -46,12 +46,16 @@ export default {
   letter-spacing: inherit;
 }
 
-.v-tabs.days .v-tab--active {
-  background-color: var(--v-secondary-base);
+.theme--dark.v-tabs.days .v-tab:not(.v-tab-active):not(.v-tab-disabled) {
   color: #ffffff;
 }
 
-.v-tab--disabled {
+.v-tabs.days .v-tab--active {
+  color: #ffffff;
+  background-color: var(--v-secondary-base);
+}
+
+.v-tabs.days .v-tab--disabled {
   color: rgba(0,0,0,.34) !important;
 }
 </style>

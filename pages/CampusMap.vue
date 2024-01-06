@@ -9,19 +9,19 @@
       <v-col class="grow pa-2 pa-md-0">
         <div class="map-container">
           <div class="map">
-            <router-link id="building-k" to="/building/K">
+            <router-link id="building-k" :to="{ name: 'building-map', params: { buildingName: 'K' } }">
               &nbsp;
             </router-link>
-            <router-link id="building-j" to="/building/J">
+            <router-link id="building-j" :to="{ name: 'building-map', params: { buildingName: 'J' } }">
               &nbsp;
             </router-link>
-            <router-link id="building-h" to="/building/H">
+            <router-link id="building-h" :to="{ name: 'building-map', params: { buildingName: 'H' } }">
               &nbsp;
             </router-link>
-            <router-link id="building-aw" to="/building/AW">
+            <router-link id="building-aw" :to="{ name: 'building-map', params: { buildingName: 'AW' } }">
               &nbsp;
             </router-link>
-            <router-link id="building-u" to="/building/U">
+            <router-link id="building-u" :to="{ name: 'building-map', params: { buildingName: 'U' } }">
               &nbsp;
             </router-link>
           </div>

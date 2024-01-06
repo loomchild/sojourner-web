@@ -65,6 +65,7 @@ export default {
 
   created: async function () {
     try {
+      this.initConference(this.$route.params.editionId)
       await this.initPersistent()
     } catch (error) {
       console.error(error)
@@ -73,7 +74,6 @@ export default {
 
   mounted () {
     Vue.nextTick(() => {
-      this.initConference()
       this.initSchedule()
       this.initScheduleUpdater()
       this.initUser()

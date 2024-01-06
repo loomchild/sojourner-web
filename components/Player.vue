@@ -1,7 +1,7 @@
 <template>
   <div v-if="event && videos.length > 0" :key="videos[0].url" :style="style" class="player" :class="{ floating: !style }">
     <div class="button-panel">
-      <v-btn v-if="!style" text icon title="Back to event" :to="`/event/${event.id}`" class="hover-button ml-2 mr-0">
+      <v-btn v-if="!style" text icon title="Back to event" :to="{ name: 'event', params: { eventId: event.id } }" class="hover-button ml-2 mr-0">
         <v-icon color="white">
           mdi-seat
         </v-icon>

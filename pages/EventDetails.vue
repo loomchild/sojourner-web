@@ -9,7 +9,7 @@
               {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
               <span v-if="hasRooms">
                 |
-                <span v-if="hasMap && event.room.building"><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+                <span v-if="hasMap && event.room.building"><router-link :to="{ name: 'building-map', params: { buildingName: event.room.building.name } }">{{ event.room.name }}</router-link></span>
                 <span v-else>{{ event.room.name }}</span>
                 <room-state :room="event.room"></room-state>
               </span>
@@ -71,7 +71,7 @@
           {{ event.day.name }} {{ event.startTime }}-{{ event.endTime }}
           <span v-if="hasRooms">
             |
-            <span v-if="hasMap"><router-link :to="`/building/${event.room.building.name}`">{{ event.room.name }}</router-link></span>
+            <span v-if="hasMap"><router-link :to="{ name: 'building-map', params: { buildingName: event.room.building.name } }">{{ event.room.name }}</router-link></span>
             <span v-else>{{ event.room.name }}</span>
             <room-state :room="event.room"></room-state>
           </span>

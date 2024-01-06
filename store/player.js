@@ -68,7 +68,7 @@ export default {
 
         setTimeout(() => {
           commit('setPlayerEvent', trackEvent)
-          router.push(`/event/${trackEvent.id}`)
+          router.push({ name: 'event', params: { eventId: trackEvent.id } })
         }, 5000)
 
         commit('setTrackEventNotifiedId', trackEvent.id)

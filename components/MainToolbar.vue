@@ -8,12 +8,12 @@
       {{ pageTitle }}
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn v-if="eventDetails" text icon dark replace class="updown mx-0" :ripple="false" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+    <v-btn v-if="eventDetails" text icon dark replace class="updown mx-0" :ripple="false" :disabled="!previousEvent" :to="previousEvent ? { name: 'event', params: { eventId: previousEvent.id } } : null">
       <v-icon>
         mdi-arrow-up
       </v-icon>
     </v-btn>
-    <v-btn v-if="eventDetails" text icon dark replace class="updown ml-0" :ripple="false" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+    <v-btn v-if="eventDetails" text icon dark replace class="updown ml-0" :ripple="false" :disabled="!nextEvent" :to="nextEvent ? { name: 'event', params: { eventId: nextEvent.id } } : null">
       <v-icon>
         mdi-arrow-down
       </v-icon>
@@ -21,31 +21,31 @@
   </v-app-bar>
   <v-app-bar v-else app absolute flat color="transparent" height="82px">
     <v-row class="mx-auto" align="center">
-      <router-link v-ripple to="/" class="d-block">
+      <router-link v-ripple :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" class="d-block">
         <v-toolbar-title class="logo" prepend-icon="home">
           &nbsp;
         </v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
-      <v-btn text dark class="mx-0" :ripple="false" to="/">
+      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" exact>
         Programme
       </v-btn>
-      <v-btn v-if="hasLive" text dark class="mx-0" :ripple="false" to="/live">
+      <v-btn v-if="hasLive" text dark class="mx-0" :ripple="false" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }" exact>
         Live
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" to="/favourites/">
+      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }" exact>
         Bookmarks
       </v-btn>
-      <v-btn v-if="hasAll" text dark class="mx-0" :ripple="false" to="/all/">
+      <v-btn v-if="hasAll" text dark class="mx-0" :ripple="false" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }" exact>
         All
       </v-btn>
-      <v-btn v-if="hasMap" text dark class="mx-0" :ripple="false" to="/map/">
+      <v-btn v-if="hasMap" text dark class="mx-0" :ripple="false" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }" exact>
         Map
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" to="/search/">
+      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }" exact>
         Search
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" to="/about/">
+      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'about' }" exact>
         About
       </v-btn>
       <v-btn v-if="!realUser" text icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">
@@ -93,7 +93,7 @@ export default {
   name: 'MainToolbar',
   computed: {
     dashboard () {
-      return this.$route.path === '/'
+      return this.$route.name === 'dashboard'
     },
 
     eventDetails () {
@@ -119,6 +119,7 @@ export default {
       'hasLive',
       'realUser',
       'conferenceName',
+      'conferenceEdition',
       'events',
       'nextTrackEvent',
       'previousTrackEvent'

@@ -1,16 +1,16 @@
 <template>
   <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="480" @input="setDrawer">
     <v-list dark class="pa-0">
-      <menu-item title="Programme" icon="mdi-home" to="/"></menu-item>
-      <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" to="/live"></menu-item>
-      <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" to="/favourites/"></menu-item>
-      <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" to="/all/"></menu-item>
-      <menu-item v-if="hasMap" title="Map" icon="mdi-map" to="/map/"></menu-item>
-      <menu-item title="Search" icon="mdi-magnify" to="/search/"></menu-item>
+      <menu-item title="Programme" icon="mdi-home" :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item v-if="hasMap" title="Map" icon="mdi-map" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item title="Search" icon="mdi-magnify" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <v-divider class="mx-4"></v-divider>
       <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
-      <menu-item title="About" icon="mdi-information" to="/about/"></menu-item>
+      <menu-item title="About" icon="mdi-information" :to="{ name: 'about' }"></menu-item>
     </v-list>
     <img class="menu-logo" src="~assets/menu-logo.png">
   </v-navigation-drawer>
@@ -29,6 +29,7 @@ export default {
   },
 
   computed: mapGetters([
+    'conferenceEdition',
     'drawer',
     'realUser',
     'hasMap',

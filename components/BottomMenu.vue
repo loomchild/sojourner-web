@@ -1,31 +1,31 @@
 <template>
   <v-bottom-navigation v-if="hasBottomMenu" dark app fixed background-color="secondary">
-    <v-btn text to="/">
+    <v-btn text :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" exact>
       <v-icon>mdi-home</v-icon>
       Programme
     </v-btn>
 
-    <v-btn v-if="hasLive" text to="/live/">
+    <v-btn v-if="hasLive" text :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }" exact>
       <v-icon>mdi-television-classic</v-icon>
       Live
     </v-btn>
 
-    <v-btn text to="/favourites/">
+    <v-btn text :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }" exact>
       <v-icon>mdi-bookmark-multiple</v-icon>
       Bookmarks
     </v-btn>
 
-    <v-btn v-if="hasAll" text to="/all/">
+    <v-btn v-if="hasAll" text :to="{ name: 'all', params: { editionId: conferenceEdition.id } }" exact>
       <v-icon>mdi-view-headline</v-icon>
       All
     </v-btn>
 
-    <v-btn v-if="hasMap && !hasLive" text to="/map/">
+    <v-btn v-if="hasMap && !hasLive" text :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }">
       <v-icon>mdi-map</v-icon>
       Map
     </v-btn>
 
-    <v-btn text to="/search/">
+    <v-btn text :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }" exact>
       <v-icon>mdi-magnify</v-icon>
       Search
     </v-btn>
@@ -44,6 +44,7 @@ export default {
     },
 
     ...mapGetters([
+      'conferenceEdition',
       'hasMap',
       'hasAll',
       'hasLive'

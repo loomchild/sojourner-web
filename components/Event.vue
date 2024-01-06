@@ -1,5 +1,5 @@
 <template>
-  <v-list-item v-if="event" ripple class="event pr-0" :to="`/event/${event.id}`">
+  <v-list-item v-if="event" ripple class="event pr-0" :to="{ name: 'event', params: { eventId: event.id } }">
     <v-list-item-content class="align-content-center">
       <v-list-item-subtitle>
         <span v-if="showDay">

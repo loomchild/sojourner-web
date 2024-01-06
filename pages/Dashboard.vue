@@ -2,7 +2,7 @@
   <v-container v-if="$vuetify.breakpoint.smAndDown" fluid class="content fill-height">
     <v-row class="flex-column fill-height ma-0">
       <v-col v-for="type in types" :key="type.type.name" class="grow pa-0 d-flex" :style="{backgroundColor: type.type.mobileColor}">
-        <router-link v-ripple="{class: 'white--text'}" :to="`/type/${type.type.name}`" class="grow d-flex">
+        <router-link v-ripple="{class: 'white--text'}" :to="{ name: 'type', params: { typeName: type.type.name } }" class="grow d-flex">
           <article class="ma-auto">
             <h2>{{ type.type.name }}</h2>
             <footer>{{ type.tracks.length > 1 ? type.tracks.length : type.events.length }} {{ type.type.statName }}</footer>
@@ -19,7 +19,7 @@
         </h1>
         <v-row>
           <v-col v-for="type in types" :key="type.type.name" class="shrink d-flex pa-1">
-            <router-link v-ripple="{class: 'white--text'}" :to="`/type/${type.type.name}`" class="d-block pa-2">
+            <router-link v-ripple="{class: 'white--text'}" :to="{ name: 'type', params: { typeName: type.type.name } }" class="d-block pa-2">
               <article>
                 <h2 class="nowrap">
                   {{ type.type.name }}

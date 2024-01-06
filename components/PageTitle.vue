@@ -6,12 +6,12 @@
     <h1>
       {{ pageTitle }}
       <div class="float-right">
-        <v-btn v-if="eventDetails" text icon replace class="ml-2 mr-0" :disabled="!previousEvent" :to="previousEvent ? `/event/${previousEvent.id}` : null">
+        <v-btn v-if="eventDetails" text icon replace class="ml-2 mr-0" :disabled="!previousEvent" :to="previousEvent ? { name: 'event', params: { eventId: previousEvent.id } } : null">
           <v-icon color="secondary" style="transform: translateY(2px) rotate(-90deg)">
             mdi-play
           </v-icon>
         </v-btn>
-        <v-btn v-if="eventDetails" text icon replace class="ml-0" :disabled="!nextEvent" :to="nextEvent ? `/event/${nextEvent.id}` : null">
+        <v-btn v-if="eventDetails" text icon replace class="ml-0" :disabled="!nextEvent" :to="nextEvent ? { name: 'event', params: { eventId: nextEvent.id } } : null">
           <v-icon color="secondary" style="transform: translateY(-2px) rotate(90deg)">
             mdi-play
           </v-icon>
