@@ -11,7 +11,9 @@ export default {
   getters: {
     conferenceEdition: (state, getters) => state.conferenceEdition,
 
-    latestConferenceEdition: (state) => config.conference.editions[0],
+    latestConferenceEdition: () => config.conference.editions[0],
+
+    allConferenceEditions: () => config.conference.editions,
 
     isLatestConferenceEdition: (state, getters) => state.conferenceEdition === getters.latestConferenceEdition,
 
@@ -33,7 +35,7 @@ export default {
 
   actions: {
     initConference ({ commit, getters, dispatch }, editionId) {
-      const edition = editionId ? config.conference.editions.find(edition => edition.id === editionId) : getters.latestEdition
+      const edition = editionId ? config.conference.editions.find(edition => edition.id === editionId) : getters.latestConferenceEdition
       commit('setConferenceEdition', edition)
 
       if (edition && !getters.isLatestConferenceEdition) {

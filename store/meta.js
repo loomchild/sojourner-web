@@ -34,9 +34,7 @@ export default {
 
     hasRooms: () => config.features.rooms,
 
-    hasLive: () => config.features.live,
-
-    previousEditions: () => []
+    hasLive: () => config.features.live
   },
 
   mutations: {

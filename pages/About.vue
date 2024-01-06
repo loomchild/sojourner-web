@@ -21,11 +21,11 @@
               <span>Code / Issues:</span>
               <span><a href="https://github.com/loomchild/sojourner-web" target="_blank">Github</a></span>
             </p>
-            <p v-if="previousEditionList" class="mb-2">
-              <span>Previous editions:</span>
-              <span v-for="(edition, index) in previousEditionList" :key="edition.label">
-                <a :href="edition.link" target="_blank">
-                  {{ edition.label }}<span v-if="index < (previousEditionList.length - 1)">, </span>
+            <p class="mb-2">
+              <span>All editions:</span>
+              <span v-for="(edition, index) in allConferenceEditions" :key="edition.id">
+                <a :href="`/${edition.id}`" @click.prevent="switchConferenceEdition(edition.id)">
+                  {{ edition.id }}<span v-if="index < (allConferenceEditions.length - 1)">, </span>
                 </a>
               </span>
             </p>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import PageTitle from '@/components/PageTitle'
 
 export default {
@@ -59,20 +59,17 @@ export default {
       return `https://github.com/loomchild/sojourner-web/commit/${this.commithash}`
     },
 
-    previousEditionList () {
-      if (!this.previousEditions) {
-        return null
-      }
-      const list = Object.entries(this.previousEditions).map(([key, value]) => ({ label: key.toString(), link: value }))
-      list.sort((l, r) => r.label.localeCompare(l.label))
-      return list
-    },
-
     ...mapGetters([
       'timestamp',
       'commithash',
       'version',
-      'previousEditions'
+      'allConferenceEditions'
+    ])
+  },
+
+  methods: {
+    ...mapActions([
+      'switchConferenceEdition'
     ])
   },
 
