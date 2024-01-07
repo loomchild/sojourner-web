@@ -16,6 +16,42 @@
       must-revalidate'''
 
 [[redirects]]
+  from = "https://fosdem-sojourner.netlify.app/*"
+  to = "https://fosdem.sojourner.rocks/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://2023.fosdem.sojourner.rocks/*"
+  to = "https://fosdem.sojourner.rocks/2023/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://2022.fosdem.sojourner.rocks/*"
+  to = "https://fosdem.sojourner.rocks/2022/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://2021.fosdem.sojourner.rocks/*"
+  to = "https://fosdem.sojourner.rocks/2021/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://2020.fosdem.sojourner.rocks/*"
+  to = "https://fosdem.sojourner.rocks/2020/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://2019.fosdem.sojourner.rocks/*"
+  to = "https://fosdem.sojourner.rocks/2019/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
