@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" color="secondary" />
+    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" autofocus color="secondary" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
         <event :key="`ev-${event.id}`" :event="event" show-day show-room :show-track="!hasRooms" show-persons></event>
