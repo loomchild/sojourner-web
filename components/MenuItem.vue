@@ -23,7 +23,7 @@ export default {
       default: ''
     },
     to: {
-      type: String | Object,
+      type: [String, Object],
       default: null
     },
     href: {
