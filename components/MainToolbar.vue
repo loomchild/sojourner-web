@@ -68,7 +68,9 @@
         <v-list>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="grey--text">{{ realUser.email }}</v-list-item-title>
+              <v-list-item-title class="grey--text">
+                {{ realUser.email }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click.stop="clickLogOut">

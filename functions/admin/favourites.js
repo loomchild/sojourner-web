@@ -11,7 +11,7 @@ module.exports = async function (conference) {
     const favourites = user[conference].favourites
 
     users[hashUid(doc.id)] = {
-      favourites,
+      favourites
     }
   }
 
