@@ -16,18 +16,6 @@
       must-revalidate'''
 
 [[redirects]]
-  from = "https://fosdem.sojourner.rocks/*"
-  to = "https://2023.fosdem.sojourner.rocks/:splat"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "https://2023-fosdem-sojourner.netlify.app/*"
-  to = "https://2023.fosdem.sojourner.rocks/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
