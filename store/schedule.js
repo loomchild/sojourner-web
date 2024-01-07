@@ -284,7 +284,7 @@ export default {
       }
 
       const lastModified = response.headers.get('Last-Modified')
-      if (state.lastModified === lastModified) {
+      if (state.lastModified && state.lastModified === lastModified) {
         return
       }
 
