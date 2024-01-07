@@ -89,7 +89,7 @@ export default {
       meta: [{
         vmid: 'description',
         name: 'description',
-        content: `${this.conferenceName} conference companion`
+        content: `Sojourner - ${this.conferenceName} conference companion.`
       }],
       changed: (newMetaInfo) => {
         const title = newMetaInfo.title
