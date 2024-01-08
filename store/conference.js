@@ -48,17 +48,13 @@ export default {
               title: 'GO TO CURRENT',
               handler: () => {
                 dispatch('switchConferenceEdition', getters.latestConferenceEdition.id)
+                router.push({ name: 'dashboard', params: { editionId: getters.latestConferenceEdition.id } })
               }
             }
           },
           { root: true }
         )
       }
-    },
-
-    switchConferenceEdition ({ _ }, editionId) {
-      router.push({ name: 'dashboard', params: { editionId } })
-      window.location.reload()
     }
   }
 }

@@ -24,13 +24,13 @@
             <p class="mb-2">
               <span>All editions:</span>
               <span v-for="(edition, index) in allConferenceEditions" :key="edition.id">
-                <a :href="`/${edition.id}`" @click.prevent="switchConferenceEdition(edition.id)">
+                <router-link :to="`/${edition.id}`">
                   {{ edition.id }}<span v-if="index < (allConferenceEditions.length - 1)">, </span>
-                </a>
+                </router-link>
               </span>
             </p>
             <v-row>
-              <v-col cols="12" sm="9" class="mt-6 about-text">
+              <v-col cols="12" sm="9" class="mt-2 md:mt-6 about-text">
                 <p class="story">
                   Sojourner is a conference companion. It is inspired by the original Sojourner mobile app for Nokia N900.
                 </p>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import PageTitle from '@/components/PageTitle'
 
 export default {
@@ -67,12 +67,6 @@ export default {
     ])
   },
 
-  methods: {
-    ...mapActions([
-      'switchConferenceEdition'
-    ])
-  },
-
   metaInfo () {
     return {
       title: 'About'
@@ -88,8 +82,8 @@ export default {
   font-weight: 500;
 }
 
-.story {
-  line-height: 1.5;
+p {
+  line-height: 1.25;
 }
 
 .about-text {

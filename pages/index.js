@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Meta from 'vue-meta'
 
 import config from '@/config'
+import store from '@/store'
 
 import Edition from './Edition'
 import Dashboard from './Dashboard'
@@ -119,6 +120,19 @@ const router = new Router({
     } else {
       return { x: 0, y: 0 }
     }
+  }
+})
+
+router.afterEach((to, from) => {
+  const pathEditionId = to.params.editionId
+
+  const storeEdition = store.getters.conferenceEdition
+  const storeEditionId = storeEdition && storeEdition.id
+
+  if (pathEditionId && storeEditionId && pathEditionId !== storeEditionId) {
+    console.log(pathEditionId)
+    console.log(storeEditionId)
+    window.location.reload()
   }
 })
 
