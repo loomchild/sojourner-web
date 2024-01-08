@@ -15,7 +15,10 @@
             </p>
             <p class="mb-2">
               <span>Version:</span>
-              <span><a :href="commiturl" target="_blank">{{ version }}</a></span>
+              <span>
+                <a :href="commiturl" target="_blank">{{ version }}</a>
+                (<a href="https://github.com/loomchild/sojourner-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a>)
+              </span>
             </p>
             <p class="mb-2">
               <span>Code / Issues:</span>
