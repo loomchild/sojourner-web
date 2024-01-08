@@ -12,7 +12,12 @@
       <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
       <menu-item title="About" icon="mdi-information" :to="{ name: 'about' }"></menu-item>
     </v-list>
-    <img class="menu-logo" src="~assets/menu-logo.png">
+    <div class="menu-logo">
+      <img src="~assets/menu-logo.png">
+      <div>
+        {{ conferenceName }}
+      </div>
+    </div>
   </v-navigation-drawer>
 </template>
 
@@ -30,6 +35,7 @@ export default {
 
   computed: mapGetters([
     'conferenceEdition',
+    'conferenceName',
     'drawer',
     'realUser',
     'hasMap',
@@ -76,7 +82,13 @@ export default {
 .menu-logo {
   position: absolute;
   left: 16px;
-  bottom: 16px;
+  bottom: 12px;
   opacity: 0.5;
+  line-height: 1;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 12px;
 }
 </style>

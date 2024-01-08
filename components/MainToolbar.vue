@@ -21,9 +21,9 @@
   </v-app-bar>
   <v-app-bar v-else app absolute flat color="transparent" height="82px">
     <v-row class="mx-auto" align="center">
-      <router-link v-ripple :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" class="d-block">
+      <router-link v-ripple :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" class="d-block text-decoration-none">
         <v-toolbar-title class="logo" prepend-icon="home">
-          &nbsp;
+          {{ conferenceName }}
         </v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
@@ -183,7 +183,9 @@ export default {
     background-image: url(~assets/menu-logo.png);
     background-position: left center;
     background-size: auto 26px;
-    width: 200px;
+    color: white;
+    font-weight: bold;
+    padding-left: 32px;
   }
 
   .layout-default .logo {
