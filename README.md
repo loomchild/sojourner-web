@@ -6,7 +6,7 @@
 
 # Requirements
 
-* Node 8.x
+* Node 20.x
 
 # Build
 
