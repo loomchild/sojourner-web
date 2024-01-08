@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import vuetify from '../../../vuetify'
+import vuetify from '../../vuetify'
 import VueRouter from 'vue-router'
 import { createLocalVue, shallow } from 'vue-test-utils'
 

@@ -1,7 +1,7 @@
 import sinon from 'sinon'
 
 import store from '@/store'
-import json from '@/test/unit/resources/fosdem-2019.json'
+import json from '@/test/resources/fosdem-2019.json'
 
 describe('data/getSchedule', function () {
   this.timeout(10000)

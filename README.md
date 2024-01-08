@@ -30,10 +30,6 @@ Launch unit / integration tests:
 
     npm run test
 
-Launch end-to-end tests (local server must be running):
-
-    npm run test-e2e
-
 # Deploy
 
 Static application can be generated into dist/ directory using:
