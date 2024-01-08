@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
+const config = require('../config')
 const { isAdmin } = require('./auth')
 const fetchFosdem = require('./fetch/fosdem')
 // const fetchSched = require('./fetch/sched')
@@ -16,8 +17,9 @@ admin.initializeApp({
 })
 
 exports.storeFosdem = functions.pubsub.schedule('every 60 minutes').onRun(async (context) => {
-  const fosdemData = await fetchFosdem(functions.config().fosdem.url)
-  await store(fosdemData, 'fosdem-2024.json')
+  const edition = config.conference.editions[0]
+  const fosdemData = await fetchFosdem(`https://fosdem.org/${edition.id}/schedule/xml`, { dates: edition.dates })
+  await store(fosdemData, `fosdem-${edition.id}.json`)
 })
 
 /*
@@ -27,6 +29,7 @@ exports.storeFlowcon = functions.pubsub.schedule('every 5 minutes').onRun(async 
 })
 */
 
+/*
 const popularity = require('./stats/popularity')
 exports.statPopularity2023 = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2023')
@@ -43,6 +46,7 @@ exports.statPopularity2020 = functions.pubsub.schedule('never').onRun(async (con
 exports.statPopularity2019 = functions.pubsub.schedule('never').onRun(async (context) => {
   await popularity('fosdem-2019')
 })
+*/
 
 /*
 const migrate = require('./migrate/001-migrateFavouritesToConference')

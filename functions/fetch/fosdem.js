@@ -3,6 +3,7 @@ const xmltojson = require('xmltojson')
 xmltojson.stringToXML = (string) => new DOMParser().parseFromString(string, 'text/xml')
 
 const axios = require('axios')
+const config = require('../../config')
 const Event = require('../logic/Event')
 const Type = require('../logic/Type')
 const Link = require('../logic/Link')
@@ -61,7 +62,7 @@ const getVideoType = (url) => {
   }
 }
 
-const createEvent = (event, type, date, room) => {
+const createEvent = (event, type, date, room, conferenceDates) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
   const allLinks = event.links && event.links[0] && event.links[0].link
@@ -81,7 +82,7 @@ const createEvent = (event, type, date, room) => {
     }
   }
 
-  const live = ['2023-02-04', '2023-02-05'].includes(new Date().toISOString().substring(0, 10))
+  const live = conferenceDates.includes(new Date().toISOString().substring(0, 10))
   if (live && !room.startsWith('B.') && !room.startsWith('I.') && !room.startsWith('S.')) {
     const normalizedRoom = room.toLowerCase().replace(/\./g, '')
     const type = 'application/vnd.apple.mpegurl'
@@ -126,7 +127,7 @@ const createEvent = (event, type, date, room) => {
   })
 }
 
-module.exports = async function (scheduleUrl) {
+module.exports = async function (scheduleUrl, { dates }) {
   const response = await axios.get(scheduleUrl)
 
   const json = xmltojson.parseString(response.data, {
@@ -177,7 +178,7 @@ module.exports = async function (scheduleUrl) {
         const room = getRoomName(r)
         for (const e of r.event || []) {
           const type = getType(e, typeSet)
-          const event = createEvent(e, type, date, room)
+          const event = createEvent(e, type, date, room, dates)
           if (event) {
             events.push(event)
           }

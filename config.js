@@ -5,27 +5,38 @@ module.exports = {
     editions: [
       {
         id: '2024',
-        name: 'FOSDEM 2024'
+        name: 'FOSDEM 2024',
+        dates: ['2024-02-03', '2024-02-04']
       },
       {
         id: '2023',
-        name: 'FOSDEM 2023'
+        name: 'FOSDEM 2023',
+        dates: ['2023-02-04', '2023-02-05']
       },
       {
         id: '2022',
-        name: 'FOSDEM 2022'
+        name: 'FOSDEM 2022',
+        dates: ['2022-02-05', '2022-02-06']
       },
       {
         id: '2021',
-        name: 'FOSDEM 2021'
+        name: 'FOSDEM 2021',
+        dates: ['2021-02-06', '2021-02-07']
       },
       {
         id: '2020',
-        name: 'FOSDEM 2020'
+        name: 'FOSDEM 2020',
+        dates: ['2020-02-01', '2020-02-02']
       },
       {
         id: '2019',
-        name: 'FOSDEM 2019'
+        name: 'FOSDEM 2019',
+        dates: ['2019-02-02', '2019-02-03']
+      },
+      {
+        id: '2018',
+        name: 'FOSDEM 2018',
+        dates: ['2019-02-03', '2019-02-04']
       }
     ]
   },
