@@ -9,7 +9,7 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "10"
+    "node": "20"
   },
   "dependencies": {
     "axios": "^0.21.4",

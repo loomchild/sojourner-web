@@ -1,5 +1,6 @@
 {
   "projects": {
-    "sojourner-web": "sojourer-web"
+    "sojourner-web": "sojourer-web",
+    "default": "sojourer-web"
   }
 }
