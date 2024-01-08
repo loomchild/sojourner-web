@@ -4,7 +4,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-const config = require('../config')
 const { isAdmin } = require('./auth')
 const fetchFosdem = require('./fetch/fosdem')
 // const fetchSched = require('./fetch/sched')
@@ -17,9 +16,9 @@ admin.initializeApp({
 })
 
 exports.storeFosdem = functions.pubsub.schedule('every 60 minutes').onRun(async (context) => {
-  const edition = config.conference.editions[0]
-  const fosdemData = await fetchFosdem(`https://fosdem.org/${edition.id}/schedule/xml`, { dates: edition.dates })
-  await store(fosdemData, `fosdem-${edition.id}.json`)
+  const fosdemConfig = functions.config().fosdem
+  const fosdemData = await fetchFosdem(`https://fosdem.org/${fosdemConfig.year}/schedule/xml`, { dates: fosdemConfig.dates.split(',') })
+  await store(fosdemData, `fosdem-${fosdemConfig.year}.json`)
 })
 
 /*

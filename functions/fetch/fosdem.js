@@ -3,7 +3,6 @@ const xmltojson = require('xmltojson')
 xmltojson.stringToXML = (string) => new DOMParser().parseFromString(string, 'text/xml')
 
 const axios = require('axios')
-const config = require('../../config')
 const Event = require('../logic/Event')
 const Type = require('../logic/Type')
 const Link = require('../logic/Link')
