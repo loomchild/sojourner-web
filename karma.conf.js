@@ -1,8 +1,16 @@
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 const webpackConfig = require('./webpack.config')
 
 module.exports = function (config) {
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadlessNoSandbox'],
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     frameworks: ['mocha', 'chai-string', 'chai-datetime', 'sinon-chai'],
     reporters: ['spec'],
     files: [
@@ -14,7 +22,6 @@ module.exports = function (config) {
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
-    },
-    authWatch: false
+    }
   })
 }
