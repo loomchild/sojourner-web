@@ -4,32 +4,31 @@ function isStandalone () {
   return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches
 }
 
-
-function isLocalStorageAvailable() {
+function isLocalStorageAvailable () {
   try {
     window.localStorage.setItem('__storage_test__', 0)
     window.localStorage.removeItem('__storage_test__')
     return true
-  } catch(e) {
-    return false;
+  } catch (e) {
+    return false
   }
 }
 
-function getDate() {
+function getDate () {
   return new Date().toISOString().substring(0, 10)
 }
 
-function canShowA2HSTip() {
+function canShowA2HSTip () {
   if (!isLocalStorageAvailable()) {
     return
   }
 
   const value = window.localStorage.getItem('a2hsTip')
 
-  return value !== getDate();
+  return value !== getDate()
 }
 
-function shownA2HSTip() {
+function shownA2HSTip () {
   window.localStorage.setItem('a2hsTip', getDate())
 }
 
@@ -116,7 +115,7 @@ export default {
           let deferredPrompt = e
 
           setTimeout(() => {
-            shownA2HSTip();
+            shownA2HSTip()
 
             dispatch('showNotification', {
               message: 'Add this application to your home screen.',
@@ -138,11 +137,11 @@ export default {
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
         setTimeout(() => {
-          shownA2HSTip();
+          shownA2HSTip()
 
           dispatch('showNotification', {
             message: 'If you enjoy this application, please consider adding it to your home screen.',
-            timeout: -1,
+            timeout: -1
           })
         }, 90 * 1000)
       }
