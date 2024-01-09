@@ -27,7 +27,7 @@ const manifest = () => JSON.stringify({
     src: `/assets/sojourner-icon-${size}.png`,
     sizes: `${size}x${size}`,
     type: 'image/png',
-    purpose: 'maskable'
+    purpose: 'maskable any'
   })),
   start_url: '/',
   display: 'standalone',
