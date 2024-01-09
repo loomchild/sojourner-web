@@ -44,6 +44,7 @@ export default {
   padding-right: 30px;
   opacity: 1;
   letter-spacing: inherit;
+  overflow: hidden;
 }
 
 .theme--dark.v-tabs.days .v-tab:not(.v-tab-active):not(.v-tab-disabled) {
