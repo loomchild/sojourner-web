@@ -20,7 +20,7 @@ dotenv.config()
 
 const ICON_SIZES = [56, 112, 192, 224, 512]
 const manifest = () => JSON.stringify({
-  short_name: `Sojourner ${config.conference.name}`,
+  short_name: 'Sojourner',
   name: `Sojourner - ${config.conference.name} Conference Companion`,
   icons: ICON_SIZES.map(size => ({
     src: `/assets/sojourner-icon-${size}.png`,
