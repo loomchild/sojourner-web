@@ -19,14 +19,17 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const ICON_SIZES = [56, 112, 192, 224, 512]
+const icons = ICON_SIZES.map(size => ({
+  src: `/assets/sojourner-icon-${size}.png`,
+  sizes: `${size}x${size}`,
+  type: 'image/png'
+}))
+icons[2].purpose = 'maskable'
+
 const manifest = () => JSON.stringify({
   short_name: 'Sojourner',
   name: `Sojourner - ${config.conference.name} Conference Companion`,
-  icons: ICON_SIZES.map(size => ({
-    src: `/assets/sojourner-icon-${size}.png`,
-    sizes: `${size}x${size}`,
-    type: 'image/png'
-  })),
+  icons,
   start_url: '/',
   display: 'standalone',
   background_color: config.colors.primary.base,
