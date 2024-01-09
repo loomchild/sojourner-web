@@ -89,7 +89,7 @@ export default {
 
     async register ({ commit, rootGetters, dispatch }, { email, password }) {
       const response = await createUserWithEmailAndPassword(getAuth(), email, password)
-      await getUserRefHelper(response.user).set({})
+      await setDoc(getUserRefHelper(response.user), {})
     },
 
     logIn ({ commit, rootGetters, dispatch }, { email, password }) {
