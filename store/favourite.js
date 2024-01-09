@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { updateDoc, arrayUnion, arrayRemove, serverTimestamp } from 'firebase/firestore'
 
 export default {
   state: {
@@ -9,7 +9,9 @@ export default {
   getters: {
     favourites: (state) => state.favourites,
 
-    favouritesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favourites`
+    favouritesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favourites`,
+
+    favouriteUpdatesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favouriteUpdates`
   },
 
   mutations: {
@@ -30,6 +32,7 @@ export default {
     async setFavourite ({ dispatch, getters }, eventId) {
       const user = await dispatch('getUserRef')
       await updateDoc(user, { [getters.favouritesPath]: arrayUnion(eventId) })
+      dispatch('touchFavourites', eventId)
     },
 
     async setExistingFavourites ({ state, dispatch, getters }) {
@@ -37,12 +40,24 @@ export default {
       if (existingFavourites.length > 0) {
         const user = await dispatch('getUserRef')
         await updateDoc(user, { [getters.favouritesPath]: arrayUnion(...existingFavourites) })
+        dispatch('touchFavourites', existingFavourites)
       }
     },
 
     async unsetFavourite ({ dispatch, getters }, eventId) {
       const user = await dispatch('getUserRef')
       await updateDoc(user, { [getters.favouritesPath]: arrayRemove(eventId) })
+      dispatch('touchFavourites', eventId)
+    },
+
+    async touchFavourites ({ dispatch, getters }, eventIds) {
+      const update = {}
+      for (const eventId of Array.isArray(eventIds) ? eventIds : [eventIds]) {
+        update[`${getters.favouriteUpdatesPath}.${eventId}`] = serverTimestamp()
+      }
+
+      const user = await dispatch('getUserRef')
+      await updateDoc(user, update)
     },
 
     toggleFavourite ({ state, dispatch }, eventId) {
