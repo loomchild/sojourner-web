@@ -1,5 +1,5 @@
 <template>
-  <v-list-item class="track" ripple :to="{ name: 'track', params: { trackName: track.track.name } }">
+  <v-list-item class="track" :ripple="false" :to="{ name: 'track', params: { trackName: track.track.name } }">
     <v-list-item-content class="align-content-center">
       <v-list-item-title>{{ track.track.name }}</v-list-item-title>
       <v-list-item-subtitle>
