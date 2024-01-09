@@ -24,10 +24,10 @@ const manifest = () => JSON.stringify({
   short_name: 'Sojourner',
   name: `Sojourner - ${config.conference.name} Conference Companion`,
   icons: ICON_SIZES.map(size => ({
-    src: `/assets/sojourner-icon-${size}.png`,
+    src: `/assets/sojourner-icon-app-${size}.png`,
     sizes: `${size}x${size}`,
     type: 'image/png',
-    purpose: size === 56 ? 'any' : 'maskable any'
+    purpose: 'maskable any'
   })),
   start_url: '/',
   display: 'standalone',
