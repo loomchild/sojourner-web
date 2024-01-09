@@ -4,6 +4,35 @@ function isStandalone () {
   return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches
 }
 
+
+function isLocalStorageAvailable() {
+  try {
+    window.localStorage.setItem('__storage_test__', 0)
+    window.localStorage.removeItem('__storage_test__')
+    return true
+  } catch(e) {
+    return false;
+  }
+}
+
+function getDate() {
+  return new Date().toISOString().substring(0, 10)
+}
+
+function canShowA2HSTip() {
+  if (!isLocalStorageAvailable()) {
+    return
+  }
+
+  const value = window.localStorage.getItem('a2hsTip')
+
+  return value !== getDate();
+}
+
+function shownA2HSTip() {
+  window.localStorage.setItem('a2hsTip', getDate())
+}
+
 export default {
   state: {
     title: null,
@@ -77,19 +106,18 @@ export default {
     },
 
     initA2HSTip ({ commit, state, dispatch }) {
+      if (!canShowA2HSTip()) {
+        return
+      }
+
       if (window.onbeforeinstallprompt !== undefined) {
         const handler = (e) => {
           e.preventDefault()
           let deferredPrompt = e
-          if (window.localStorage) {
-            const day = '' + new Date().getDate()
-            if (window.localStorage.getItem('a2hsTip') && window.localStorage.getItem('a2hsTip') === day) {
-              return
-            } else {
-              window.localStorage.setItem('a2hsTip', day)
-            }
-          }
+
           setTimeout(() => {
+            shownA2HSTip();
+
             dispatch('showNotification', {
               message: 'Add this application to your home screen.',
               timeout: -1,
@@ -105,21 +133,18 @@ export default {
                 }
               }
             })
-          }, 120 * 1000)
+          }, 60 * 1000)
         }
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
-        if (window.localStorage) {
-          const day = '' + new Date().getDate()
-          if (window.localStorage.getItem('a2hsTip') && window.localStorage.getItem('a2hsTip') === day) {
-            return
-          } else {
-            window.localStorage.setItem('a2hsTip', day)
-          }
-        }
         setTimeout(() => {
-          dispatch('showMessage', 'If you enjoy this application, please consider adding it to your home screen.')
-        }, 180 * 1000)
+          shownA2HSTip();
+
+          dispatch('showNotification', {
+            message: 'If you enjoy this application, please consider adding it to your home screen.',
+            timeout: -1,
+          })
+        }, 90 * 1000)
       }
     },
 
