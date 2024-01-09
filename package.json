@@ -1,7 +1,7 @@
 {
   "name": "sojourner",
   "description": "Conference companion, offline-first progressive web app.",
-  "version": "1.0.1",
+  "version": "2024.1",
   "author": "Jarek Lipski <loomchild@loomchild.net>",
   "private": true,
   "scripts": {
