@@ -114,25 +114,23 @@ export default {
           e.preventDefault()
           let deferredPrompt = e
 
-          setTimeout(() => {
-            shownA2HSTip()
+          shownA2HSTip()
 
-            dispatch('showNotification', {
-              message: 'Add this application to your home screen.',
-              timeout: -1,
-              button: {
-                title: 'ADD',
-                handler: () => {
-                  window.removeEventListener('beforeinstallprompt', handler)
-                  deferredPrompt.prompt()
-                  deferredPrompt.userChoice.then(choice => {
-                    console.log(`User ${choice.outcome} the A2HS prompt`)
-                  })
-                  deferredPrompt = null
-                }
+          dispatch('showNotification', {
+            message: 'Add this application to your home screen.',
+            timeout: -1,
+            button: {
+              title: 'ADD',
+              handler: () => {
+                window.removeEventListener('beforeinstallprompt', handler)
+                deferredPrompt.prompt()
+                deferredPrompt.userChoice.then(choice => {
+                  console.log(`User ${choice.outcome} the A2HS prompt`)
+                })
+                deferredPrompt = null
               }
-            })
-          }, 60 * 1000)
+            }
+          })
         }
         window.addEventListener('beforeinstallprompt', handler)
       } else if (navigator.userAgent.match(/Mobile|Tablet/) && !isStandalone()) {
@@ -143,7 +141,7 @@ export default {
             message: 'If you enjoy this application, please consider adding it to your home screen.',
             timeout: -1
           })
-        }, 90 * 1000)
+        }, 60 * 1000)
       }
     },
 
