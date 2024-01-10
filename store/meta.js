@@ -118,10 +118,10 @@ export default {
             shownA2HSTip()
 
             dispatch('showNotification', {
-              message: 'Add this application to your home screen.',
+              message: 'If you enjoy using this application, please consider installing it.',
               timeout: -1,
               button: {
-                title: 'ADD',
+                title: 'INSTALL',
                 handler: () => {
                   window.removeEventListener('beforeinstallprompt', handler)
                   deferredPrompt.prompt()
@@ -140,7 +140,7 @@ export default {
           shownA2HSTip()
 
           dispatch('showNotification', {
-            message: 'If you enjoy this application, please consider adding it to your home screen.',
+            message: 'If you enjoy using this application, please consider installing it.',
             timeout: -1
           })
         }, 90 * 1000)
