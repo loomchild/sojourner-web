@@ -8,7 +8,19 @@ module.exports = async function (conference) {
 
   for (const doc of snapshot.docs) {
     const user = doc.data()
-    const favourites = user[conference].favourites
+
+    const favourites = {}
+
+    for (const favourite of user[conference].favourites) {
+      favourites[favourite] = {}
+
+      if (user[conference].favouriteUpdates) {
+        const updatedAt = user[conference].favouriteUpdates[favourite]
+        if (updatedAt) {
+          favourites[favourite].updatedAt = updatedAt.toDate().toISOString()
+        }
+      }
+    }
 
     users[hashUid(doc.id)] = {
       favourites
