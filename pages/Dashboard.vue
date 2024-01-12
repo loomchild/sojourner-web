@@ -11,7 +11,7 @@
       </v-col>
     </v-row>
   </v-container>
-  <v-container v-else fluid class="content fill-height align-start">
+  <v-container v-else fluid class="content fill-height align-start align-content-end">
     <v-row>
       <v-col>
         <h1 class="page-title mb-2">
@@ -86,7 +86,7 @@ export default {
 
 @media only screen and (min-width:960px) {
   .content > .row {
-    margin-top: 50%;
+    margin-bottom: 21%;
   }
 
   .row .col {
