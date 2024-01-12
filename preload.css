@@ -3,8 +3,11 @@ body {
   color: rgba(0, 0, 0, 0.87);
 }
 
-html, body {
-  overscroll-behavior-y: contain;
+html {
+  overscroll-behavior: none;
+}
+body {
+  overflow-y: scroll;
 }
 
 .middle {
