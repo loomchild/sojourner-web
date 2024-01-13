@@ -11,6 +11,8 @@ export default {
 
     userUnsubscribe: null,
 
+    userInitialized: false,
+
     loginDialog: false,
 
     persistent: false
@@ -21,6 +23,8 @@ export default {
 
     realUser: state => (state.user && !state.user.isAnonymous) ? state.user : null,
 
+    userInitialized: state => state.userInitialized,
+
     loginDialog: state => state.loginDialog,
 
     persistent: state => state.persistent
@@ -29,6 +33,10 @@ export default {
   mutations: {
     setUser (state, user) {
       state.user = user
+    },
+
+    setUserInitialized (state, userInitialized) {
+      state.userInitialized = userInitialized
     },
 
     setUserUnsubscribe (state, userUnsubscribe) {
@@ -65,24 +73,37 @@ export default {
           console.log(`Initializing user ${user.uid}`)
 
           await dispatch('setExistingFavourites')
+          await dispatch('setExistingFavouriteTracks')
 
           const userUnsubscribe = onSnapshot(getUserRefHelper(user), user => {
             if (!user || !user.data() || !user.data()[rootGetters.conferenceId]) {
               return
             }
             const conference = user.data()[rootGetters.conferenceId]
-            if (!conference.favourites) {
-              return
+
+            if (conference.favourites) {
+              const favourites = {}
+              conference.favourites.forEach(favourite => {
+                favourites[favourite] = true
+              })
+              commit('setFavourites', favourites)
             }
-            const favourites = {}
-            conference.favourites.forEach(favourite => {
-              favourites[favourite] = true
-            })
-            commit('setFavourites', favourites)
+
+            if (conference.favouriteTracks) {
+              const favouriteTracks = {}
+              conference.favouriteTracks.forEach(favouriteTrack => {
+                favouriteTracks[favouriteTrack] = true
+              })
+              commit('setFavouriteTracks', favouriteTracks)
+            }
+
+            commit('setUserInitialized', true)
           })
           commit('setUserUnsubscribe', userUnsubscribe)
         } else {
-          commit('setFavourites', [])
+          commit('setFavourites', {})
+          commit('setFavouriteTracks', {})
+          commit('setUserInitialized', false)
         }
       })
     },

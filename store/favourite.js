@@ -3,15 +3,21 @@ import { updateDoc, arrayUnion, arrayRemove, serverTimestamp } from 'firebase/fi
 
 export default {
   state: {
-    favourites: {}
+    favourites: {},
+
+    favouriteTracks: {}
   },
 
   getters: {
     favourites: (state) => state.favourites,
 
+    favouriteTracks: (state) => state.favouriteTracks,
+
     favouritesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favourites`,
 
-    favouriteUpdatesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favouriteUpdates`
+    favouriteUpdatesPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favouriteUpdates`,
+
+    favouriteTracksPath: (state, getters, rootState, rootGetters) => `${rootGetters.conferenceId}.favouriteTracks`
   },
 
   mutations: {
@@ -25,6 +31,18 @@ export default {
 
     unsetFavourite (state, eventId) {
       Vue.delete(state.favourites, eventId)
+    },
+
+    setFavouriteTracks (state, favourites) {
+      state.favouriteTracks = favourites
+    },
+
+    setFavouriteTrack (state, trackName) {
+      Vue.set(state.favouriteTracks, trackName, true)
+    },
+
+    unsetFavouriteTrack (state, trackName) {
+      Vue.delete(state.favouriteTracks, trackName)
     }
   },
 
@@ -65,6 +83,32 @@ export default {
         return dispatch('unsetFavourite', eventId)
       } else {
         return dispatch('setFavourite', eventId)
+      }
+    },
+
+    async setFavouriteTrack ({ dispatch, getters }, trackName) {
+      const user = await dispatch('getUserRef')
+      await updateDoc(user, { [getters.favouriteTracksPath]: arrayUnion(trackName) })
+    },
+
+    async setExistingFavouriteTracks ({ state, dispatch, getters }) {
+      const existingFavouriteTracks = Object.keys(state.favouriteTracks).map(trackName => trackName)
+      if (existingFavouriteTracks.length > 0) {
+        const user = await dispatch('getUserRef')
+        await updateDoc(user, { [getters.favouriteTracksPath]: arrayUnion(...existingFavouriteTracks) })
+      }
+    },
+
+    async unsetFavouriteTrack ({ dispatch, getters }, trackName) {
+      const user = await dispatch('getUserRef')
+      await updateDoc(user, { [getters.favouriteTracksPath]: arrayRemove(trackName) })
+    },
+
+    toggleFavouriteTrack ({ state, dispatch }, trackName) {
+      if (state.favouriteTracks[trackName]) {
+        return dispatch('unsetFavouriteTrack', trackName)
+      } else {
+        return dispatch('setFavouriteTrack', trackName)
       }
     }
   }

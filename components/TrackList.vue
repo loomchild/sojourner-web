@@ -1,26 +1,12 @@
 <template>
   <div>
-    <day-tabs>
-      <template v-for="dayTracks in tracks">
+    <day-tabs @change="resetTracks">
+      <template v-for="dayTracks in currentTracks">
         <v-tab :key="dayTracks.day.name" ripple :disabled="dayTracks.tracks.length === 0">
           {{ dayTracks.day.name }}
         </v-tab>
         <v-tab-item :key="dayTracks.day.name">
-          <v-list v-if="dayTracks.tracks.length > 0" three-line class="pa-0">
-            <template v-for="(track, index) in dayTracks.tracks">
-              <conference-track :key="`${dayTracks.day.name}-${track.track.name}`" :track="track"></conference-track>
-              <v-divider v-if="index + 1 < dayTracks.tracks.length" :key="`div-${dayTracks.day.name}-${track.track.name}`"></v-divider>
-            </template>
-          </v-list>
-          <v-list v-else>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-subtitle>
-                  There are no tracks on this list.
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
+          <track-list-plain :tracks="dayTracks.tracks" />
         </v-tab-item>
       </template>
     </day-tabs>
@@ -30,15 +16,15 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import ConferenceTrack from '@/components/ConferenceTrack'
 import DayTabs from '@/components/DayTabs'
+import TrackListPlain from '@/components/TrackListPlain'
 
 export default {
-  name: 'Tracks',
+  name: 'TrackList',
 
   components: {
     DayTabs,
-    ConferenceTrack
+    TrackListPlain
   },
 
   props: {
@@ -48,10 +34,27 @@ export default {
     }
   },
 
+  data: function () {
+    return {
+      currentTracks: this.tracks
+    }
+  },
+
   computed: {
     ...mapGetters([
-      'tab'
+      'tab',
+      'userInitialized'
     ])
+  },
+
+  watch: {
+    tab () {
+      this.resetTracks()
+    },
+
+    userInitialized () {
+      this.resetTracks()
+    }
   },
 
   created () {
@@ -70,6 +73,10 @@ export default {
       }
     },
 
+    resetTracks () {
+      this.currentTracks = this.tracks
+    },
+
     ...mapActions([
       'setTab'
     ])
@@ -77,9 +84,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-.v-list {
-  border: 1px solid #0000001e !important;
-}
-</style>

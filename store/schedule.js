@@ -89,6 +89,8 @@ const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] |
 
 const eventLiveSort = (favourites) => firstBy(event => !favourites[event.id]).thenBy(eventNaturalSort)
 
+const trackSort = (favouriteTracks) => firstBy(track => !favouriteTracks[track.name]).thenBy('name')
+
 const roomSort = firstBy(room => room.name.includes('online') ? 1 : -1).thenBy('name')
 
 export default {
@@ -150,13 +152,14 @@ export default {
         .sort(eventNaturalSort)
     },
 
-    typeTrackStats: (state, getters) => typeName => {
+    typeTrackStats: (state, getters, rootState, rootGetters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
       const eventsByDay = groupBy(Object.values(typeEvents), event => event.day.index)
+      const favouriteTracks = rootGetters.favouriteTracks
 
       return getters.allDays.map(day => {
         const dayEvents = eventsByDay[day.index] || []
-        const dayTracks = uniqBy(dayEvents.map(event => event.track), track => track.name).sort(firstBy('name'))
+        const dayTracks = uniqBy(dayEvents.map(event => event.track), track => track.name).sort(trackSort(favouriteTracks))
         const tracks = dayTracks.map(track => {
           const events = dayEvents.filter(event => event.track.name === track.name).sort(eventNaturalSort)
 

@@ -1,5 +1,5 @@
 <template>
-  <v-list-item class="track" :ripple="false" :to="{ name: 'track', params: { trackName: track.track.name } }">
+  <v-list-item class="track pr-0" :ripple="false" :to="{ name: 'track', params: { trackName: track.track.name } }">
     <v-list-item-content class="align-content-center">
       <v-list-item-title>{{ track.track.name }}</v-list-item-title>
       <v-list-item-subtitle>
@@ -12,18 +12,25 @@
         </span>
       </v-list-item-subtitle>
     </v-list-item-content>
+    <v-list-item-action class="align-self-stretch ma-0 pa-4 d-flex align-center noclickable" @click.prevent.stop>
+      <v-list-item-action-text>
+        <favourite-track :track="track.track"></favourite-track>
+      </v-list-item-action-text>
+    </v-list-item-action>
   </v-list-item>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
+import FavouriteTrack from './FavouriteTrack'
 import RoomState from './RoomState'
 
 export default {
   name: 'ConferenceTrack',
 
   components: {
+    FavouriteTrack,
     RoomState
   },
 
