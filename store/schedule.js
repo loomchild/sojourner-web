@@ -288,7 +288,6 @@ export default {
         return
       }
 
-      commit('setScheduleInitialized', false)
       commit('setLastModified', lastModified)
 
       const conference = await response.json()
