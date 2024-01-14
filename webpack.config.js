@@ -32,6 +32,7 @@ const manifest = () => JSON.stringify({
     purpose: 'maskable any'
   })),
   start_url: '/',
+  scope: `https://${config.conference.id}.sojourner.rocks',
   display: 'standalone',
   orientation: 'portrait',
   background_color: config.colors.primary.base,
