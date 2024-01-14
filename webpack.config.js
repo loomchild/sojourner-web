@@ -24,7 +24,6 @@ const manifest = () => JSON.stringify({
   id: 'sojourner',
   short_name: 'Sojourner',
   name: `Sojourner - ${config.conference.name} Conference Companion`,
-  description: `Sojourner is a ${config.conference.name} conference companion progressive web app (PWA).`,
   icons: ICON_SIZES.map(size => ({
     src: `/assets/sojourner-icon-app-${size}.png`,
     sizes: `${size}x${size}`,
@@ -32,14 +31,41 @@ const manifest = () => JSON.stringify({
     purpose: 'maskable any'
   })),
   start_url: '/',
-  scope: `https://${config.conference.id}.sojourner.rocks',
+  scope: `https://${config.conference.id}.sojourner.rocks`,
   display: 'standalone',
   orientation: 'portrait',
   background_color: config.colors.primary.base,
   theme_color: config.colors.primary.base,
   categories: ['utilities', 'education', 'social'],
   lang: 'en',
-  dir: 'ltr'
+  dir: 'ltr',
+  description: `Sojourner is a ${config.conference.name} conference companion progressive web app (PWA).`,
+  screenshots: [
+    {
+      src: '/screenshots/dashboard.png',
+      sizes: '563x1218',
+      type: 'image/png',
+      label: 'Dashboard'
+    },
+    {
+      src: '/screenshots/devrooms.png',
+      sizes: '563x1218',
+      type: 'image/png',
+      label: 'Tracks'
+    },
+    {
+      src: '/screenshots/events.png',
+      sizes: '563x1218',
+      type: 'image/png',
+      label: 'Track events'
+    },
+    {
+      src: '/screenshots/search.png',
+      sizes: '563x1218',
+      type: 'image/png',
+      label: 'Search'
+    }
+  ]
 }, null, 2)
 
 module.exports = {
