@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "rocks.sojourner.fosdem.twa",
-        "sha256_cert_fingerprints": ["F9:D4:8D:27:8B:2E:D0:8A:A1:79:42:8B:8C:97:78:21:77:7F:01:00:75:F8:A0:6E:E1:F8:A7:DC:6C:AD:E8:D4"]
+        "sha256_cert_fingerprints": ["F9:D4:8D:27:8B:2E:D0:8A:A1:79:42:8B:8C:97:78:21:77:7F:01:00:75:F8:A0:6E:E1:F8:A7:DC:6C:AD:E8:D4", "1F:A2:B5:B0:F9:4B:8E:63:F8:4A:C3:AB:7D:6B:63:82:93:78:72:3A:A7:BC:BB:DE:46:5A:75:9A:81:D9:1C:BD"]
       }
     }]
