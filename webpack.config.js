@@ -21,8 +21,10 @@ dotenv.config()
 const ICON_SIZES = [56, 112, 192, 224, 512]
 
 const manifest = () => JSON.stringify({
+  id: 'sojourner',
   short_name: 'Sojourner',
   name: `Sojourner - ${config.conference.name} Conference Companion`,
+  description: `Sojourner is a ${config.conference.name} conference companion progressive web app (PWA).`,
   icons: ICON_SIZES.map(size => ({
     src: `/assets/sojourner-icon-app-${size}.png`,
     sizes: `${size}x${size}`,
@@ -31,8 +33,12 @@ const manifest = () => JSON.stringify({
   })),
   start_url: '/',
   display: 'standalone',
+  orientation: 'portrait',
   background_color: config.colors.primary.base,
-  theme_color: config.colors.primary.base
+  theme_color: config.colors.primary.base,
+  categories: ['utilities', 'education', 'social'],
+  lang: 'en',
+  dir: 'ltr'
 }, null, 2)
 
 module.exports = {
