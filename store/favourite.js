@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import { updateDoc, arrayUnion, arrayRemove, serverTimestamp } from 'firebase/firestore'
 
+import { router } from '@/pages'
+
 export default {
   state: {
     favourites: {},
@@ -110,6 +112,14 @@ export default {
       } else {
         return dispatch('setFavouriteTrack', trackName)
       }
+    },
+
+    async shareFavourites ({ state, dispatch }) {
+      const eventIds = Object.keys(state.favourites).join(',')
+      const route = router.resolve({ name: 'shared-events', query: { eventIds } })
+      const url = new URL(route.href, window.location.origin).href
+      await navigator.clipboard.writeText(url)
+      dispatch('showMessage', 'Copied share link to the clipboard')
     }
   }
 }

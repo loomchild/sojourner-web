@@ -17,6 +17,7 @@ import FavouriteEvents from './FavouriteEvents'
 import TypeTracksOrEvents from './TypeTracksOrEvents'
 import AllEvents from './AllEvents'
 import LiveEvents from './LiveEvents'
+import SharedEvents from './SharedEvents'
 
 window.history.scrollRestoration = 'manual'
 
@@ -60,6 +61,13 @@ const router = new Router({
           path: 'favourites',
           name: 'favourite-events',
           component: FavouriteEvents
+        },
+
+        {
+          path: 'shared',
+          name: 'shared-events',
+          component: SharedEvents,
+          props: route => ({ eventIds: route.query.eventIds ? route.query.eventIds.split(',') : [] })
         },
 
         {

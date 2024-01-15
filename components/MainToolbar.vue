@@ -18,6 +18,11 @@
         mdi-arrow-down
       </v-icon>
     </v-btn>
+    <v-btn v-if="favourites" text icon dark replace class="updown ml-0" :ripple="false" @click="shareFavourites">
+      <v-icon>
+        mdi-share-variant
+      </v-icon>
+    </v-btn>
   </v-app-bar>
   <v-app-bar v-else app absolute flat color="transparent" height="82px">
     <v-row class="mx-auto" align="center">
@@ -112,6 +117,10 @@ export default {
       return this.previousTrackEvent(this.eventDetails)
     },
 
+    favourites () {
+      return this.$route.name === 'favourite-events'
+    },
+
     ...mapGetters([
       'pageTitle',
       'hasMap',
@@ -143,6 +152,7 @@ export default {
       'toggleDrawer',
       'showLoginDialog',
       'logOut',
+      'shareFavourites',
       'showMessage'
     ])
   }

@@ -16,13 +16,18 @@
             mdi-play
           </v-icon>
         </v-btn>
+        <v-btn v-if="favourites" text icon replace class="ml-2 mr-0" @click="shareFavourites">
+          <v-icon color="secondary">
+            mdi-share-variant
+          </v-icon>
+        </v-btn>
       </div>
     </h1>
   </header>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'PageTitle',
@@ -64,6 +69,10 @@ export default {
       return this.previousTrackEvent(this.eventDetails)
     },
 
+    favourites () {
+      return this.$route.name === 'favourite-events'
+    },
+
     ...mapGetters([
       'pageTitle',
       'events',
@@ -75,7 +84,9 @@ export default {
   methods: {
     goBack () {
       this.$router.go(-1)
-    }
+    },
+
+    ...mapActions(['shareFavourites'])
   }
 }
 </script>
