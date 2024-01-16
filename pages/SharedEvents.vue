@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <event-list-plain :events="events" show-room :show-track="!hasRooms" show-persons></event-list-plain>
+    <event-list-plain :events="events" show-day show-room :show-track="!hasRooms" show-persons></event-list-plain>
   </v-container>
 </template>
 
