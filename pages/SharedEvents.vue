@@ -1,21 +1,21 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <event-list-plain :events="events" show-day show-track show-persons></event-list-plain>
+    <event-list :events="events" show-track show-persons></event-list>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
-import EventListPlain from '@/components/EventListPlain'
+import EventList from '@/components/EventList'
 import PageTitle from '@/components/PageTitle'
 
 export default {
   name: 'SharedEvents',
 
   components: {
-    EventListPlain,
+    EventList,
     PageTitle
   },
 
