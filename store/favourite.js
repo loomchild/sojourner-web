@@ -123,9 +123,8 @@ export default {
         await navigator.share({ url })
       } else {
         await navigator.clipboard.writeText(url)
+        dispatch('showMessage', 'Copied share link to the clipboard')
       }
-
-      dispatch('showMessage', 'Copied share link to the clipboard')
     }
   }
 }
