@@ -6,10 +6,6 @@
         <v-row>
           <v-col class="about-text grow">
             <p class="mb-2">
-              <span>Author:</span>
-              <span><a href="https://jareklipski.com" target="_blank">Jarek Lipski</a></span>
-            </p>
-            <p class="mb-2">
               <span>Updated:</span>
               <span>{{ timestamp }}</span>
             </p>
@@ -35,7 +31,13 @@
             <v-row>
               <v-col cols="12" sm="9" class="mt-2 md:mt-6 about-text">
                 <p class="story">
-                  Sojourner is a conference companion. It is inspired by the original Sojourner mobile app for Nokia N900.
+                  Sojourner is a conference companion, developed by <a href="https://jareklipski.com" target="_blank">Jarek Lipski</a>.
+                </p>
+                <p class="story">
+                  It's inspired by the FOSDEM schedule app written by <a href="https://willthompson.co.uk/" target="_blank">Will Thompson</a> for the Nokia N900 back in 2010, and discovered by Jarek during his first visit to ULB Solbosch Campus in 2012.
+                </p>
+                <p class="story">
+                  <i>The N900's codename was Rover; Sojourner is a Mars rover. Naming it Sojourner seemed apt because a sojourn is a short trip and FOSDEM is 2 days long.</i>
                 </p>
               </v-col>
             </v-row>
