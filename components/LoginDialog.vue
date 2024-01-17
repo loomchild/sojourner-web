@@ -155,7 +155,17 @@ export default {
         this.reset()
         this.setLoginDialog(false)
       } catch (error) {
-        this.showError(error.message)
+        let message = error.message
+
+        if (error.code) {
+          if (error.code === 'auth/invalid-credential') {
+            message = 'Invalid username or password.'
+          } else if (error.code === 'auth/too-many-requests') {
+            message = 'Too many login attempts, please try again later.'
+          }
+        }
+
+        this.showError(message)
         this.password = ''
         this.showPassword = false
       }
@@ -170,7 +180,21 @@ export default {
         this.reset()
         this.setLoginDialog(false)
       } catch (error) {
-        this.showError(error.message)
+        let message = error.message
+
+        if (error.code) {
+          if (error.code === 'auth/email-already-exists') {
+            message = 'User with this email already exists.'
+          } else if (error.code === 'auth/invalid-email') {
+            message = 'Invalid email.'
+          } else if (error.code === 'auth/weak-password') {
+            message = 'Invalid password, must be at least 6 characters.'
+          } else if (error.code === 'auth/too-many-requests') {
+            message = 'Too many register attempts, please try again later.'
+          }
+        }
+
+        this.showError(message)
       }
     },
 
