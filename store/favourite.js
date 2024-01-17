@@ -118,7 +118,13 @@ export default {
       const eventIds = Object.keys(state.favourites).join(',')
       const route = router.resolve({ name: 'shared-events', query: { eventIds } })
       const url = new URL(route.href, window.location.origin).href
-      await navigator.clipboard.writeText(url)
+
+      if ('share' in navigator) {
+        await navigator.share({ url, text: 'My shared bookmarks.', title: 'Shared bookmarks' })
+      } else {
+        await navigator.clipboard.writeText(url)
+      }
+
       dispatch('showMessage', 'Copied share link to the clipboard')
     }
   }
