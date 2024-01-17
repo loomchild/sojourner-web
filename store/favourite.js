@@ -120,7 +120,7 @@ export default {
       const url = new URL(route.href, window.location.origin).href
 
       if ('share' in navigator) {
-        await navigator.share({ url, text: 'My shared bookmarks.', title: 'Shared bookmarks' })
+        await navigator.share({ url })
       } else {
         await navigator.clipboard.writeText(url)
       }
