@@ -1,6 +1,6 @@
 # Sojourner Web
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7c9b2b95-ea25-4b11-ad7f-47d383770866/deploy-status)](https://app.netlify.com/sites/sojourner/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e729e002-d94e-4404-ae14-dfe88858fe1c/deploy-status)](https://app.netlify.com/sites/fosdem-sojourner/deploys)
 
 > Sojourner conference companion PWA
 
