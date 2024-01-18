@@ -109,14 +109,6 @@ export default {
     action: 0
   }),
   computed: {
-    formLogin () {
-      return this.$refs.formLogin
-    },
-
-    formRegister () {
-      return this.$refs.formRegister
-    },
-
     ...mapGetters([
       'loginDialog'
     ])
@@ -128,11 +120,11 @@ export default {
         this.password = null
         this.showPassword = false
         this.action = 0
-        if (this.formLogin) {
-          this.formLogin.resetValidation()
+        if (this.$refs.formLogin) {
+          this.$refs.formLogin.resetValidation()
         }
-        if (this.formRegister) {
-          this.formRegister.resetValidation()
+        if (this.$refs.formRegister) {
+          this.$refs.formRegister.resetValidation()
         }
       }, 200)
     },
@@ -147,7 +139,7 @@ export default {
     },
 
     async clickLogIn () {
-      if (!this.formLogin.validate()) return
+      if (!this.$refs.formLogin.validate()) return
 
       try {
         await this.logIn({ email: this.email, password: this.password })
@@ -172,7 +164,7 @@ export default {
     },
 
     async clickRegister () {
-      if (!this.formRegister.validate()) return
+      if (!this.$refs.formRegister.validate()) return
 
       try {
         await this.register({ email: this.email, password: this.password })
