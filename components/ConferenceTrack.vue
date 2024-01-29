@@ -7,7 +7,9 @@
         <span v-if="hasRooms">
           |
           <span v-for="(room, index) in track.rooms" :key="room.name">
-            {{ room.name }}<room-state :room="room"></room-state><span v-if="index < track.rooms.length - 1">, </span>
+            {{ room.name }}
+            <room-state :room="room"></room-state>
+            <span v-if="index < track.rooms.length - 1">, </span>
           </span>
         </span>
       </v-list-item-subtitle>
