@@ -135,10 +135,6 @@ export default {
     ])
   },
   methods: {
-    goBack () {
-      this.$router.go(-1)
-    },
-
     async clickLogOut () {
       try {
         await this.logOut()
@@ -150,6 +146,7 @@ export default {
 
     ...mapActions([
       'toggleDrawer',
+      'goBack',
       'showLoginDialog',
       'logOut',
       'shareFavourites',

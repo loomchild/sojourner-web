@@ -82,11 +82,7 @@ export default {
   },
 
   methods: {
-    goBack () {
-      this.$router.go(-1)
-    },
-
-    ...mapActions(['shareFavourites'])
+    ...mapActions(['shareFavourites', 'goBack'])
   }
 }
 </script>

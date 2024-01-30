@@ -11,6 +11,7 @@ import state from './state'
 import user from './user'
 import player from './player'
 import cron from './cron'
+import history from './history'
 
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     state,
     user,
     player,
-    cron
+    cron,
+    history
   }
 })

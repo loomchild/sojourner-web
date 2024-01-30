@@ -66,6 +66,7 @@ export default {
   created: async function () {
     try {
       this.initConference(this.$route.params.editionId)
+      await this.initHistory()
       await this.initPersistent()
     } catch (error) {
       console.error(error)
@@ -110,7 +111,8 @@ export default {
     'initA2HSTip',
     'initCron',
     'setTitle',
-    'setPageTitle'
+    'setPageTitle',
+    'initHistory'
   ])
 }
 </script>
