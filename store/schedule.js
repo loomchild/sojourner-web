@@ -152,7 +152,13 @@ export default {
         .sort(eventNaturalSort)
     },
 
-    selectedEvents: state => eventIds => eventIds.map(eventId => state.events[eventId]).sort(eventNaturalSort),
+    selectedEvents: state => eventIds => {
+      const eventIdSet = new Set(eventIds)
+
+      return Object.values(state.events)
+        .filter(event => eventIdSet.has(event.id))
+        .sort(eventNaturalSort)
+    },
 
     typeTrackStats: (state, getters, rootState, rootGetters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
