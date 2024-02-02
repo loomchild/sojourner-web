@@ -160,6 +160,8 @@ export default {
         .sort(eventNaturalSort)
     },
 
+    selectedEventsOrdered: state => eventIds => eventIds.map(eventId => state.events[eventId]).filter(Boolean),
+
     typeTrackStats: (state, getters, rootState, rootGetters) => typeName => {
       const typeEvents = getters.typeEvents(typeName)
       const eventsByDay = groupBy(Object.values(typeEvents), event => event.day.index)

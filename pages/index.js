@@ -67,7 +67,7 @@ const router = new Router({
           path: 'shared',
           name: 'shared-events',
           component: SharedEvents,
-          props: route => ({ eventIds: route.query.eventIds ? route.query.eventIds.split(',') : [] })
+          props: route => ({ eventIds: route.query.eventIds ? route.query.eventIds.split(',') : [], order: !!route.query.order })
         },
 
         {
