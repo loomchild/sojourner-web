@@ -8,8 +8,34 @@
       <menu-item v-if="hasMap" title="Map" icon="mdi-map" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item title="Search" icon="mdi-magnify" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <v-divider class="mx-4"></v-divider>
+
       <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
-      <menu-item v-if="realUser" title="Log-out" icon="mdi-account" @click="clickLogOut"></menu-item>
+      <v-menu v-else offset-y left>
+        <template #activator="{ on, attrs }">
+          <v-list-item exact ripple v-bind="attrs" v-on="on">
+            <v-list-item-action>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ realUser.email }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+
+        <v-list>
+          <v-list-item @click.stop="clickLogOut">
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-2">
+                  mdi-account-outline
+                </v-icon>
+                Log-out
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
       <menu-item title="About" icon="mdi-information" :to="{ name: 'about' }"></menu-item>
     </v-list>
     <div class="menu-logo">
@@ -48,6 +74,7 @@ export default {
       try {
         await this.logOut()
         this.showMessage('Logged out successfully')
+        this.setDrawer(false)
       } catch (error) {
         this.showError(error.message)
       }
