@@ -389,6 +389,7 @@ export default {
       const index = {}
       for (const event of Object.values(state.events)) {
         const blob = JSON.stringify(event, null, 2).toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           .replace(/"[a-zA-Z0-9_]+":|/g, '').replace(/",|"|/g, '')
         index[event.id] = blob
       }
