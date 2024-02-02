@@ -61,7 +61,7 @@ const getVideoType = (url) => {
   }
 }
 
-const createEvent = (event, type, date, room, conferenceDates) => {
+const createEvent = (event, type, date, room, { year, dates }) => {
   const persons = event.persons && event.persons[0] && event.persons[0].person
     ? event.persons[0].person.map(person => person.text) : []
   const allLinks = event.links && event.links[0] && event.links[0].link
@@ -81,7 +81,7 @@ const createEvent = (event, type, date, room, conferenceDates) => {
     }
   }
 
-  const live = conferenceDates.includes(new Date().toISOString().substring(0, 10))
+  const live = dates.includes(new Date().toISOString().substring(0, 10))
   if (live && !room.startsWith('B.') && !room.startsWith('I.') && !room.startsWith('S.')) {
     const normalizedRoom = room.toLowerCase().replace(/\./g, '')
     const type = 'application/vnd.apple.mpegurl'
@@ -105,7 +105,7 @@ const createEvent = (event, type, date, room, conferenceDates) => {
     return null
   }
 
-  const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${room.substring(2)}:fosdem.org` : null
+  const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${year}-space-${room.substring(2)}:fosdem.org` : null
 
   return new Event({
     id: event.id.toString(),
@@ -126,7 +126,7 @@ const createEvent = (event, type, date, room, conferenceDates) => {
   })
 }
 
-module.exports = async function (scheduleUrl, { dates }) {
+module.exports = async function (scheduleUrl, { year, dates }) {
   const response = await axios.get(scheduleUrl)
 
   const json = xmltojson.parseString(response.data, {
@@ -177,7 +177,7 @@ module.exports = async function (scheduleUrl, { dates }) {
         const room = getRoomName(r)
         for (const e of r.event || []) {
           const type = getType(e, typeSet)
-          const event = createEvent(e, type, date, room, dates)
+          const event = createEvent(e, type, date, room, { year, dates })
           if (event) {
             events.push(event)
           }
