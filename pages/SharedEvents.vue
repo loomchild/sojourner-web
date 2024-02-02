@@ -50,7 +50,7 @@ export default {
 
   metaInfo () {
     return {
-      title: 'Shared bookmarks'
+      title: this.order ? 'Recommended talks' : 'Shared bookmarks'
     }
   }
 }
