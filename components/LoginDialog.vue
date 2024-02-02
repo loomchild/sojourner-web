@@ -175,7 +175,7 @@ export default {
         let message = error.message
 
         if (error.code) {
-          if (error.code === 'auth/email-already-exists') {
+          if (error.code === 'auth/email-already-in-use') {
             message = 'User with this email already exists.'
           } else if (error.code === 'auth/invalid-email') {
             message = 'Invalid email.'
