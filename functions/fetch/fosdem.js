@@ -105,7 +105,8 @@ const createEvent = (event, type, date, room, { year, dates }) => {
     return null
   }
 
-  const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${year}-space-${room.substring(2)}:fosdem.org` : null
+  // const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${year}-space-${room.substring(2)}:fosdem.org` : null
+  const chat = null
 
   return new Event({
     id: event.id.toString(),
