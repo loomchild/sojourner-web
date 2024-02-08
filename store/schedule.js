@@ -73,14 +73,18 @@ const MAX_SEARCH_RESULTS = 50
 
 const scoreField = (field, multiplier, keywords) => keywords.filter(keyword => field.includes(keyword)).length * multiplier
 
-const scoreEvent = (event, keywords) => {
+const scoreEvent = (event, favourites, keywords) => {
   let score = 0
 
-  score += scoreField(event.title.toLowerCase(), 3, keywords)
+  score += scoreField(event.title.toLowerCase(), 30, keywords)
 
-  score += scoreField((event.subtitle || '').toLowerCase(), 2, keywords)
+  score += scoreField((event.subtitle || '').toLowerCase(), 20, keywords)
 
-  score += scoreField(((event.abstract || '') + ' ' + event.track.name + ' ' + event.persons.join(' ')).toLowerCase(), 1, keywords)
+  score += scoreField(((event.abstract || '') + ' ' + event.track.name + ' ' + event.persons.join(' ')).toLowerCase(), 10, keywords)
+
+  if (favourites[event.id]) {
+    score += 5
+  }
 
   return score
 }
@@ -400,7 +404,7 @@ export default {
       dispatch('searchEvents', 'warm')
     },
 
-    searchEvents ({ state }, query) {
+    searchEvents ({ state, rootGetters }, query) {
       const keywords = query.toLowerCase().split(' ')
       let foundEvents = []
 
@@ -412,7 +416,7 @@ export default {
 
       const eventScores = {}
       foundEvents.forEach(event => {
-        eventScores[event.id] = scoreEvent(event, keywords)
+        eventScores[event.id] = scoreEvent(event, rootGetters.favourites, keywords)
       })
 
       foundEvents = foundEvents.sort(eventScoreSort(eventScores))
