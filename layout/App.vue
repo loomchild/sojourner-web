@@ -169,8 +169,9 @@ h1.page-title {
   }
 }
 
-.application--wrap {
-  min-height: var(--screenHeight, 100vh) !important;
+.v-application--wrap {
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
 }
 
 .clickable {
