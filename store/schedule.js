@@ -247,6 +247,28 @@ export default {
       const trackEvents = getters.trackEvents(event.track.name)
       const index = trackEvents.findIndex(e => e.id === event.id)
       return trackEvents[index - 1] || null
+    },
+
+    searchEvents: (state, getters, rootState, rootGetters) => query => {
+      const keywords = query.toLowerCase().split(' ')
+      let foundEvents = []
+
+      for (const [eventId, blob] of Object.entries(state.eventIndex)) {
+        if (keywords.every(keyword => blob.includes(keyword))) {
+          foundEvents.push(state.events[eventId])
+        }
+      }
+
+      const eventScores = {}
+      foundEvents.forEach(event => {
+        eventScores[event.id] = scoreEvent(event, rootGetters.favourites, keywords)
+      })
+
+      foundEvents = foundEvents.sort(eventScoreSort(eventScores))
+
+      foundEvents = foundEvents.splice(0, MAX_SEARCH_RESULTS)
+
+      return foundEvents
     }
   },
 
@@ -391,7 +413,7 @@ export default {
       commit('initializeScheduleUpdater')
     },
 
-    reindexEvents ({ state, commit, dispatch }) {
+    reindexEvents ({ state, getters, commit, dispatch }) {
       const index = {}
       for (const event of Object.values(state.events)) {
         const blob = JSON.stringify(event, null, 2).toLowerCase()
@@ -401,29 +423,7 @@ export default {
       }
       commit('setEventIndex', index)
 
-      dispatch('searchEvents', 'warm')
-    },
-
-    searchEvents ({ state, rootGetters }, query) {
-      const keywords = query.toLowerCase().split(' ')
-      let foundEvents = []
-
-      for (const [eventId, blob] of Object.entries(state.eventIndex)) {
-        if (keywords.every(keyword => blob.includes(keyword))) {
-          foundEvents.push(state.events[eventId])
-        }
-      }
-
-      const eventScores = {}
-      foundEvents.forEach(event => {
-        eventScores[event.id] = scoreEvent(event, rootGetters.favourites, keywords)
-      })
-
-      foundEvents = foundEvents.sort(eventScoreSort(eventScores))
-
-      foundEvents = foundEvents.splice(0, MAX_SEARCH_RESULTS)
-
-      return foundEvents
+      getters.searchEvents('warm')
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" autofocus color="secondary" />
+    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" color="secondary" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
         <event :key="`ev-${event.id}`" :event="event" show-day show-room show-persons show-track></event>
@@ -26,7 +26,7 @@
 
 <script>
 import _ from 'lodash'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Event from '@/components/Event'
 import PageTitle from '@/components/PageTitle'
 
@@ -39,17 +39,33 @@ export default {
   },
 
   data: () => ({
-    query: '',
     events: []
   }),
 
   computed: {
+    query: {
+      get () {
+        return this.$route.query.q || ''
+      },
+      set (query) {
+        if (this.query === query) {
+          return
+        }
+        if (!query) {
+          this.$router.replace({ query: _.omit(this.$route.query, 'q') })
+        } else {
+          this.$router.replace({ query: { ...this.$route.query, q: query } })
+        }
+      }
+    },
+
     validQuery () {
       return this.query && this.query.length >= 2
     },
 
     ...mapGetters([
-      'hasRooms'
+      'hasRooms',
+      'searchEvents'
     ])
   },
 
@@ -64,27 +80,27 @@ export default {
   },
 
   created () {
-    if (this.$route.query.q) {
-      this.query = this.$route.query.q
+    this.rawSearch()
+  },
+
+  mounted () {
+    if (!this.query) {
+      this.$refs.search.focus()
     }
   },
 
-  activated () {
-    this.$refs.search.focus()
-  },
-
   methods: {
-    search: _.debounce(async function () {
+    search: _.debounce(function () {
+      this.rawSearch()
+    }, 150),
+
+    rawSearch () {
       if (!this.validQuery) {
         this.events = []
         return
       }
-      this.events = await this.searchEvents(this.query)
-    }, 150),
-
-    ...mapActions([
-      'searchEvents'
-    ])
+      this.events = this.searchEvents(this.query)
+    }
   },
 
   metaInfo () {
