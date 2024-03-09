@@ -141,7 +141,7 @@ export default {
     ])
   },
 
-  activated () {
+  mounted () {
     this.$nextTick(() => this.dockPlayer(this.eventId))
   },
 
@@ -149,7 +149,7 @@ export default {
     this.$nextTick(() => this.dockPlayer(this.eventId))
   },
 
-  deactivated () {
+  beforeDestroy () {
     this.dockPlayer(null)
   },
 
