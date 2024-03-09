@@ -12,14 +12,14 @@
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
-        <span v-if="showTrack">
-          | {{ event.track.name }}
-        </span>
         <span v-if="showType">
           | {{ event.type.name }}
         </span>
         <span v-if="showPersons && event.persons.length > 0">
           | {{ event.persons.join(', ') }}
+        </span>
+        <span v-if="showTrack">
+          | {{ event.track.name }}
         </span>
       </v-list-item-subtitle>
       <v-list-item-title class="event-title">

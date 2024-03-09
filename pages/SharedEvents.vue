@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <event-list-plain v-if="order" :events="eventsOrdered" show-day show-track show-persons></event-list-plain>
-    <event-list v-else :events="events" show-track show-persons></event-list>
+    <event-list-plain v-if="order" :events="eventsOrdered" show-day show-persons show-track></event-list-plain>
+    <event-list v-else :events="events" show-persons show-track></event-list>
   </v-container>
 </template>
 
