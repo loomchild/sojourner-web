@@ -100,9 +100,12 @@ const createEvent = (event, type, date, room, { year, dates }) => {
     title = title.substring(10)
   }
 
-  const track = getText(event.track)
+  let track = getText(event.track)
   if (type === 'other' && track.endsWith('stand')) {
     return null
+  }
+  if (track.endsWith(' devroom')) {
+    track = track.substring(0, track.length - ' devroom'.length)
   }
 
   // const chat = /^[A-Z]\./.test(room) ? `https://chat.fosdem.org/#/room/#${year}-space-${room.substring(2)}:fosdem.org` : null
