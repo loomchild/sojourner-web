@@ -80,7 +80,7 @@ const scoreEvent = (event, favourites, keywords) => {
 
   score += scoreField((event.subtitle || '').toLowerCase(), 20, keywords)
 
-  score += scoreField(((event.abstract || '') + ' ' + event.track.name + ' ' + event.persons.join(' ')).toLowerCase(), 10, keywords)
+  score += scoreField(((event.abstract || '') + ' ' + event.track.name + ' ' + event.speakers).toLowerCase(), 10, keywords)
 
   if (favourites[event.id]) {
     score += 5

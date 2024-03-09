@@ -18,7 +18,7 @@
             <h3>{{ event.subtitle }}</h3>
             <div class="d-flex justify-space-between pt-3 pb-4">
               <div class="speakers grey--text">
-                {{ event.speakers() }}
+                {{ event.speakers }}
               </div>
               <div class="icons flex-shrink-0 align-self-end">
                 <play :event="event" class="mr-2" large></play>
@@ -59,7 +59,7 @@
       </v-col>
       <v-col class="pl-12 pr-4">
         <div class="speakers grey--text">
-          {{ event.speakers() }}
+          {{ event.speakers }}
         </div>
         <h2 class="event-title">
           {{ event.title }}

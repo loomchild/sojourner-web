@@ -1,7 +1,7 @@
 <template>
   <v-list-item v-if="event" :ripple="false" class="event pr-0" :to="{ name: 'event', params: { eventId: event.id } }">
     <v-list-item-content class="align-content-center">
-      <v-list-item-subtitle>
+      <v-list-item-subtitle class="infos">
         <span v-if="showDay">
           {{ event.day.name }}
         </span>
@@ -12,14 +12,11 @@
           | {{ event.room.name }}
           <room-state :room="event.room"></room-state>
         </span>
-        <span v-if="showType">
-          | {{ event.type.name }}
-        </span>
-        <span v-if="showPersons && event.persons.length > 0">
-          | {{ event.persons.join(', ') }}
-        </span>
         <span v-if="showTrack">
           | {{ event.track.name }}
+        </span>
+        <span v-if="showType">
+          | {{ event.type.name }}
         </span>
       </v-list-item-subtitle>
       <v-list-item-title class="event-title">
@@ -28,6 +25,9 @@
           ({{ event.language }})
         </span>
       </v-list-item-title>
+      <v-list-item-subtitle v-if="showPersons && event.persons.length > 0" class="speakers grey--text">
+        {{ event.speakers }}
+      </v-list-item-subtitle>
     </v-list-item-content>
     <v-list-item-action class="align-self-stretch ma-0 pa-4 d-flex align-center noclickable" @click.prevent.stop>
       <v-list-item-action-text>
@@ -81,12 +81,17 @@ export default {
   height: auto;
 }
 
-.event .v-list-item__subtitle {
-  color: var(--v-secondary-base) !important;
+.event .infos,
+.event .speakers {
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline;
+}
+
+.event .infos {
+  color: var(--v-secondary-base) !important;
+  margin-top: 2px;
 }
 
 .event .v-list-item__content > :not(:last-child) {

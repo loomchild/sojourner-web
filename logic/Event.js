@@ -31,7 +31,7 @@ export default class Event {
     }
   }
 
-  speakers () {
+  get speakers () {
     return this.persons.join(', ')
   }
 
