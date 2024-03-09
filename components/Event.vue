@@ -31,6 +31,7 @@
     </v-list-item-content>
     <v-list-item-action class="align-self-stretch ma-0 pa-4 d-flex align-center noclickable" @click.prevent.stop>
       <v-list-item-action-text>
+        <play :event="event" class="mr-2"></play>
         <favourite :event="event"></favourite>
       </v-list-item-action-text>
     </v-list-item-action>
@@ -40,6 +41,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import Play from '@/components/Play'
+
 import Favourite from './Favourite'
 import RoomState from './RoomState'
 
@@ -48,7 +51,8 @@ export default {
 
   components: {
     Favourite,
-    RoomState
+    RoomState,
+    Play
   },
 
   props: {

@@ -1,5 +1,5 @@
 <template>
-  <v-icon v-if="canPlay" color="secondary" title="Play video" class="play clickable" @click="playEvent">
+  <v-icon v-if="canPlay" color="secondary" title="Play video" class="play clickable" :class="{large: large}" @click="playEvent">
     mdi-play-circle-outline
   </v-icon>
 </template>
@@ -12,6 +12,10 @@ export default {
     event: {
       type: Object,
       required: true
+    },
+
+    large: {
+      type: Boolean
     }
   },
 
@@ -36,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-.v-icon.play {
+.play.large {
   font-size: 40px;
   font-weight: normal;
 }

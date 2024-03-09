@@ -21,7 +21,7 @@
                 {{ event.speakers() }}
               </div>
               <div class="icons flex-shrink-0 align-self-end">
-                <play :event="event" class="mr-2"></play>
+                <play :event="event" class="mr-2" large></play>
                 <chat :event="event" class="mr-2"></chat>
                 <favourite :event="event" large></favourite>
               </div>
@@ -47,7 +47,7 @@
     <v-row class="flex-nowrap">
       <v-col cols="auto">
         <div class="icons mb-4">
-          <play :event="event" class="mr-2"></play>
+          <play :event="event" class="mr-2" large></play>
           <chat :event="event" class="mr-2"></chat>
           <favourite :event="event" large></favourite>
         </div>
