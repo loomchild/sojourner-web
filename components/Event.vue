@@ -86,7 +86,7 @@ export default {
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline;
+  display: inline !important;
 }
 
 .event .infos {
