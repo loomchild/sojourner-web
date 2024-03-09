@@ -6,9 +6,6 @@ body {
 html {
   overscroll-behavior: none;
 }
-body {
-  overflow-y: scroll;
-}
 
 .middle {
   position: absolute;
