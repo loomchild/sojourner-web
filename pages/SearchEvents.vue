@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="content">
     <page-title></page-title>
-    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" color="secondary" />
+    <v-text-field ref="search" v-model="query" solo clearable hide-details placeholder="Enter your keywords" prepend-inner-icon="mdi-magnify" autocapitalize="none" autofocus color="secondary" class="search" />
     <v-list v-if="validQuery && events.length > 0" three-line class="pa-0">
       <template v-for="(event, index) in events">
         <event :key="`ev-${event.id}`" :event="event" show-day show-room show-persons show-track></event>
@@ -83,12 +83,6 @@ export default {
     this.rawSearch()
   },
 
-  mounted () {
-    if (!this.query) {
-      this.$refs.search.focus()
-    }
-  },
-
   methods: {
     search: _.debounce(function () {
       this.rawSearch()
@@ -112,6 +106,13 @@ export default {
 </script>
 
 <style scoped>
+.search {
+  position: sticky;
+  width: 100%;
+  top: 56px;
+  z-index: 100;
+}
+
 .search-help {
   padding: 12px;
 }
@@ -121,6 +122,10 @@ export default {
 }
 
 @media only screen and (min-width:960px) {
+  .search {
+    top: 0;
+  }
+
   .v-list {
     border: 1px solid #0000001e !important;
     width: 100%;
