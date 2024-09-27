@@ -22,7 +22,8 @@ export default {
     conferenceName: (state, getters) => getters.conferenceEdition ? getters.conferenceEdition.name : '',
 
     conferenceScheduleUrl: state => {
-      return `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${state.conferenceId}.json?alt=media`
+      // return `https://firebasestorage.googleapis.com/v0/b/sojourer-web.appspot.com/o/conferences%2F${state.conferenceId}.json?alt=media`
+      return `https://fosdem.loomchild.net/conferences/${state.conferenceId}.json`
     }
   },
 
