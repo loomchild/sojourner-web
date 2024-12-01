@@ -113,6 +113,7 @@ const createEvent = (event, type, date, room, { year, dates }) => {
 
   return new Event({
     id: event.id.toString(),
+    guid: event.guid.toString(),
     startTime: getText(event.start),
     duration: getText(event.duration),
     title: title,
@@ -189,6 +190,8 @@ module.exports = async function (scheduleUrl, { year, dates }) {
       }
     }
   }
+
+  events.sort((l, r) => l.id === r.id ? 0 : l.id < r.id ? -1 : 1)
 
   return { types, events }
 }
