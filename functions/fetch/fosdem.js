@@ -113,7 +113,6 @@ const createEvent = (event, type, date, room, { year, dates }) => {
 
   return new Event({
     id: event.id.toString(),
-    guid: event.guid.toString(),
     startTime: getText(event.start),
     duration: getText(event.duration),
     title: title,

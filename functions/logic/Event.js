@@ -1,7 +1,6 @@
 module.exports = class Event {
   constructor (data) {
     this.id = data.id
-    this.guid = data.guid
     this.date = data.date
     this.startTime = data.startTime
     this.duration = data.duration
