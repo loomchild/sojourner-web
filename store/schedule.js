@@ -316,7 +316,12 @@ export default {
         cache = 'default'
       }
 
-      const response = await fetch(rootGetters.conferenceScheduleUrl, { cache })
+      const headers = {}
+      if (state.lastModified) {
+        headers['If-Modified-Since'] = state.lastModified
+      }
+
+      const response = await fetch(rootGetters.conferenceScheduleUrl, { cache, headers })
 
       if (!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`)
