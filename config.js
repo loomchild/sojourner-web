@@ -4,6 +4,11 @@ module.exports = {
     name: 'FOSDEM',
     editions: [
       {
+        id: '2025',
+        name: 'FOSDEM 2025',
+        dates: ['2025-02-01', '2025-02-02']
+      },
+      {
         id: '2024',
         name: 'FOSDEM 2024',
         dates: ['2024-02-03', '2024-02-04']
