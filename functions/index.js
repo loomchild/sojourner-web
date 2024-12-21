@@ -5,9 +5,9 @@ if (process.env.NODE_ENV !== 'production') {
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const { isAdmin } = require('./auth')
-const fetchFosdem = require('./fetch/fosdem')
+// const fetchFosdem = require('./fetch/fosdem')
 // const fetchSched = require('./fetch/sched')
-const store = require('./store')
+// const store = require('./store')
 const adminUsers = require('./admin/users')
 const adminFavourites = require('./admin/favourites')
 
