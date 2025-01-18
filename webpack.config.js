@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const moment = require('moment')
+const _ = require('lodash')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -191,7 +192,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^https://firebasestorage\\.googleapis\\.com/v0/b/sojourer-web\\.appspot\\.com/o/conferences%2F.*\\.json\\?alt=media$'),
+          urlPattern: new RegExp(`^${_.escapeRegExp(config.conference.urlPrefix)}/.*\\.json.*$`),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {

@@ -1,7 +1,9 @@
 module.exports = {
+
   conference: {
     id: 'fosdem',
     name: 'FOSDEM',
+    urlPrefix: 'https://bo.sojourner.rocks/conferences',
     editions: [
       {
         id: '2025',
