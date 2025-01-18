@@ -22,7 +22,7 @@ export default {
     conferenceName: (state, getters) => getters.conferenceEdition ? getters.conferenceEdition.name : '',
 
     conferenceScheduleUrl: state => {
-      return `${config.conference.urlPrefix}/${state.conferenceId}.json`
+      return `${config.conference.urlPrefix}/conferences/${state.conferenceId}.json`
     }
   },
 

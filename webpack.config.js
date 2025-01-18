@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const moment = require('moment')
-const _ = require('lodash')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -192,7 +191,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp(`^${_.escapeRegExp(config.conference.urlPrefix)}/.*\\.json.*$`),
+          urlPattern: new RegExp('^.*\\/conferences\\/.*json.*$'),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
