@@ -323,7 +323,7 @@ export default {
 
       const response = await fetch(rootGetters.conferenceScheduleUrl, { cache, headers })
 
-      if (!response.ok) {
+      if (!response.ok && !response.status === 304) {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
 
