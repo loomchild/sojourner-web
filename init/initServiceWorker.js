@@ -12,10 +12,13 @@ export default async function () {
 
     wb.addEventListener('activated', event => {
       console.log('activate')
+
       if (event.isUpdate) {
         console.log('update')
         store.dispatch('notifyNewVersion')
       } else {
+        caches.delete(store.getters.conferenceScheduleUrl)
+
         wb.messageSW({
           type: 'CACHE_URLS',
           payload: {
