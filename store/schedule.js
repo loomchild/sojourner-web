@@ -312,13 +312,13 @@ export default {
 
   actions: {
     async initSchedule ({ state, commit, getters, dispatch, rootGetters }, cache) {
-      const headers = {}
-      if (state.lastModified && !cache) {
-        headers['If-Modified-Since'] = state.lastModified
-      }
-
       if (!cache) {
         cache = 'default'
+      }
+
+      const headers = {}
+      if (state.lastModified && cache === 'default') {
+        headers['If-Modified-Since'] = state.lastModified
       }
 
       const response = await fetch(rootGetters.conferenceScheduleUrl, { cache, headers })
