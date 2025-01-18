@@ -31,7 +31,6 @@ const manifest = () => JSON.stringify({
     purpose: 'maskable any'
   })),
   start_url: '/',
-  scope: `https://${config.conference.id}.sojourner.rocks`,
   display: 'standalone',
   orientation: 'portrait',
   background_color: config.colors.primary.base,
@@ -191,7 +190,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^.*\\/conferences\\/.*json.*$'),
+          urlPattern: new RegExp('^.*/conferences/.*json$'),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
