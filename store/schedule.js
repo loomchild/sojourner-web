@@ -415,6 +415,9 @@ export default {
 
       setInterval(() => dispatch('initSchedule'), pollInterval * 1000)
 
+      // Initial fetch after service worker has been configured
+      setTimeout(() => dispatch('initSchedule'), 3000)
+
       commit('initializeScheduleUpdater')
     },
 
