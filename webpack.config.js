@@ -184,7 +184,7 @@ module.exports = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new GenerateSW({
-      cacheId: 'sojourner-2',
+      cacheId: 'sojourner',
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/index.html',
