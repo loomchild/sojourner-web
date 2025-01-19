@@ -17,8 +17,6 @@ export default async function () {
         console.log('update')
         store.dispatch('notifyNewVersion')
       } else {
-        caches.delete(store.getters.conferenceScheduleUrl)
-
         wb.messageSW({
           type: 'CACHE_URLS',
           payload: {

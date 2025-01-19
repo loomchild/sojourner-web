@@ -317,14 +317,9 @@ export default {
         cache = 'default'
       }
 
-      const headers = {}
-      if (state.lastModified && cache === 'default') {
-        headers['If-Modified-Since'] = state.lastModified
-      }
+      const response = await fetch(rootGetters.conferenceScheduleUrl, { cache })
 
-      const response = await fetch(rootGetters.conferenceScheduleUrl, { cache, headers })
-
-      if (!response.ok && !response.status === 304) {
+      if (!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
 
@@ -409,15 +404,15 @@ export default {
     },
 
     initScheduleUpdater ({ dispatch, state, commit }) {
+      // Initial fetch after service worker has been fully configured
+      setTimeout(() => dispatch('initSchedule'), 3000)
+
       if (!process.env.SCHEDULE_INTERVAL || state.scheduleUpdaterInitialized) {
         return
       }
       const pollInterval = parseInt(process.env.SCHEDULE_INTERVAL)
 
       setInterval(() => dispatch('initSchedule'), pollInterval * 1000)
-
-      // Initial fetch after service worker has been configured
-      setTimeout(() => dispatch('initSchedule'), 3000)
 
       commit('initializeScheduleUpdater')
     },

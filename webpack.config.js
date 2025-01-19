@@ -187,7 +187,7 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/index.html',
-      exclude: [/\.map$/, /^manifest.*\.js$/, '_redirects', '_headers'],
+      exclude: [/\.map$/, /^manifest.*\.js.*$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
           urlPattern: new RegExp('^.*/conferences/.*json$'),
