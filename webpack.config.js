@@ -156,7 +156,7 @@ module.exports = {
     ]),
     new AddAssetPlugin('assets/manifest.json', manifest),
     new webpack.EnvironmentPlugin({
-      TIMESTAMP: moment().utcOffset('+0100').format('YYYY-MM-DD HH:mm:ss'),
+      TIMESTAMP: moment().utcOffset('+0100').format('YYYY-MM-DD HH:mm'),
       COMMITHASH: gitRevisionPlugin.commithash(),
       VERSION: process.env.npm_package_version,
       SCHEDULE_INTERVAL: 0,

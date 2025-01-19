@@ -6,8 +6,12 @@
         <v-row>
           <v-col class="about-text grow">
             <p class="mb-2">
-              <span>Updated:</span>
-              <span>{{ timestamp }}</span>
+              <span>Schedule updated:</span>
+              <span class="font-weight-medium">{{ lastModified }}</span>
+            </p>
+            <p class="mb-2">
+              <span>Code updated:</span>
+              <span class="font-weight-medium">{{ timestamp }}</span>
             </p>
             <p class="mb-2">
               <span>Version:</span>
@@ -68,7 +72,8 @@ export default {
       'timestamp',
       'commithash',
       'version',
-      'allConferenceEditions'
+      'allConferenceEditions',
+      'lastModified'
     ])
   },
 

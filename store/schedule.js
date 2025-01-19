@@ -112,6 +112,7 @@ export default {
 
   getters: {
     scheduleInitialized: state => state.scheduleInitialized,
+    lastModified: state => state.lastModified ? new Date(state.lastModified).toISOString().substring(0, 16).replace('T', ' ') : null,
 
     days: state => state.days,
     rooms: state => state.rooms,

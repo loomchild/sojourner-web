@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import debounce from 'lodash/debounce'
+import omit from 'lodash/omit'
 import { mapGetters } from 'vuex'
 import Event from '@/components/Event'
 import PageTitle from '@/components/PageTitle'
@@ -52,7 +53,7 @@ export default {
           return
         }
         if (!query) {
-          this.$router.replace({ query: _.omit(this.$route.query, 'q') })
+          this.$router.replace({ query: omit(this.$route.query, 'q') })
         } else {
           this.$router.replace({ query: { ...this.$route.query, q: query } })
         }
@@ -90,7 +91,7 @@ export default {
   },
 
   methods: {
-    search: _.debounce(function () {
+    search: debounce(function () {
       this.rawSearch()
     }, 150),
 

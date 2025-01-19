@@ -1,11 +1,18 @@
 # Changelog
 
+## 2025
+
+- Improve search: remember input, prioritize favourites, sticky.
+- Schedule: generate and host from backoffice, use stable event GUID, refresh immediately.
+
 ## 2024
 
 - Handle all editions in one app (to avoid reinstallation every year).
 - Introduce [Sojourner back-office app](https://bo.sojourner.rocks).
-- Favourite tracks
-- Share bookmarks
+- Favourite tracks.
+- Share bookmarks.
+- Ignore accents in search.
+- Improve login, logout and registration errors.
 
 ## 2023
 
