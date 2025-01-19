@@ -22,7 +22,8 @@ export default {
     conferenceName: (state, getters) => getters.conferenceEdition ? getters.conferenceEdition.name : '',
 
     conferenceScheduleUrl: state => {
-      return `${config.conference.urlPrefix}/conferences/${state.conferenceId}.json`
+      const emergencyCacheBuster = config.conference.emergencyCacheBuster ? `?${config.conference.emergencyCacheBuster}` : ''
+      return `${config.conference.urlPrefix}/conferences/${state.conferenceId}.json${emergencyCacheBuster}`
     }
   },
 
