@@ -400,13 +400,10 @@ export default {
     },
 
     notifyRefreshSchedule ({ dispatch }) {
-      dispatch('refreshSchedule')
+      dispatch('initSchedule')
     },
 
     initScheduleUpdater ({ dispatch, state, commit }) {
-      // Initial fetch after service worker has been fully configured
-      setTimeout(() => dispatch('initSchedule'), 3000)
-
       if (!process.env.SCHEDULE_INTERVAL || state.scheduleUpdaterInitialized) {
         return
       }
