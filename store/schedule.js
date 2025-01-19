@@ -399,6 +399,16 @@ export default {
       return dispatch('initSchedule', 'reload')
     },
 
+    initScheduleBuster ({ dispatch, state }) {
+      setTimeout(() => {
+        if (state.lastModified) {
+          if (new Date(state.lastModified) < new Date('2025-01-19 20:00 GMT')) {
+            dispatch('refreshSchedule')
+          }
+        }
+      }, 5000)
+    },
+
     notifyRefreshSchedule ({ dispatch }) {
       dispatch('initSchedule')
     },

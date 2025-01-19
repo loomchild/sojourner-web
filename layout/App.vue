@@ -77,6 +77,7 @@ export default {
     Vue.nextTick(() => {
       this.initSchedule()
       this.initScheduleUpdater()
+      this.initScheduleBuster()
       this.initUser()
       this.initRoomStateUpdater()
       this.initA2HSTip()
@@ -106,6 +107,7 @@ export default {
     'initPersistent',
     'initSchedule',
     'initScheduleUpdater',
+    'initScheduleBuster',
     'initUser',
     'initRoomStateUpdater',
     'initA2HSTip',
