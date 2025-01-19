@@ -4,7 +4,6 @@ module.exports = {
     id: 'fosdem',
     name: 'FOSDEM',
     urlPrefix: 'https://bo.sojourner.rocks',
-    emergencyCacheBuster: '1',
     editions: [
       {
         id: '2025',

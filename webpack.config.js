@@ -190,7 +190,7 @@ module.exports = {
       exclude: [/\.map$/, /^manifest.*\.js.*$/, '_redirects', '_headers'],
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^.*/conferences/.*json.*$'),
+          urlPattern: new RegExp('^.*/conferences/.*json$'),
           handler: 'StaleWhileRevalidate',
           options: {
             broadcastUpdate: {
