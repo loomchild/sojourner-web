@@ -13,6 +13,9 @@ export default async function () {
     wb.addEventListener('activated', event => {
       console.log('activated')
 
+      caches.delete(store.getters.conferenceScheduleUrl)
+      caches.delete('https://fosdem.sojourner.rocks/assets/manifest.json')
+
       if (event.isUpdate) {
         console.log('update')
         store.dispatch('notifyNewVersion')
