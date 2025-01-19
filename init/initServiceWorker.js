@@ -7,11 +7,11 @@ export default async function () {
     const wb = new Workbox('/service-worker.js', { updateViaCache: 'none' })
 
     wb.addEventListener('installed', event => {
-      console.log('install')
+      console.log('installed')
     })
 
     wb.addEventListener('activated', event => {
-      console.log('activate')
+      console.log('activated')
 
       if (event.isUpdate) {
         console.log('update')
@@ -26,7 +26,12 @@ export default async function () {
       }
     })
 
+    wb.addEventListener('controlling', event => {
+      console.log('controlling')
+    })
+
     wb.addEventListener('message', event => {
+      console.log(`message ${event.data.type}`)
       if (event.data.type === 'CACHE_UPDATED') {
         store.dispatch('notifyRefreshSchedule')
       }

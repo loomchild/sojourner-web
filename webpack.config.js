@@ -195,6 +195,9 @@ module.exports = {
           options: {
             broadcastUpdate: {
               channelName: 'workbox'
+            },
+            matchOptions: {
+              ignoreVary: true
             }
           }
         }
