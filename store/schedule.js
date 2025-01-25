@@ -93,9 +93,9 @@ const eventScoreSort = (eventScores) => firstBy(event => eventScores[event.id] |
 
 const eventLiveSort = (favourites) => firstBy(event => !favourites[event.id]).thenBy(eventNaturalSort)
 
-const trackSort = (favouriteTracks) => firstBy(track => !favouriteTracks[track.name]).thenBy('name')
+const trackSort = (favouriteTracks) => firstBy(track => !favouriteTracks[track.name]).thenBy(track => track.name.toLowerCase())
 
-const roomSort = firstBy(room => room.name.includes('online') ? 1 : -1).thenBy('name')
+const roomSort = firstBy(room => room.name.includes('online') ? 1 : -1).thenBy(room => room.name.toLowerCase())
 
 export default {
   state: {
