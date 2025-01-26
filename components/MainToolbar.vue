@@ -32,25 +32,25 @@
         </v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
-      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }" exact>
         Programme
       </v-btn>
-      <v-btn v-if="hasLive" text dark class="mx-0" :ripple="false" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn v-if="hasLive" text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }" exact>
         Live
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }" exact>
         Bookmarks
       </v-btn>
-      <v-btn v-if="hasAll" text dark class="mx-0" :ripple="false" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn v-if="hasAll" text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }" exact>
         All
       </v-btn>
-      <v-btn v-if="hasMap" text dark class="mx-0" :ripple="false" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn v-if="hasMap" text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }" exact>
         Map
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }" exact>
+      <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }" exact>
         Search
       </v-btn>
-      <v-btn text dark class="mx-0" :ripple="false" :to="{ name: 'about' }" exact>
+      <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'about' }" exact>
         About
       </v-btn>
       <v-btn v-if="!realUser" text icon dark class="mx-0" :ripple="false" @click.stop="showLoginDialog">

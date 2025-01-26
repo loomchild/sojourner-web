@@ -154,6 +154,10 @@ html {
   text-indent: inherit;
 }
 
+a:focus-visible, button:focus-visible, .v-btn:focus-visible {
+  outline: 2px solid var(--v-secondary-base);
+}
+
 h1.page-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 80px;
