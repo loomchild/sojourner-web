@@ -35,12 +35,15 @@ export default class Event {
     return this.persons.join(', ')
   }
 
-  happeningNow (currentDate, minTime, maxTime) {
-    if (!maxTime) {
-      maxTime = minTime
-    }
+  happeningNow (currentDate, currentTime) {
     return this.day.dateString === currentDate &&
-      this.startTime <= maxTime && this.endTime >= minTime &&
+      this.startTime <= currentTime && this.endTime >= currentTime &&
+      this.track.name !== 'Infodesk'
+  }
+
+  happeningLive (currentDate, currentTime, minEndTime, maxStartTime) {
+    return this.day.dateString === currentDate &&
+      this.startTime <= maxStartTime && (this.startTime >= currentTime || this.endTime >= minEndTime) &&
       this.track.name !== 'Infodesk'
   }
 }

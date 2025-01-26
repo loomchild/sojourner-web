@@ -14,6 +14,8 @@ import Video from '@/logic/Video'
 import config from '@/config'
 
 const TIME_FORMAT = 'HH:mm'
+const STARTING_SOON_MINUTES = 60
+const ENDING_SOON_MINUTES = 15
 
 const createDay = (date) => Object.freeze(new Day({
   date
@@ -213,10 +215,13 @@ export default {
     liveEvents: (state, getters, rootState, rootGetters) => {
       const currentDate = rootGetters.currentDate
       const currentTime = rootGetters.currentTime
-      const soonTime = rootGetters.soonTime
+
+      const minEndTime = moment(currentTime, TIME_FORMAT).add(ENDING_SOON_MINUTES, 'minutes').format(TIME_FORMAT)
+      const maxStartTime = moment(currentTime, TIME_FORMAT).add(STARTING_SOON_MINUTES, 'minutes').format(TIME_FORMAT)
+
       const favourites = rootGetters.favourites
       const events = Object.values(state.events)
-        .filter(event => event.happeningNow(currentDate, currentTime, soonTime))
+        .filter(event => event.happeningLive(currentDate, currentTime, favourites[event.id] ? currentTime : minEndTime, maxStartTime))
         .sort(eventLiveSort(favourites))
       return events
     },

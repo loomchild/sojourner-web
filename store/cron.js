@@ -5,7 +5,6 @@ const TEST = false
 const CRON_UPDATE_INTERVAL = !TEST ? 60 * 1000 : 1000
 const TIME_FORMAT = 'HH:mm'
 const DATE_FORMAT = 'YYYY-MM-DD'
-const SOON_MINUTES = 15
 
 function getDate (date) {
   return moment(date).format(DATE_FORMAT)
@@ -24,9 +23,7 @@ export default {
   getters: {
     currentDate: state => state.currentDate,
 
-    currentTime: state => state.currentTime,
-
-    soonTime: state => moment(state.currentTime, TIME_FORMAT).add(SOON_MINUTES, 'minutes').format(TIME_FORMAT)
+    currentTime: state => state.currentTime
   },
 
   mutations: {
@@ -46,16 +43,13 @@ export default {
     },
 
     updateCron ({ commit, dispatch }) {
-      const date = !TEST ? new Date() : moment().year(2023).month('February').date(4).hour(10).minute(moment().second())
+      const date = !TEST ? new Date() : moment().year(2025).month('February').date(1).hour(10).minute(30)
       const currentDate = getDate(date)
       const currentTime = getTime(date)
       commit('setCurrentDate', currentDate)
       commit('setCurrentTime', currentTime)
 
       dispatch('notifyTrackEvent')
-      if (TEST) {
-        console.log(currentTime)
-      }
     }
   }
 }
