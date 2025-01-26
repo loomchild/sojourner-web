@@ -84,6 +84,12 @@ export default {
   },
 
   actions: {
+    initMeta ({ commit, rootGetters }) {
+      if (getDate() === rootGetters.conferenceEdition.dates[1]) {
+        commit('setTab', 1)
+      }
+    },
+
     setTitle ({ commit }, title) {
       commit('setTitle', title)
     },

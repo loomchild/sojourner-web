@@ -79,6 +79,7 @@ export default {
       this.initScheduleUpdater()
       this.initScheduleBuster()
       this.initUser()
+      this.initMeta()
       this.initRoomStateUpdater()
       this.initA2HSTip()
       this.initCron()
@@ -109,6 +110,7 @@ export default {
     'initScheduleUpdater',
     'initScheduleBuster',
     'initUser',
+    'initMeta',
     'initRoomStateUpdater',
     'initA2HSTip',
     'initCron',
