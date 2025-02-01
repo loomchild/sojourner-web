@@ -5,10 +5,9 @@ import * as Integrations from '@sentry/integrations'
 export default async function () {
   if (process.env.SENTRY_DSN) {
     // Workaround for https://github.com/vuejs/vue/issues/8433
-    // Vue.config.errorHandler = (err, vm, info) => {
-    //   console.error(err)
-    //  console.error(err.stack)
-    // }
+    Vue.config.errorHandler = (err, vm, info) => {
+      console.error(err)
+    }
 
     Sentry.init({
       dsn: process.env.SENTRY_DSN,

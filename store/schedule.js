@@ -406,14 +406,13 @@ export default {
       return dispatch('initSchedule', 'reload')
     },
 
-    initScheduleBuster ({ dispatch, state }) {
-      setTimeout(() => {
-        if (state.lastModified) {
-          if (new Date(state.lastModified) < new Date('2025-01-19 20:00 GMT')) {
-            dispatch('refreshSchedule')
-          }
-        }
-      }, 5000)
+    async initScheduleBuster ({ dispatch, state }) {
+      await new Promise((resolve) => setTimeout(resolve, 5000))
+
+      if (state.lastModified && (new Date(state.lastModified) < new Date('2025-01-19 20:00 GMT'))) {
+        console.log('Reloading stale schedule')
+        dispatch('refreshSchedule')
+      }
     },
 
     notifyRefreshSchedule ({ dispatch }) {
