@@ -41,9 +41,10 @@ export default class Event {
       this.track.name !== 'Infodesk'
   }
 
-  happeningLive (currentDate, currentTime, minEndTime, maxStartTime) {
+  happeningLive (isFavourite, currentDate, currentTime, minEndTime, minStartTime, maxStartTime) {
     return this.day.dateString === currentDate &&
-      this.startTime <= maxStartTime && (this.startTime >= currentTime || this.endTime >= minEndTime) &&
+      this.startTime <= maxStartTime &&
+      ((isFavourite && this.endTime >= currentTime) || (this.startTime >= minStartTime && this.endTime >= minEndTime)) &&
       this.track.name !== 'Infodesk'
   }
 }

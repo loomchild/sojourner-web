@@ -15,6 +15,7 @@ import config from '@/config'
 
 const TIME_FORMAT = 'HH:mm'
 const STARTING_SOON_MINUTES = 60
+const STARTED_RECENTLY_MINUTES = 10
 const ENDING_SOON_MINUTES = 15
 
 const createDay = (date) => Object.freeze(new Day({
@@ -217,11 +218,12 @@ export default {
       const currentTime = rootGetters.currentTime
 
       const minEndTime = moment(currentTime, TIME_FORMAT).add(ENDING_SOON_MINUTES, 'minutes').format(TIME_FORMAT)
+      const minStartTime = moment(currentTime, TIME_FORMAT).subtract(STARTED_RECENTLY_MINUTES, 'minutes').format(TIME_FORMAT)
       const maxStartTime = moment(currentTime, TIME_FORMAT).add(STARTING_SOON_MINUTES, 'minutes').format(TIME_FORMAT)
 
       const favourites = rootGetters.favourites
       const events = Object.values(state.events)
-        .filter(event => event.happeningLive(currentDate, currentTime, favourites[event.id] ? currentTime : minEndTime, maxStartTime))
+        .filter(event => event.happeningLive(!!favourites[event.id], currentDate, currentTime, minEndTime, minStartTime, maxStartTime))
         .sort(eventLiveSort(favourites))
       return events
     },
