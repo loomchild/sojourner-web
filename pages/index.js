@@ -18,6 +18,7 @@ import TypeTracksOrEvents from './TypeTracksOrEvents'
 import AllEvents from './AllEvents'
 import LiveEvents from './LiveEvents'
 import SharedEvents from './SharedEvents'
+import Delete from './Delete'
 
 window.history.scrollRestoration = 'manual'
 
@@ -116,6 +117,15 @@ const router = new Router({
       path: '/about',
       name: 'about',
       component: About,
+      meta: {
+        layout: 'cover'
+      }
+    },
+
+    {
+      path: '/delete',
+      name: 'delete',
+      component: Delete,
       meta: {
         layout: 'cover'
       }
