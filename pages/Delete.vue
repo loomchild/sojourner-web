@@ -39,7 +39,6 @@ export default {
   font-weight: 500;
 }
 
-
 @media only screen and (min-width:960px) {
   .about-text {
     font-size: 20px;

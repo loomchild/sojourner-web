@@ -5,7 +5,7 @@
       <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }"></menu-item>
-      <menu-item v-if="hasMap" title="Map" icon="mdi-map" :to="{ name: 'campus-map', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item v-if="hasMap" title="Map" icon="mdi-map" href="https://nav.fosdem.org"></menu-item>
       <menu-item title="Search" icon="mdi-magnify" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <v-divider class="mx-4"></v-divider>
 
