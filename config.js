@@ -6,6 +6,11 @@ module.exports = {
     urlPrefix: 'https://bo.sojourner.rocks',
     editions: [
       {
+        id: '2026',
+        name: 'FOSDEM 2026',
+        dates: ['2025-01-31', '2025-02-01']
+      },
+      {
         id: '2025',
         name: 'FOSDEM 2025',
         dates: ['2025-02-01', '2025-02-02']
