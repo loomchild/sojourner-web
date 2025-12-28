@@ -1,13 +1,15 @@
 <template>
-  <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="480" @input="setDrawer">
+  <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" app clipped fixed :value="drawer" width="250" height="auto" class="pb-16" @input="setDrawer">
     <v-list dark class="pa-0">
       <menu-item title="Programme" icon="mdi-home" :to="{ name: 'dashboard', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item v-if="hasLive" title="Live" icon="mdi-television-classic" :to="{ name: 'live-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item title="Bookmarks" icon="mdi-bookmark-multiple" :to="{ name: 'favourite-events', params: { editionId: conferenceEdition.id } }"></menu-item>
       <menu-item v-if="hasAll" title="All" icon="mdi-view-headline" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }"></menu-item>
-      <menu-item v-if="hasMap" title="Map" icon="mdi-map" href="https://nav.fosdem.org"></menu-item>
       <menu-item title="Search" icon="mdi-magnify" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }"></menu-item>
-      <v-divider class="mx-4"></v-divider>
+      <v-divider v-if="hasSpeakers || hasMap" class="mx-4 my-1"></v-divider>
+      <menu-item v-if="hasSpeakers" title="Speakers" icon="mdi-microphone-variant" :to="{ name: 'all-persons', params: { editionId: conferenceEdition.id } }"></menu-item>
+      <menu-item v-if="hasMap" title="Map" icon="mdi-map" href="https://nav.fosdem.org"></menu-item>
+      <v-divider class="mx-4 my-1"></v-divider>
 
       <menu-item v-if="!realUser" title="Log-in" icon="mdi-account-outline" @click="showLoginDialog(); setDrawer(false);"></menu-item>
       <v-menu v-else offset-y left>
@@ -66,7 +68,8 @@ export default {
     'realUser',
     'hasMap',
     'hasAll',
-    'hasLive'
+    'hasLive',
+    'hasSpeakers'
   ]),
 
   methods: {
@@ -104,6 +107,7 @@ export default {
 .v-navigation-drawer .v-divider {
   border-color: var(--v-secondary-lighten5) !important;
   border-width: 1px;
+  opacity: 0.5;
 }
 
 .menu-logo {

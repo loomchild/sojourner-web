@@ -119,6 +119,8 @@ const trackSort = (favouriteTracks) => firstBy(track => !favouriteTracks[track.n
 
 const roomSort = firstBy(room => room.name.includes('online') ? 1 : -1).thenBy(room => room.name.toLowerCase())
 
+const personSort = firstBy(person => person.sortName)
+
 export default {
   state: {
     scheduleInitialized: false,
@@ -147,6 +149,8 @@ export default {
     allDays: state => Object.values(state.days).sort(firstBy('index')),
 
     allEvents: state => Object.values(state.events).sort(eventNaturalSort),
+
+    allPersons: state => Object.values(state.persons).sort(personSort),
 
     type: state => typeName => Object.values(state.types)
       .find(type => type.name === typeName),
@@ -298,7 +302,23 @@ export default {
       foundEvents = foundEvents.splice(0, MAX_SEARCH_RESULTS)
 
       return foundEvents
-    }
+    },
+
+    allPersonsByLetter: (state, getters) => {
+      const allPersonsByLetter = []
+
+      for (const person of getters.allPersons) {
+        const lastGroup = allPersonsByLetter[allPersonsByLetter.length - 1] 
+
+        if (!lastGroup || lastGroup[0].firstLetter !== person.firstLetter) {
+          allPersonsByLetter.push([person])
+        } else {
+          lastGroup.push(person)
+        }
+      }
+
+      return allPersonsByLetter
+    },
   },
 
   mutations: {
@@ -429,6 +449,7 @@ export default {
         }
       }
       for (const [id, person] of Object.entries(persons)) {
+        person.events.sort(eventNaturalSort)
         Object.freeze(person)
       }
 

@@ -62,7 +62,9 @@ export default {
 
     hasRooms: () => config.features.rooms,
 
-    hasLive: (state, getters, rootState, rootGetters) => config.features.live && rootGetters.isLatestConferenceEdition
+    hasLive: (state, getters, rootState, rootGetters) => config.features.live && rootGetters.isLatestConferenceEdition,
+
+    hasSpeakers: (state, getters, rootState, rootGetters) => rootGetters.allPersons.length > 0
   },
 
   mutations: {

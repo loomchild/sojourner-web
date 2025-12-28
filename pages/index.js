@@ -20,6 +20,7 @@ import LiveEvents from './LiveEvents'
 import SharedEvents from './SharedEvents'
 import Delete from './Delete'
 import PersonDetails from './PersonDetails'
+import AllPersons from './AllPersons'
 
 window.history.scrollRestoration = 'manual'
 
@@ -76,6 +77,12 @@ const router = new Router({
           path: 'all',
           name: 'all-events',
           component: AllEvents
+        },
+
+        {
+          path: 'speakers',
+          name: 'all-persons',
+          component: AllPersons
         },
 
         {

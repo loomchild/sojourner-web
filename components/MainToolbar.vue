@@ -44,11 +44,14 @@
       <v-btn v-if="hasAll" text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'all', params: { editionId: conferenceEdition.id } }" exact>
         All
       </v-btn>
-      <v-btn v-if="hasMap" text dark class="mx-3 px-1" :ripple="false" href="https://nav.fosdem.org">
-        Map
-      </v-btn>
       <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'search-events', params: { editionId: conferenceEdition.id } }" exact>
         Search
+      </v-btn>
+      <v-btn v-if="hasSpeakers" text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'all-persons', params: { editionId: conferenceEdition.id } }" exact>
+        Speakers
+      </v-btn>
+      <v-btn v-if="hasMap" text dark class="mx-3 px-1" :ripple="false" href="https://nav.fosdem.org">
+        Map
       </v-btn>
       <v-btn text dark class="mx-3 px-1" :ripple="false" :to="{ name: 'about' }" exact>
         About
@@ -126,6 +129,7 @@ export default {
       'hasMap',
       'hasAll',
       'hasLive',
+      'hasSpeakers',
       'realUser',
       'conferenceName',
       'conferenceEdition',
@@ -205,7 +209,7 @@ export default {
     text-transform: none;
     padding-left: 15px;
     padding-right: 15px;
-    min-width: 0;
+    min-width: 0 !important;
   }
 
   .v-btn::before {
