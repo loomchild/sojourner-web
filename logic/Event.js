@@ -32,7 +32,7 @@ export default class Event {
   }
 
   get speakers () {
-    return this.persons.join(', ')
+    return this.persons.map((person) => person.name).join(', ')
   }
 
   happeningNow (currentDate, currentTime) {

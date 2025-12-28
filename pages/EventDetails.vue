@@ -17,9 +17,7 @@
             <h2>{{ event.title }}</h2>
             <h3>{{ event.subtitle }}</h3>
             <div class="d-flex justify-space-between pt-3 pb-4">
-              <div class="speakers grey--text">
-                {{ event.speakers }}
-              </div>
+              <speakers :persons="event.persons"></speakers>
               <div class="icons flex-shrink-0 align-self-end">
                 <play :event="event" class="mr-2" large></play>
                 <chat :event="event" class="mr-2"></chat>
@@ -58,9 +56,7 @@
         </div>
       </v-col>
       <v-col class="pl-12 pr-4">
-        <div class="speakers grey--text">
-          {{ event.speakers }}
-        </div>
+        <speakers :persons="event.persons"></speakers>
         <h2 class="event-title">
           {{ event.title }}
         </h2>
@@ -98,6 +94,7 @@ import RoomState from '@/components/RoomState'
 import PageTitle from '@/components/PageTitle'
 import Play from '@/components/Play'
 import Chat from '@/components/Chat'
+import Speakers from '@/components/Speakers'
 
 export default {
   name: 'EventDetails',
@@ -107,7 +104,8 @@ export default {
     RoomState,
     PageTitle,
     Play,
-    Chat
+    Chat,
+    Speakers
   },
 
   props: {
@@ -255,10 +253,6 @@ export default {
 }
 
 @media only screen and (min-width:960px) {
-  .speakers {
-    font-size: 18px;
-  }
-
   .event-title {
     font-size: 28px;
     font-weight: 500;

@@ -19,6 +19,7 @@ import AllEvents from './AllEvents'
 import LiveEvents from './LiveEvents'
 import SharedEvents from './SharedEvents'
 import Delete from './Delete'
+import PersonDetails from './PersonDetails'
 
 window.history.scrollRestoration = 'manual'
 
@@ -95,6 +96,13 @@ const router = new Router({
           path: 'track/:trackName?',
           name: 'track',
           component: ConferenceTrackEvents,
+          props: true
+        },
+
+        {
+          path: 'person/:personId?',
+          name: 'person',
+          component: PersonDetails,
           props: true
         },
 

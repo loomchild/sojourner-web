@@ -6,6 +6,7 @@ import moment from 'moment'
 import Day from '@/logic/Day'
 import Event from '@/logic/Event'
 import Link from '@/logic/Link'
+import Person from '@/logic/Person'
 import Room from '@/logic/Room'
 import Track from '@/logic/Track'
 import Type from '@/logic/Type'
@@ -44,10 +45,20 @@ const createType = (type, priority) => {
   }))
 }
 
-const createEvent = (event, day, room, track, type) => {
-  const links = event.links ? event.links.map(link => new Link(link)) : []
-  const videos = event.videos ? event.videos.map(video => new Video(video)) : []
-  // const videos = [new Video({ type: 'application/vnd.apple.mpegurl', url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' })]
+const createEvent = (event, day, room, track, type, allPersons) => {
+  const links = event.links ? event.links.map(link => Object.freeze(new Link(link))) : []
+  const videos = event.videos ? event.videos.map(video => Object.freeze(new Video(video))) : []
+  const persons = event.persons ? event.persons.map(person => {
+    if (typeof person === 'string') {
+      return Object.freeze(new Person({ name: person }))
+    } else {
+      if (person.id && !(person.id in allPersons)) {
+        allPersons[person.id] = new Person(person)
+      }
+
+      return allPersons[person.id]
+    }
+  }) : []
 
   return Object.freeze(new Event({
     id: event.id,
@@ -63,11 +74,19 @@ const createEvent = (event, day, room, track, type) => {
     track: track,
     day: day,
     room: room,
-    persons: event.persons,
+    persons: persons,
     links: links,
     videos,
     chat: event.chat
   }))
+}
+
+const createPerson = (person) => {
+  return new Person({
+    id: person.id,
+    name: person.name,
+    bio: person.bio
+  })
 }
 
 const eventNaturalSort = firstBy(event => event.day.index).thenBy('startTime').thenBy(event => event.type.priority).thenBy('endTime')
@@ -109,6 +128,7 @@ export default {
     rooms: {},
     tracks: {},
     types: {},
+    persons: {},
     events: {},
     eventIndex: {}
   },
@@ -121,6 +141,7 @@ export default {
     rooms: state => state.rooms,
     tracks: state => state.tracks,
     types: state => state.types,
+    persons: state => state.persons,
     events: state => state.events,
 
     allDays: state => Object.values(state.days).sort(firstBy('index')),
@@ -305,6 +326,10 @@ export default {
       state.types = types
     },
 
+    setPersons (state, persons) {
+      state.persons = persons
+    },
+
     setEvents (state, events) {
       state.events = events
     },
@@ -348,11 +373,19 @@ export default {
       const rooms = {}
       const types = {}
       const tracks = {}
+      const persons = {}
 
       const typeList = conference.types.map((t, index) => createType(t, index))
       typeList.forEach((t) => {
         types[t.id] = t
       })
+
+      if (conference.persons) {
+        const personList = conference.persons.map((p) => createPerson(p))
+        personList.forEach((p) => {
+          persons[p.id] = p
+        })
+      }
 
       const dateCache = {}
 
@@ -384,14 +417,26 @@ export default {
           tracks[track.name] = track
         }
 
-        const event = createEvent(e, day, room, track, type)
+        const event = createEvent(e, day, room, track, type, persons)
         events[event.id] = event
       })
+
+      for (const event of Object.values(events)) {
+        for (const person of event.persons) {
+          if (person.exists) {
+            person.addEvent(event)
+          }
+        }
+      }
+      for (const [id, person] of Object.entries(persons)) {
+        Object.freeze(person)
+      }
 
       commit('setDays', days)
       commit('setRooms', rooms)
       commit('setTracks', tracks)
       commit('setTypes', types)
+      commit('setPersons', persons)
       commit('setEvents', events)
       commit('setScheduleInitialized', true)
 
@@ -433,7 +478,11 @@ export default {
     reindexEvents ({ state, getters, commit, dispatch }) {
       const index = {}
       for (const event of Object.values(state.events)) {
-        const blob = JSON.stringify(event, null, 2).toLowerCase()
+        const blob = JSON.stringify(
+          event,
+          (k, v) => k === 'events' ? undefined : v,
+          2
+        ).toLowerCase()
           .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           .replace(/"[a-zA-Z0-9_]+":|/g, '').replace(/",|"|/g, '')
         index[event.id] = blob
