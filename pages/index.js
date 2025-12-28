@@ -156,8 +156,6 @@ router.afterEach((to, from) => {
   const storeEditionId = storeEdition && storeEdition.id
 
   if (pathEditionId && storeEditionId && pathEditionId !== storeEditionId) {
-    console.log(pathEditionId)
-    console.log(storeEditionId)
     window.location.reload()
   }
 })
