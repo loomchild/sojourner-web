@@ -64,7 +64,7 @@ export default {
 
     hasLive: (state, getters, rootState, rootGetters) => config.features.live && rootGetters.isLatestConferenceEdition,
 
-    hasSpeakers: (state, getters, rootState, rootGetters) => rootGetters.allPersons.length > 0
+    hasSpeakers: (state, getters, rootState, rootGetters) => rootGetters.conferenceId >= 'fosdem-2026' || rootGetters.allPersons.length > 0
   },
 
   mutations: {
