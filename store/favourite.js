@@ -141,7 +141,7 @@ export default {
             event.title,
             event.subtitle,
             event.speakers
-          ].map(column => column ? `"${column}"` : '""')
+          ].map(column => column ? `"${column.replace('"', '""')}"` : '""')
         )
       }
 
