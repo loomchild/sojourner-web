@@ -33,7 +33,7 @@
               </span>
             </p>
             <v-row>
-              <v-col cols="12" sm="9" class="mt-2 md:mt-6 about-text">
+              <v-col cols="12" sm="9" class="mt-4 about-text">
                 <p class="story">
                   Sojourner is a conference companion, developed by <a href="https://jareklipski.com" target="_blank">Jarek Lipski</a>.
                 </p>
@@ -42,6 +42,12 @@
                 </p>
                 <p class="story">
                   <i>The N900's codename was Rover; Sojourner is a Mars rover. Naming it Sojourner seemed apt because a sojourn is a short trip and FOSDEM is 2 days long.</i>
+                </p>
+              </v-col>
+              <v-col cols="12" sm="9" class="pt-0">
+                <p>
+                  To delete your account, please send an email to
+                  <a href="mailto:hello@jareklipski.com">hello@jareklipski.com</a>.
                 </p>
               </v-col>
             </v-row>

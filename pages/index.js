@@ -18,7 +18,6 @@ import TypeTracksOrEvents from './TypeTracksOrEvents'
 import AllEvents from './AllEvents'
 import LiveEvents from './LiveEvents'
 import SharedEvents from './SharedEvents'
-import Delete from './Delete'
 import PersonDetails from './PersonDetails'
 import AllPersons from './AllPersons'
 
@@ -136,15 +135,6 @@ const router = new Router({
         layout: 'cover'
       }
     },
-
-    {
-      path: '/delete',
-      name: 'delete',
-      component: Delete,
-      meta: {
-        layout: 'cover'
-      }
-    }
   ],
 
   scrollBehavior (to, from, savedPosition) {
