@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 import PageTitle from '@/components/PageTitle'
 import EventListPlain from '@/components/EventListPlain'

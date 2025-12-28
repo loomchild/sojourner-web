@@ -8,7 +8,7 @@ export default class Person {
     this.events = []
   }
 
-  get firstLetter() {
+  get firstLetter () {
     return this.sortName[0]
   }
 
@@ -16,4 +16,3 @@ export default class Person {
     this.events.push(event)
   }
 }
-

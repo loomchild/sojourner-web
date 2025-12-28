@@ -308,7 +308,7 @@ export default {
       const allPersonsByLetter = []
 
       for (const person of getters.allPersons) {
-        const lastGroup = allPersonsByLetter[allPersonsByLetter.length - 1] 
+        const lastGroup = allPersonsByLetter[allPersonsByLetter.length - 1]
 
         if (!lastGroup || lastGroup[0].firstLetter !== person.firstLetter) {
           allPersonsByLetter.push([person])
@@ -318,7 +318,7 @@ export default {
       }
 
       return allPersonsByLetter
-    },
+    }
   },
 
   mutations: {
@@ -448,7 +448,7 @@ export default {
           }
         }
       }
-      for (const [id, person] of Object.entries(persons)) {
+      for (const person of Object.values(persons)) {
         person.events.sort(eventNaturalSort)
         Object.freeze(person)
       }

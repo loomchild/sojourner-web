@@ -3,7 +3,7 @@
     <page-title></page-title>
     <div>
       <div v-if="allPersonsByLetter.length > 0" class="letter">
-        <template v-for="personGroup of allPersonsByLetter">
+        <div v-for="personGroup of allPersonsByLetter" :key="`letter-${personGroup[0].firstLetter}`">
           <h2 class="pl-4 mt-6 mb-2">
             {{ personGroup[0].firstLetter }}
           </h2>
@@ -17,7 +17,7 @@
               <v-divider v-if="index + 1 < personGroup.length" :key="`person-${person.id}`"></v-divider>
             </template>
           </v-list>
-        </template>
+        </div>
       </div>
       <v-list v-else>
         <v-list-item>
@@ -49,7 +49,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'allPersonsByLetter',
+      'allPersonsByLetter'
     ])
   },
 

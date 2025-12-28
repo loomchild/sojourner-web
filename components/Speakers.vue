@@ -1,6 +1,6 @@
 <template>
   <div class="speakers grey--text">
-    <span v-for="person in persons">
+    <span v-for="person in persons" :key="`person-${person.id}`">
       <router-link v-if="person.exists" :to="{ name: 'person', params: { personId: person.id } }" class="grey--text text-decoration-none">{{ person.name }}</router-link>
       <template v-else>{{ person.name }}</template>
     </span>
@@ -27,15 +27,7 @@ export default {
   }
 }
 
-.speakers {
-  span {
-  }
-
-  span:not(:last-child) {
-    &::after {
-      content: ", ";
-    }
-  }
+.speakers span:not(:last-child)::after {
+  content: ", ";
 }
 </style>
-

@@ -12,7 +12,6 @@ admin.initializeApp({
   storageBucket: 'sojourer-web.appspot.com'
 })
 
-
 exports.adminUsers = functions.https.onRequest(async (req, res) => {
   if (!isAdmin(req)) {
     res.status(403).send('Forbidden')
