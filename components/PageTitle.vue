@@ -16,6 +16,11 @@
             mdi-play
           </v-icon>
         </v-btn>
+        <v-btn v-if="favourites" text icon replace class="ml-2 mr-0" @click="downloadFavourites">
+          <v-icon color="secondary">
+            mdi-download
+          </v-icon>
+        </v-btn>
         <v-btn v-if="favourites" text icon replace class="ml-2 mr-0" @click="shareFavourites">
           <v-icon color="secondary">
             mdi-share-variant
@@ -82,7 +87,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['shareFavourites', 'goBack'])
+    ...mapActions(['shareFavourites', 'downloadFavourites', 'goBack'])
   }
 }
 </script>

@@ -125,6 +125,24 @@ export default {
         await navigator.clipboard.writeText(url)
         dispatch('showMessage', 'Copied share link to the clipboard')
       }
+    },
+
+    downloadFavourites ({ rootGetters }) {
+      const rows = [
+        ['ID', 'Day', 'Time', 'Title', 'Subtitle', 'Speakers', 'Abstract', 'Description']
+      ]
+
+      for (const event of rootGetters.favouriteEvents) {
+        rows.push([event.id, event.day.name, event.startTime, event.title, event.subtitle, event.speakers, event.abstract, event.description])
+      }
+
+      const csvContent = encodeURI(`data:text/csv;charset=utf-8,${rows.map(row => row.join(',')).join('\n')}`)
+
+      const link = document.createElement('a')
+      link.setAttribute('href', csvContent)
+      link.setAttribute('download', `${rootGetters.conferenceName}.csv`)
+
+      link.click()
     }
   }
 }

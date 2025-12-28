@@ -18,7 +18,12 @@
         mdi-arrow-down
       </v-icon>
     </v-btn>
-    <v-btn v-if="favourites" text icon dark replace class="updown ml-0" :ripple="false" @click="shareFavourites">
+    <v-btn v-if="favourites" text icon dark replace class="ml-0" :ripple="false" @click="downloadFavourites">
+      <v-icon>
+        mdi-download
+      </v-icon>
+    </v-btn>
+    <v-btn v-if="favourites" text icon dark replace class="ml-0" :ripple="false" @click="shareFavourites">
       <v-icon>
         mdi-share-variant
       </v-icon>
@@ -154,6 +159,7 @@ export default {
       'showLoginDialog',
       'logOut',
       'shareFavourites',
+      'downloadFavourites',
       'showMessage'
     ])
   }

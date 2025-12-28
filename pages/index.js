@@ -134,7 +134,7 @@ const router = new Router({
       meta: {
         layout: 'cover'
       }
-    },
+    }
   ],
 
   scrollBehavior (to, from, savedPosition) {
