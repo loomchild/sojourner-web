@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026
+
+- Speaker biographies: click on the person name or visit the Speakers page. Biographies are also included in search index.
+- Bookmark export: visit the bookmarks page and click the download button.
+- Merged Main Track and Keynotes (maybe only for this year).
+
 ## 2025
 
 - Improve search: remember input, prioritize favourites, sticky.
