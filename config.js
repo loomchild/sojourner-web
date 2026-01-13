@@ -57,7 +57,7 @@ module.exports = {
     all: false,
     live: true,
     rooms: true,
-    localtimes: true
+    localtimes: false
   },
   colors: {
     primary: {
