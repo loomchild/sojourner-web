@@ -5,14 +5,14 @@ export default class RoomState {
     this.emergency = false
 
     if (this.state === -1) {
-      this.name = 'Unknown room state'
+      this.name = ''
     } else if (this.state === 0) {
-      this.name = 'Room open'
+      this.name = 'Open'
     } else if (this.state === 1) {
-      this.name = 'Room full'
+      this.name = 'Full'
       this.icon = 'mdi-minus-circle'
     } else if (this.state === 2) {
-      this.name = 'Room emergency evacuation'
+      this.name = 'Emergency evacuation'
       this.icon = 'mdi-minus-circle'
       this.emergency = true
     } else {

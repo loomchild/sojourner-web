@@ -1,7 +1,10 @@
 <template>
-  <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name">
-    {{ state.icon }}
-  </v-icon>
+  <span>
+    <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name">
+      {{ state.icon }}
+    </v-icon>
+    {{ state.name }}
+  </span>
 </template>
 
 <script>
