@@ -34,5 +34,6 @@ i.room-state {
   font-size: 18px;
   vertical-align: text-bottom;
   margin-left: 1px;
+  pointer-events: none;
 }
 </style>
