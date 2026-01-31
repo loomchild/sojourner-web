@@ -1,5 +1,5 @@
 <template>
-  <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name">
+  <v-icon v-if="state.icon" class="room-state" color="secondary" :title="state.name" @click.stop>
     {{ state.icon }}
   </v-icon>
 </template>
@@ -34,6 +34,5 @@ i.room-state {
   font-size: 18px;
   vertical-align: text-bottom;
   margin-left: 1px;
-  pointer-events: none;
 }
 </style>
