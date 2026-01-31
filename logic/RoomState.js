@@ -1,7 +1,7 @@
 export default class RoomState {
   constructor (data) {
     this.room = data.room
-    this.state = data.state !== undefined ? data.state : -1
+    this.state = 1
     this.emergency = false
 
     if (this.state === -1) {
