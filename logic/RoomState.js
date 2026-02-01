@@ -7,7 +7,7 @@ export default class RoomState {
     if (this.state === -1) {
       this.name = ''
     } else if (this.state === 0) {
-      this.name = 'Open'
+      this.name = ''
     } else if (this.state === 1) {
       this.name = 'Full'
       this.icon = 'mdi-minus-circle'
