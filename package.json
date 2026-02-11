@@ -16,7 +16,7 @@
     "@sentry/browser": "^5.30.0",
     "@sentry/integrations": "^5.30.0",
     "dotenv": "^8.6.0",
-    "firebase": "^10.7.1",
+    "firebase": "^12.9.0",
     "git-revision-webpack-plugin": "^3.0.6",
     "hls.js": "^0.14.17",
     "lodash": "^4.17.21",
